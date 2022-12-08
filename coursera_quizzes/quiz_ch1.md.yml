@@ -1,0 +1,69 @@
+
+- typeName: multipleChoice
+  prompt: First question to ask goes here. (Note- you need a question mark at end like this. Just one is required if using a question mark in your question field)?
+
+  shuffleOptions: true
+  options:
+    - answer: One correct answer here marked with a "C"
+      isCorrect: true
+    - answer: Mandatory incorrect answers have an "m"
+      isCorrect: false
+    - answer: A second mandatory incorrect answer
+      isCorrect: false
+    - answer: An optional incorrect answer here marked with an "o"
+      isCorrect: false
+    - answer: A second optional incorrect answer here
+      isCorrect: false
+
+- typeName: multipleChoice
+  prompt: Question example with just a question mark?
+
+  shuffleOptions: true
+  options:
+    - answer: One correct answer here marked with a "C"
+      isCorrect: true
+    - answer: Mandatory incorrect answers have an "m"
+      isCorrect: false
+    - answer: A second mandatory incorrect answer
+      isCorrect: false
+    - answer: An optional incorrect answer here marked with an "o"
+      isCorrect: false
+    - answer: A second optional incorrect answer here
+      isCorrect: false
+
+- typeName: multipleChoice
+  prompt: Second question to ask goes here?
+
+  shuffleOptions: true
+  options:
+    - answer: One correct answer here marked with a "C"
+      isCorrect: true
+    - answer: Mandatory incorrect answers have an "m"
+      isCorrect: false
+    - answer: A second mandatory incorrect answer
+      isCorrect: false
+    - answer: An optional incorrect answer here marked with an "o"
+      isCorrect: false
+    - answer: A second optional incorrect answer here
+      isCorrect: false
+
+- typeName: multipleChoice
+  prompt: A more complicated example. Note the question mark at the end of the options! Which of the following are correct
+    1. An option described
+    2. A second option
+    3. A third option
+    4. A fourth option
+    5. A fifth option ?
+
+  shuffleOptions: true
+  options:
+    - answer: All of the examples listed except 5
+      isCorrect: true
+    - answer: 1, 3, and 5
+      isCorrect: false
+    - answer: 1, 2, and 3
+      isCorrect: false
+    - answer: All of the examples except 1 and 5
+      isCorrect: false
+    - answer: All of the examples listed
+      isCorrect: false

@@ -1,0 +1,11 @@
+# ignore nonsense files
+.DS_Store
+.Rhistory
+.local
+.rstudio
+.bash_history
+.RData
+.httr-oauth
+docker/git_token.txt
+.Rproj.user
+docs/*

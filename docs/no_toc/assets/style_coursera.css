@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Karla:400,400i,700,700i|Lora:400,400i,700,700i&display=swap');
+
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+/*---------------Hero Image------------------*/
+
+/* next 3 rules are for setting large image at top of each page and pushing down the book content to appear beneath the image */
+
+.hero-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  /*background-image: url("images/books.jpg");*/
+  /*background-color: #193a5c;*/
+}
+
+.hero-image {
+  width: 100%;
+  height: 80%;
+  /*object-fit: cover;*/
+}
+
+.page-inner {
+  padding-top: 140px !important;
+}
+
+
+/* ------------Links------------------ */
+
+.book .book-body .page-wrapper .page-inner section.normal a {
+  color: #68ace5;
+}
+
+
+/*------------- Body and header text---------------- */
+
+.book.font-family-1 {
+  font-family: 'Karla', arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Lora', arial, sans-serif;
+}
+
+
+.book .book-body .page-wrapper .page-inner section.normal h1, 
+.book .book-body .page-wrapper .page-inner section.normal h2, 
+.book .book-body .page-wrapper .page-inner section.normal h3, 
+.book .book-body .page-wrapper .page-inner section.normal h4, 
+.book .book-body .page-wrapper .page-inner section.normal h5, 
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+    margin-top: 2.275em;
+    margin-bottom: 1em;
+}
+
+.title {
+  font-family: 'Lora';
+  font-size: 4em !important;
+  color: #012d72;
+  margin-top: 0.275em !important;
+  margin-bottom: 0.35em !important;
+}
+
+.subtitle {
+  font-family: 'Lora';
+  color: #0b8d96;
+}
+  
+
+/*----------DROP CAPS--------------*/
+
+
+/*p:nth-child(2):first-letter {   /* /* DROP-CAP FOR FIRST P BENEATH EACH H1 OR H2*/ /*
+  color: #3fb5bd;
+  float: left;
+  font-family: 'Abril Fatface', serif;
+  font-size: 7em;
+  line-height: 65px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  margin-bottom: 9px;
+}
+*/
+
+.section.level1 > p:first-of-type:first-letter { /*drop cap for first p beneath level 1 headers only within class .section*/
+  color: #012d72;
+  float: left;
+  font-family: 'Abril Fatface', serif;
+  font-size: 7em;
+  line-height: 65px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  margin-bottom: 9px;
+}
+
+/* add drop cap to first paragraph that follows the first 2nd level header*/
+/*
+.section.level2:first-of-type > p:first-of-type:first-letter {
+  color: #3fb5bd;
+  float: left;
+  font-family: 'Abril Fatface', serif;
+  font-size: 7em;
+  line-height: 65px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  margin-bottom: 9px;
+}
+*/
+
+
+/*____Code Chunks____*/
+
+.sourceCode {
+  margin-bottom: 0.85em; /* adds same amount of margin as a <p> would */
+}
+
+.sourceCode pre {
+  margin: 0 !important; /* makes space above and below symmetrical*/
+}
+
+/* Footer */
+
+.footer {
+  font-family: "Lora", serif;
+  font-size: .85em;
+  color: #193a5c;
+}
+
+/*Get rid of TOC stuff from https://github.com/rstudio/bookdown/issues/1251 */
+
+.book .book-body .page-wrapper .page-inner {
+  max-width: 100% !important;
+}
+
+.book.with-summary .book-header.fixed {
+    left: 0% !important;
+}
+
+.book.with-summary .book-body {
+    left: 0% !important;
+}
+
+.book.with-summary .book-summary {
+    width: 0% !important;
+}
+
+.book-body.fixed > div > .book-header.fixed > a:nth-child(1) {
+  visibility: hidden;
+}

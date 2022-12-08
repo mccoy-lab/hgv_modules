@@ -1,0 +1,227 @@
+
+# Candace Savonen Apr 2021
+
+name: Render all output courses
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, staging ]
+    paths:
+      - '**.Rmd'
+      - assets/*
+
+jobs:
+
+  yaml-check:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+        # Use the yaml-env-action action.
+      - name: Load environment from YAML
+        uses: doughepi/yaml-env-action@v1.0.0
+        with:
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+    outputs:
+      toggle_bookdown: "${{ env.RENDER_BOOKDOWN }}"
+      toggle_coursera: "${{ env.RENDER_COURSERA }}"
+      toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
+      rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
+      toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
+
+  render-bookdown:
+    name: Render bookdown
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_bookdown == 'yes'}}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Login as jhudsl-robot
+        run: |
+
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+      # We want a fresh run of the renders each time
+      - name: Delete old docs/*
+        run: rm -rf docs/*
+
+      # Run bookdown rendering
+      - name: Run bookdown render
+        id: bookdown
+        run: |
+          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all');
+          file.copy(from = 'assets', to = 'docs/assets', overwrite = TRUE)"
+
+      # This checks on the steps before it and makes sure that they completed.
+      # If the renders didn't complete we don't want to commit the file changes
+      - name: Check on render step
+        if: steps.bookdown.outcome != 'success'
+        run: |
+          echo Bookdown status ${{steps.bookdown.outcome}}
+          exit 1
+
+      # Commit the rendered bookdown files
+      - name: Commit rendered bookdown files
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git add --force docs/*
+          git commit -m 'Render bookdown' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=ours
+          git push origin main || echo "No changes to push"
+
+  render-tocless:
+    name: Render TOC-less version for Leanpub or Coursera
+    needs: [yaml-check]
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+      # Rendered content for Leanpub and Coursera is very similar.
+      # This job creates a shared scaffold for both.
+      - name: Run TOC-less version of render
+        id: tocless
+        run: Rscript -e "ottrpal::render_without_toc()"
+
+      # Commit the TOC-less version files
+      - name: Commit tocless bookdown files
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git add --force docs/no_toc*
+          git commit -m 'Render toc-less' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=ours
+          git push origin main || echo "No changes to push"
+
+  render-leanpub:
+    name: Finish Leanpub prep
+    needs: [yaml-check, render-tocless]
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/ottrpal:main
+    if: ${{needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+      # Create screenshots
+      - name: Run the screenshot creation
+        run: |
+          # Remove old folder
+          rm -rf resources/chapt_screen_images
+
+          # Make new screenshots
+          chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
+            --git_pat ${{ secrets.GH_PAT }} \
+            --repo $GITHUB_REPOSITORY \
+            --output_dir resources/chapt_screen_images)
+
+      # We want a fresh run of the renders each time
+      - name: Delete old manuscript/
+        run: rm -rf manuscript/
+
+      - name: Run ottrpal::bookdown_to_embed_leanpub
+        if: needs.yaml-check.outputs.toggle_quiz_check == 'no'
+        run: |
+          Rscript -e "ottrpal::bookdown_to_embed_leanpub(
+            render = FALSE, \
+            chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
+            make_book_txt = TRUE, \
+            quiz_dir = NULL)"
+
+      - name: Run ottrpal::bookdown_to_embed_leanpub
+        if: needs.yaml-check.outputs.toggle_quiz_check == 'yes'
+        run: |
+          Rscript -e "ottrpal::bookdown_to_embed_leanpub(
+            render = FALSE, \
+            chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
+            make_book_txt = TRUE)"
+
+      # Commit the rendered Leanpub files
+      - name: Commit rendered Leanpub files
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          mkdir -p manuscript
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git add --force manuscript/*
+          git add --force resources/*
+          git add --force docs/*
+          git commit -m 'Render Leanpub' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=ours
+          git push origin main || echo "No changes to push"
+
+  render-coursera:
+    name: Finish Coursera prep
+    needs: [yaml-check, render-tocless]
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes'}}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+      # Run Coursera version
+      - name: Convert Leanpub quizzes to Coursera
+        if: needs.yaml-check.outputs.toggle_leanpub == 'yes' && needs.yaml-check.outputs.toggle_quiz_check == 'yes'
+        id: coursera
+        run: Rscript -e "ottrpal::convert_coursera_quizzes()"
+
+      # Commit the rendered bookdown files
+      - name: Commit rendered Coursera files
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git add --force manuscript/*
+          git add --force resources/*
+          git add --force docs/*
+          git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=ours
+          git push origin main || echo "No changes to push"

@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Karla:400,400i,700,700i|Lora:400,400i,700,700i&display=swap');
+
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+/*---------------Hero Image------------------*/
+
+/* next 3 rules are for setting large image at top of each page and pushing down the book content to appear beneath the image */
+
+.hero-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  /*background-image: url("images/books.jpg");*/
+  /*background-color: #193a5c;*/
+}
+
+.hero-image {
+  width: 100%;
+  height: 80%;
+  /*object-fit: cover;*/
+}
+
+.page-inner {
+  padding-top: 140px !important;
+}
+
+
+/* ------------Links------------------ */
+
+.book .book-body .page-wrapper .page-inner section.normal a {
+  color: #68ace5;
+}
+
+
+/*------------- Body and header text---------------- */
+
+.book.font-family-1 {
+  font-family: 'Karla', arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Lora', arial, sans-serif;
+}
+
+
+.book .book-body .page-wrapper .page-inner section.normal h1,
+.book .book-body .page-wrapper .page-inner section.normal h2,
+.book .book-body .page-wrapper .page-inner section.normal h3,
+.book .book-body .page-wrapper .page-inner section.normal h4,
+.book .book-body .page-wrapper .page-inner section.normal h5,
+.book .book-body .page-wrapper .page-inner section.normal h6 {
+    margin-top: 2.275em;
+    margin-bottom: 1em;
+}
+
+.title {
+  font-family: 'Lora';
+  font-size: 4em !important;
+  color: #012d72;
+  margin-top: 0.275em !important;
+  margin-bottom: 0.35em !important;
+}
+
+.subtitle {
+  font-family: 'Lora';
+  color: #0b8d96;
+}
+
+
+/*----------DROP CAPS--------------*/
+
+
+/*p:nth-child(2):first-letter {   /* /* DROP-CAP FOR FIRST P BENEATH EACH H1 OR H2*/ /*
+  color: #3fb5bd;
+  float: left;
+  font-family: 'Abril Fatface', serif;
+  font-size: 7em;
+  line-height: 65px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  margin-bottom: 9px;
+}
+*/
+
+.section.level1 > p:first-of-type:first-letter { /*drop cap for first p beneath level 1 headers only within class .section*/
+  color: #012d72;
+  float: left;
+  font-family: 'Abril Fatface', serif;
+  font-size: 7em;
+  line-height: 65px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  margin-bottom: 9px;
+}
+
+/* add drop cap to first paragraph that follows the first 2nd level header*/
+/*
+.section.level2:first-of-type > p:first-of-type:first-letter {
+  color: #3fb5bd;
+  float: left;
+  font-family: 'Abril Fatface', serif;
+  font-size: 7em;
+  line-height: 65px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  margin-bottom: 9px;
+}
+*/
+
+
+
+/*------------ TOC --------------*/
+
+
+.book .book-summary {
+  background: white;
+  border-right: none;
+}
+
+/*---color of links in TOC----*/
+
+.book .book-summary a {
+color: #012d72
+}
+
+.summary{
+  font-family: 'Karla', sans-serif;
+}
+
+/* all TOC list items, basically */
+.book .book-summary ul.summary li a,
+.book .book-summary ul.summary li span {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #012d72;
+}
+
+.summary a:hover {
+  color: #68ace5 !important;
+}
+
+.book .book-summary ul.summary li.active>a { /*active TOC links*/
+  color: #68ace5 !important;
+  border-left: solid 4px;
+  border-color: #68ace5;
+  padding-left: 11px !important;
+}
+
+
+li.appendix span, li.part span { /* for TOC part names */
+  margin-top: 1em;
+  color: #000000;
+  opacity: .9 !important;
+  text-transform: uppercase;
+}
+
+.part + li[data-level=""] { /* grabs first .chapter immediately after .part...but only those ch without numbers */
+ text-transform: uppercase;
+}
+
+
+/* The next two rules make the horizontal line go straight across in top navbar */
+
+.summary > li:first-child {
+	height: 50px;
+	padding-top: 10px;
+	border-bottom: 1px solid rgba(0,0,0,.07);
+}
+
+.book .book-summary ul.summary li.divider {
+	height: 0px;
+}
+
+
+/*--- LOGO ---*/
+
+.toc-logo {
+  width: 200px !important;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.toc-logo img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.summary > li:first-child {
+  height: auto !important;
+}
+
+/* --------------Two columns--------------- */
+
+.col2 {
+  columns: 2 200px;         /* number of columns and width in pixels*/
+  -webkit-columns: 2 200px; /* chrome, safari */
+  -moz-columns: 2 200px;    /* firefox */
+}
+
+
+.side-by-side {
+  display: flex;
+}
+
+.side1 {
+  width: 40%;
+}
+
+.side2 {
+  width: 58%;
+  margin-left: 1rem;
+}
+
+/* --------------Even split- two columns--------------- */
+
+.split {
+  display: flex;
+}
+
+.split1 {
+  width: 50%;
+  padding-right: 20px;
+}
+
+.split2 {
+  width: 50%;
+}
+
+
+/* Sidebar formating --------------------------------------------*/
+/* from r-pkgs.org*/
+
+div.notice, div.warning, div.github, div.dictionary, div.reflection {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  min-height: 120px;
+  background-repeat: no-repeat;
+}
+
+div.notice{
+  border: 4px #68ace5;
+  border-style: solid;
+  background-size: 70px;
+  background-position: 15px center;
+  background-color: #e8ebee;
+  background-image: url("../assets/box_images/note.png");
+}
+
+
+div.warning{
+  border: 4px #e0471c;
+  border-style: solid;
+  background-size: 70px;
+  background-position: 15px center;
+  background-color: #e8ebee;
+  background-image: url("../assets/box_images/warning.png");
+}
+
+div.github{
+  border: 4px #000000;
+  border-style: solid;
+  background-size: 70px;
+  background-position: 15px center;
+  background-color: #e8ebee;
+  background-image: url("../assets/box_images/github.png");
+}
+
+div.dictionary{
+  border: 4px #68ace5;
+  border-style: solid;
+  background-size: 70px;
+  background-position: 15px center;
+  background-color: #e8ebee;
+  background-image: url("../assets/box_images/dictionary.png");
+}
+
+div.reflection{
+  border: 4px #68ace5;
+  border-style: solid;
+  background-size: 90px;
+  background-position: 15px center;
+  background-color: #e8ebee;
+  background-image: url("../assets/box_images/thinking_face.png");
+}
+
+
+/* .book .book-body .page-wrapper .page-inner section.normal is needed
+   to override the styles produced by gitbook, which are ridiculously
+   overspecified. Goal of the selectors is to ensure internal "margins"
+   controlled only by padding of container */
+
+.book .book-body .page-wrapper .page-inner section.normal div.rstudio-tip > :first-child,
+.book .book-body .page-wrapper .page-inner section.normal div.tip > :first-child {
+  margin-top: 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal div.rstudio-tip > :last-child,
+.book .book-body .page-wrapper .page-inner section.normal div.tip > :last-child {
+  margin-bottom: 0;
+}
+
+iframe {
+   -moz-transform-origin: top left;
+   -webkit-transform-origin: top left;
+   -o-transform-origin: top left;
+   -ms-transform-origin: top left;
+   transform-origin: top left;
+}
+
+.iframe-container {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border: #ddd 2px solid;
+  box-shadow: #888 0px 5px 8px;
+  margin-bottom: 1em;
+}
+
+.iframe-container > iframe {
+  border: none;
+}
+
+
+/* -------Clipboard copy button --------- */
+.copy {
+  width: inherit;
+  background-color: #e2e2e2 ;
+  border: none;
+  border-radius: 2px;
+  float: right;
+  font-size: 60%;
+  padding: 4px 4px 4px 4px;
+}
+
+/* for new copy button */
+
+.hasCopyButton {
+  position: relative;
+}
+
+.btn-copy-ex {
+  position: absolute;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+}
+
+.hasCopyButton:hover button.btn-copy-ex {
+  visibility: visible;
+}
+
+
+
+/* -----------Section anchors -------------*/
+
+.book .book-body .page-wrapper .page-inner section.normal {
+  overflow: visible !important; /*so anchor link doesn't get cut off */
+}
+
+a.anchor {
+  margin-left: -30px;
+  padding-right: 3px;
+  display:inline-block;
+  width: 30px;
+  height: 30px;
+  /*visibility: hidden;*/
+  background-image: url(https://image.flaticon.com/icons/svg/34/34735.svg) !important;
+  background-repeat: no-repeat !important;
+  background-size: 20px 20px !important;
+  background-position: center bottom !important;
+  opacity: 0;
+}
+
+
+.hasAnchor:hover a.anchor,
+a.anchor:hover {
+  /*visibility: visible;*/
+  opacity: 0.6;
+}
+
+/* disable anchors for headers with "no-anchor" class */
+.no-anchor .hasAnchor:hover a.anchor,
+.no-anchor a.anchor:hover {
+  opacity: 0 !important;
+}
+
+@media (max-width: 1144px) { /* don't show anchor link on small screens */
+  .hasAnchor:hover a.anchor {
+    visibility: hidden;
+  }
+}
+
+
+/*____Code Chunks____*/
+
+.sourceCode {
+  margin-bottom: 0.85em; /* adds same amount of margin as a <p> would */
+}
+
+.sourceCode pre {
+  margin: 0 !important; /* makes space above and below symmetrical*/
+}
+
+/* Footer */
+
+.footer {
+  font-family: "Lora", serif;
+  font-size: .85em;
+  color: #193a5c;
+}
+/*Get rid of TOC stuff from https://github.com/rstudio/bookdown/issues/1251 */
+
+.book .book-body .page-wrapper .page-inner {
+  max-width: 100% !important;
+}
+
+.book.with-summary .book-header.fixed {
+    left: 0% !important;
+}
+
+.book.with-summary .book-body {
+    left: 0% !important;
+}
+
+.book.with-summary .book-summary {
+    width: 0% !important;
+}
+
+
+
+.book-body.fixed > div > .book-header.fixed > a:nth-child(1) {
+  visibility: hidden;
+}
+
+.fa-angle-right:before {
+  color: #FFFFFF;
+  font-size:0em !important;
+}
+
+.fa-angle-left:before {
+  color: #FFFFFF;
+  font-size:0em !important;
+}

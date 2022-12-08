@@ -1,0 +1,277 @@
+# Candace Savonen Aug 2022
+
+name: Pull Request
+
+on:
+  pull_request:
+    branches: [ main, staging ]
+
+jobs:
+
+  yaml-check:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+        # Use the yaml-env-action action.
+      - name: Load environment from YAML
+        uses: doughepi/yaml-env-action@v1.0.0
+        with:
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+
+      - name: Verify Dockerfiles changed?
+        uses: tj-actions/verify-changed-files@v8.8
+        id: verify-changed-files
+        with:
+          files: |
+             docker/Dockerfile
+             docker/github_package_list.tsv
+
+      # Delete the branch if this has been run before
+      - name: Delete branch locally and remotely
+        run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+
+      # Make the branch fresh
+      - name: Make the branch fresh
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          echo branch doesnt exist
+          git checkout -b $branch_name || echo branch exists
+          git push --set-upstream origin $branch_name
+        shell: bash
+
+    outputs:
+      toggle_spell_check: "${{ env.SPELL_CHECK }}"
+      toggle_style_code: "${{ env.STYLE_CODE }}"
+      toggle_url_check: "${{ env.URL_CHECKER }}"
+      toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
+      toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
+      toggle_docker_build: "${{ env.DOCKER_BUILD }}"
+      rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
+      dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
+
+########################## Make the error reports ##############################
+  spell-check:
+    name: Check spelling
+    needs: yaml-check
+    if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: spelling
+      error_min: 3
+      gh_pat: secrets.GH_PAT
+
+  url-check:
+    name: Check URLs
+    needs: yaml-check
+    if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: urls
+      error_min: 0
+      gh_pat: secrets.GH_PAT
+
+  quiz-check:
+    name: Check quiz formatting
+    if: ${{needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
+    needs: yaml-check
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: quiz_format
+      error_min: 0
+      gh_pat: secrets.GH_PAT
+
+############################# Style the code ###################################
+  style-code:
+    name: Style code
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle_style_code == 'yes'}}
+    container:
+      image: jhudsl/base_ottr:main
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Run styler
+        run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
+
+      - name: Commit styled files
+        run: |
+          git add \*.Rmd
+          git commit -m 'Style Rmds' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+
+############################# Render Preview ###################################
+
+  render-preview:
+    name: Render preview
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_render_preview == 'yes'}}
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Set up git checkout
+      - name: Set up git checkout
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git fetch --all
+          git checkout $branch_name
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
+        shell: bash
+
+      # Run bookdown rendering
+      - name: Run bookdown render
+        id: bookdown
+        run: Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
+
+      # Run TOC-less version
+      # Rendered content for Leanpub and Coursera is very similar.
+      # This job creates a shared scaffold for both.
+      - name: Run TOC-less version of render
+        id: tocless
+        run: Rscript -e "ottrpal::render_without_toc()"
+
+      # This checks on the steps before it and makes sure that they completed.
+      # If the renders didn't complete we don't want to commit the file changes
+      - name: Check on render steps
+        if: steps.bookdown.outcome != 'success' || steps.tocless.outcome != 'success'
+        run: |
+          echo Bookdown status ${{steps.bookdown.outcome}}
+          echo Toc-less status ${{steps.tocless.outcome}}
+          exit 1
+
+      # Commit the rendered bookdown files
+      - name: Commit rendered bookdown files to preview branch
+        id: commit
+        run: |
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git diff origin/main -- docs >/dev/null && changes=true || changes=false
+          echo ::set-output name=changes::$changes
+          git add . --force
+          git commit -m 'Render preview' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
+          git push --force || echo "No changes to commit"
+        shell: bash
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: latest commit
+
+      - name: Build components of the comment
+        id: build-components
+        run: |
+          course_name=$(head -n 1 _bookdown.yml | cut -d'"' -f 2| tr " " "-")
+          bookdown_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/index.html")
+          tocless_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/no_toc/index.html")
+          docx_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/docs/$course_name.docx")
+          echo ::set-output name=bookdown_link::$bookdown_link
+          echo ::set-output name=tocless_link::$tocless_link
+          echo ::set-output name=docx_link::$docx_link
+          echo ::set-output name=time::$(date +'%Y-%m-%d')
+          echo ::set-output name=commit_id::$GITHUB_SHA
+          echo ${{steps.commit.outputs.changes}}
+
+      - name: Create or update comment
+        if: steps.commit.outputs.changes == 'true'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Re-rendered previews from the latest commit:
+            - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
+            - See [preview of Coursera/Leanpub version here](${{ steps.build-components.outputs.tocless_link }})
+            - Download the [preview of .docx file](${{ steps.build-components.outputs.docx_link }})
+
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
+      - name: Comment if no changes
+        if: steps.commit.outputs.changes == 'false'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            The latest commit did not produce rendering changes.
+
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
+############################## Build Docker ####################################
+
+  build-docker:
+    name: Build Docker image
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle_docker_build == 'yes' && needs.yaml-check.outputs.dockerfiles_changed == 'true' && github.head_ref != 'repo-sync/OTTR_Template/default'}}
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: Verify Dockerfiles changed?
+        uses: tj-actions/verify-changed-files@v8.8
+        id: verify-changed-files
+        with:
+          files: |
+             docker/Dockerfile
+             docker/github_package_list.tsv
+
+      - name: Login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+      # Set up Docker build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # Setup layer cache
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v1
+
+      - name: Get token
+        run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          load: true
+          context: docker
+          file: docker/Dockerfile
+          tags: jhudsl/base_ottr

@@ -1,0 +1,112 @@
+# This code was adapted from code written by Josh Shapiro
+# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
+# https://github.com/AlexsLemonade/exercise-notebook-answers
+
+# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+
+name: Copy over from main template to _Quizzes repo
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [ "Render all output courses" ]
+    branches: [ main, staging ]
+    types:
+      - completed
+
+jobs:
+
+  yaml-check:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+        # Use the yaml-env-action action.
+      - name: Load environment from YAML
+        uses: doughepi/yaml-env-action@v1.0.0
+        with:
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+    outputs:
+      toggle_coursera: "${{ env.RENDER_COURSERA }}"
+      toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
+
+
+  file-quizzes-pr:
+    name: File _Quizzes Transfer PR
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/ottrpal:main
+    needs: [yaml-check]
+    if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
+
+    steps:
+      - name: Run git repo check
+        id: git_repo_check
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          sudo apt-get install subversion
+
+          # What's the Quizzes repository's name?
+          QUIZ_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | sed "s/_Template/ /g" | awk '{print $1"_Quizzes"}')
+          echo $QUIZ_REPO
+
+          # Get repo check script
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/git_repo_check.R git_repo_check.R
+
+          # Run repo check script
+          results=$(Rscript --vanilla git_repo_check.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
+          echo $QUIZ_REPO exists: $results
+
+          echo "::set-output name=git_results::$results"
+          echo "::set-output name=leanpub_repo::$QUIZ_REPO"
+
+      - name: Checkout code from Leanpub repo
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ steps.git_repo_check.outputs.leanpub_repo }}
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Get files from Bookdown repo
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
+        shell: bash
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          # Copy over images folder
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/resources/chapt_screen_images resources/chapt_screen_images
+
+          # Copy over _bookdown.yml 
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml _bookdown.yml
+          
+      - name: Create PR with resources files
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
+        uses: peter-evans/create-pull-request@v3
+        id: cpr
+        with:
+          token: ${{ secrets.GH_PAT }}
+          commit-message: Copy files from Bookdown repository
+          signoff: false
+          branch: auto_copy_rendered_files
+          delete-branch: true
+          title: 'GHA: Automated transfer of ottrpal-needed files from Bookdown repository'
+          body: |
+            ### Description:
+             This PR was initiated by transfer-rendered.yml in the Bookdown repository.
+             It copies over the ottrpal-needed folder (for the `bookdown_to_embed_leanpub(render = FALSE)` function
+             to run properly.
+               - resources/chapt_screen_images/*
+               - _bookdown.yml
+          labels: |
+            automated
+          reviewers: $GITHUB_ACTOR
+
+      # Write out PR info
+      - name: Check outputs
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"

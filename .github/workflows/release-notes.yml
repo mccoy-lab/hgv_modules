@@ -1,0 +1,35 @@
+# Candace Savonen Sept 2021
+
+name: Release note PR comment
+
+on:
+  pull_request:
+    branches: [ main, staging ]
+    types: [ opened ]
+
+jobs:
+  pr-comment:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: mshick/add-pr-comment@v1
+        if: ${{ github.head_ref == 'repo-sync/OTTR_Template/default' }}
+        with:
+          message: |
+            **Please carefully review these changes and decide which are useful for your course.**
+            See the release notes: https://github.com/jhudsl/OTTR_Template/releases
+
+            - If you don't want the changes from a particular file, you can always [revert that particular commit](https://git-scm.com/docs/git-revert) before merging the sync PR.
+            If you will not want any updates on this file in the future, you may want to remove a file from being synced in your repo [by reconfiguring the sync file](https://github.com/jhudsl/OTTR_Template/blob/main/.github/sync.yml).
+
+            - If you want only some changes, but they are not on a whole file basis, you could check out the branch and make manual edits. To checkout the branch, navigate to your own repository you should be able to run:
+            ```
+            git checkout repo-sync/OTTR_Template/default
+            ```
+            - If you don't want any of the changes you can close the PR entirely.
+
+            You may want to unenroll your repository from the sync GitHub actions by [filing a PR](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on `OTTR_Template`
+            to delete [your repo name from this file](https://github.com/jhudsl/OTTR_Template/blob/main/.github/sync.yml) if this will continue to be the case.
+
+          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+          allow-repeats: false # This is the default

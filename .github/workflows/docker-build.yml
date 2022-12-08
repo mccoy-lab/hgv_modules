@@ -1,0 +1,78 @@
+# Candace Savonen Apr 2021
+
+name: Build Docker
+
+on:
+  workflow_dispatch:
+    inputs:
+      dockerhubpush:
+        description: 'Push to Dockerhub?'
+        required: true
+        default: 'false'
+      tag:
+        description: 'What tag to use?'
+        required: true
+        default: 'none'
+jobs:
+  build-docker:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: Login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+      - name: Don't re-test if this is a sync branch
+        run: |
+          echo This was tested on OTTR_Template no need to re-run
+
+      # Set up Docker build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # Setup layer cache
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      # Set up Docker build
+      - name: Set up Docker Build
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
+        uses: docker/setup-buildx-action@v1
+
+      - name: Get token
+        run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
+
+      # Build docker image
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          load: true
+          context: docker
+          file: docker/Dockerfile
+          tags: jhudsl/base_ottr
+
+      # Login to Dockerhub
+      - name: Login to DockerHub
+        if: ${{ github.event.inputs.dockerhubpush != 'false' }}
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Push the Docker image if set to true from a manual trigger
+      - name: Push Docker image if manual trigger set to true
+        if: ${{ github.event.inputs.dockerhubpush != 'false' }}
+        run: |
+          docker tag jhudsl/base_ottr:latest jhudsl/base_ottr:$github.event.inputs.tag
+          docker push jhudsl/base_ottr:$github.event.inputs.tag
