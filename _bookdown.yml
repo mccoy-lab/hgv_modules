@@ -1,9 +1,11 @@
 book_filename: "Course_Name"
 chapter_name: "Chapter "
-repo: https://github.com/jhudsl/OTTR_Template/
+repo: https://github.com/stephaniemyan/hgc_modules/
 rmd_files: ["index.Rmd",
             "01-intro.Rmd",
-            "02-chapter_of_course.Rmd",
+            "02-simulations_01.Rmd",
+            "02-simulations_02.Rmd",
+            "02-simulations_03.Rmd",
             "About.Rmd",
             "References.Rmd"]
 new_session: yes

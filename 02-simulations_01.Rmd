@@ -1,0 +1,75 @@
+
+# Evolutionary Simulations
+
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+## Learning Objectives
+
+In this module, we will build a simulation from scratch in R to explore genetic drift using the Wright-Fisher model.
+
+After completing this chapter, you'll be able to:
+
+1. Describe the phenomenon of genetic drift.
+2. Explain why random draws from a binomial distribution are a good way to mimic the effect of drift.
+3. Interpret allele frequency patterns that occur as a result of drift.
+4. Write a for loop in R.
+5. Write a function to run code multiple times with different parameters.
+
+## Background
+
+### Genetic drift
+
+In all populations, **genetic drift** acts to change allele frequencies over time. Drift refers to random changes in an allele's frequency between generations. These random changes occur because individuals carrying different alleles will have different numbers of offspring solely due to chance.
+
+Drift differs from **selection**, which is a deterministic (non-random) change in an allele's frequency. If an allele is under selection, it's more likely to increase or decrease in frequency depending on whether it is beneficial or deleterious. Genetic drift, on the other hand, cannot consistently cause an allele's frequency to increase or decrease.
+
+Although both genetic drift and selection occur in real populations, drift is thought to be the primary driver of allele frequency changes, far outweighing the impacts of selection. This is called the [neutral theory of molecular evolution](https://www.nature.com/scitable/topicpage/neutral-theory-the-null-hypothesis-of-molecular-839/).
+
+### The Wright-Fisher model
+
+The **Wright-Fisher model** is one of the most commonly used models of genetic drift.
+
+#### Population size
+
+A Wright-Fisher population is a set of individuals who mate randomly. The model assumes that this number remains constant between generations. For simplicity, in this module we'll also assume that every individual is haploid (so that they can only carry one copy of an allele).
+
+Populations in the real world don't behave as randomly as an idealized Wright-Fisher population, so their **effective population size** `Ne` is usually much smaller than their actual population size. The effective population size of the human population is only [12,800--14,400](https://www.pnas.org/content/109/44/17758) individuals, even though its actual size is around 7.8 billion.
+
+#### Allele frequency, fixation, and extinction
+
+The Wright-Fisher model describes the behavior of a single **allele**, which is a variable site in a population (a SNP, insertion/deletion, version of a gene, etc.). If `A` and `a` are two alleles, representing two different sequences that exist at the same genomic location, Wright-Fisher allows us to track what happens to one of those alleles under genetic drift.
+
+The allele of interest begins the simulation at some initial **allele frequency (AF)**. This allele frequency is the proportion of individuals in the population who carry that allele, and is always between 0 and 1.
+
+An allele becomes **fixed** in a population when it reaches an allele frequency of 1. At this point, it is no longer considered an allele because everyone in the population carries it. Similarly, an allele goes **extinct** when it reaches an allele frequency of 0 and nobody in the population carries it.
+
+
+## Modeling AF changes between generations
+
+The Wright-Fisher model of allele frequency change between generations is an example of a discrete time Markov chain. This means that the number of individuals who carry an allele in the next generation depends only on the proportion of the population that currently carries it i.e., its AF).
+
+For every individual in the next generation, we perform a coin flip to determine whether or not they'll carry `A`, our allele of interest. But `A` and `a` aren't equally weighted - instead, the probability of receiving the `A` allele is equal to `A`'s frequency in the current generation. The more common `A` is in this generation, the more likely it is that someone in the next generation will also carry it.
+
+![**Fig. 1. Modeling allelic inheritance with coin flips.** At the end of a generation, every individual flips a weighted coin to determine whether they will carry the blue allele in the next generation. The probability of carrying the allele is equal to the allele's frequency in the current generation.](coin_flips.png)
+
+We do this coin flip `N` times, once for each individual in the population, to get the number of people in the next generation who carry the `A` allele (**Fig. 1**). Conveniently, instead of having to actually simulate all the coin flips, we can get this number by performing a single draw from a **binomial distribution** with size `N` and success probability `p = AF`. This distribution tells you how many successes you expect to see from a set of `N` independent coin flips.
+
+### The binomial distribution
+
+If we try to draw 100,000 times from a binomial distribution with population size `100` and success probability (AF) `0.5`, it'll look something like this:
+
+```{r, echo = FALSE, warning = FALSE}
+set.seed(5)
+library(ggplot2)
+data = data.frame(num = rbinom(n = 100000, size = 1000, prob = 0.5))
+ggplot(data, aes(x = num/10)) +
+  geom_histogram(bins = 50, color = "#757575", fill = "#8dddeb") +
+  labs(x = "Number of individuals with A allele",
+       y = "How often you would draw this number") +
+  theme_bw() +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+The majority of the distribution lies between 48 and 52. Just as we expect based on the allele frequency, the next generation will most likely have around 48-52 individuals with the `A` allele. But because this is a random draw, there's a small chance that we might end up with many more or many fewer than that number.
