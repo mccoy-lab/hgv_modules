@@ -4,6 +4,7 @@ bookdown::gitbook:
     before_body: assets/big-image.html
     after_body: assets/footer.html
   highlight: tango
+  split_by: section
   config:
     toc:
       collapse: section

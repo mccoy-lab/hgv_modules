@@ -10,8 +10,8 @@ These credits are based on our [course contributors table guidelines](https://ww
 |-------|-----|
 |**Pedagogy**||
 |Instructor|[Rajiv McCoy]|
-|Content Authors | Kate Weaver, Stephanie Yan |
-|Acknowledgments| Gave small assistance to content but not to the level of consulting |
+|Content Author | Kate Weaver |
+|Content Author | Kate Weaver |
 |**Funding**||
 | JHU Center for Educational Resources | Techology Fellowship Grant |
 
