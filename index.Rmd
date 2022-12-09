@@ -1,5 +1,5 @@
 ---
-title: "Course Name"
+title: "Human Genome Variation Lab"
 date: "`r format(Sys.time(), '%B, %Y')`"
 site: bookdown::bookdown_site
 documentclass: book
