@@ -3,7 +3,9 @@ chapter_name: "Chapter "
 repo: https://github.com/stephaniemyan/hgv_modules/
 rmd_files: ["index.Rmd",
             "01-intro.Rmd",
-            "02-simulations.Rmd",
+            "02-dnm.Rmd",
+            "03-simulations.Rmd",
+            "04-pop_structure.Rmd",
             "About.Rmd",
             "References.Rmd"]
 new_session: yes

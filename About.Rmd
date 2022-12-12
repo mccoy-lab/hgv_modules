@@ -1,17 +1,15 @@
 
 # About the Authors {-}
 
-These credits are based on our [course contributors table guidelines](https://www.ottrproject.org/more_features.html#giving-credits-to-contributors).
-
 &nbsp;
 &nbsp;
 
 |Credits|Names|
 |-------|-----|
 |**Pedagogy**||
-|Instructor|[Rajiv McCoy]|
-|Content Author | Kate Weaver |
-|Content Author | Kate Weaver |
+| Instructor | [Rajiv McCoy] |
+| Content Author | [Kate Weaver] |
+| Content Author | [Stephanie Yan] |
 |**Funding**||
 | JHU Center for Educational Resources | Techology Fellowship Grant |
 
