@@ -232,8 +232,7 @@ We're interested in the relationship between age and the number of DNMs for male
 head(dnm_by_age$Father_age)
 
 ggplot(data = dnm_by_age,
-       aes(x = n_paternal_dnm,  y = n_paternal_dnm)) +
-       # aes(x = Father_age,  y = n_paternal_dnm)) +
+       aes(x = {{Father_age}},  y = {{n_paternal_dnm}})) +
   geom_point()
 ```
 
