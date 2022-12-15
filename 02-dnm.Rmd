@@ -184,6 +184,7 @@ We've pre-processed the data to make it easier to use, and you can load the pre-
 
 ```{r, results = FALSE, message = FALSE, warnings = FALSE}
 dnm_by_age <- read.table("resources/data/dnm/dnm_by_age_tidy_Halldorsson.tsv.gz", sep = "\t", header = TRUE)
+dnm_by_age
 ```
 
 ## Visualizing the data
@@ -230,9 +231,12 @@ We're interested in the relationship between age and the number of DNMs for male
 
 ```{r}
 head(dnm_by_age$Father_age)
+```
 
+
+```{r}
 ggplot(data = dnm_by_age,
-       aes(x = {{Father_age}},  y = {{n_paternal_dnm}})) +
+       aes(x = Father_age,  y = n_paternal_dnm)) +
   geom_point()
 ```
 
