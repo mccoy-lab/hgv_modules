@@ -225,18 +225,14 @@ We're interested in the relationship between age and the number of DNMs for male
 
 **Coding practice:** How would you visualize this relationship for males using `ggplot2`?
 
-```{r}
-ggplot(data = dnm_by_age,
-       aes(x = Father_age,  y = n_paternal_dnm)) +
-  geom_point()
-```
-
 ***
 <details> <summary> Solution </summary>
 
 ```{r}
+print("Father_age" %in% names(dnm_by_age))
 ggplot(data = dnm_by_age,
-       aes(x = Father_age,  y = n_paternal_dnm)) +
+       aes(x = Mother_age,  y = n_paternal_dnm)) +
+       # aes(x = Father_age,  y = n_paternal_dnm)) +
   geom_point()
 ```
 
