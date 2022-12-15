@@ -232,13 +232,9 @@ We're interested in the relationship between age and the number of DNMs for male
 ```{r}
 dnm_by_age <- read.table("resources/data/dnm/dnm_by_age_tidy_Halldorsson.tsv.gz", sep = "\t", header = TRUE)
 
-ggplot(data = dnm_by_age,
-       # specify where ggplot should be getting the x location for each data point
-       aes(x = dnm_by_age$Father_age,
-           # specify where ggplot should be getting the y location for each data point
-           y = dnm_by_age$n_paternal_dnm)) +
+ggplot(data = dnm_by_age) +
   # specify that the data should be plotted as points
-  geom_point()
+  geom_point(aes(x = Father_age, y = n_paternal_dnm))
 ```
 
 ```{r}
