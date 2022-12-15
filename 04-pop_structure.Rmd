@@ -124,7 +124,7 @@ We'll use the package `vcfR` to read the `vcf` file. However, the read function 
 Note: We have to tell this `vcfR2tidy` function to make all the allele frequencies numeric (or decimal/non-integer) values. We do this with the `info_types` argument.
 
 ```{r load_andtidy_data}
-vcf <- read.vcfR(file = "resources/data/pop_structure/random_snippet.vcf")
+vcf <- read.vcfR(file = "resources/data/pop_structure/random_snippet.vcf.gz")
 vcf_tidy <- vcfR2tidy(vcf, info_types = c(AF = "n",
                                           EAS_AF = "n",
                                           EUR_AF = "n",

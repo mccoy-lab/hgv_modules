@@ -89,103 +89,101 @@ We've downloaded the [data](https://science.sciencemag.org/content/363/6425/eaau
 * The second column, `Father_age`, lists the paternal age for each proband at the time of birth.
 * The third column, `Mother_age`, lists the maternal age for each proband at the time of birth.
 
-### Data pre-processing
+<!-- ### Data pre-processing -->
 
-The data from the Science paper has been aggregated and pre-processed for you. If you're interested in the details of how this was done, expand the section below.
+<!-- The data from the Science paper has been aggregated and pre-processed for you. If you're interested in the details of how this was done, expand the section below. -->
 
-***
-<details><summary> Pre-processing the data </summary>
+<!-- *** -->
+<!-- <details><summary> Pre-processing the data </summary> -->
 
-We first read in the two tab-delimited data files from the website URLs, skipping header info. We specify that the files are tab-delimited with the `delim="\t"` arguments and skip the headers by using the `skip` argument).
+<!-- We first read in the two tab-delimited data files from the website URLs, skipping header info. We specify that the files are tab-delimited with the `delim="\t"` arguments and skip the headers by using the `skip` argument). -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-library(tidyverse)
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- library(tidyverse) -->
 
-# science links are still broken!!
-# dnm <- read_delim("https://www.science.org/doi/suppl/10.1126/science.aau1043/suppl_file/aau1043_datas5_revision1.tsv", delim = "\t", skip = 11)
-# age <- read_delim("https://www.science.org/doi/suppl/10.1126/science.aau1043/suppl_file/aau1043_datas7.tsv", delim = "\t", skip = 4)
+<!-- # science links are still broken!! -->
+<!-- # dnm <- read_delim("https://www.science.org/doi/suppl/10.1126/science.aau1043/suppl_file/aau1043_datas5_revision1.tsv", delim = "\t", skip = 11) -->
+<!-- # age <- read_delim("https://www.science.org/doi/suppl/10.1126/science.aau1043/suppl_file/aau1043_datas7.tsv", delim = "\t", skip = 4) -->
 
-dnm <- read_delim("resources/data/dnm/aau1043_datas5_revision1.tsv", delim = "\t", skip = 11)
-age <- read_delim("resources/data/dnm/aau1043_datas7.tsv", delim = "\t", skip = 4)
-```
+<!-- dnm <- read_delim("resources/data/dnm/aau1043_datas5_revision1.tsv", delim = "\t", skip = 11) -->
+<!-- age <- read_delim("resources/data/dnm/aau1043_datas7.tsv", delim = "\t", skip = 4) -->
+<!-- ``` -->
 
-We then connect the information in the two files so that we keep all the information together for each proband. We use the `left_join()` function for this, specifically telling it to match the info given the `Proband_id` columns. We then take into account that one proband may have more than one DNM. For this lab, we don't care about a lot of the info for the DNMs (like the genomic location or the mutated sequences). We mostly care that for each proband we know how many DNMs were observed, and specifically, which parent the DNM originated from. We use the `summarize` function to find the number of DNMs that originated from the father for each proband -- `n_paternal_dnm`; the number of DNMs that originated from the mother for each proband -- `n_maternal_dnm`; and the number of DNMs for which it is unknown from which parent it originated -- `n_na_dnm`. Because some probands had more than DNM, when we used `left_join` to connect the two sets of data earlier, it meant that the parental ages for a given proband were repeated each time that proband was listed. So we also use the unique function so that the stored parental ages are just single values rather than a really long list repeating the same value for a given proband. Finally, we've included a column that lists the total number of DNMs each proband has. This column, `total_dnm` won't be in the pre-processed data you'll be reading in later. It's just for visualization purposes.   
+<!-- We then connect the information in the two files so that we keep all the information together for each proband. We use the `left_join()` function for this, specifically telling it to match the info given the `Proband_id` columns. We then take into account that one proband may have more than one DNM. For this lab, we don't care about a lot of the info for the DNMs (like the genomic location or the mutated sequences). We mostly care that for each proband we know how many DNMs were observed, and specifically, which parent the DNM originated from. We use the `summarize` function to find the number of DNMs that originated from the father for each proband -- `n_paternal_dnm`; the number of DNMs that originated from the mother for each proband -- `n_maternal_dnm`; and the number of DNMs for which it is unknown from which parent it originated -- `n_na_dnm`. Because some probands had more than DNM, when we used `left_join` to connect the two sets of data earlier, it meant that the parental ages for a given proband were repeated each time that proband was listed. So we also use the unique function so that the stored parental ages are just single values rather than a really long list repeating the same value for a given proband. Finally, we've included a column that lists the total number of DNMs each proband has. This column, `total_dnm` won't be in the pre-processed data you'll be reading in later. It's just for visualization purposes.    -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-dnm_by_age <- left_join(dnm, age, by="Proband_id") %>% 
-  group_by(Proband_id) %>% 
-  summarize(n_paternal_dnm = sum(Phase_combined == "father", na.rm = TRUE),
-            n_maternal_dnm = sum(Phase_combined == "mother", na.rm = TRUE),
-            n_na_dnm = sum(is.na(Phase_combined)),
-            Father_age = unique(Father_age),
-            Mother_age = unique(Mother_age)) %>% 
-  mutate(total_dnm = rowSums(.[, c("n_paternal_dnm", "n_maternal_dnm", "n_na_dnm")]))
-```
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- dnm_by_age <- left_join(dnm, age, by="Proband_id") %>%  -->
+<!--   group_by(Proband_id) %>%  -->
+<!--   summarize(n_paternal_dnm = sum(Phase_combined == "father", na.rm = TRUE), -->
+<!--             n_maternal_dnm = sum(Phase_combined == "mother", na.rm = TRUE), -->
+<!--             n_na_dnm = sum(is.na(Phase_combined)), -->
+<!--             Father_age = unique(Father_age), -->
+<!--             Mother_age = unique(Mother_age)) %>%  -->
+<!--   mutate(total_dnm = rowSums(.[, c("n_paternal_dnm", "n_maternal_dnm", "n_na_dnm")])) -->
+<!-- ``` -->
 
-Now you may be wondering, how many DNMs does each proband have? We'll use a histogram to visualize this. 
+<!-- Now you may be wondering, how many DNMs does each proband have? We'll use a histogram to visualize this.  -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-hist(dnm_by_age$total_dnm, breaks=50, main="Number of DNMs per proband", xlab="number of DNMs", ylab="frequency of probands")
-```
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- hist(dnm_by_age$total_dnm, breaks=50, main="Number of DNMs per proband", xlab="number of DNMs", ylab="frequency of probands") -->
+<!-- ``` -->
 
-<!-- ![Number of DNMs per proband](resources/images/dnm/dnms_per_proband.png) -->
+<!-- <!-- ![Number of DNMs per proband](resources/images/dnm/dnms_per_proband.png) --> -->
 
-We see that there are about 65 DNMs per proband on average. The distribution also appears to be normally distributed, but it is right-skewed and has a long tail.
+<!-- We see that there are about 65 DNMs per proband on average. The distribution also appears to be normally distributed, but it is right-skewed and has a long tail. -->
 
-We're also interested in how many of these DNMs are unphased. By unphased, we mean that the authors couldn't determine from which parent the DNM originated. In other words, we're interested in the `n_na_dnm` column. When we plot a histogram of this data, we see a bi-modal distribution, where, again, the right section looks like a right-skewed normal distribution.
+<!-- We're also interested in how many of these DNMs are unphased. By unphased, we mean that the authors couldn't determine from which parent the DNM originated. In other words, we're interested in the `n_na_dnm` column. When we plot a histogram of this data, we see a bi-modal distribution, where, again, the right section looks like a right-skewed normal distribution. -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-hist(dnm_by_age$n_na_dnm, breaks=50, main="Number of unphased DNMs per proband", xlab = "number of unphased DNMs", ylab="frequency of probands")
-abline(v = 10, col="blue", lty=2 )
-legend(100, 300, col="blue", lty=2, legend = "x=10")
-```
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- hist(dnm_by_age$n_na_dnm, breaks=50, main="Number of unphased DNMs per proband", xlab = "number of unphased DNMs", ylab="frequency of probands") -->
+<!-- abline(v = 10, col="blue", lty=2 ) -->
+<!-- legend(100, 300, col="blue", lty=2, legend = "x=10") -->
+<!-- ``` -->
 
-<!-- ![Number of unphased DNMs per proband](resources/images/dnm/unphased_dnms_per_proband.png) -->
+<!-- <!-- ![Number of unphased DNMs per proband](resources/images/dnm/unphased_dnms_per_proband.png) --> -->
 
-On average, 39 of a proband's DNMs are unphased. This is nearly half of the total average. If we're more precise with this, and look at the number of unphased DNMs divided the number of total DNMs for each proband, we see that on average 60% are unphased. 
+<!-- On average, 39 of a proband's DNMs are unphased. This is nearly half of the total average. If we're more precise with this, and look at the number of unphased DNMs divided the number of total DNMs for each proband, we see that on average 60% are unphased.  -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-mean(dnm_by_age$n_na_dnm/dnm_by_age$total_dnm)
-```
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- mean(dnm_by_age$n_na_dnm/dnm_by_age$total_dnm) -->
+<!-- ``` -->
 
-Since we're interested in the relationship of parental age with the number of DNMs originating from that parent, we want to work with data that is mostly phased, so we decide to filter our data to concentrate on the first section of the plot above. Specifically we keep those probands who have less than 10 unphased DNMs. The below code accomplishes that filtering.
+<!-- Since we're interested in the relationship of parental age with the number of DNMs originating from that parent, we want to work with data that is mostly phased, so we decide to filter our data to concentrate on the first section of the plot above. Specifically we keep those probands who have less than 10 unphased DNMs. The below code accomplishes that filtering. -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-dnm_by_age <- dnm_by_age %>% 
-  filter(n_na_dnm < 10)
-```
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- dnm_by_age <- dnm_by_age %>%  -->
+<!--   filter(n_na_dnm < 10) -->
+<!-- ``` -->
 
-Now we see that on average around 3% of DNMs are unphased for each proband, and this is much more manageable for the questions we want to explore.
+<!-- Now we see that on average around 3% of DNMs are unphased for each proband, and this is much more manageable for the questions we want to explore. -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-mean(dnm_by_age$n_na_dnm/dnm_by_age$total_dnm)
-```
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- mean(dnm_by_age$n_na_dnm/dnm_by_age$total_dnm) -->
+<!-- ``` -->
 
-If we rerun our plot from above for the total number of DNMs per proband, now that we've filtered, we observe that the mean number of total DNMs is 67, relatively unchanged compared to the full dataset. Further, the distribution appears less skewed. 
+<!-- If we rerun our plot from above for the total number of DNMs per proband, now that we've filtered, we observe that the mean number of total DNMs is 67, relatively unchanged compared to the full dataset. Further, the distribution appears less skewed.  -->
 
-```{r, results = FALSE, message = FALSE, warning= FALSE}
-hist(dnm_by_age$total_dnm, breaks=50, main="Number of DNMs per proband after filtering", xlab="number of DNMs", ylab="frequency of probands")
-```
+<!-- ```{r, results = FALSE, message = FALSE, warning= FALSE} -->
+<!-- hist(dnm_by_age$total_dnm, breaks=50, main="Number of DNMs per proband after filtering", xlab="number of DNMs", ylab="frequency of probands") -->
+<!-- ``` -->
 
-<!-- ![Number of DNMs per proband after filtering](resources/images/dnm/dnms_per_proband_after_filt.png) -->
+<!-- <!-- ![Number of DNMs per proband after filtering](resources/images/dnm/dnms_per_proband_after_filt.png) --> -->
 
-Now that we have tidy and filtered data, we drop the `total_dnm` column since we won't need that anymore and we save the data to a `.csv` file (which is a comma delimited file).
+<!-- Now that we have tidy and filtered data, we drop the `total_dnm` column since we won't need that anymore and we save the data to a `.csv` file (which is a comma delimited file). -->
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
-dnm_by_age <- subset(dnm_by_age, select=-c(total_dnm))
+<!-- ```{r, results = FALSE, message = FALSE, warning = FALSE} -->
+<!-- dnm_by_age <- subset(dnm_by_age, select=-c(total_dnm)) -->
 
-write_csv(dnm_by_age, "dnm_by_age_tidy_Halldorsson.csv")
-```
+<!-- write_csv(dnm_by_age, "dnm_by_age_tidy_Halldorsson.csv") -->
+<!-- ``` -->
 
-</details>
-***
+<!-- </details> -->
+<!-- *** -->
 
-### Reading in the data
-
-You can load the pre-processed data using the code chunk below. See the `Using R Markdown files` section above if you're not sure how to run the code chunk.
+We've pre-processed the data to make it easier to use, and you can load the pre-processed file using the code chunk below. (See the `Using R Markdown files` section above if you're not sure how to run the code chunk.)
 
 ```{r, results = FALSE, message = FALSE, warnings = FALSE}
-dnm_by_age <- read.csv("resources/data/dnm/dnm_by_age_tidy_Halldorsson.csv")
+dnm_by_age <- read.table("resources/data/dnm/dnm_by_age_tidy_Halldorsson.tsv.gz", sep = "\t", header = TRUE)
 ```
 
 ## Visualizing the data
@@ -203,7 +201,7 @@ Here we'll use data from the `age` table provided in the study. The table includ
 
 ```{r}
 # load the `age` data
-age <- read_delim("resources/data/dnm/aau1043_datas7.tsv", delim = "\t", skip = 4)
+age <- read.table("resources/data/dnm/aau1043_datas7.tsv", sep = "\t", header = TRUE, skip = 4)
 age
 ```
 
@@ -576,7 +574,7 @@ We will be using a data file from the Halldorsson et al. study with information 
 ```{r, message=FALSE}
 # crossovers <- read_delim("https://www.science.org/doi/suppl/10.1126/science.aau1043/suppl_file/aau1043_datas4.gz", delim = "\t", skip = 10)
 # this file is on the McCoy lab onedrive because the science link is broken
-crossovers <- read_delim("resources/data/dnm/aau1043_datas4.gz", delim = "\t", skip = 10)
+crossovers <- read.delim("resources/data/dnm/aau1043_datas4.gz", delim = "\t", skip = 10)
 head(crossovers)
 ```
 
