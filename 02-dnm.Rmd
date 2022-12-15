@@ -201,7 +201,7 @@ Here we'll use data from the `age` table provided in the study. The table includ
 
 ```{r}
 # load the `age` data
-age <- read.table("resources/data/dnm/aau1043_datas7.tsv", sep = "\t", header = TRUE, skip = 4)
+age <- read.table("https://www.dropbox.com/s/lkxfr2t43c9nz6n/aau1043_datas7.tsv.gz?dl=1", sep = "\t", header = TRUE, skip = 4)
 age
 ```
 
@@ -574,7 +574,7 @@ We will be using a data file from the Halldorsson et al. study with information 
 ```{r, message=FALSE}
 # crossovers <- read_delim("https://www.science.org/doi/suppl/10.1126/science.aau1043/suppl_file/aau1043_datas4.gz", delim = "\t", skip = 10)
 # this file is on the McCoy lab onedrive because the science link is broken
-crossovers <- read.delim("resources/data/dnm/aau1043_datas4.gz", delim = "\t", skip = 10)
+crossovers <- read.table("https://www.dropbox.com/s/imk845vw1uvnixy/aau1043_datas4.gz?dl=1", sep = "\t", skip = 10)
 head(crossovers)
 ```
 
