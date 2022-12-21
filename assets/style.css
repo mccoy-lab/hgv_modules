@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Karla:400,400i,700,700i|Lora:400,400i,700,700i&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Karla:400,400i,700,700i|Lora:400,400i,700,700i&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Karla|Lora:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap');
 
 p.caption {
   color: #777;
   margin-top: 10px;
+}
+p {
+  line-height: 1.2em;
+  font-size: 13pt;
+  margin-bottom: 1.8em;
 }
 p code {
   white-space: inherit;
@@ -19,25 +25,25 @@ pre code {
 
 /* next 3 rules are for setting large image at top of each page and pushing down the book content to appear beneath the image */
 
-.hero-image-container {
+/*.hero-image-container {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 200px;
+  height: 200px;*/
   /*background-image: url("images/books.jpg");*/
   /*background-color: #193a5c;*/
-}
+/*}
 
 .hero-image {
   width: 100%;
-  height: 80%;
+  height: 80%;*/
   /*object-fit: cover;*/
-}
+/*}
 
 .page-inner {
   padding-top: 140px !important;
-}
+}*/
 
 
 /* ------------Links------------------ */
@@ -50,11 +56,11 @@ pre code {
 /*------------- Body and header text---------------- */
 
 .book.font-family-1 {
-  font-family: 'Karla', arial, sans-serif;
+  font-family: 'Source Sans Pro', arial, sans-serif;
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Lora', arial, sans-serif;
+h1, h2, h3, h4, h5 {
+  font-family: 'Lora', arial, serif;
 }
 
 
@@ -84,26 +90,25 @@ h1, h2, h3, h4 {
 
 /*----------DROP CAPS--------------*/
 
-
-/*p:nth-child(2):first-letter {   /* /* DROP-CAP FOR FIRST P BENEATH EACH H1 OR H2*/ /*
+/* DROP-CAP FOR FIRST P BENEATH EACH H1 OR H2*/
+/*p:nth-child(2):first-letter {
   color: #3fb5bd;
   float: left;
   font-family: 'Abril Fatface', serif;
-  font-size: 7em;
-  line-height: 65px;
-  padding-top: 4px;
+  font-size: 3em;
+  line-height: 45px;
+  padding-top: 2px;
   padding-right: 8px;
   padding-left: 3px;
-  margin-bottom: 9px;
-}
-*/
+  margin-bottom: 3px;
+}*/
 
 .section.level1 > p:first-of-type:first-letter { /*drop cap for first p beneath level 1 headers only within class .section*/
   color: #012d72;
   float: left;
   font-family: 'Abril Fatface', serif;
-  font-size: 7em;
-  line-height: 65px;
+  font-size: 3em;
+  line-height: 45px;
   padding-top: 4px;
   padding-right: 8px;
   padding-left: 3px;
@@ -142,17 +147,19 @@ color: #012d72
 }
 
 .summary{
-  font-family: 'Karla', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  /*font-family: 'Karla', sans-serif;*/
 }
 
 /* all TOC list items, basically */
 .book .book-summary ul.summary li a,
 .book .book-summary ul.summary li span {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 15px;
   padding-right: 15px;
   color: #012d72;
+  font-size: 11pt;
 }
 
 .summary a:hover {

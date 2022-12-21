@@ -183,7 +183,7 @@ We've downloaded the [data](https://science.sciencemag.org/content/363/6425/eaau
 We've pre-processed the data to make it easier to use, and you can load the pre-processed file using the code chunk below. (See the `Using R Markdown files` section above if you're not sure how to run the code chunk.)
 
 ```{r, results = FALSE, message = FALSE, warnings = FALSE}
-dnm_by_age <- read.table("resources/data/dnm/dnm_by_age_tidy_Halldorsson.tsv.gz", sep = "\t", header = TRUE)
+dnm_by_age <- read.table("https://www.dropbox.com/s/e6p6nalccjj6j9y/dnm_by_age_tidy_Halldorsson.tsv?dl=1", sep = "\t", header = TRUE)
 dnm_by_age
 ```
 
