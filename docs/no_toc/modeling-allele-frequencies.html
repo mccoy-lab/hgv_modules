@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Human Genome Variation Lab</title>
+  <title>2.3 Modeling allele frequencies | Human Genome Variation Lab</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Human Genome Variation Lab" />
+  <meta property="og:title" content="2.3 Modeling allele frequencies | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Human Genome Variation Lab" />
+  <meta name="twitter:title" content="2.3 Modeling allele frequencies | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="how-to-use-the-online-textbook.html"/>
+<link rel="prev" href="background.html"/>
+<link rel="next" href="setup.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -196,12 +196,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Human Genome Variation Lab</h1>
-<p class="date"><em>December, 2022</em></p>
+<div id="modeling-allele-frequencies" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Modeling allele frequencies</h2>
+<p>In the Wright-Fisher model, we track a population over the course of many generations. When creating each new generation of individuals, we determine how many of them carry <code>A</code>, our allele of interest.</p>
+<p>For every individual, we perform a coin flip to determine whether or not they have the <code>A</code> allele. But unlike a coin, the probabilities of having <code>A</code> vs. <code>a</code> aren’t equal.</p>
+<p>Instead, the probability of receiving the <code>A</code> allele is equal to <code>A</code>’s <strong>allele frequency</strong> in the current generation. The more common <code>A</code> is in this generation, the more likely it is that someone in the next generation will also carry it.</p>
+<div class="figure">
+<img src="resources/images/simulations/coin_flips.png" alt="" />
+<p class="caption"><strong>Fig. 1. Modeling allelic inheritance with coin flips.</strong> At the end of a generation, every individual flips a weighted coin to determine whether they will carry the blue allele in the next generation. The probability of carrying the allele is equal to the allele’s frequency in the current generation.</p>
 </div>
-<div id="about-this-course" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About this Course</h1>
+<p>We do this coin flip <code>N</code> times, once for each individual in the population, to get the number of people in the next generation who carry the <code>A</code> allele (<strong>Fig. 1</strong>). Conveniently, instead of having to actually simulate all the coin flips, we can get this number by performing a single draw from a <strong>binomial distribution</strong> with size <code>N</code> and success probability <code>p = AF</code>. This distribution tells you how many successes you expect to see from a set of <code>N</code> independent coin flips.</p>
+<div id="the-binomial-distribution" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> The binomial distribution</h3>
+<p>If we try to draw 100,000 times from a binomial distribution with population size <code>100</code> and success probability (AF) <code>0.5</code>, it’ll look something like this:</p>
+<p><img src="resources/images/03-simulations_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>The majority of the distribution lies between 48 and 52. Just as we expect based on the allele frequency, the next generation will most likely have around 48-52 individuals with the <code>A</code> allele. But because this is a random draw, there’s a small chance that we might end up with many more or many fewer than that number.</p>
+</div>
 </div>
 <hr>
 <center> 
@@ -216,8 +226,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="how-to-use-the-online-textbook.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="background.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

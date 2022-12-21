@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Human Genome Variation Lab</title>
+  <title>2.7 Creating a simulation function | Human Genome Variation Lab</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Human Genome Variation Lab" />
+  <meta property="og:title" content="2.7 Creating a simulation function | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Human Genome Variation Lab" />
+  <meta name="twitter:title" content="2.7 Creating a simulation function | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="how-to-use-the-online-textbook.html"/>
+<link rel="prev" href="plotting.html"/>
+<link rel="next" href="conclusion.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -196,12 +196,75 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Human Genome Variation Lab</h1>
-<p class="date"><em>December, 2022</em></p>
+<div id="creating-a-simulation-function" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Creating a simulation function</h2>
+<div id="simulating-with-different-parameters-with-a-function" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Simulating with different parameters with a function</h3>
+<p>It would be nice to be able to run the Wright-Fisher simulation with different parameters – like different starting allele frequencies, population sizes, etc. – without having to modify the for loop code every time. We can use a <strong>function</strong> to generalize the code above so we can easily re-run it.</p>
+<p>Whenever you have a bunch of lines at the beginning of your code where you set variables, you should always be thinking that you can make it into a function.</p>
+<hr />
+<details>
+<summary>
+The structure of an R function
+</summary>
+<p>You’ve already encountered many functions in R, even if you didn’t realize it at the time - <code>rbinom</code>, <code>ggplot</code>, and <code>print</code> are all examples of functions. An R function has <a href="https://www.tutorialspoint.com/r/r_functions.htm">four parts</a>:</p>
+<pre><code>&lt;Name&gt; &lt;- function(&lt;Argument(s)&gt;) {
+  &lt;Body&gt;
+  &lt;return()&gt;
+}</code></pre>
+<ul>
+<li><strong>Name</strong> − The function is stored in your R environment as an object with this name, and you use the name to call it</li>
+<li><strong>Argument(s)</strong> − Optional; input values that the function performs operations on</li>
+<li><strong>Body</strong> − The code that describes what the function does</li>
+<li><strong>Return</strong> − Optional; a <code>return</code> statement allows the function to return a value to the user. Without a return statement, you won’t be able to access the function’s output</li>
+</ul>
+<p>Here’s an example function that takes in three parameters for running <code>rbinom</code>, and returns the output of <code>rbinom</code>.</p>
+<pre><code>binom_sim &lt;- function(myN, mySize, myProb) {
+  output &lt;- rbinom(n = myN, size = mySize, prob = myProb)
+  return(output)
+}</code></pre>
+</details>
+<hr />
+<p>We want our function to take in parameters for the starting allele frequency, population size, and number of generations to simulate. It should return the <code>sim_results</code> dataframe so that we can plot the allele frequency trajectory.</p>
+<p>To write a function, we can place the code that we just wrote into the function body:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="creating-a-simulation-function.html#cb29-1" aria-hidden="true" tabindex="-1"></a>run_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(Ne, freq, generations) {</span>
+<span id="cb29-2"><a href="creating-a-simulation-function.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-3"><a href="creating-a-simulation-function.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># note how we don&#39;t define our initial parameters for Ne, freq, etc.</span></span>
+<span id="cb29-4"><a href="creating-a-simulation-function.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because we&#39;re passing in those parameters as arguments</span></span>
+<span id="cb29-5"><a href="creating-a-simulation-function.html#cb29-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-6"><a href="creating-a-simulation-function.html#cb29-6" aria-hidden="true" tabindex="-1"></a>  freq_vector <span class="ot">&lt;-</span> freq</span>
+<span id="cb29-7"><a href="creating-a-simulation-function.html#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>generations) {</span>
+<span id="cb29-8"><a href="creating-a-simulation-function.html#cb29-8" aria-hidden="true" tabindex="-1"></a>    new_freq <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> Ne, <span class="at">prob =</span> freq) <span class="sc">/</span> Ne</span>
+<span id="cb29-9"><a href="creating-a-simulation-function.html#cb29-9" aria-hidden="true" tabindex="-1"></a>    freq_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(freq_vector, new_freq)</span>
+<span id="cb29-10"><a href="creating-a-simulation-function.html#cb29-10" aria-hidden="true" tabindex="-1"></a>    freq <span class="ot">&lt;-</span> new_freq</span>
+<span id="cb29-11"><a href="creating-a-simulation-function.html#cb29-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-12"><a href="creating-a-simulation-function.html#cb29-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-13"><a href="creating-a-simulation-function.html#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert vector of AFs into a tibble for plotting</span></span>
+<span id="cb29-14"><a href="creating-a-simulation-function.html#cb29-14" aria-hidden="true" tabindex="-1"></a>  sim_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">afs =</span> freq_vector,</span>
+<span id="cb29-15"><a href="creating-a-simulation-function.html#cb29-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">gen =</span> <span class="dv">1</span><span class="sc">:</span>(generations<span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb29-16"><a href="creating-a-simulation-function.html#cb29-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-17"><a href="creating-a-simulation-function.html#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the tibble of AFs, so that we can access the results</span></span>
+<span id="cb29-18"><a href="creating-a-simulation-function.html#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sim_results)</span>
+<span id="cb29-19"><a href="creating-a-simulation-function.html#cb29-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now we can run the function with parameters of our choosing and plot the output:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="creating-a-simulation-function.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run function</span></span>
+<span id="cb30-2"><a href="creating-a-simulation-function.html#cb30-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(<span class="at">Ne =</span> <span class="dv">1000</span>, <span class="at">freq =</span> <span class="fl">0.5</span>, <span class="at">generations =</span> <span class="dv">10000</span>)</span>
+<span id="cb30-3"><a href="creating-a-simulation-function.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="creating-a-simulation-function.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot output</span></span>
+<span id="cb30-5"><a href="creating-a-simulation-function.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> results,</span>
+<span id="cb30-6"><a href="creating-a-simulation-function.html#cb30-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> gen, <span class="at">y =</span> afs)) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="creating-a-simulation-function.html#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="resources/images/03-simulations_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><strong>Exercise</strong>: Run your <code>run_sum</code> function a few times with different input population sizes and allele frequencies. How does changing thesse inputs affect the allele frequency trajectories that you see?</p>
+<hr />
+<details>
+<summary>
+How do I know when to use a function?
+</summary>
+Functions are useful whenever you have code that you want to run multiple times with slightly different parameters. If you find yourself copying over code several times and changing just a few things, you should consider writing a function instead.
+</details>
+<hr />
 </div>
-<div id="about-this-course" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About this Course</h1>
 </div>
 <hr>
 <center> 
@@ -216,8 +279,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="how-to-use-the-online-textbook.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
