@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Human Genome Variation Lab</title>
+  <title>2.2 Background | Human Genome Variation Lab</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Human Genome Variation Lab" />
+  <meta property="og:title" content="2.2 Background | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Human Genome Variation Lab" />
+  <meta name="twitter:title" content="2.2 Background | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="how-to-use-the-online-textbook.html"/>
+<link rel="prev" href="learning-objectives.html"/>
+<link rel="next" href="modeling-allele-frequencies.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -196,12 +196,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Human Genome Variation Lab</h1>
-<p class="date"><em>December, 2022</em></p>
+<div id="background" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Background</h2>
+<div id="genetic-drift" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Genetic drift</h3>
+<p>In all populations, <strong>genetic drift</strong> acts to change allele frequencies over time. Drift refers to random changes in an allele’s frequency between generations. These random changes occur because individuals carrying different alleles will have different numbers of offspring solely due to chance.</p>
+<p>Drift differs from <strong>selection</strong>, which is a deterministic (non-random) change in an allele’s frequency. If an allele is under selection, it’s more likely to increase or decrease in frequency depending on whether it is beneficial or deleterious. Genetic drift, on the other hand, cannot consistently cause an allele’s frequency to increase or decrease.</p>
+<p>Although both genetic drift and selection occur in real populations, drift is thought to be the primary driver of allele frequency changes, far outweighing the impacts of selection. This is called the <a href="https://www.nature.com/scitable/topicpage/neutral-theory-the-null-hypothesis-of-molecular-839/">neutral theory of molecular evolution</a>.</p>
 </div>
-<div id="about-this-course" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About this Course</h1>
+<div id="the-wright-fisher-model" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> The Wright-Fisher model</h3>
+<p>The <strong>Wright-Fisher model</strong> is one of the most commonly used models of genetic drift.</p>
+<div id="population-size" class="section level4" number="2.2.2.1">
+<h4><span class="header-section-number">2.2.2.1</span> Population size</h4>
+<p>A Wright-Fisher population is a set of individuals who mate randomly. The model assumes that this number remains constant between generations. For simplicity, in this module we’ll also assume that every individual is haploid (so that they can only carry one copy of an allele).</p>
+<p>Populations in the real world don’t behave as randomly as an idealized Wright-Fisher population, so their <strong>effective population size</strong> <code>Ne</code> is usually much smaller than their actual population size. The effective population size of the human population is only <a href="https://www.pnas.org/content/109/44/17758">12,800–14,400</a> individuals, even though its actual size is around 7.8 billion.</p>
+</div>
+<div id="allele-frequency-fixation-and-extinction" class="section level4" number="2.2.2.2">
+<h4><span class="header-section-number">2.2.2.2</span> Allele frequency, fixation, and extinction</h4>
+<p>The Wright-Fisher model describes the behavior of a single <strong>allele</strong>, which is a variable site in a population (a SNP, insertion/deletion, version of a gene, etc.). If <code>A</code> and <code>a</code> are two alleles, representing two different sequences that exist at the same genomic location, Wright-Fisher allows us to track what happens to one of those alleles under genetic drift.</p>
+<p>The allele of interest begins the simulation at some initial <strong>allele frequency (AF)</strong>. This allele frequency is the proportion of individuals in the population who carry that allele, and is always between 0 and 1.</p>
+<p>An allele becomes <strong>fixed</strong> in a population when it reaches an allele frequency of 1. At this point, it is no longer considered an allele because everyone in the population carries it. Similarly, an allele goes <strong>extinct</strong> when it reaches an allele frequency of 0 and nobody in the population carries it.</p>
+</div>
+</div>
 </div>
 <hr>
 <center> 
@@ -216,8 +233,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="how-to-use-the-online-textbook.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="learning-objectives.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modeling-allele-frequencies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

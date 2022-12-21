@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Human Genome Variation Lab</title>
+  <title>2.6 Plotting | Human Genome Variation Lab</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Human Genome Variation Lab" />
+  <meta property="og:title" content="2.6 Plotting | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Human Genome Variation Lab" />
+  <meta name="twitter:title" content="2.6 Plotting | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="how-to-use-the-online-textbook.html"/>
+<link rel="prev" href="a-wright-fisher-simulation.html"/>
+<link rel="next" href="creating-a-simulation-function.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -196,12 +196,125 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Human Genome Variation Lab</h1>
-<p class="date"><em>December, 2022</em></p>
+<div id="plotting" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Plotting</h2>
+<div id="visualizing-changes-in-af-over-generations" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Visualizing changes in AF over generations</h3>
+<p>Try increasing the number of generations we run the simulation for. What patterns of change do you observe in the allele frequencies?</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plotting.html#cb16-1" aria-hidden="true" tabindex="-1"></a>Ne <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb16-2"><a href="plotting.html#cb16-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb16-3"><a href="plotting.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="plotting.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) {</span>
+<span id="cb16-5"><a href="plotting.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  new_freq <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> Ne, <span class="at">prob =</span> freq) <span class="sc">/</span> Ne</span>
+<span id="cb16-6"><a href="plotting.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(new_freq)</span>
+<span id="cb16-7"><a href="plotting.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  freq <span class="ot">&lt;-</span> new_freq</span>
+<span id="cb16-8"><a href="plotting.html#cb16-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 0.53
+## [1] 0.44
+## [1] 0.41
+## [1] 0.48
+## [1] 0.55
+## [1] 0.49
+## [1] 0.5
+## [1] 0.5
+## [1] 0.44
+## [1] 0.48
+## [1] 0.51
+## [1] 0.46
+## [1] 0.45
+## [1] 0.48
+## [1] 0.46
+## [1] 0.51
+## [1] 0.55
+## [1] 0.58
+## [1] 0.54
+## [1] 0.56</code></pre>
+<p>It would be useful to plot how the AF changes over time, so that we can look at it visually. We can do this by storing the AF at each generation in a <strong>vector</strong>, which you can think of as R’s version of a list.</p>
+<p>Vectors are formed with the <code>c()</code> function, which stands for “combine”:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="plotting.html#cb18-1" aria-hidden="true" tabindex="-1"></a>my_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.6</span>)</span>
+<span id="cb18-2"><a href="plotting.html#cb18-2" aria-hidden="true" tabindex="-1"></a>my_vec</span></code></pre></div>
+<pre><code>## [1] 0.5 0.6</code></pre>
+<p>You can append elements to a vector called <code>my_vec</code> by running: <code>my_vec &lt;- c(my_vec, new_element)</code>.</p>
+<p><strong>Coding exercise</strong>: Modify the code block with our for loop to create a vector for storing allele frequencies, and then append the updated AF to it every generation.</p>
+<hr />
+<details>
+<summary>
+Hint
+</summary>
+Create the vector <strong>before</strong> the for loop. Then append to the vector <strong>within</strong> the for loop.
+</details>
+<hr />
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="plotting.html#cb20-1" aria-hidden="true" tabindex="-1"></a>Ne <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb20-2"><a href="plotting.html#cb20-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb20-3"><a href="plotting.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create vector to store AFs in</span></span>
+<span id="cb20-4"><a href="plotting.html#cb20-4" aria-hidden="true" tabindex="-1"></a>freq_vector <span class="ot">&lt;-</span> freq</span>
+<span id="cb20-5"><a href="plotting.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="plotting.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) {</span>
+<span id="cb20-7"><a href="plotting.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  new_freq <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> Ne, <span class="at">prob =</span> freq) <span class="sc">/</span> Ne</span>
+<span id="cb20-8"><a href="plotting.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add new freq to the AF vector</span></span>
+<span id="cb20-9"><a href="plotting.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  freq_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(freq_vector, new_freq)</span>
+<span id="cb20-10"><a href="plotting.html#cb20-10" aria-hidden="true" tabindex="-1"></a>  freq <span class="ot">&lt;-</span> new_freq</span>
+<span id="cb20-11"><a href="plotting.html#cb20-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-12"><a href="plotting.html#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="plotting.html#cb20-13" aria-hidden="true" tabindex="-1"></a>freq_vector</span></code></pre></div>
+<pre><code>##  [1] 0.50 0.52 0.64 0.63 0.65 0.63 0.61 0.68 0.68 0.65 0.63 0.63 0.64 0.62 0.57
+## [16] 0.60 0.61 0.63 0.64 0.65 0.68</code></pre>
+</details>
+<hr />
+<p>We can plot this allele frequency vector with <code>ggplot</code>. First, because <code>ggplot</code> requires its input data to be formatted as a table, we have to convert the vector into some form of table. (We chose <code>tibble</code> form here because it’s easy to convert to.)</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plotting.html#cb22-1" aria-hidden="true" tabindex="-1"></a>sim_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">af =</span> freq_vector)</span>
+<span id="cb22-2"><a href="plotting.html#cb22-2" aria-hidden="true" tabindex="-1"></a>sim_results</span></code></pre></div>
+<pre><code>## # A tibble: 21 x 1
+##       af
+##    &lt;dbl&gt;
+##  1  0.5 
+##  2  0.52
+##  3  0.64
+##  4  0.63
+##  5  0.65
+##  6  0.63
+##  7  0.61
+##  8  0.68
+##  9  0.68
+## 10  0.65
+## # … with 11 more rows</code></pre>
+<p>This table contains the information that we want on the plot’s y axis. We can now add in a column containing the plot’s x axis data. This should be the <strong>generation</strong> that each AF value corresponds to.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="plotting.html#cb24-1" aria-hidden="true" tabindex="-1"></a>sim_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">af =</span> freq_vector,</span>
+<span id="cb24-2"><a href="plotting.html#cb24-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">gen =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">21</span>)</span>
+<span id="cb24-3"><a href="plotting.html#cb24-3" aria-hidden="true" tabindex="-1"></a>sim_results</span></code></pre></div>
+<pre><code>## # A tibble: 21 x 2
+##       af   gen
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  0.5      1
+##  2  0.52     2
+##  3  0.64     3
+##  4  0.63     4
+##  5  0.65     5
+##  6  0.63     6
+##  7  0.61     7
+##  8  0.68     8
+##  9  0.68     9
+## 10  0.65    10
+## # … with 11 more rows</code></pre>
+<hr />
+<details>
+<summary>
+Why does the <code>gens</code> column go from 1 to 21 (instead of 20)?
+</summary>
+We add our starting allele frequency to <code>freq_vector</code>, and then simulate 20 generations of drift. This means that we end up with 21 AFs in our vector.
+</details>
+<hr />
+<p>Now we can finally plot the trajectory of AFs over time with <code>ggplot</code>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plotting.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sim_results,</span>
+<span id="cb26-2"><a href="plotting.html#cb26-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> gen, <span class="at">y =</span> af)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="plotting.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="resources/images/03-simulations_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
-<div id="about-this-course" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About this Course</h1>
 </div>
 <hr>
 <center> 
@@ -216,8 +329,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="how-to-use-the-online-textbook.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="a-wright-fisher-simulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="creating-a-simulation-function.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
