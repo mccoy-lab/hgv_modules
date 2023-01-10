@@ -59,6 +59,11 @@ pre code {
   font-family: 'Source Sans Pro', arial, sans-serif;
 }
 
+ul, ol {
+  font-size: 13pt !important;
+  line-height: 1.2em;
+}
+
 h1, h2, h3, h4, h5 {
   font-family: 'Lora', arial, serif;
 }
@@ -76,7 +81,7 @@ h1, h2, h3, h4, h5 {
 
 .title {
   font-family: 'Lora';
-  font-size: 4em !important;
+  font-size: 3em !important;
   color: #012d72;
   margin-top: 0.275em !important;
   margin-bottom: 0.35em !important;
@@ -103,8 +108,8 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 3px;
 }*/
 
-.section.level1 > p:first-of-type:first-letter { /*drop cap for first p beneath level 1 headers only within class .section*/
-  color: #012d72;
+/*.section.level1 > p:first-of-type:first-letter { /*drop cap for first p beneath level 1 headers only within class .section*/
+/*  color: #012d72;
   float: left;
   font-family: 'Abril Fatface', serif;
   font-size: 3em;
@@ -113,7 +118,7 @@ h1, h2, h3, h4, h5 {
   padding-right: 8px;
   padding-left: 3px;
   margin-bottom: 9px;
-}
+}*/
 
 /* add drop cap to first paragraph that follows the first 2nd level header*/
 /*

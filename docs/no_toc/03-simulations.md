@@ -1,9 +1,9 @@
 
 
 
-# Evolutionary simulations
+# Evolutionary Simulations
 
-In this lab, we will build a simulation from scratch in R to explore genetic drift using the Wright-Fisher model.
+In this lab, we'll build a simulation to explore genetic drift using the Wright-Fisher model.
 
 
 ## Learning objectives
