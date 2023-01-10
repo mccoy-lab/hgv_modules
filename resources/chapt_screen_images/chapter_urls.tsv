@@ -1,15 +1,3 @@
-url	chapt_title	img_path
-https://stephaniemyan.github.io/hgv_modules/no_toc/index.html	1 About this Course	resources/chapt_screen_images/index.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/how-to-use-the-online-textbook.html	1.1 How to Use the Online Textbook	resources/chapt_screen_images/how-to-use-the-online-textbook.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/evolutionary-simulations.html	2 Evolutionary simulations	resources/chapt_screen_images/evolutionary-simulations.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/learning-objectives.html	2.1 Learning objectives	resources/chapt_screen_images/learning-objectives.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/background.html	2.2 Background	resources/chapt_screen_images/background.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/modeling-allele-frequencies.html	2.3 Modeling allele frequencies	resources/chapt_screen_images/modeling-allele-frequencies.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/setup.html	2.4 Setup	resources/chapt_screen_images/setup.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/a-wright-fisher-simulation.html	2.5 A Wright-Fisher simulation	resources/chapt_screen_images/a-wright-fisher-simulation.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/plotting.html	2.6 Plotting	resources/chapt_screen_images/plotting.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/creating-a-simulation-function.html	2.7 Creating a simulation function	resources/chapt_screen_images/creating-a-simulation-function.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/conclusion.html	2.8 Conclusion	resources/chapt_screen_images/conclusion.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/homework.html	2.9 Homework	resources/chapt_screen_images/homework.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/about-the-authors.html	About the Authors	resources/chapt_screen_images/about-the-authors.png
-https://stephaniemyan.github.io/hgv_modules/no_toc/references.html	3 References	resources/chapt_screen_images/references.png
+version https://git-lfs.github.com/spec/v1
+oid sha256:4bb684be8d68e6677b46e8e2ea02b362c88b457826db58017a96544e54808f22
+size 2072
