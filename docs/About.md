@@ -6,11 +6,14 @@
 
 |Credits|Names|
 |-------|-----|
-|**Pedagogy**||
+|**Pedagogy**|
 | Instructor | [Rajiv McCoy] |
-| Content Author | [Kate Weaver] |
 | Content Author | [Stephanie Yan] |
-|**Funding**||
+| Content Author | [Kate Weaver] |
+|**Website**|
+| Template | [Jeff Leek] & [The Johns Hopkins Data Science Lab]|
+| Design Inspiration | [Ali Madooei] & [JHU Data Structures] |
+|**Funding**|
 | JHU Center for Educational Resources | Techology Fellowship Grant |
 
 &nbsp;
@@ -27,7 +30,7 @@
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-12-21                  
+##  date     2023-01-10                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -74,10 +77,14 @@
 ```
 
 <!-- Author information -->
-
+ 
 [Rajiv McCoy]: https://mccoy-lab.org/
 [Kate Weaver]: https://kweav.github.io/
 [Stephanie Yan]: https://stephaniemyan.github.io/
+[Jeff Leek]: https://jtleek.com/
+[The Johns Hopkins Data Science Lab]: https://jhudatascience.org/index.html
+[Ali Madooei]: https://engineering.jhu.edu/faculty/ali-madooei/
+[JHU Data Structures]: https://cs226sp22.github.io/
 
 <!-- Links -->
 
