@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.5 Linear models | Human Genome Variation Lab</title>
+  <meta name="description" content="Description of Course." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.5 Linear models | Human Genome Variation Lab" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Description of Course." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.5 Linear models | Human Genome Variation Lab" />
+  
+  <meta name="twitter:description" content="Description of Course." />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
+<link rel="prev" href="visualizing-the-data.html"/>
+<link rel="next" href="confidence-intervals.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top"</a>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Homepage</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="syllabus-logistics.html"><a href="syllabus-logistics.html"><i class="fa fa-check"></i><b>1.1</b> Syllabus &amp; Logistics</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="syllabus-logistics.html"><a href="syllabus-logistics.html#assessment-grading"><i class="fa fa-check"></i><b>1.1.1</b> Assessment &amp; Grading</a></li>
+<li class="chapter" data-level="1.1.2" data-path="syllabus-logistics.html"><a href="syllabus-logistics.html#homework"><i class="fa fa-check"></i><b>1.1.2</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="course-description.html"><a href="course-description.html"><i class="fa fa-check"></i><b>1.2</b> Course Description</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="course-description.html"><a href="course-description.html#educational-objectives"><i class="fa fa-check"></i><b>1.2.1</b> Educational Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html"><i class="fa fa-check"></i><b>1.3</b> RStudio Cloud</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html#making-an-rstudio-cloud-account"><i class="fa fa-check"></i><b>1.3.1</b> Making an RStudio Cloud account</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="de-novo-mutations.html"><a href="de-novo-mutations.html"><i class="fa fa-check"></i><b>2</b> <em>De novo</em> Mutations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>2.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>2.2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="background.html"><a href="background.html#de-novo-mutations-1"><i class="fa fa-check"></i><b>2.2.1</b> _De novo) mutations</a></li>
+<li class="chapter" data-level="2.2.2" data-path="background.html"><a href="background.html#recombination"><i class="fa fa-check"></i><b>2.2.2</b> Recombination</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2.3</b> Setup</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="setup.html"><a href="setup.html#using-r-markdown-files"><i class="fa fa-check"></i><b>2.3.1</b> Using R Markdown files</a></li>
+<li class="chapter" data-level="2.3.2" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>2.3.2</b> R packages</a></li>
+<li class="chapter" data-level="2.3.3" data-path="setup.html"><a href="setup.html#data"><i class="fa fa-check"></i><b>2.3.3</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="visualizing-the-data.html"><a href="visualizing-the-data.html"><i class="fa fa-check"></i><b>2.4</b> Visualizing the data</a></li>
+<li class="chapter" data-level="2.5" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>2.5</b> Linear models</a></li>
+<li class="chapter" data-level="2.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>2.6</b> Confidence intervals</a></li>
+<li class="chapter" data-level="2.7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>2.7</b> Conclusion</a></li>
+<li class="chapter" data-level="2.8" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i><b>2.8</b> Homework</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="homework-1.html"><a href="homework-1.html#required"><i class="fa fa-check"></i><b>2.8.1</b> Required</a></li>
+<li class="chapter" data-level="2.8.2" data-path="homework-1.html"><a href="homework-1.html#extra-credit-more-linear-models"><i class="fa fa-check"></i><b>2.8.2</b> Extra credit: More linear models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="genome-browsers.html"><a href="genome-browsers.html"><i class="fa fa-check"></i><b>3</b> Genome Browsers</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>3.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="dna-sequencing-data.html"><a href="dna-sequencing-data.html"><i class="fa fa-check"></i><b>3.2</b> DNA sequencing data</a></li>
+<li class="chapter" data-level="3.3" data-path="assembling-a-genome.html"><a href="assembling-a-genome.html"><i class="fa fa-check"></i><b>3.3</b> Assembling a genome</a></li>
+<li class="chapter" data-level="3.4" data-path="the-human-reference-genome.html"><a href="the-human-reference-genome.html"><i class="fa fa-check"></i><b>3.4</b> The human reference genome</a></li>
+<li class="chapter" data-level="3.5" data-path="ucsc-genome-browser.html"><a href="ucsc-genome-browser.html"><i class="fa fa-check"></i><b>3.5</b> UCSC genome browser</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ucsc-genome-browser.html"><a href="ucsc-genome-browser.html#homepage-1"><i class="fa fa-check"></i><b>3.5.1</b> Homepage</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="viewing-one-region-of-the-genome.html"><a href="viewing-one-region-of-the-genome.html"><i class="fa fa-check"></i><b>3.6</b> Viewing one region of the genome</a></li>
+<li class="chapter" data-level="3.7" data-path="customizing-browser-displays.html"><a href="customizing-browser-displays.html"><i class="fa fa-check"></i><b>3.7</b> Customizing browser displays</a></li>
+<li class="chapter" data-level="3.8" data-path="igv.html"><a href="igv.html"><i class="fa fa-check"></i><b>3.8</b> IGV</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="igv.html"><a href="igv.html#homepage-2"><i class="fa fa-check"></i><b>3.8.1</b> Homepage</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="genomic-regions-in-igv.html"><a href="genomic-regions-in-igv.html"><i class="fa fa-check"></i><b>3.9</b> Genomic regions in IGV</a></li>
+<li class="chapter" data-level="3.10" data-path="loading-sequencing-data.html"><a href="loading-sequencing-data.html"><i class="fa fa-check"></i><b>3.10</b> Loading sequencing data</a></li>
+<li class="chapter" data-level="3.11" data-path="genomes-project.html"><a href="genomes-project.html"><i class="fa fa-check"></i><b>3.11</b> 1000 Genomes Project</a></li>
+<li class="chapter" data-level="3.12" data-path="sra.html"><a href="sra.html"><i class="fa fa-check"></i><b>3.12</b> SRA</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="sra.html"><a href="sra.html#previewing-sequencing-data-in-sra"><i class="fa fa-check"></i><b>3.12.1</b> Previewing sequencing data in SRA</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="viewing-sequencing-reads.html"><a href="viewing-sequencing-reads.html"><i class="fa fa-check"></i><b>3.13</b> Viewing sequencing reads</a></li>
+<li class="chapter" data-level="3.14" data-path="interpreting-igv-alignments.html"><a href="interpreting-igv-alignments.html"><i class="fa fa-check"></i><b>3.14</b> Interpreting IGV alignments</a></li>
+<li class="chapter" data-level="3.15" data-path="conclusion-1.html"><a href="conclusion-1.html"><i class="fa fa-check"></i><b>3.15</b> Conclusion</a></li>
+<li class="chapter" data-level="3.16" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i><b>3.16</b> Homework</a>
+<ul>
+<li class="chapter" data-level="3.16.1" data-path="homework-2.html"><a href="homework-2.html#required-homework"><i class="fa fa-check"></i><b>3.16.1</b> Required homework</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="evolutionary-simulations.html"><a href="evolutionary-simulations.html"><i class="fa fa-check"></i><b>4</b> Evolutionary Simulations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>4.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="background-1.html"><a href="background-1.html"><i class="fa fa-check"></i><b>4.2</b> Background</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="background-1.html"><a href="background-1.html#genetic-drift"><i class="fa fa-check"></i><b>4.2.1</b> Genetic drift</a></li>
+<li class="chapter" data-level="4.2.2" data-path="background-1.html"><a href="background-1.html#the-wright-fisher-model"><i class="fa fa-check"></i><b>4.2.2</b> The Wright-Fisher model</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="modeling-allele-frequencies.html"><a href="modeling-allele-frequencies.html"><i class="fa fa-check"></i><b>4.3</b> Modeling allele frequencies</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="modeling-allele-frequencies.html"><a href="modeling-allele-frequencies.html#the-binomial-distribution"><i class="fa fa-check"></i><b>4.3.1</b> The binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="setup-1.html"><a href="setup-1.html"><i class="fa fa-check"></i><b>4.4</b> Setup</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="setup-1.html"><a href="setup-1.html#r-packages-1"><i class="fa fa-check"></i><b>4.4.1</b> R packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="a-wright-fisher-simulation.html"><a href="a-wright-fisher-simulation.html"><i class="fa fa-check"></i><b>4.5</b> A Wright-Fisher simulation</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="a-wright-fisher-simulation.html"><a href="a-wright-fisher-simulation.html#drawing-one-generation-from-a-binomial-distribution"><i class="fa fa-check"></i><b>4.5.1</b> Drawing one generation from a binomial distribution</a></li>
+<li class="chapter" data-level="4.5.2" data-path="a-wright-fisher-simulation.html"><a href="a-wright-fisher-simulation.html#simulating-multiple-generations-with-a-for-loop"><i class="fa fa-check"></i><b>4.5.2</b> Simulating multiple generations with a for loop</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>4.6</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="plotting.html"><a href="plotting.html#visualizing-changes-in-af-over-generations"><i class="fa fa-check"></i><b>4.6.1</b> Visualizing changes in AF over generations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="creating-a-simulation-function.html"><a href="creating-a-simulation-function.html"><i class="fa fa-check"></i><b>4.7</b> Creating a simulation function</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="creating-a-simulation-function.html"><a href="creating-a-simulation-function.html#simulating-with-different-parameters-with-a-function"><i class="fa fa-check"></i><b>4.7.1</b> Simulating with different parameters with a function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="conclusion-2.html"><a href="conclusion-2.html"><i class="fa fa-check"></i><b>4.8</b> Conclusion</a></li>
+<li class="chapter" data-level="4.9" data-path="homework-3.html"><a href="homework-3.html"><i class="fa fa-check"></i><b>4.9</b> Homework</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="homework-3.html"><a href="homework-3.html#required-1"><i class="fa fa-check"></i><b>4.9.1</b> Required</a></li>
+<li class="chapter" data-level="4.9.2" data-path="homework-3.html"><a href="homework-3.html#extra-credit-selection"><i class="fa fa-check"></i><b>4.9.2</b> Extra credit: Selection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
+<li class="divider"></li>
+<p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Human Genome Variation Lab</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-models" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Linear models</h2>
+<p>Our null hypothesis is that there is no relationship between the parental (paternal or maternal) age and the number of DNMs originating from that parent.</p>
+<p>We can formally consider the association between parental age the number of DNMs originating from that parent by fitting a linear line to the data and evaluating the slope. Further, we can ask if the slope is significantly different than 0. If it is, we reject the null hypothesis.</p>
+<p>In R, we will fit a linear model using the <code>lm</code> function. Run the following code block, and it will open a manual describing the function.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="linear-models.html#cb12-1" aria-hidden="true" tabindex="-1"></a>?lm</span></code></pre></div>
+<p>We see that the function needs to know what formula or equation it’s evaluating and needs to know where the data is stored. Specifically for the formula, we use <code>response variable ~ predictor variable(s)</code>. Because we’re passing the function the data frame, in the formula, we only have to use column names.</p>
+<p><strong>Question:</strong> What is our predictor variable in this question? Is it the parental age or the number of DNMs originating from the parent?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+It is the number of DNMs originating from the parent.
+</details>
+<hr />
+<p>Given all of this information, we will use the following code to (1) fit the model &amp; (2) print a summary of the model results (estimated slope, intercept, R-squared, etc.)</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="linear-models.html#cb13-1" aria-hidden="true" tabindex="-1"></a>fit_pat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> dnm_by_age, <span class="at">formula =</span> n_paternal_dnm <span class="sc">~</span> Father_age)</span>
+<span id="cb13-2"><a href="linear-models.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_pat)</span></code></pre></div>
+<p><strong>Question:</strong> What is the slope for the relationship between the paternal age and the number of paternal associated DNMs?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+1.35
+</details>
+<hr />
+<p><strong>Question:</strong> Is the relationship significant (i.e. is the slope significantly different from 0)?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+Yes, it is significant
+</details>
+<hr />
+<p><strong>Question:</strong> For every additional year in the father’s age, how many additional DNMs do we expect to originate from the father?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+1.35
+</details>
+<hr />
+<p><strong>Coding practice:</strong> Use the example code above (where we fit the paternal model) to now assess the relationship between maternal age and <em>de novo</em> mutations from the mother. Using the gray boxes from the <em>Pattern Code</em> as a guide of where code needs to be added, fill in the following <em>Code block</em> and run it when you are ready.</p>
+<p><em>Pattern code</em></p>
+<div class="line-block"><code>fit_mat &lt;- lm(data =</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>,</code><br />
+               <code>formula =</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>~</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>)</code><br />
+<code>summary(</code> <span style="background: dimgray;color: dimgray"> __ </span> <code>)</code></div>
+<p><br /><br /><br />
+<em>Code block</em></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="linear-models.html#cb14-1" aria-hidden="true" tabindex="-1"></a>fit_mat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> , </span>
+<span id="cb14-2"><a href="linear-models.html#cb14-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span>   <span class="sc">~</span>  )</span>
+<span id="cb14-3"><a href="linear-models.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>()</span></code></pre></div>
+<p>Compare your code &amp; results with the solution below</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="linear-models.html#cb15-1" aria-hidden="true" tabindex="-1"></a>fit_mat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> dnm_by_age, <span class="at">formula =</span> n_maternal_dnm <span class="sc">~</span> Mother_age)</span>
+<span id="cb15-2"><a href="linear-models.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_mat)</span></code></pre></div>
+</details>
+<hr />
+<p><strong>Question:</strong> What is the slope for the relationship between the maternal age and the number of maternal associated DNMs?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+0.38
+</details>
+<hr />
+<p><strong>Question:</strong> Is the relationship significant (i.e. is the slope significantly different from 0)?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+Yes, it is significant
+</details>
+<hr />
+<p><strong>Question:</strong> For every additional year in the mother’s age, how many additional DNMs do we expect to originate from the mother?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+0.38
+</details>
+<hr />
+<p><strong>Question:</strong> How would you compare the paternal and maternal results?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+Both show significant relationships with the number of inhertied DNMs, but the slope of the maternal association is shallower, suggesting that there are fewer additional DNMs for each additional year of the mother’s age than there are for each additional year of the father’s age.
+</details>
+<hr />
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualizing-the-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="confidence-intervals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
