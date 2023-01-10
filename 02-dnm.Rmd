@@ -230,7 +230,7 @@ We're interested in the relationship between age and the number of DNMs for male
 <details> <summary> Solution </summary>
 
 ```{r}
-dnm_by_age <- read.table("resources/data/dnm/dnm_by_age_tidy_Halldorsson.tsv.gz", sep = "\t", header = TRUE)
+dnm_by_age <- read.table("https://www.dropbox.com/s/e6p6nalccjj6j9y/dnm_by_age_tidy_Halldorsson.tsv?dl=1", sep = "\t", header = TRUE)
 
 ggplot(data = dnm_by_age) +
   # specify that the data should be plotted as points
