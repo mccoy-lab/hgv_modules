@@ -3,9 +3,9 @@
 ottrpal::set_knitr_image_path()
 ```
 
-# _De novo_ mutations
+# _De novo_ Mutations
 
-In this module, we'll use DNA sequencing data from human families to explore the relationship between parental age and the number of *de novo* mutations (DNMs) in their children.
+In this module, we'll use DNA sequencing data from human families to explore the relationship between parental age and *de novo* mutations (DNMs) in their children.
 
 
 ## Learning objectives
@@ -62,7 +62,7 @@ library(tidyverse)
 
 ### Data
 
-Our data comes from the paper [Characterizing mutagennic effects of recombination through a sequence-level genetic map](https://science.sciencemag.org/content/363/6425/eaau1043) by Halldorsson et al., which performed whole-genome sequencing on "trios" (two parents and one child) in Iceland.
+Our data comes from the paper [Characterizing mutagenic effects of recombination through a sequence-level genetic map](https://science.sciencemag.org/content/363/6425/eaau1043) by Halldorsson et al., which performed whole-genome sequencing on "trios" (two parents and one child) in Iceland.
 
 The word "proband", derived from a Latin word meaning "to be proved/tested", refers to the offspring in the study (i.e. the test subjects).
 

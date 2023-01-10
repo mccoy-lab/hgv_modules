@@ -8,4 +8,4 @@
 .httr-oauth
 docker/git_token.txt
 .Rproj.user
-docs/*
+.rds

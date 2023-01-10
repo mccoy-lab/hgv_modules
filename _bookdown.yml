@@ -1,16 +1,15 @@
-book_filename: "Course_Name"
-chapter_name: "Chapter "
+book_filename: "HGVLab"
+chapter_name: ""
 repo: https://github.com/stephaniemyan/hgv_modules/
 rmd_files: ["index.Rmd",
-            # "01-intro.Rmd",
-            # "02-dnm.Rmd",
+            "02-dnm.Rmd",
+            "02-igv.Rmd",
             "03-simulations.Rmd",
             # "04-pop_structure.Rmd",
-            "About.Rmd",
-            "References.Rmd"]
+            "About.Rmd"]
 new_session: yes
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "Chapter"
+    chapter_name: ""
 output_dir: "docs"

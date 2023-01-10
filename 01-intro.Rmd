@@ -3,19 +3,34 @@
 ottrpal::set_knitr_image_path()
 ```
 
-# Introduction
-
+# Human Genome Variation Lab
 
 ## Motivation
 
+This isn't a coding intensive class - we're mostly interested in visualizing and thinking about genetic data
 
-## Target Audience  
+there are tons of public databases for human genetics that are accessible to everyone
 
-The course is intended for ...
+human genetics/genomics has led the way for improving on transparency and reproducibility in science. There are standards int he community where when you publish a reserach study, all the raw data you produce have to be made publicly available. There's also an expectation now that you make all your code available too, so you can go form raw data to results so other people can audit your code and decide if you did it correctly, and also so they can extend it to their own research
 
-## Curriculum  
+scientists and the public benefit from this - more confidence in results that are coming out. We as students benefit from it because we can download that data pretty easily and look at it
+
+personally identifying data are restricted access and you need to apply for it (dbgap)
+
+## Syllabus  
 
 The course covers...
+
+### Grading
+
+Self grading but you have to earn the right by coming to class
+
+Learning objectives that are specific to the lab?
+
+### Homework
+
+There will be required and optional homework associated with each topic we cover.
+
 
 
 ```{r}
