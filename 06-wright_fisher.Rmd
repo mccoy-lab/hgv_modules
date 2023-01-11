@@ -3,12 +3,11 @@
 ottrpal::set_knitr_image_path()
 ```
 
-# Evolutionary Simulations
+# Simulating evolution
 
 In this lab, we'll build a simulation to explore genetic drift using the Wright-Fisher model.
 
-
-## Learning objectives
+#### Learning objectives
 
 After completing this chapter, you'll be able to:
 

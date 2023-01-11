@@ -2,10 +2,10 @@ book_filename: "HGVLab"
 chapter_name: ""
 repo: https://github.com/stephaniemyan/hgv_modules/
 rmd_files: ["index.Rmd",
+            "01-igv.Rmd",
             "02-dnm.Rmd",
-            "02-igv.Rmd",
-            "03-simulations.Rmd",
             # "04-pop_structure.Rmd",
+            "06-wright_fisher.Rmd",
             "About.Rmd"]
 new_session: yes
 delete_merged_file: true

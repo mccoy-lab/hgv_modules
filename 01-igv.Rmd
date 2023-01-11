@@ -3,24 +3,19 @@
 ottrpal::set_knitr_image_path()
 ```
 
-# Genome Browsers
+# Genome browsers
 
 In this module, we'll learn how to use the **UC Santa Cruz (UCSC) Genome Browser** and the **Integrative Genomics Viewer (IGV)**, two extremely popular tools for visualizing genomic data.
 <br></br>
 
-<center>
-
-![The UCSC genome browser.](resources/images/igv/ucsc.png)
-
-</center>
-
-## Learning objectives
+#### Learning objectives
 
 After completing this chapter, you'll be able to:
 
 1. Explain why a reference genome is an important resource for genomics research.
-2. Load and navigate sequencing data in IGV.
-3. Interpret IGV's visualizations of sequencing reads.
+2. Use the UCSC genome browser to find genomic features in a region of interest.
+3. Describe the data contained in a file of sequencing reads.
+4. Load and interpret sequencing data in IGV.
 
 
 ## DNA sequencing data
@@ -111,11 +106,11 @@ What does the human reference genome actually look like? We can view it in the *
 
 The browser also displays **genome annotations**, such as the locations of genes and clinically relevant genetic variants.
 
-Go to the [UCSC genome browser](https://genome.ucsc.edu/cgi-bin/hgGateway?hgsid=1537534853_Fxba671lul6Qu1chkXaoY68Kr3lP).
+Go to the [**UCSC genome browser**](https://genome.ucsc.edu/cgi-bin/hgGateway?hgsid=1537534853_Fxba671lul6Qu1chkXaoY68Kr3lP).
 
 ### Homepage
 
-There are a couple of key areas of this page:
+There are a few key areas of this page:
 
 * `Browse/Select Species` -- choose the species
 * `Human Assembly` -- choose the version of the human reference genome
@@ -202,7 +197,7 @@ The IGV homepage is fairly empty because we haven't loaded any sequencing reads 
 <!-- <br></br> -->
 We haven't chosen a chromosome yet, so all of them are displayed below the drop-down menu. Click on one to go to a zoomed-in view of that particular chromosome.
 
-## Genomic regions in IGV
+## Navigating IGV
 
 Once you've clicked on a chromosome, zoom in until you can see colors on the top track. This track displays the DNA sequence, colored by nucleotide.
 
@@ -220,7 +215,7 @@ Once you've switched references, click `Tracks` -> `1KG Low Coverage Alignments`
 
 ![**Fig. 13.** Loading reads from a 1KG sample.](resources/images/igv/igv3.png)
 
-## 1000 Genomes Project
+## The 1000 Genomes Project
 
 ***
 <details> <summary> Where did this sequencing data come from? </summary>
@@ -235,13 +230,13 @@ Notably, 1KGP still excludes key regions of the world -- such as Oceania, the Mi
 </details>
 ***
 
-Go to the [1000 Genomes Project website](https://www.internationalgenome.org/home) and click the `Data` tab. Then click the link to the `data portal`.
+Go to the [**1000 Genomes Project** website](https://www.internationalgenome.org/home) and click the `Data` tab. Then click the link to the `data portal`.
 <br></br>
 
 ![**Fig. 15.** The data portal includes information about the samples in this dataset.](resources/images/igv/kgp2.png)
 
 <br></br>
-Choose any individual and copy their sample ID (ex: **HG00138**). We can use this sample ID to find this individual's raw sequencing data in the [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra).
+Choose any individual and copy their sample ID (ex: **HG00138**). We can use this sample ID to find this individual's raw sequencing data in the [**Sequence Read Archive (SRA)**](https://www.ncbi.nlm.nih.gov/sra).
 
 ## SRA
 
@@ -249,21 +244,21 @@ Search for the sample ID you chose in SRA. You should see something like this, w
 
 ![**Fig. 16.** Finding sequencing data in SRA.](resources/images/igv/kgp3.png)
 
-### Previewing sequencing data in SRA
+### Previewing sequencing data
 
 Choose any sequencing dataset, and then click on any item in the **`Run`** table at the bottom. 
 
-This takes you to a page that displays a specific sequencing run (i.e., one use of the sequencing machine). Go to the **`Reads`** tab.
+This takes you to a page that displays a specific sequencing run (i.e., one use of a sequencing machine). Go to the **`Reads`** tab.
 
 ![**Fig. 17.** The `Reads` tab in SRA.](resources/images/igv/kgp5.png)
 
 <br></br>
-The right-hand panel shows one sequencing read from this run. Note that this read is around 100bp long -- the average length for short-read Illumina sequencing.
+The right-hand panel shows one sequencing read from this run. Note that the sequence of this read is around 100bp long -- the average length for short-read Illumina sequencing.
 
-Every sequencing data file is just a text file with read IDs and each read's DNA/RNA sequence.
+All sequencing data looks like this! It's just a text file filled with the IDs and DNA/RNA sequences of your reads.
 
 
-## Viewing sequencing reads
+## Viewing sequencing reads in IGV
 
 Now that we've seen what raw sequencing data looks like, let's look at it in IGV.
 
@@ -277,7 +272,7 @@ The top track is a histogram of sequencing coverage (i.e., how many reads there 
 ***
 <details> <summary> How do we know where in the genome each read belongs? </summary>
 
-Match the sequence of the read to the sequence of the reference genome (called **alignment**). With 100bp reads, the probability that a match occurs by chance is $\frac{1}{4^{100}}$, or $6.2 * 10^{-61}$.
+We match the sequence of the read to the sequence of the reference genome (called **alignment**). With 100bp reads, the probability that a match occurs by chance is $\frac{1}{4^{100}}$, or $6.2 * 10^{-61}$.
 
 </details>
 ***
@@ -334,10 +329,10 @@ In this lab, we explored several of the most commonly used websites in genomics:
 #### Data repositories
 
 * [**1000 Genomes Project**](https://www.internationalgenome.org/home): One of the largest and most diverse datasets of human sequencing data
-    * Data from 1000 Genomes is frequently used for human genetics research
+    * Data from 1000 Genomes is frequently used in human genetics studies
 <br></br>
 * [**SRA**](https://www.ncbi.nlm.nih.gov/sra): A repository for publicly available sequencing data
-    * Genetics studies deposit their data in SRA if it can be made publicly available (ex: if it has no identifiable information)
+    * Genetics studies deposit their data in SRA if it can be made publicly available (i.e., if it has no identifiable information)
 
 
 ## Homework
@@ -348,7 +343,7 @@ The goal of this homework is to make an account in RStudio Cloud to use for the 
 
 ### Required homework
 
-Follow the instructions [here](index.Rmd) to create an RStudio Cloud account and join the HGV workspace.
+Follow the instructions [here](https://stephaniemyan.github.io/hgv_modules/rstudio-cloud.html) to create an RStudio Cloud account and join the HGV workspace.
 
 <!-- #### Goals & Learning Objectives -->
 
