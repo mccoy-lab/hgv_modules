@@ -1,12 +1,11 @@
 
 
 
-# _De novo_ Mutations
+# Discovering mutations
 
-In this module, we'll use DNA sequencing data from human families to explore the relationship between parental age and *de novo* mutations (DNMs) in their children.
+In this module, we'll use DNA sequencing data from human families to explore the relationship between parental age and *de novo* mutations in their children.
 
-
-## Learning objectives
+#### Learning objectives
 
 After completing this chapter, you'll be able to:
 
