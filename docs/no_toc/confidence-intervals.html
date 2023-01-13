@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.5 Confidence intervals | Human Genome Variation Lab</title>
+  <title>3.7 Confidence intervals | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.5 Confidence intervals | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.7 Confidence intervals | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.5 Confidence intervals | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.7 Confidence intervals | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
-<link rel="prev" href="linear-models.html"/>
-<link rel="next" href="conclusion-1.html"/>
+<link rel="prev" href="fitting-a-linear-model-for-dnms.html"/>
+<link rel="next" href="calculate-95-cis.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -182,33 +182,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="discovering-mutations.html"><a href="discovering-mutations.html"><i class="fa fa-check"></i><b>3</b> Discovering mutations</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3.1</b> Background</a>
+<li class="chapter" data-level="3.1" data-path="de-novo-mutations.html"><a href="de-novo-mutations.html"><i class="fa fa-check"></i><b>3.1</b> <em>De novo</em> mutations</a></li>
+<li class="chapter" data-level="3.2" data-path="recombination.html"><a href="recombination.html"><i class="fa fa-check"></i><b>3.2</b> Recombination</a></li>
+<li class="chapter" data-level="3.3" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>3.3</b> Setup</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="background.html"><a href="background.html#de-novo-mutations"><i class="fa fa-check"></i><b>3.1.1</b> _De novo) mutations</a></li>
-<li class="chapter" data-level="3.1.2" data-path="background.html"><a href="background.html#recombination"><i class="fa fa-check"></i><b>3.1.2</b> Recombination</a></li>
+<li class="chapter" data-level="3.3.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>3.3.1</b> R packages</a></li>
+<li class="chapter" data-level="3.3.2" data-path="setup.html"><a href="setup.html#data"><i class="fa fa-check"></i><b>3.3.2</b> Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>3.2</b> Setup</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="setup.html"><a href="setup.html#using-r-markdown-files"><i class="fa fa-check"></i><b>3.2.1</b> Using R Markdown files</a></li>
-<li class="chapter" data-level="3.2.2" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>3.2.2</b> R packages</a></li>
-<li class="chapter" data-level="3.2.3" data-path="setup.html"><a href="setup.html#data"><i class="fa fa-check"></i><b>3.2.3</b> Data</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="visualizing-the-data.html"><a href="visualizing-the-data.html"><i class="fa fa-check"></i><b>3.3</b> Visualizing the data</a></li>
-<li class="chapter" data-level="3.4" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>3.4</b> Linear models</a></li>
-<li class="chapter" data-level="3.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>3.5</b> Confidence intervals</a></li>
-<li class="chapter" data-level="3.6" data-path="conclusion-1.html"><a href="conclusion-1.html"><i class="fa fa-check"></i><b>3.6</b> Conclusion</a></li>
-<li class="chapter" data-level="3.7" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i><b>3.7</b> Homework</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="homework-2.html"><a href="homework-2.html#required"><i class="fa fa-check"></i><b>3.7.1</b> Required</a></li>
-<li class="chapter" data-level="3.7.2" data-path="homework-2.html"><a href="homework-2.html#extra-credit-more-linear-models"><i class="fa fa-check"></i><b>3.7.2</b> Extra credit: More linear models</a></li>
-</ul></li>
+<li class="chapter" data-level="3.4" data-path="visualizing-the-data.html"><a href="visualizing-the-data.html"><i class="fa fa-check"></i><b>3.4</b> Visualizing the data</a></li>
+<li class="chapter" data-level="3.5" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>3.5</b> Linear models</a></li>
+<li class="chapter" data-level="3.6" data-path="fitting-a-linear-model-for-dnms.html"><a href="fitting-a-linear-model-for-dnms.html"><i class="fa fa-check"></i><b>3.6</b> Fitting a linear model for DNMs</a></li>
+<li class="chapter" data-level="3.7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>3.7</b> Confidence intervals</a></li>
+<li class="chapter" data-level="3.8" data-path="calculate-95-cis.html"><a href="calculate-95-cis.html"><i class="fa fa-check"></i><b>3.8</b> Calculate 95% CIs</a></li>
+<li class="chapter" data-level="3.9" data-path="conclusion-1.html"><a href="conclusion-1.html"><i class="fa fa-check"></i><b>3.9</b> Conclusion</a></li>
+<li class="chapter" data-level="3.10" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i><b>3.10</b> Homework</a></li>
+<li class="chapter" data-level="3.11" data-path="required-homework-1.html"><a href="required-homework-1.html"><i class="fa fa-check"></i><b>3.11</b> Required homework</a></li>
+<li class="chapter" data-level="3.12" data-path="optional-homework.html"><a href="optional-homework.html"><i class="fa fa-check"></i><b>3.12</b> Optional homework</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="simulating-evolution.html"><a href="simulating-evolution.html"><i class="fa fa-check"></i><b>4</b> Simulating evolution</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="background-1.html"><a href="background-1.html"><i class="fa fa-check"></i><b>4.1</b> Background</a>
+<li class="chapter" data-level="4.1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>4.1</b> Background</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="background-1.html"><a href="background-1.html#genetic-drift"><i class="fa fa-check"></i><b>4.1.1</b> Genetic drift</a></li>
-<li class="chapter" data-level="4.1.2" data-path="background-1.html"><a href="background-1.html#the-wright-fisher-model"><i class="fa fa-check"></i><b>4.1.2</b> The Wright-Fisher model</a></li>
+<li class="chapter" data-level="4.1.1" data-path="background.html"><a href="background.html#genetic-drift"><i class="fa fa-check"></i><b>4.1.1</b> Genetic drift</a></li>
+<li class="chapter" data-level="4.1.2" data-path="background.html"><a href="background.html#the-wright-fisher-model"><i class="fa fa-check"></i><b>4.1.2</b> The Wright-Fisher model</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="modeling-allele-frequencies.html"><a href="modeling-allele-frequencies.html"><i class="fa fa-check"></i><b>4.2</b> Modeling allele frequencies</a>
 <ul>
@@ -234,7 +230,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="conclusion-2.html"><a href="conclusion-2.html"><i class="fa fa-check"></i><b>4.7</b> Conclusion</a></li>
 <li class="chapter" data-level="4.8" data-path="homework-3.html"><a href="homework-3.html"><i class="fa fa-check"></i><b>4.8</b> Homework</a>
 <ul>
-<li class="chapter" data-level="4.8.1" data-path="homework-3.html"><a href="homework-3.html#required-1"><i class="fa fa-check"></i><b>4.8.1</b> Required</a></li>
+<li class="chapter" data-level="4.8.1" data-path="homework-3.html"><a href="homework-3.html#required"><i class="fa fa-check"></i><b>4.8.1</b> Required</a></li>
 <li class="chapter" data-level="4.8.2" data-path="homework-3.html"><a href="homework-3.html#extra-credit-selection"><i class="fa fa-check"></i><b>4.8.2</b> Extra credit: Selection</a></li>
 </ul></li>
 </ul></li>
@@ -259,100 +255,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="confidence-intervals" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Confidence intervals</h2>
-<p>Let’s formalize the comparison between the two associations by considering the confidence intervals. A confidence interval is a range of values in which, for some probability, the estimated interval will contain the true value of the unknown estimate (in our case the slope parameter). For a 95% confidence interval, the probability is 0.95. The interval itself has two boundaries, a lower boundary and an upper boundary. For a 95% confidence interval, these boundaries are labelled 2.5 % and 97.5%. Confidence intervals for two parameters may be non-overlapping or overlapping. If 95% confidence intervals for parameters from independent populations do not overlap, then this strongly supports that the parameters are significantly different from one another (for the 0.05 level of significance). The inverse statement, however, is not necessarily true. If 95% confidence intervals for parameters from independent populations do overlap, the parameters may still be significantly different; more analysis, like a hypothesis test, is needed to conclude one way or the other.</p>
-<p>We can visually inspect whether the confidence intervals overlap using <code>ggplot</code>. But before that, we’ll first see how to tangibly extract the slope values as well as the confidence intervals. We’ll then construct a dataframe that has all 3 values (slope coefficient, the lower or 2.5 % confidence boundary, and the upper or 97.5 % confidence boundary) for both the paternal model and the maternal model.</p>
-<p>To extract a single slope coefficient from the linear model summarized results, we must first decide which coefficient we want. There is one for the intercept and one for the predictor variable. From the following code, we see both of these slope parameters.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="confidence-intervals.html#cb16-1" aria-hidden="true" tabindex="-1"></a>fit_pat<span class="sc">$</span>coefficients</span></code></pre></div>
-<p>To extract just the <code>Father_age</code> slope, we add the name of the coefficient, as is done below.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="confidence-intervals.html#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_pat<span class="sc">$</span>coefficients[<span class="st">&quot;Father_age&quot;</span>]</span></code></pre></div>
-<p><strong>Coding Practice:</strong> Use the example above to extract just the <code>Mother_age</code> slope. Using the gray boxes from the <em>Pattern code</em> as a guide of where code needs to be added, fill in the following <em>Code block</em> and run it when you are ready.</p>
-<p><em>Pattern code</em></p>
-<p><span style="background: dimgray; color: dimgray"> __ </span><code>$coefficients[</code><span style="background: dimgray; color: dimgray"> __ </span><code>]</code></p>
-<p><br /><br /><br />
-<em>Code block</em></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="confidence-intervals.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>coefficients[]</span></code></pre></div>
+<div id="confidence-intervals" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Confidence intervals</h2>
+<p>Our models predict that there are 1.35 more DNMs for additional every year of paternal age, and 0.38 more DNMs for every additional year of maternal age. Does this mean that sperm and oocytes accumulate DNMs at different rates?</p>
+<p>The maternal and paternal slopes look different, but we need statistical evidence that they actually are. (For example, what if there’s a lot of variability in the maternal DNM data, and the true maternal coefficient could be anywhere between -1 and 10?)</p>
+<p>To do this, we compare the <strong>confidence intervals</strong> of our slope estimates.</p>
 <hr />
 <details>
 <summary>
-Answer
+What is a confidence interval?
 </summary>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="confidence-intervals.html#cb19-1" aria-hidden="true" tabindex="-1"></a>fit_mat<span class="sc">$</span>coefficients[<span class="st">&quot;Mother_age&quot;</span>]</span></code></pre></div>
+<p>We use confidence intervals when estimating a value – in this case, the <code>Mother_age</code> and <code>Father_age</code> slope parameters.</p>
+<p>A <strong>confidence interval (CI)</strong> is a range of values for which, for some probability, the interval will contain the true value of the slope.</p>
+<p>So, a 95% CI contains the true value of the slope 95% of the time.</p>
 </details>
 <hr />
-<p>The confindence intervals can be obtained with a function called <code>confint</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="confidence-intervals.html#cb20-1" aria-hidden="true" tabindex="-1"></a>?confint</span></code></pre></div>
-<p>From the manual, we see that we will pass the function a fitted model, which parameter(s) we would like a confidence interval for from that model, as well as the <code>level</code> or the probability for which the confidence interval will contain the true value of the parameter. As an example below, we can extract the <code>Father_age</code> slope parameter’s 95% confidence interval from the <code>fit_pat</code> fitted model.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="confidence-intervals.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit_pat, <span class="st">&#39;Father_age&#39;</span>, <span class="at">level=</span><span class="fl">0.95</span>)</span></code></pre></div>
-<p><strong>Coding Practice:</strong> Use the example above to obtain the 95% confidence interval associated with the <code>Mother_age</code> slope parameter from the maternal fitted model. Using the gray boxes from the <em>Pattern code</em> as a guide of where code needs to be added, fill in the following <em>Code block</em> and run it when you are ready.</p>
-<p><em>Pattern code</em></p>
-<p><code>confint(</code><span style="background: dimgray; color: dimgray"> __ </span> <code>,</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>, level=</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>)</code></p>
-<p><br /><br /><br />
-<em>Code block</em></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="confidence-intervals.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>( , , <span class="at">level =</span> )</span></code></pre></div>
-<hr />
-<details>
-<summary>
-Answer
-</summary>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-intervals.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit_mat, <span class="st">&#39;Mother_age&#39;</span>, <span class="at">level=</span><span class="fl">0.95</span>)</span></code></pre></div>
-</details>
-<hr />
-<p>We combine all of this data into a single dataframe using the code below. In this dataframe, the associations we were testing (<code>Father_age</code> and <code>Mother_age</code>) are separated into rows, and then the slope estimates as well as the confidence intervals are found in the columns.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="confidence-intervals.html#cb24-1" aria-hidden="true" tabindex="-1"></a>pat_confint <span class="ot">&lt;-</span> <span class="fu">c</span>(fit_pat<span class="sc">$</span>coefficients[<span class="st">&quot;Father_age&quot;</span>], <span class="fu">confint</span>(fit_pat, <span class="st">&#39;Father_age&#39;</span>, <span class="at">level=</span><span class="fl">0.95</span>))</span>
-<span id="cb24-2"><a href="confidence-intervals.html#cb24-2" aria-hidden="true" tabindex="-1"></a>mat_confint <span class="ot">&lt;-</span> <span class="fu">c</span>(fit_mat<span class="sc">$</span>coefficients[<span class="st">&quot;Mother_age&quot;</span>], <span class="fu">confint</span>(fit_mat, <span class="st">&#39;Mother_age&#39;</span>, <span class="at">level=</span><span class="fl">0.95</span>))</span>
-<span id="cb24-3"><a href="confidence-intervals.html#cb24-3" aria-hidden="true" tabindex="-1"></a>confint_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">data.frame</span>(<span class="at">Mother_age =</span> mat_confint, <span class="at">Father_age =</span> pat_confint)))</span>
-<span id="cb24-4"><a href="confidence-intervals.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(confint_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Slopes&quot;</span>, <span class="st">&quot;Lower&quot;</span>, <span class="st">&quot;Upper&quot;</span>)</span>
-<span id="cb24-5"><a href="confidence-intervals.html#cb24-5" aria-hidden="true" tabindex="-1"></a>confint_data</span></code></pre></div>
-<p>We can then plot these intervals next to each other either horizontally or vertically. Horizontally follows this pattern.</p>
-<pre><code>ggplot(dataframe_name) + 
-  geom_point(aes(column_name_with_estimates, rownames(dataframe_name))) + 
-  geom_errorbar(aes(xmin = column_name_with_lower_boundaries , xmax = column_name_with_upper_boundaries, y = rownames(dataframe_name), width = 0.1)) + 
-  theme_minimal() + 
-  ylab(&quot;Model&quot;) + 
-  xlab(&quot;Coefficient&quot;)</code></pre>
-<p>Vertically follows this pattern. Notice that they differ in whether the estimates, range boundaries, labels, etc. are passed as <code>x</code> values or <code>y</code> values.</p>
-<pre><code>ggplot(dataframe_name) + 
-  geom_point(aes(rownames(dataframe_name), column_name_with_estimates)) + 
-  geom_errorbar(aes(ymin = column_name_with_lower_boundaries , ymax = column_name_with_upper_boundaries, x = rownames(dataframe_name), width = 0.1)) + 
-  theme_minimal() + 
-  ylab(&quot;Coefficient&quot;) + 
-  xlab(&quot;Model&quot;)</code></pre>
-<p><strong>Coding Practice:</strong> Use the above code outline to fill in the code block and plot the estimates and confidence intervals (replacing things like <code>dataframe_name</code>, <code>column_name_with_estimates</code>, etc.) and determine whether the intervals are overlapping or non-overlapping. Plotting vertically or horizontally is your choice.</p>
-<p><em>Pattern code</em></p>
-<div class="line-block"><code>ggplot(</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>) +</code><br />
-    <code>geom_point(aes(rownames(</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>),</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>)) +</code><br />
-    <code>geom_errorbar(aes(</code> <span style="background: dimgray; color: dimgray"> __ </span><code>min=</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>,</code> <span style="background: dimgray; color: dimgray"> __ </span><code>max =</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>,</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>=rownames(</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>), width = 0.1)) +</code><br />
-    <code>theme_minimal() +</code><br />
-    <span style="background: dimgray; color: dimgray"> __ </span><code>lab("Coefficient") +</code><br />
-    <span style="background: dimgray; color: dimgray"> __ </span><code>lab("Model")</code></div>
-<p><br /><br /><br /></p>
-<p><em>Code block</em></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="confidence-intervals.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb27-2"><a href="confidence-intervals.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="fu">rownames</span>(), )) <span class="sc">+</span> </span>
-<span id="cb27-3"><a href="confidence-intervals.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>( <span class="at">min=</span> , <span class="at">max =</span> , <span class="ot">=</span><span class="fu">rownames</span>(), <span class="at">width =</span> <span class="fl">0.1</span>)) <span class="sc">+</span> </span>
-<span id="cb27-4"><a href="confidence-intervals.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minnimal</span>() <span class="sc">+</span> </span>
-<span id="cb27-5"><a href="confidence-intervals.html#cb27-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lab</span>(<span class="st">&quot;Coefficient&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb27-6"><a href="confidence-intervals.html#cb27-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lab</span>(<span class="st">&quot;Model&quot;</span>)</span></code></pre></div>
-<hr />
-<details>
-<summary>
-Vertical Answer
-</summary>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="confidence-intervals.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(confint_data) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="fu">rownames</span>(confint_data), Slopes)) <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Lower, <span class="at">ymax =</span> Upper, <span class="at">x=</span> <span class="fu">rownames</span>(confint_data), <span class="at">width =</span> <span class="fl">0.1</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Coefficient&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Model&quot;</span>)</span></code></pre></div>
-<p><img src="resources/images/02-dnm_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<p>Note that the intervals are non-overlapping.
-***</p>
-<hr />
-<details>
-<summary>
-Horizontal Answer
-</summary>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="confidence-intervals.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(confint_data) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(Slopes, <span class="fu">rownames</span>(confint_data))) <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> Lower, <span class="at">xmax =</span> Upper, <span class="at">y =</span> <span class="fu">rownames</span>(confint_data), <span class="at">width =</span> <span class="fl">0.1</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Model&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Coefficient&quot;</span>)</span></code></pre></div>
-<p><img src="resources/images/02-dnm_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<p>Note that the intervals are non-overlapping.
-***</p>
+<p>In R, we get the confidence interval of a parameter from a linear model with the <code>confint</code> function.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="confidence-intervals.html#cb12-1" aria-hidden="true" tabindex="-1"></a>?confint</span></code></pre></div>
+<p><code>confint</code> requires three arguments:</p>
+<ul>
+<li>A fitted linear model (our <code>fit_pat</code> variable)</li>
+<li>The parameter we want a CI for (<code>Father_age</code>)</li>
+<li>The CI’s probability (typically 95%)</li>
+</ul>
 </div>
 <hr>
 <center> 
@@ -367,8 +292,8 @@ Horizontal Answer
           </div>
         </div>
       </div>
-<a href="linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conclusion-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fitting-a-linear-model-for-dnms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="calculate-95-cis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

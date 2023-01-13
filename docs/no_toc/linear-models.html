@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.4 Linear models | Human Genome Variation Lab</title>
+  <title>3.5 Linear models | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.4 Linear models | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.5 Linear models | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.4 Linear models | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.5 Linear models | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
 <link rel="prev" href="visualizing-the-data.html"/>
-<link rel="next" href="confidence-intervals.html"/>
+<link rel="next" href="fitting-a-linear-model-for-dnms.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -182,33 +182,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="discovering-mutations.html"><a href="discovering-mutations.html"><i class="fa fa-check"></i><b>3</b> Discovering mutations</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3.1</b> Background</a>
+<li class="chapter" data-level="3.1" data-path="de-novo-mutations.html"><a href="de-novo-mutations.html"><i class="fa fa-check"></i><b>3.1</b> <em>De novo</em> mutations</a></li>
+<li class="chapter" data-level="3.2" data-path="recombination.html"><a href="recombination.html"><i class="fa fa-check"></i><b>3.2</b> Recombination</a></li>
+<li class="chapter" data-level="3.3" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>3.3</b> Setup</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="background.html"><a href="background.html#de-novo-mutations"><i class="fa fa-check"></i><b>3.1.1</b> _De novo) mutations</a></li>
-<li class="chapter" data-level="3.1.2" data-path="background.html"><a href="background.html#recombination"><i class="fa fa-check"></i><b>3.1.2</b> Recombination</a></li>
+<li class="chapter" data-level="3.3.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>3.3.1</b> R packages</a></li>
+<li class="chapter" data-level="3.3.2" data-path="setup.html"><a href="setup.html#data"><i class="fa fa-check"></i><b>3.3.2</b> Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>3.2</b> Setup</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="setup.html"><a href="setup.html#using-r-markdown-files"><i class="fa fa-check"></i><b>3.2.1</b> Using R Markdown files</a></li>
-<li class="chapter" data-level="3.2.2" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>3.2.2</b> R packages</a></li>
-<li class="chapter" data-level="3.2.3" data-path="setup.html"><a href="setup.html#data"><i class="fa fa-check"></i><b>3.2.3</b> Data</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="visualizing-the-data.html"><a href="visualizing-the-data.html"><i class="fa fa-check"></i><b>3.3</b> Visualizing the data</a></li>
-<li class="chapter" data-level="3.4" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>3.4</b> Linear models</a></li>
-<li class="chapter" data-level="3.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>3.5</b> Confidence intervals</a></li>
-<li class="chapter" data-level="3.6" data-path="conclusion-1.html"><a href="conclusion-1.html"><i class="fa fa-check"></i><b>3.6</b> Conclusion</a></li>
-<li class="chapter" data-level="3.7" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i><b>3.7</b> Homework</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="homework-2.html"><a href="homework-2.html#required"><i class="fa fa-check"></i><b>3.7.1</b> Required</a></li>
-<li class="chapter" data-level="3.7.2" data-path="homework-2.html"><a href="homework-2.html#extra-credit-more-linear-models"><i class="fa fa-check"></i><b>3.7.2</b> Extra credit: More linear models</a></li>
-</ul></li>
+<li class="chapter" data-level="3.4" data-path="visualizing-the-data.html"><a href="visualizing-the-data.html"><i class="fa fa-check"></i><b>3.4</b> Visualizing the data</a></li>
+<li class="chapter" data-level="3.5" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>3.5</b> Linear models</a></li>
+<li class="chapter" data-level="3.6" data-path="fitting-a-linear-model-for-dnms.html"><a href="fitting-a-linear-model-for-dnms.html"><i class="fa fa-check"></i><b>3.6</b> Fitting a linear model for DNMs</a></li>
+<li class="chapter" data-level="3.7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>3.7</b> Confidence intervals</a></li>
+<li class="chapter" data-level="3.8" data-path="calculate-95-cis.html"><a href="calculate-95-cis.html"><i class="fa fa-check"></i><b>3.8</b> Calculate 95% CIs</a></li>
+<li class="chapter" data-level="3.9" data-path="conclusion-1.html"><a href="conclusion-1.html"><i class="fa fa-check"></i><b>3.9</b> Conclusion</a></li>
+<li class="chapter" data-level="3.10" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i><b>3.10</b> Homework</a></li>
+<li class="chapter" data-level="3.11" data-path="required-homework-1.html"><a href="required-homework-1.html"><i class="fa fa-check"></i><b>3.11</b> Required homework</a></li>
+<li class="chapter" data-level="3.12" data-path="optional-homework.html"><a href="optional-homework.html"><i class="fa fa-check"></i><b>3.12</b> Optional homework</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="simulating-evolution.html"><a href="simulating-evolution.html"><i class="fa fa-check"></i><b>4</b> Simulating evolution</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="background-1.html"><a href="background-1.html"><i class="fa fa-check"></i><b>4.1</b> Background</a>
+<li class="chapter" data-level="4.1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>4.1</b> Background</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="background-1.html"><a href="background-1.html#genetic-drift"><i class="fa fa-check"></i><b>4.1.1</b> Genetic drift</a></li>
-<li class="chapter" data-level="4.1.2" data-path="background-1.html"><a href="background-1.html#the-wright-fisher-model"><i class="fa fa-check"></i><b>4.1.2</b> The Wright-Fisher model</a></li>
+<li class="chapter" data-level="4.1.1" data-path="background.html"><a href="background.html#genetic-drift"><i class="fa fa-check"></i><b>4.1.1</b> Genetic drift</a></li>
+<li class="chapter" data-level="4.1.2" data-path="background.html"><a href="background.html#the-wright-fisher-model"><i class="fa fa-check"></i><b>4.1.2</b> The Wright-Fisher model</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="modeling-allele-frequencies.html"><a href="modeling-allele-frequencies.html"><i class="fa fa-check"></i><b>4.2</b> Modeling allele frequencies</a>
 <ul>
@@ -234,7 +230,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="conclusion-2.html"><a href="conclusion-2.html"><i class="fa fa-check"></i><b>4.7</b> Conclusion</a></li>
 <li class="chapter" data-level="4.8" data-path="homework-3.html"><a href="homework-3.html"><i class="fa fa-check"></i><b>4.8</b> Homework</a>
 <ul>
-<li class="chapter" data-level="4.8.1" data-path="homework-3.html"><a href="homework-3.html#required-1"><i class="fa fa-check"></i><b>4.8.1</b> Required</a></li>
+<li class="chapter" data-level="4.8.1" data-path="homework-3.html"><a href="homework-3.html#required"><i class="fa fa-check"></i><b>4.8.1</b> Required</a></li>
 <li class="chapter" data-level="4.8.2" data-path="homework-3.html"><a href="homework-3.html#extra-credit-selection"><i class="fa fa-check"></i><b>4.8.2</b> Extra credit: Selection</a></li>
 </ul></li>
 </ul></li>
@@ -259,106 +255,33 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="linear-models" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Linear models</h2>
-<p>Our null hypothesis is that there is no relationship between the parental (paternal or maternal) age and the number of DNMs originating from that parent.</p>
-<p>We can formally consider the association between parental age the number of DNMs originating from that parent by fitting a linear line to the data and evaluating the slope. Further, we can ask if the slope is significantly different than 0. If it is, we reject the null hypothesis.</p>
-<p>In R, we will fit a linear model using the <code>lm</code> function. Run the following code block, and it will open a manual describing the function.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="linear-models.html#cb12-1" aria-hidden="true" tabindex="-1"></a>?lm</span></code></pre></div>
-<p>We see that the function needs to know what formula or equation it’s evaluating and needs to know where the data is stored. Specifically for the formula, we use <code>response variable ~ predictor variable(s)</code>. Because we’re passing the function the data frame, in the formula, we only have to use column names.</p>
-<p><strong>Question:</strong> What is our predictor variable in this question? Is it the parental age or the number of DNMs originating from the parent?</p>
+<div id="linear-models" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Linear models</h2>
+<p>We can visually observe that age seems associated with number of DNMs in both males and females, but we need a way to ask if that this is a statistically meaningful association.</p>
+<p>We can do this with a <strong>linear model</strong>. This model fits a line to the plots that we just made, and asks if the slope is significantly different from 0 (i.e., if there’s a significant increase in DNM count as age increases).</p>
 <hr />
 <details>
 <summary>
-Answer
+If this is a statistical test, what’s the null hypothesis?
 </summary>
-It is the number of DNMs originating from the parent.
+<p>The null hypothesis for this linear model is that the slope is 0 – i.e., that there’s no association between parental age and the number of DNMs from that parent.</p>
+<p>If the slope is significantly different from 0, we can reject the null hypothesis.</p>
 </details>
 <hr />
-<p>Given all of this information, we will use the following code to (1) fit the model &amp; (2) print a summary of the model results (estimated slope, intercept, R-squared, etc.)</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="linear-models.html#cb13-1" aria-hidden="true" tabindex="-1"></a>fit_pat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> dnm_by_age, <span class="at">formula =</span> n_paternal_dnm <span class="sc">~</span> Father_age)</span>
-<span id="cb13-2"><a href="linear-models.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_pat)</span></code></pre></div>
-<p><strong>Question:</strong> What is the slope for the relationship between the paternal age and the number of paternal associated DNMs?</p>
+<p>We’ll fit a linear model using R’s <code>lm</code> function. Run the following code block to open a manual describing the function.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="linear-models.html#cb6-1" aria-hidden="true" tabindex="-1"></a>?lm</span></code></pre></div>
+<p><code>lm</code> requires two arguments:</p>
+<ul>
+<li>The formula or equation it’s evaluating</li>
+<li>A table of data</li>
+</ul>
+<p>The formula must be in the format <code>response variable ~ predictor variable(s)</code>, where each variable is the name of a column in our data table.</p>
 <hr />
 <details>
 <summary>
-Answer
+Is our predictor variable the parental age or the number of DNMs?
 </summary>
-1.35
-</details>
-<hr />
-<p><strong>Question:</strong> Is the relationship significant (i.e. is the slope significantly different from 0)?</p>
-<hr />
-<details>
-<summary>
-Answer
-</summary>
-Yes, it is significant
-</details>
-<hr />
-<p><strong>Question:</strong> For every additional year in the father’s age, how many additional DNMs do we expect to originate from the father?</p>
-<hr />
-<details>
-<summary>
-Answer
-</summary>
-1.35
-</details>
-<hr />
-<p><strong>Coding practice:</strong> Use the example code above (where we fit the paternal model) to now assess the relationship between maternal age and <em>de novo</em> mutations from the mother. Using the gray boxes from the <em>Pattern Code</em> as a guide of where code needs to be added, fill in the following <em>Code block</em> and run it when you are ready.</p>
-<p><em>Pattern code</em></p>
-<div class="line-block"><code>fit_mat &lt;- lm(data =</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>,</code><br />
-               <code>formula =</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>~</code> <span style="background: dimgray; color: dimgray"> __ </span> <code>)</code><br />
-<code>summary(</code> <span style="background: dimgray;color: dimgray"> __ </span> <code>)</code></div>
-<p><br /><br /><br />
-<em>Code block</em></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="linear-models.html#cb14-1" aria-hidden="true" tabindex="-1"></a>fit_mat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> , </span>
-<span id="cb14-2"><a href="linear-models.html#cb14-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span>   <span class="sc">~</span>  )</span>
-<span id="cb14-3"><a href="linear-models.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>()</span></code></pre></div>
-<p>Compare your code &amp; results with the solution below</p>
-<hr />
-<details>
-<summary>
-Solution
-</summary>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="linear-models.html#cb15-1" aria-hidden="true" tabindex="-1"></a>fit_mat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> dnm_by_age, <span class="at">formula =</span> n_maternal_dnm <span class="sc">~</span> Mother_age)</span>
-<span id="cb15-2"><a href="linear-models.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_mat)</span></code></pre></div>
-</details>
-<hr />
-<p><strong>Question:</strong> What is the slope for the relationship between the maternal age and the number of maternal associated DNMs?</p>
-<hr />
-<details>
-<summary>
-Answer
-</summary>
-0.38
-</details>
-<hr />
-<p><strong>Question:</strong> Is the relationship significant (i.e. is the slope significantly different from 0)?</p>
-<hr />
-<details>
-<summary>
-Answer
-</summary>
-Yes, it is significant
-</details>
-<hr />
-<p><strong>Question:</strong> For every additional year in the mother’s age, how many additional DNMs do we expect to originate from the mother?</p>
-<hr />
-<details>
-<summary>
-Answer
-</summary>
-0.38
-</details>
-<hr />
-<p><strong>Question:</strong> How would you compare the paternal and maternal results?</p>
-<hr />
-<details>
-<summary>
-Answer
-</summary>
-Both show significant relationships with the number of inhertied DNMs, but the slope of the maternal association is shallower, suggesting that there are fewer additional DNMs for each additional year of the mother’s age than there are for each additional year of the father’s age.
+<p>The predictor variable is parental age. We expect the number of DNMs to change as a <em>consequence</em> of parental age.</p>
 </details>
 <hr />
 </div>
@@ -376,7 +299,7 @@ Both show significant relationships with the number of inhertied DNMs, but the s
         </div>
       </div>
 <a href="visualizing-the-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="confidence-intervals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fitting-a-linear-model-for-dnms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
