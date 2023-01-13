@@ -74,6 +74,8 @@ ggplot(data, aes(x = num/10)) +
        y = "How often you would draw this number") +
   theme_bw() +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+
+print(asdfasdf)
 ```
 
 The majority of the distribution lies between 48 and 52. Just as we expect based on the allele frequency, the next generation will most likely have around 48-52 individuals with the `A` allele. But because this is a random draw, there's a small chance that we might end up with many more or many fewer than that number.
