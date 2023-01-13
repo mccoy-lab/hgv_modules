@@ -316,7 +316,7 @@ The data from the paper has been pre-filtered for you. Run this code block to re
 
 ```{r}
 # read data
-crossovers <- read.table("crossovers.tsv.gz", header = TRUE)
+crossovers <- read.table("crossovers.tsv", header = TRUE)
 
 # preview data
 head(crossovers)
