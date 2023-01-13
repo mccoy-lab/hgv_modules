@@ -1,6 +1,6 @@
-book_filename: "HGVLab"
+book_filename: "hgv_lab"
 chapter_name: ""
-repo: https://github.com/stephaniemyan/hgv_modules/
+repo: https://github.com/mccoy-lab/hgv_modules/
 rmd_files: ["index.Rmd",
             "01-igv/01-igv.Rmd",
             "02-dnm/02-dnm.Rmd",
