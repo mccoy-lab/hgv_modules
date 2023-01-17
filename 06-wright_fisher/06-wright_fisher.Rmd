@@ -56,7 +56,7 @@ For every individual, we perform a coin flip to determine whether or not they ha
 
 Instead, the probability of receiving the `A` allele is equal to `A`'s **allele frequency** in the current generation. The more common `A` is in this generation, the more likely it is that someone in the next generation will also carry it.
 
-![**Fig. 1. Modeling allelic inheritance with coin flips.** At the end of a generation, every individual flips a weighted coin to determine whether they will carry the blue allele in the next generation. The probability of carrying the allele is equal to the allele's frequency in the current generation.](images/coin_flips.png)
+![**Fig. 1. Modeling allelic inheritance with coin flips.** At the end of a generation, every individual flips a weighted coin to determine whether they will carry the blue allele in the next generation. The probability of carrying the allele is equal to the allele's frequency in the current generation.](06-wright_fisher/images/coin_flips.png)
 
 We do this coin flip `N` times, once for each individual in the population, to get the number of people in the next generation who carry the `A` allele (**Fig. 1**). Conveniently, instead of having to actually simulate all the coin flips, we can get this number by performing a single draw from a **binomial distribution** with size `N` and success probability `p = AF`. This distribution tells you how many successes you expect to see from a set of `N` independent coin flips.
 
@@ -396,7 +396,7 @@ This simple simulation forms the core of most models used in evolutionary geneti
 
 <center>
 
-![**Fig. 2. Simulating balancing selection with SLiM.** Each vertical line represents a SNP, with height corresponding to the SNP's current frequency. As the simulation progresses, two distinct haplotypes of mutations begin to rise and fall in frequency together, but neither fully fixes because balancing selection favors intermediate frequencies.](images/balancing.gif)
+![**Fig. 2. Simulating balancing selection with SLiM.** Each vertical line represents a SNP, with height corresponding to the SNP's current frequency. As the simulation progresses, two distinct haplotypes of mutations begin to rise and fall in frequency together, but neither fully fixes because balancing selection favors intermediate frequencies.](06-wright_fisher/images/balancing.gif)
 
 </center>
 

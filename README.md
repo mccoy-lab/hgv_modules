@@ -2,7 +2,7 @@
 
 [![Render Bookdown and Coursera](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-all.yml/badge.svg)](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-all.yml)
 
-This course website was created from the JHU Data Science Lab's [OTTR template](https://github.com/jhudsl/OTTR_Template). You can see the rendered course material [**here**](mccoy-lab.github.io/hgv_modules).
+This course website was created from the JHU Data Science Lab's [OTTR template](https://github.com/jhudsl/OTTR_Template). You can see the rendered course material [**here**](https://mccoy-lab.github.io/hgv_modules/).
 
 ## About the course
 
