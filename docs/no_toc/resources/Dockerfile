@@ -1,0 +1,19 @@
+FROM jhudsl/base_ottr
+LABEL maintainer="your_email.com"
+
+#################### EXAMPLES OF INSTALLING PACKAGES ###########################
+# Install a Linux/Ubuntu package
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#    package_name
+
+# Install a package from CRAN
+# RUN Rscript -e  "install.packages( \
+#    c('package_name'))"
+
+# Install a package from Bioconductor
+# RUN Rscript -e "options(warn = 2); BiocManager::install( \
+#    c('package_name')
+
+# Add a python package
+# RUN RUN pip3 install \
+#    "somepackage==0.1.0"

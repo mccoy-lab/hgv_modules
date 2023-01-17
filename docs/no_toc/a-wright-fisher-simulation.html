@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.4 A Wright-Fisher simulation | Human Genome Variation Lab</title>
+  <meta name="description" content="Description of Course." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.4 A Wright-Fisher simulation | Human Genome Variation Lab" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Description of Course." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.4 A Wright-Fisher simulation | Human Genome Variation Lab" />
+  
+  <meta name="twitter:description" content="Description of Course." />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
+<link rel="prev" href="setup-1.html"/>
+<link rel="next" href="plotting.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top"</a>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Homepage</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="syllabus-logistics.html"><a href="syllabus-logistics.html"><i class="fa fa-check"></i><b>1.1</b> Syllabus &amp; Logistics</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="syllabus-logistics.html"><a href="syllabus-logistics.html#assessment-grading"><i class="fa fa-check"></i><b>1.1.1</b> Assessment &amp; Grading</a></li>
+<li class="chapter" data-level="1.1.2" data-path="syllabus-logistics.html"><a href="syllabus-logistics.html#homework"><i class="fa fa-check"></i><b>1.1.2</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="course-description.html"><a href="course-description.html"><i class="fa fa-check"></i><b>1.2</b> Course Description</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="course-description.html"><a href="course-description.html#educational-objectives"><i class="fa fa-check"></i><b>1.2.1</b> Educational Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html"><i class="fa fa-check"></i><b>1.3</b> RStudio Cloud</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html#making-an-rstudio-cloud-account"><i class="fa fa-check"></i><b>1.3.1</b> Making an RStudio Cloud account</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="genome-browsers.html"><a href="genome-browsers.html"><i class="fa fa-check"></i><b>2</b> Genome browsers</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dna-sequencing-data.html"><a href="dna-sequencing-data.html"><i class="fa fa-check"></i><b>2.1</b> DNA sequencing data</a></li>
+<li class="chapter" data-level="2.2" data-path="assembling-a-genome.html"><a href="assembling-a-genome.html"><i class="fa fa-check"></i><b>2.2</b> Assembling a genome</a></li>
+<li class="chapter" data-level="2.3" data-path="the-human-reference-genome.html"><a href="the-human-reference-genome.html"><i class="fa fa-check"></i><b>2.3</b> The human reference genome</a></li>
+<li class="chapter" data-level="2.4" data-path="ucsc-genome-browser.html"><a href="ucsc-genome-browser.html"><i class="fa fa-check"></i><b>2.4</b> UCSC genome browser</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="ucsc-genome-browser.html"><a href="ucsc-genome-browser.html#homepage-1"><i class="fa fa-check"></i><b>2.4.1</b> Homepage</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="viewing-one-region-of-the-genome.html"><a href="viewing-one-region-of-the-genome.html"><i class="fa fa-check"></i><b>2.5</b> Viewing one region of the genome</a></li>
+<li class="chapter" data-level="2.6" data-path="igv.html"><a href="igv.html"><i class="fa fa-check"></i><b>2.6</b> IGV</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="igv.html"><a href="igv.html#homepage-2"><i class="fa fa-check"></i><b>2.6.1</b> Homepage</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="navigating-igv.html"><a href="navigating-igv.html"><i class="fa fa-check"></i><b>2.7</b> Navigating IGV</a></li>
+<li class="chapter" data-level="2.8" data-path="loading-sequencing-data.html"><a href="loading-sequencing-data.html"><i class="fa fa-check"></i><b>2.8</b> Loading sequencing data</a></li>
+<li class="chapter" data-level="2.9" data-path="the-1000-genomes-project.html"><a href="the-1000-genomes-project.html"><i class="fa fa-check"></i><b>2.9</b> The 1000 Genomes Project</a></li>
+<li class="chapter" data-level="2.10" data-path="sra.html"><a href="sra.html"><i class="fa fa-check"></i><b>2.10</b> SRA</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="sra.html"><a href="sra.html#previewing-sequencing-data"><i class="fa fa-check"></i><b>2.10.1</b> Previewing sequencing data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="viewing-sequencing-reads-in-igv.html"><a href="viewing-sequencing-reads-in-igv.html"><i class="fa fa-check"></i><b>2.11</b> Viewing sequencing reads in IGV</a></li>
+<li class="chapter" data-level="2.12" data-path="interpreting-igv-alignments.html"><a href="interpreting-igv-alignments.html"><i class="fa fa-check"></i><b>2.12</b> Interpreting IGV alignments</a></li>
+<li class="chapter" data-level="2.13" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>2.13</b> Conclusion</a></li>
+<li class="chapter" data-level="2.14" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i><b>2.14</b> Homework</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="homework-1.html"><a href="homework-1.html#required-homework"><i class="fa fa-check"></i><b>2.14.1</b> Required homework</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discovering-mutations.html"><a href="discovering-mutations.html"><i class="fa fa-check"></i><b>3</b> Discovering mutations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="de-novo-mutations.html"><a href="de-novo-mutations.html"><i class="fa fa-check"></i><b>3.1</b> <em>De novo</em> mutations</a></li>
+<li class="chapter" data-level="3.2" data-path="recombination.html"><a href="recombination.html"><i class="fa fa-check"></i><b>3.2</b> Recombination</a></li>
+<li class="chapter" data-level="3.3" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>3.3</b> Setup</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>3.3.1</b> R packages</a></li>
+<li class="chapter" data-level="3.3.2" data-path="setup.html"><a href="setup.html#data"><i class="fa fa-check"></i><b>3.3.2</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="visualizing-the-data.html"><a href="visualizing-the-data.html"><i class="fa fa-check"></i><b>3.4</b> Visualizing the data</a></li>
+<li class="chapter" data-level="3.5" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>3.5</b> Linear models</a></li>
+<li class="chapter" data-level="3.6" data-path="fitting-a-linear-model-for-dnms.html"><a href="fitting-a-linear-model-for-dnms.html"><i class="fa fa-check"></i><b>3.6</b> Fitting a linear model for DNMs</a></li>
+<li class="chapter" data-level="3.7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>3.7</b> Confidence intervals</a></li>
+<li class="chapter" data-level="3.8" data-path="calculate-95-cis.html"><a href="calculate-95-cis.html"><i class="fa fa-check"></i><b>3.8</b> Calculate 95% CIs</a></li>
+<li class="chapter" data-level="3.9" data-path="conclusion-1.html"><a href="conclusion-1.html"><i class="fa fa-check"></i><b>3.9</b> Conclusion</a></li>
+<li class="chapter" data-level="3.10" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i><b>3.10</b> Homework</a></li>
+<li class="chapter" data-level="3.11" data-path="required-homework-1.html"><a href="required-homework-1.html"><i class="fa fa-check"></i><b>3.11</b> Required homework</a></li>
+<li class="chapter" data-level="3.12" data-path="optional-homework.html"><a href="optional-homework.html"><i class="fa fa-check"></i><b>3.12</b> Optional homework</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simulating-evolution.html"><a href="simulating-evolution.html"><i class="fa fa-check"></i><b>4</b> Simulating evolution</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>4.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="background.html"><a href="background.html#genetic-drift"><i class="fa fa-check"></i><b>4.1.1</b> Genetic drift</a></li>
+<li class="chapter" data-level="4.1.2" data-path="background.html"><a href="background.html#the-wright-fisher-model"><i class="fa fa-check"></i><b>4.1.2</b> The Wright-Fisher model</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="modeling-allele-frequencies.html"><a href="modeling-allele-frequencies.html"><i class="fa fa-check"></i><b>4.2</b> Modeling allele frequencies</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="modeling-allele-frequencies.html"><a href="modeling-allele-frequencies.html#the-binomial-distribution"><i class="fa fa-check"></i><b>4.2.1</b> The binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="setup-1.html"><a href="setup-1.html"><i class="fa fa-check"></i><b>4.3</b> Setup</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="setup-1.html"><a href="setup-1.html#r-packages-1"><i class="fa fa-check"></i><b>4.3.1</b> R packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="a-wright-fisher-simulation.html"><a href="a-wright-fisher-simulation.html"><i class="fa fa-check"></i><b>4.4</b> A Wright-Fisher simulation</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="a-wright-fisher-simulation.html"><a href="a-wright-fisher-simulation.html#drawing-one-generation-from-a-binomial-distribution"><i class="fa fa-check"></i><b>4.4.1</b> Drawing one generation from a binomial distribution</a></li>
+<li class="chapter" data-level="4.4.2" data-path="a-wright-fisher-simulation.html"><a href="a-wright-fisher-simulation.html#simulating-multiple-generations-with-a-for-loop"><i class="fa fa-check"></i><b>4.4.2</b> Simulating multiple generations with a for loop</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>4.5</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="plotting.html"><a href="plotting.html#visualizing-changes-in-af-over-generations"><i class="fa fa-check"></i><b>4.5.1</b> Visualizing changes in AF over generations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="creating-a-simulation-function.html"><a href="creating-a-simulation-function.html"><i class="fa fa-check"></i><b>4.6</b> Creating a simulation function</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="creating-a-simulation-function.html"><a href="creating-a-simulation-function.html#simulating-with-different-parameters-with-a-function"><i class="fa fa-check"></i><b>4.6.1</b> Simulating with different parameters with a function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="conclusion-2.html"><a href="conclusion-2.html"><i class="fa fa-check"></i><b>4.7</b> Conclusion</a></li>
+<li class="chapter" data-level="4.8" data-path="homework-3.html"><a href="homework-3.html"><i class="fa fa-check"></i><b>4.8</b> Homework</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="homework-3.html"><a href="homework-3.html#required"><i class="fa fa-check"></i><b>4.8.1</b> Required</a></li>
+<li class="chapter" data-level="4.8.2" data-path="homework-3.html"><a href="homework-3.html#extra-credit-selection"><i class="fa fa-check"></i><b>4.8.2</b> Extra credit: Selection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
+<li class="divider"></li>
+<p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Human Genome Variation Lab</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-wright-fisher-simulation" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> A Wright-Fisher simulation</h2>
+<div id="drawing-one-generation-from-a-binomial-distribution" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Drawing one generation from a binomial distribution</h3>
+<p>The basis of our simulation is R’s <code>rbinom</code> function, which allows us to sample from a binomial distribution. <code>rbinom</code> takes three arguments:</p>
+<ul>
+<li><code>n</code>: how many times we’re drawing from the distribution</li>
+<li><code>size</code>: the size of the population we’re sampling from (i.e. <code>N</code>)</li>
+<li><code>p</code>: the success probability (i.e. allele frequency)</li>
+</ul>
+<p>Every generation, we will draw <strong>once</strong> to produce the number of individuals carrying the <code>A</code> allele in the next generation.</p>
+<p>Let’s once again look at a population of size 100, and an <code>A</code> allele currently at <code>AF = 0.5</code>. We use <code>rbinom</code> to get the number of individuals in the next generation who will have <code>A</code>:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="a-wright-fisher-simulation.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 45</code></pre>
+<p><strong>Coding exercise</strong>: Change the code above so that it returns the allele frequency rather than the number of individuals.</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="a-wright-fisher-simulation.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># divide by the population size to get AF</span></span>
+<span id="cb28-2"><a href="a-wright-fisher-simulation.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">prob =</span> <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] 0.51</code></pre>
+</details>
+<hr />
+<p><strong>Question</strong>: You’ll notice that every time we run the <code>rbinom</code> line, the number we get is different. Why is that?</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<code>rbinom</code> generates a random number between 1 and 100. Because it’s random, the number it draws will be different every time we run it.
+</details>
+<hr />
+<p>Currently, we’re drawing from a population of 100 individuals. Now let’s see what happens when we increase the population size. (Feel free to run this code block multiple times!)</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="a-wright-fisher-simulation.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">10000</span>, <span class="at">prob =</span> <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">10000</span></span></code></pre></div>
+<pre><code>## [1] 0.4934</code></pre>
+<p>If you run the code block above multiple times, you’ll observe that the AF is much closer to 0.5 than it was with a population of size 100. This lends to our intuition that an allele’s frequency fluctuates much more when a population is small, and is more stable when the population size is large.</p>
+<p><strong>Question</strong>: As you increase population size, how does that affect an allele’s time to fixation?</p>
+<hr />
+<details>
+<summary>
+Answer
+</summary>
+As population size gets larger, the allele will take longer to fix.
+</details>
+<hr />
+</div>
+<div id="simulating-multiple-generations-with-a-for-loop" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Simulating multiple generations with a for loop</h3>
+<p>We can now draw <em>once</em> from a binomial distribution to get the number of individuals in one generation who carry the <code>A</code> allele. How do we adapt this to simulate multiple generations?</p>
+<p><strong>Question</strong>: Can we increase <code>n</code> (for example, with <code>rbinom(n = 10, size = 100, prob = 0.5)</code>) to draw multiple times?</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+No. Increasing <code>n</code> only gives you multiple replicate draws from the same distribution. It won’t update the AF between generations based on the new number of <code>A</code> alleles, because it uses <code>prob = 0.5</code> every time.
+</details>
+<hr />
+<p>Instead of drawing multiple times from the same distribution, we write a <strong>for loop</strong> to repeatedly generate and update the number of individuals with the <code>A</code> allele.</p>
+<p>A <strong>for loop</strong> allows you to run some code X number of times. For example:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="a-wright-fisher-simulation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb32-2"><a href="a-wright-fisher-simulation.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb32-3"><a href="a-wright-fisher-simulation.html#cb32-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3</code></pre>
+<p>This for loop goes through all the values between 1 and 3, and prints each of them out.</p>
+<p>We can write a similar for loop that includes <code>rbinom</code>:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="a-wright-fisher-simulation.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb34-2"><a href="a-wright-fisher-simulation.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">prob =</span> <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">100</span>)</span>
+<span id="cb34-3"><a href="a-wright-fisher-simulation.html#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 0.49
+## [1] 0.45
+## [1] 0.43</code></pre>
+<p>This is very close to what we want. However, we’re still running <code>rbinom</code> with the same AF in every iteration.</p>
+<p>How do we change this to update the AF each generation? We can add a <code>freq</code> variable that keeps track of the current allele frequency:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="a-wright-fisher-simulation.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start an initial AF of 0.5</span></span>
+<span id="cb36-2"><a href="a-wright-fisher-simulation.html#cb36-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb36-3"><a href="a-wright-fisher-simulation.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="a-wright-fisher-simulation.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb36-5"><a href="a-wright-fisher-simulation.html#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># run rbinom to generate the AF for the next generation</span></span>
+<span id="cb36-6"><a href="a-wright-fisher-simulation.html#cb36-6" aria-hidden="true" tabindex="-1"></a>  new_freq <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">prob =</span> freq) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb36-7"><a href="a-wright-fisher-simulation.html#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print so that we can see what `freq` is each time</span></span>
+<span id="cb36-8"><a href="a-wright-fisher-simulation.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(new_freq)</span>
+<span id="cb36-9"><a href="a-wright-fisher-simulation.html#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># update `freq` in each iteration of the loop</span></span>
+<span id="cb36-10"><a href="a-wright-fisher-simulation.html#cb36-10" aria-hidden="true" tabindex="-1"></a>  freq <span class="ot">&lt;-</span> new_freq</span>
+<span id="cb36-11"><a href="a-wright-fisher-simulation.html#cb36-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 0.53
+## [1] 0.51
+## [1] 0.52</code></pre>
+<p>Now the for loop is updating the allele’s frequency every generation and running <code>rbinom</code> with that new frequency.</p>
+<p>One more modification: Providing the variable <code>freq</code> as an input to <code>rbinom</code> allows us to update <code>freq</code> with each for loop iteration. But it also allows us to pass <code>rbinom</code> a variable, rather than hard-coding in a population size.</p>
+<p><strong>Coding exercise</strong>: Add to the code above so that we also provide <code>Ne</code> (effective population size) as a variable (<em>without</em> updating it in the for loop).</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="a-wright-fisher-simulation.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set effective population size outside of for loop</span></span>
+<span id="cb38-2"><a href="a-wright-fisher-simulation.html#cb38-2" aria-hidden="true" tabindex="-1"></a>Ne <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb38-3"><a href="a-wright-fisher-simulation.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># start an initial AF of 0.5</span></span>
+<span id="cb38-4"><a href="a-wright-fisher-simulation.html#cb38-4" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb38-5"><a href="a-wright-fisher-simulation.html#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="a-wright-fisher-simulation.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb38-7"><a href="a-wright-fisher-simulation.html#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># run rbinom to generate the AF for the next generation</span></span>
+<span id="cb38-8"><a href="a-wright-fisher-simulation.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  new_freq <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> Ne, <span class="at">prob =</span> freq) <span class="sc">/</span> Ne</span>
+<span id="cb38-9"><a href="a-wright-fisher-simulation.html#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print so that we can see what `freq` is each time</span></span>
+<span id="cb38-10"><a href="a-wright-fisher-simulation.html#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(new_freq)</span>
+<span id="cb38-11"><a href="a-wright-fisher-simulation.html#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># update `freq` in each iteration of the loop</span></span>
+<span id="cb38-12"><a href="a-wright-fisher-simulation.html#cb38-12" aria-hidden="true" tabindex="-1"></a>  freq <span class="ot">&lt;-</span> new_freq</span>
+<span id="cb38-13"><a href="a-wright-fisher-simulation.html#cb38-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 0.53
+## [1] 0.47
+## [1] 0.43</code></pre>
+</details>
+<hr />
+</div>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
