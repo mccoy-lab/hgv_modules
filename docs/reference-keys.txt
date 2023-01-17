@@ -15,7 +15,6 @@ the-human-reference-genome
 ucsc-genome-browser
 homepage-1
 viewing-one-region-of-the-genome
-customizing-browser-displays
 igv
 homepage-2
 navigating-igv
