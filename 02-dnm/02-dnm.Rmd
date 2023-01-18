@@ -179,11 +179,11 @@ Father_age   1.34849    0.05359  25.161  < 2e-16 ***
 
 * The fourth columm, `Pr(>|t|)`, is the **p-value**.
 
-Because this p-value is `< 2e-16`, we can reject the null hypothesis and say that there is association between paternal age and the number of paternal DNMs.
+Because this p-value is `< 2e-16`, we can reject the null hypothesis and say that there is association between paternal age and the number of paternal DNMs.<br></br>
 
 * The first column, `Estimate`, is the **slope**, or **coefficient**.
 
-Linear regression fits a line to our plot of paternal age vs. number of DNMs. The coefficient estimate is the slope of that line.
+Linear regression fits a line to our plot of paternal age vs. number of DNMs. The coefficient estimate is the **slope** of that line.
 
 The slope for paternal age given by this linear model is `1.34849`. We can interpret this number this way: **For every additional year of paternal age, we expect 1.35 additional paternal DNMs in the child.**
 
