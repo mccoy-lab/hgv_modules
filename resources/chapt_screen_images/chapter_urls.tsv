@@ -1,7 +1,7 @@
 url	chapt_title	img_path
 https://mccoy-lab.github.io/hgv_modules/no_toc/index.html	1 Homepage	resources/chapt_screen_images/index.png
 https://mccoy-lab.github.io/hgv_modules/no_toc/course-description.html	1.1 Course Description	resources/chapt_screen_images/course-description.png
-https://mccoy-lab.github.io/hgv_modules/no_toc/rstudio-cloud.html	1.2 RStudio Cloud	resources/chapt_screen_images/rstudio-cloud.png
+https://mccoy-lab.github.io/hgv_modules/no_toc/posit-cloud.html	1.2 Posit Cloud	resources/chapt_screen_images/posit-cloud.png
 https://mccoy-lab.github.io/hgv_modules/no_toc/genome-browsers.html	2 Genome browsers	resources/chapt_screen_images/genome-browsers.png
 https://mccoy-lab.github.io/hgv_modules/no_toc/dna-sequencing-data.html	2.1 DNA sequencing data	resources/chapt_screen_images/dna-sequencing-data.png
 https://mccoy-lab.github.io/hgv_modules/no_toc/assembling-a-genome.html	2.2 Assembling a genome	resources/chapt_screen_images/assembling-a-genome.png
