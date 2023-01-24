@@ -10,7 +10,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-       <a href="https://mccoy-lab.github.io/hgv_modules/"><img src="assets/hgv_logo3.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top"</a>
+       <a href="https://mccoy-lab.github.io/hgv_modules/"><img src="assets/logo.jpg" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top"</a>
       after: |
        <p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
        <p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
