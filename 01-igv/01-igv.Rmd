@@ -343,11 +343,11 @@ In this lab, we explored several of the most commonly used websites in genomics:
 
 #### Goals & Learning Objectives
 
-The goal of this homework is to make an account in RStudio Cloud to use for the rest of the semester.
+The goal of this homework is to make an account in Posit Cloud to use for the rest of the semester.
 
 ### Required homework
 
-Follow the instructions [here](https://mccoy-lab.github.io/hgv_modules/rstudio-cloud.html) to create an RStudio Cloud account and join the HGV workspace.
+Follow the instructions [here](https://mccoy-lab.github.io/hgv_modules/posit-cloud.html) to create a Posit Cloud account and join the HGV workspace.
 
 <!-- #### Goals & Learning Objectives -->
 

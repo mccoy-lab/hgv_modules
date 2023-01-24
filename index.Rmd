@@ -63,16 +63,16 @@ What does real human genomic data look like? How are these data analyzed in prac
 <!-- * standards in the community where when you publish a reserach study, the raw data and code have to be made publicly available -->
 <!-- * the public and other scientists benefit from this; now we can also benefit from it as students -->
 
-## RStudio Cloud
+## Posit Cloud
 
-All the coding and lectures for this class are conducted on RStudio Cloud.
+All the coding and lectures for this class are conducted on Posit Cloud.
 
-RStudio is a computing environment for **R**, one of the most widely used coding languages in genomics and statistics.
+Posit is a computing environment for **R**, one of the most widely used coding languages in genomics and statistics.
 
-**RStudio Cloud** is an online version of the RStudio environment. This cloud workspace avoids us having to install R on everyone's computers, and also allows us to upload and share data files for class.
+**Posit Cloud** is an online version of the Posit environment. This cloud workspace avoids us having to install R on everyone's computers, and also allows us to upload and share data files for class.
 
-### Making an RStudio Cloud account
+### Making a Posit Cloud account
 
-Go to the [RStudio Cloud website](https://login.rstudio.cloud/register) and sign up for an account, using your JHU email.
+Go to the [Posit Cloud website](https://posit.cloud/) and sign up for an account, using your JHU email.
 
 <!-- Then, join the [HGV Lab workspace](). -->
