@@ -28,23 +28,23 @@ Class is **Tuesdays from 3-3:50PM**, in **UTL G89**.
 
 Please bring your laptop with you to every class. If you don’t have a working laptop, contact me so that we can find a solution.
 
-#### Syllabus & Logistics
+<!-- #### Syllabus & Logistics -->
 
-Download a copy of the syllabus [here]().
+<!-- Download a copy of the syllabus [here](). -->
 
 
-## Assessment & Grading
+<!-- ## Assessment & Grading -->
 
-Final grades will be determined through either:
+<!-- Final grades will be determined through either: -->
 
-1. A comprehensive final exam that is graded by the instructors, or
-2. A self-grade based upon criteria set forth in your self-evaluations.
+<!-- 1. A comprehensive final exam that is graded by the instructors, or -->
+<!-- 2. A self-grade based upon criteria set forth in your self-evaluations. -->
 
-To qualify for self-grading, students must demonstrate participation in 12 out of 13 class sessions. 
+<!-- To qualify for self-grading, students must demonstrate participation in 12 out of 13 class sessions.  -->
 
-### Homework
+<!-- ### Homework -->
 
-There are required and optional homework assignments for each topic we cover.
+<!-- There are required and optional homework assignments for each topic we cover. -->
 
 
 ## Course Description
