@@ -347,7 +347,7 @@ The goal of this homework is to make an account in RStudio Cloud to use for the 
 
 ### Required homework
 
-Follow the instructions [here](https://stephaniemyan.github.io/hgv_modules/rstudio-cloud.html) to create an RStudio Cloud account and join the HGV workspace.
+Follow the instructions [here](https://mccoy-lab.github.io/hgv_modules/rstudio-cloud.html) to create an RStudio Cloud account and join the HGV workspace.
 
 <!-- #### Goals & Learning Objectives -->
 

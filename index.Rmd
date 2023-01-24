@@ -75,4 +75,4 @@ RStudio is a computing environment for **R**, one of the most widely used coding
 
 Go to the [RStudio Cloud website](https://login.rstudio.cloud/register) and sign up for an account, using your JHU email.
 
-Then, join the [HGV Lab workspace (link TBD)]().
+<!-- Then, join the [HGV Lab workspace](). -->
