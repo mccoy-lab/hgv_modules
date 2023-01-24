@@ -17,17 +17,23 @@ output:
 
 This is the course homepage for Human Genome Variation with Computational Lab (`AS.020.321`).
 
-#### Class Info
+#### Instructor
 
-Class is held on **Tuesdays from 3-3:50PM**, in **(location TBD)**.
+Rajiv McCoy, `rajiv.mccoy[at]jhu.edu`
+https://mccoy-lab.org/
+
+#### Class Hours
+
+Class is **Tuesdays from 3-3:50PM**, in **UTL G89**.
 
 Please bring your laptop with you to every class. If you don’t have a working laptop, contact me so that we can find a solution.
 
-## Syllabus & Logistics
+#### Syllabus & Logistics
 
 Download a copy of the syllabus [here]().
 
-### Assessment & Grading
+
+## Assessment & Grading
 
 Final grades will be determined through either:
 
@@ -39,6 +45,7 @@ To qualify for self-grading, students must demonstrate participation in 12 out o
 ### Homework
 
 There are required and optional homework assignments for each topic we cover.
+
 
 ## Course Description
 
@@ -68,4 +75,4 @@ RStudio is a computing environment for **R**, one of the most widely used coding
 
 Go to the [RStudio Cloud website](https://login.rstudio.cloud/register) and sign up for an account, using your JHU email.
 
-Then, join the [HGV Lab workspace]().
+Then, join the [HGV Lab workspace (link TBD)]().
