@@ -20,6 +20,7 @@ This is the course homepage for Human Genome Variation with Computational Lab (`
 #### Instructor
 
 Rajiv McCoy, `rajiv.mccoy[at]jhu.edu`
+
 https://mccoy-lab.org/
 
 #### Class Hours
