@@ -3,8 +3,8 @@ instructor
 class-hours
 course-description
 educational-objectives
-rstudio-cloud
-making-an-rstudio-cloud-account
+posit-cloud
+making-a-posit-cloud-account
 genome-browsers
 learning-objectives
 dna-sequencing-data
