@@ -1,6 +1,6 @@
 1-Homepage.md
 1.1-Course-Description.md
-1.2-RStudio-Cloud.md
+1.2-Posit-Cloud.md
 2-Genome-browsers.md
 2.1-DNA-sequencing-data.md
 2.2-Assembling-a-genome.md
