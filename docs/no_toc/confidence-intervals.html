@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Assembling a genome | Human Genome Variation Lab</title>
+  <title>3.7 Confidence intervals | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.7 Confidence intervals | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.7 Confidence intervals | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="dna-sequencing-data.html"/>
-<link rel="next" href="the-human-reference-genome.html"/>
+<link rel="prev" href="fitting-a-linear-model-for-dnms.html"/>
+<link rel="next" href="calculate-95-cis.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -215,37 +215,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assembling-a-genome" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Assembling a genome</h2>
-<p>When the human genome is 3 billion base pairs long, assembling short sequencing reads into a full genome is a major computational challenge.</p>
+<div id="confidence-intervals" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Confidence intervals</h2>
+<p>Our models predict that there are 1.35 more DNMs for additional every year of paternal age, and 0.38 more DNMs for every additional year of maternal age. Does this mean that sperm and oocytes accumulate DNMs at different rates?</p>
+<p>The maternal and paternal slopes look different, but we need statistical evidence that they actually are. (For example, what if there’s a lot of variability in the maternal DNM data, and the true maternal coefficient could be anywhere between -1 and 10?)</p>
+<p>To do this, we compare the <strong>confidence intervals</strong> of our slope estimates.</p>
 <hr />
 <details>
 <summary>
-How is genome assembly performed?
+What is a confidence interval?
 </summary>
-<p>We can combine sequencing reads that partially overlap with each other into longer sequences.</p>
-<div class="figure">
-<img src="01-igv/images/assembly.jpg" alt="" />
-<p class="caption"><strong>Fig. 2.</strong> Using overlapping sequencing reads to assemble a genome.</p>
-</div>
+<p>We use confidence intervals when estimating a value – in this case, the <code>Mother_age</code> and <code>Father_age</code> slope parameters.</p>
+<p>A <strong>confidence interval (CI)</strong> is a range of values for which, for some probability, the interval will contain the true value of the slope.</p>
+<p>So, a 95% CI contains the true value of the slope 95% of the time.</p>
 </details>
 <hr />
-<hr />
-<details>
-<summary>
-Which regions of the genome are hardest to assemble?
-</summary>
-<p>Ideally, with enough sequencing data, we would be able to reconstruct an entire genome from overlapping reads. In practice, genome assembly is complicated by <strong>repetitive DNA</strong> – sequences in different regions of the genome that are completely or nearly identical.</p>
-<p>These repeats make it difficult (or impossible) to determine the order of the sequences around them, or how many copies of the repeat there are.</p>
-<div class="figure">
-<img src="01-igv/images/repeats.jpg" alt="" />
-<p class="caption"><strong>Fig. 3.</strong> How repetitive sequences affect genome assembly.</p>
-</div>
-<p><br></br>
-Resolving repetitive regions requires sequencing reads that are longer than the repeat itself, which allow us to determine the flanking sequences on the sides of the repeat.</p>
-<p>Using such long-read sequencing technology (i.e., <a href="https://www.pacb.com/technology/hifi-sequencing/">PacBio</a> and <a href="https://nanoporetech.com/applications/dna-nanopore-sequencing">Nanopore</a> sequencing), the <a href="https://www.science.org/doi/10.1126/science.abj6987">Telomere-to-Telomere consortium</a> was able to create a complete, ungapped assembly of the human genome in 2021.</p>
-</details>
-<hr />
+<p>In R, we get the confidence interval of a parameter from a linear model with the <code>confint</code> function.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="confidence-intervals.html#cb12-1" aria-hidden="true" tabindex="-1"></a>?confint</span></code></pre></div>
+<p><code>confint</code> requires three arguments:</p>
+<ul>
+<li>A fitted linear model (our <code>fit_pat</code> variable)</li>
+<li>The parameter we want a CI for (<code>Father_age</code>)</li>
+<li>The CI’s probability (typically 95%)</li>
+</ul>
 </div>
 <hr>
 <center> 
@@ -260,8 +252,8 @@ Resolving repetitive regions requires sequencing reads that are longer than the 
           </div>
         </div>
       </div>
-<a href="dna-sequencing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-human-reference-genome.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fitting-a-linear-model-for-dnms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="calculate-95-cis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

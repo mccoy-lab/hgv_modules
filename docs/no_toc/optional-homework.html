@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Assembling a genome | Human Genome Variation Lab</title>
+  <title>3.12 Optional homework | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.12 Optional homework | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.12 Optional homework | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="dna-sequencing-data.html"/>
-<link rel="next" href="the-human-reference-genome.html"/>
+<link rel="prev" href="required-homework-1.html"/>
+<link rel="next" href="about-the-authors.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -215,38 +215,66 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assembling-a-genome" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Assembling a genome</h2>
-<p>When the human genome is 3 billion base pairs long, assembling short sequencing reads into a full genome is a major computational challenge.</p>
+<div id="optional-homework" class="section level2" number="3.12">
+<h2><span class="header-section-number">3.12</span> Optional homework</h2>
+<p><strong>Assignment:</strong> Fit <em>two</em> linear models (one paternal, one maternal) to ask if there is an association between the number of parental crossovers and parental age. If there is an association, how is the number of crossovers predicted to change with every year of maternal/paternal age?</p>
 <hr />
 <details>
 <summary>
-How is genome assembly performed?
+Solution
 </summary>
-<p>We can combine sequencing reads that partially overlap with each other into longer sequences.</p>
-<div class="figure">
-<img src="01-igv/images/assembly.jpg" alt="" />
-<p class="caption"><strong>Fig. 2.</strong> Using overlapping sequencing reads to assemble a genome.</p>
-</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="optional-homework.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model with paternal age</span></span>
+<span id="cb21-2"><a href="optional-homework.html#cb21-2" aria-hidden="true" tabindex="-1"></a>fit_pat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> crossovers,</span>
+<span id="cb21-3"><a href="optional-homework.html#cb21-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span> n_pat_xover <span class="sc">~</span> Father_age)</span>
+<span id="cb21-4"><a href="optional-homework.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_pat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = n_pat_xover ~ Father_age, data = crossovers)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.2173  -3.1880  -0.1997   2.8061  24.7652 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 26.369432   0.102736  256.67   &lt;2e-16 ***
+## Father_age  -0.005852   0.003462   -1.69    0.091 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.388 on 41090 degrees of freedom
+## Multiple R-squared:  6.953e-05,  Adjusted R-squared:  4.519e-05 
+## F-statistic: 2.857 on 1 and 41090 DF,  p-value: 0.09098</code></pre>
+<p>There isn’t a significant association between paternal age and the number of paternal crossovers (<code>p = 0.091</code>).</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="optional-homework.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model with maternal age</span></span>
+<span id="cb23-2"><a href="optional-homework.html#cb23-2" aria-hidden="true" tabindex="-1"></a>fit_mat <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> crossovers,</span>
+<span id="cb23-3"><a href="optional-homework.html#cb23-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span> n_mat_xover <span class="sc">~</span> Mother_age)</span>
+<span id="cb23-4"><a href="optional-homework.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_mat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = n_mat_xover ~ Mother_age, data = crossovers)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -27.161  -6.095  -0.425   5.641  45.905 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 41.709271   0.206238  202.24   &lt;2e-16 ***
+## Mother_age   0.065989   0.007576    8.71   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 8.685 on 41090 degrees of freedom
+## Multiple R-squared:  0.001843,   Adjusted R-squared:  0.001819 
+## F-statistic: 75.87 on 1 and 41090 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Surprisingly, there <em>is</em> a significant association between maternal age and the number of maternal crossovers (<code>p &lt; 2e-16</code>). For every year of maternal age, we expect the child to carry <code>0.07</code> additional maternal origin crossovers.</p>
+<p>Although the maternal crossovers plot doesn’t look that impressive, our estimated slope is <code>0.07</code>, which is probably too small to distinguish visually.</p>
 </details>
 <hr />
-<hr />
-<details>
-<summary>
-Which regions of the genome are hardest to assemble?
-</summary>
-<p>Ideally, with enough sequencing data, we would be able to reconstruct an entire genome from overlapping reads. In practice, genome assembly is complicated by <strong>repetitive DNA</strong> – sequences in different regions of the genome that are completely or nearly identical.</p>
-<p>These repeats make it difficult (or impossible) to determine the order of the sequences around them, or how many copies of the repeat there are.</p>
-<div class="figure">
-<img src="01-igv/images/repeats.jpg" alt="" />
-<p class="caption"><strong>Fig. 3.</strong> How repetitive sequences affect genome assembly.</p>
+
 </div>
-<p><br></br>
-Resolving repetitive regions requires sequencing reads that are longer than the repeat itself, which allow us to determine the flanking sequences on the sides of the repeat.</p>
-<p>Using such long-read sequencing technology (i.e., <a href="https://www.pacb.com/technology/hifi-sequencing/">PacBio</a> and <a href="https://nanoporetech.com/applications/dna-nanopore-sequencing">Nanopore</a> sequencing), the <a href="https://www.science.org/doi/10.1126/science.abj6987">Telomere-to-Telomere consortium</a> was able to create a complete, ungapped assembly of the human genome in 2021.</p>
-</details>
-<hr />
-</div>
+<!-- </div> -->
 <hr>
 <center> 
   <div class="footer">
@@ -260,8 +288,8 @@ Resolving repetitive regions requires sequencing reads that are longer than the 
           </div>
         </div>
       </div>
-<a href="dna-sequencing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-human-reference-genome.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="required-homework-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-the-authors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
