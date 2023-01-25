@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Assembling a genome | Human Genome Variation Lab</title>
+  <title>3.4 Visualizing the data | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.4 Visualizing the data | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.4 Visualizing the data | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="dna-sequencing-data.html"/>
-<link rel="next" href="the-human-reference-genome.html"/>
+<link rel="prev" href="setup.html"/>
+<link rel="next" href="linear-models.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -215,35 +215,43 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assembling-a-genome" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Assembling a genome</h2>
-<p>When the human genome is 3 billion base pairs long, assembling short sequencing reads into a full genome is a major computational challenge.</p>
+<div id="visualizing-the-data" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Visualizing the data</h2>
+<p>We can use our tidied data to ask questions about the <em>de novo</em> mutation rate in these Icelandic individuals. How does parental age affect the number of DNMs for males and females?</p>
 <hr />
 <details>
 <summary>
-How is genome assembly performed?
+Use the <code>dnm_by_age</code> data to plot this relationship for <em>males</em>.
 </summary>
-<p>We can combine sequencing reads that partially overlap with each other into longer sequences.</p>
-<div class="figure">
-<img src="01-igv/images/assembly.jpg" alt="" />
-<p class="caption"><strong>Fig. 2.</strong> Using overlapping sequencing reads to assemble a genome.</p>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="visualizing-the-data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dnm_by_age,</span>
+<span id="cb4-2"><a href="visualizing-the-data.html#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="co"># specify where ggplot should be getting the x location for each data point</span></span>
+<span id="cb4-3"><a href="visualizing-the-data.html#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Father_age,</span>
+<span id="cb4-4"><a href="visualizing-the-data.html#cb4-4" aria-hidden="true" tabindex="-1"></a>           <span class="co"># specify where ggplot should be getting the y location for each data point</span></span>
+<span id="cb4-5"><a href="visualizing-the-data.html#cb4-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> n_paternal_dnm)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="visualizing-the-data.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specify that the data should be plotted as points</span></span>
+<span id="cb4-7"><a href="visualizing-the-data.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </details>
 <hr />
 <hr />
 <details>
 <summary>
-Which regions of the genome are hardest to assemble?
+Based on your plot, would you say that there’s an association between paternal age and number of DNMs?
 </summary>
-<p>Ideally, with enough sequencing data, we would be able to reconstruct an entire genome from overlapping reads. In practice, genome assembly is complicated by <strong>repetitive DNA</strong> – sequences in different regions of the genome that are completely or nearly identical.</p>
-<p>These repeats make it difficult (or impossible) to determine the order of the sequences around them, or how many copies of the repeat there are.</p>
-<div class="figure">
-<img src="01-igv/images/repeats.jpg" alt="" />
-<p class="caption"><strong>Fig. 3.</strong> How repetitive sequences affect genome assembly.</p>
-</div>
-<p><br></br>
-Resolving repetitive regions requires sequencing reads that are longer than the repeat itself, which allow us to determine the flanking sequences on the sides of the repeat.</p>
-<p>Using such long-read sequencing technology (i.e., <a href="https://www.pacb.com/technology/hifi-sequencing/">PacBio</a> and <a href="https://nanoporetech.com/applications/dna-nanopore-sequencing">Nanopore</a> sequencing), the <a href="https://www.science.org/doi/10.1126/science.abj6987">Telomere-to-Telomere consortium</a> was able to create a complete, ungapped assembly of the human genome in 2021.</p>
+<p>It looks like there’s a pretty strong association between paternal age and number of DNMs, where older males have more DNMs.</p>
+</details>
+<hr />
+<hr />
+<details>
+<summary>
+Modify your code to plot the relationship between age and number of DNMs for <em>females</em>. Does there seem to be an association between maternal age and number of DNMs?
+</summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-the-data.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dnm_by_age,</span>
+<span id="cb5-2"><a href="visualizing-the-data.html#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Mother_age,</span>
+<span id="cb5-3"><a href="visualizing-the-data.html#cb5-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> n_maternal_dnm)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="visualizing-the-data.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>There’s also a strong positive association between maternal age and number of DNMs, although the slope (i.e., the increase in number of DNMs per year) is shallower.</p>
 </details>
 <hr />
 </div>
@@ -260,8 +268,8 @@ Resolving repetitive regions requires sequencing reads that are longer than the 
           </div>
         </div>
       </div>
-<a href="dna-sequencing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-human-reference-genome.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

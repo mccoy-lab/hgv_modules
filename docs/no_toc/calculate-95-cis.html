@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Assembling a genome | Human Genome Variation Lab</title>
+  <title>3.8 Calculate 95% CIs | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.8 Calculate 95% CIs | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.8 Calculate 95% CIs | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="dna-sequencing-data.html"/>
-<link rel="next" href="the-human-reference-genome.html"/>
+<link rel="prev" href="confidence-intervals.html"/>
+<link rel="next" href="conclusion-1.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -215,35 +215,33 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assembling-a-genome" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Assembling a genome</h2>
-<p>When the human genome is 3 billion base pairs long, assembling short sequencing reads into a full genome is a major computational challenge.</p>
+<div id="calculate-95-cis" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Calculate 95% CIs</h2>
+<p>Run the following code to calculate the 95% confidence interval for the <code>Father_age</code> slope parameter.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="calculate-95-cis.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit_pat, <span class="st">&#39;Father_age&#39;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>##               2.5 %  97.5 %
+## Father_age 1.243118 1.45386</code></pre>
+<p>So, 95% of the time, the number of additional DNMs per year of paternal age is between <code>1.24</code> and <code>1.45</code>.</p>
 <hr />
 <details>
 <summary>
-How is genome assembly performed?
+Modify your code to get the 95% CI for the <em><code>Mother_age</code></em> slope. What’s the interpretation of this confidence interval?
 </summary>
-<p>We can combine sequencing reads that partially overlap with each other into longer sequences.</p>
-<div class="figure">
-<img src="01-igv/images/assembly.jpg" alt="" />
-<p class="caption"><strong>Fig. 2.</strong> Using overlapping sequencing reads to assemble a genome.</p>
-</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="calculate-95-cis.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit_mat, <span class="st">&#39;Mother_age&#39;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>##                2.5 %    97.5 %
+## Mother_age 0.3094713 0.4474528</code></pre>
+<p>95% of the time, the number of additional DNMs per year of maternal age is between <code>0.31</code> and <code>0.45</code>.</p>
 </details>
 <hr />
+<p>Now that we have the confidence intervals for both slope parameters, we can finally compare them.</p>
+<p>Our two CI ranges are non-overlapping. The paternal range is <code>[1.24, 1.45]</code> and the maternal range is <code>[0.31, 0.45]</code>.</p>
+<p>If the 95% CIs for two parameters <em>don’t</em> overlap, this strongly supports that the parameters are significantly different from one another. <strong>So, it seems likely that paternal and maternal gametes experience different rates of <em>de novo</em> mutation.</strong></p>
 <hr />
 <details>
 <summary>
-Which regions of the genome are hardest to assemble?
+If the CIs for two parameters overlap, are they not significantly different?
 </summary>
-<p>Ideally, with enough sequencing data, we would be able to reconstruct an entire genome from overlapping reads. In practice, genome assembly is complicated by <strong>repetitive DNA</strong> – sequences in different regions of the genome that are completely or nearly identical.</p>
-<p>These repeats make it difficult (or impossible) to determine the order of the sequences around them, or how many copies of the repeat there are.</p>
-<div class="figure">
-<img src="01-igv/images/repeats.jpg" alt="" />
-<p class="caption"><strong>Fig. 3.</strong> How repetitive sequences affect genome assembly.</p>
-</div>
-<p><br></br>
-Resolving repetitive regions requires sequencing reads that are longer than the repeat itself, which allow us to determine the flanking sequences on the sides of the repeat.</p>
-<p>Using such long-read sequencing technology (i.e., <a href="https://www.pacb.com/technology/hifi-sequencing/">PacBio</a> and <a href="https://nanoporetech.com/applications/dna-nanopore-sequencing">Nanopore</a> sequencing), the <a href="https://www.science.org/doi/10.1126/science.abj6987">Telomere-to-Telomere consortium</a> was able to create a complete, ungapped assembly of the human genome in 2021.</p>
+Not necessarily. More analysis, like a hypothesis test, is needed to make a final decision.
 </details>
 <hr />
 </div>
@@ -260,8 +258,8 @@ Resolving repetitive regions requires sequencing reads that are longer than the 
           </div>
         </div>
       </div>
-<a href="dna-sequencing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-human-reference-genome.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="confidence-intervals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

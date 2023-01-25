@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Assembling a genome | Human Genome Variation Lab</title>
+  <title>3.1 De novo mutations | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.1 De novo mutations | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Assembling a genome | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.1 De novo mutations | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="dna-sequencing-data.html"/>
-<link rel="next" href="the-human-reference-genome.html"/>
+<link rel="prev" href="discovering-mutations.html"/>
+<link rel="next" href="recombination.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -215,37 +215,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assembling-a-genome" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Assembling a genome</h2>
-<p>When the human genome is 3 billion base pairs long, assembling short sequencing reads into a full genome is a major computational challenge.</p>
-<hr />
-<details>
-<summary>
-How is genome assembly performed?
-</summary>
-<p>We can combine sequencing reads that partially overlap with each other into longer sequences.</p>
+<div id="de-novo-mutations" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> <em>De novo</em> mutations</h2>
+<p>Mutation and recombination are two biological processes that generate genetic variation. When these phenomena occur during gametogenesis, the changes that they make to DNA are passed down to the next generation through germline cells (i.e., sperm and oocyte).</p>
+<p><strong><em>De novo</em> mutations (DNMs)</strong> arise from errors in DNA replication or repair. These mutations can be single-nucleotide polymorphisms (SNPs) or insertions and deletions of DNA. Every individual typically carries around 70 <em>de novo</em> SNPs that were not present in either of their parents.</p>
 <div class="figure">
-<img src="01-igv/images/assembly.jpg" alt="" />
-<p class="caption"><strong>Fig. 2.</strong> Using overlapping sequencing reads to assemble a genome.</p>
+<img src="02-dnm/images/gametogenesis_figure.png" alt="" />
+<p class="caption"><strong>Fig. 1.</strong> Sources of DNMs in gametogenesis.</p>
 </div>
-</details>
-<hr />
-<hr />
-<details>
-<summary>
-Which regions of the genome are hardest to assemble?
-</summary>
-<p>Ideally, with enough sequencing data, we would be able to reconstruct an entire genome from overlapping reads. In practice, genome assembly is complicated by <strong>repetitive DNA</strong> – sequences in different regions of the genome that are completely or nearly identical.</p>
-<p>These repeats make it difficult (or impossible) to determine the order of the sequences around them, or how many copies of the repeat there are.</p>
-<div class="figure">
-<img src="01-igv/images/repeats.jpg" alt="" />
-<p class="caption"><strong>Fig. 3.</strong> How repetitive sequences affect genome assembly.</p>
-</div>
-<p><br></br>
-Resolving repetitive regions requires sequencing reads that are longer than the repeat itself, which allow us to determine the flanking sequences on the sides of the repeat.</p>
-<p>Using such long-read sequencing technology (i.e., <a href="https://www.pacb.com/technology/hifi-sequencing/">PacBio</a> and <a href="https://nanoporetech.com/applications/dna-nanopore-sequencing">Nanopore</a> sequencing), the <a href="https://www.science.org/doi/10.1126/science.abj6987">Telomere-to-Telomere consortium</a> was able to create a complete, ungapped assembly of the human genome in 2021.</p>
-</details>
-<hr />
 </div>
 <hr>
 <center> 
@@ -260,8 +237,8 @@ Resolving repetitive regions requires sequencing reads that are longer than the 
           </div>
         </div>
       </div>
-<a href="dna-sequencing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-human-reference-genome.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="discovering-mutations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="recombination.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
