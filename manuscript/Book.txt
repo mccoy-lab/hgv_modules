@@ -16,4 +16,17 @@
 2.12-Interpreting-IGV-alignments.md
 2.13-Conclusion.md
 2.14-Homework.md
+3-Discovering-mutations.md
+3.1-De-novo-mutations.md
+3.2-Recombination.md
+3.3-Setup.md
+3.4-Visualizing-the-data.md
+3.5-Linear-models.md
+3.6-Fitting-a-linear-model-for-DNMs.md
+3.7-Confidence-intervals.md
+3.8-Calculate-95%-CIs.md
+3.9-Conclusion.md
+3.10-Homework.md
+3.11-Required-homework.md
+3.12-Optional-homework.md
 About-the-Authors.md
