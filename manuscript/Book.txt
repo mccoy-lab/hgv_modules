@@ -29,4 +29,4 @@
 3.10-Homework.md
 3.11-Required-homework.md
 3.12-Optional-homework.md
-About-the-Authors.md
+Authors.md
