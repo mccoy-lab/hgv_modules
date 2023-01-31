@@ -21,48 +21,58 @@ This is the course homepage for Human Genome Variation with Computational Lab (`
 
 Rajiv McCoy, `rajiv.mccoy[at]jhu.edu`
 
-https://mccoy-lab.org/
-
-#### Class Hours
+#### Schedule & Logistics
 
 Class is **Tuesdays from 3-3:50PM**, in **UTL G89**.
 
 Please bring your laptop with you to every class. If you don’t have a working laptop, contact me so that we can find a solution.
+<br></br>
 
-<!-- #### Syllabus & Logistics -->
-
-<!-- Download a copy of the syllabus [here](). -->
-
-
-<!-- ## Assessment & Grading -->
-
-<!-- Final grades will be determined through either: -->
-
-<!-- 1. A comprehensive final exam that is graded by the instructors, or -->
-<!-- 2. A self-grade based upon criteria set forth in your self-evaluations. -->
-
-<!-- To qualify for self-grading, students must demonstrate participation in 12 out of 13 class sessions.  -->
-
-<!-- ### Homework -->
-
-<!-- There are required and optional homework assignments for each topic we cover. -->
-
+|Session|Content|
+|----|--------|
+| **Session 1:** <br/> _January 24, 2023_ | The reference genome <br/> Genome browsers |
+| **Session 2:** <br/> _January 31, 2023_ | De novo mutations <br/> Data exploration and plotting in R |
+| **Session 3:** <br/> _February 7, 2023_ | De novo mutations <br/> Data exploration and plotting in R |
+| **Session 4:** <br/> _February 14, 2023_ | Linkage disequilibrium |
+| **Session 5:** <br/> _February 21, 2023_ | Population structure -- part I |
+| **Session 6:** <br/> _February 28, 2023_ | Population structure -- part II |
+| **Session 7:** <br/> _March 7, 2023_ | Genome-wide association studies -- part I |
+| **Session 8:** <br/> _March 14, 2023_ | Genome-wide association studies -- part II |
+| | _Spring break -- no class_ |
+| **Session 9:** <br/> _March 28, 2023_ | Scans for selection -- part I |
+| **Session 10:** <br/> _April 4, 2023_ | Scans for selection -- part II |
+| **Session 11:** <br/> _April 11, 2023_ | Simulating evolution -- part I |
+| **Session 12:** <br/> _April 18, 2023_ | Simulating evolution -- part II |
+| **Session 13:** <br/> _April 25, 2023_ | Archaic introgression |
 
 ## Course Description
 
-The Human Genome Variation course exposes you to the power of genomic studies for understanding human evolutionary history, as well as revealing the genetic basis of human traits and disease.
+The course on Human Genome Variation has exposed you to the power of genomic studies for understanding human evolutionary history as well as revealing the genetic basis of human traits and disease.
 
 What does real human genomic data look like? How are these data analyzed in practice? Supplementing the main course, this lab module will explore public datasets and computational tools used to analyze human genomic data to better understand how patterns in these data can be used to test hypotheses about evolution and human phenotypes.
 
-### Educational Objectives
+#### Educational Objectives
 
 * Explore the ways in which human genomic data is generated, encoded, summarized, and visualized.
 *	Develop an awareness of potential confounding factors and approaches by which they can be overcome.
 * Establish familiarity working with summarized forms of genomic data in R, as well as resources for further independent learning.
 
-<!-- * human genetics/genomics has led the way for improving on transparency and reproducibility in science -->
-<!-- * standards in the community where when you publish a reserach study, the raw data and code have to be made publicly available -->
-<!-- * the public and other scientists benefit from this; now we can also benefit from it as students -->
+
+## Assessment & Grading
+
+All students will conduct mid-term and final self-evaluations and use these evaluations for self-grading. The instructor will provide individual feedback on these evaluations.
+
+Final grades will be determined either through:
+
+1. A comprehensive final exam that is graded by the instructors
+2. A self-grade that is based upon criteria set forth in your self-evaluations.
+
+To qualify for self-grading, students must demonstrate participation in 12 out of 13 class sessions. Participation can be demonstrated by in-person class attendance or, if absent from class, via evidence of work on the Posit Cloud workspace associated with a particular week.
+
+#### Homework
+
+There are required and optional homework assignments for each topic we cover.
+
 
 ## Posit Cloud
 
@@ -72,7 +82,7 @@ Posit is a computing environment for **R**, one of the most widely used coding l
 
 **Posit Cloud** is an online version of the Posit environment. This cloud workspace avoids us having to install R on everyone's computers, and also allows us to upload and share data files for class.
 
-### Making a Posit Cloud account
+#### Making a Posit Cloud account
 
 Go to the [Posit Cloud website](https://posit.cloud/) and sign up for an account, using your JHU email.
 
