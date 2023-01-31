@@ -1,8 +1,10 @@
 homepage
 instructor
-class-hours
+schedule-logistics
 course-description
 educational-objectives
+assessment-grading
+homework
 posit-cloud
 making-a-posit-cloud-account
 genome-browsers
@@ -25,7 +27,7 @@ interpreting-igv-alignments
 conclusion
 genome-browsers-1
 data-repositories
-homework
+homework-1
 goals-learning-objectives
 required-homework
 discovering-mutations
@@ -41,7 +43,7 @@ fitting-a-linear-model-for-dnms
 confidence-intervals
 calculate-95-cis
 conclusion-1
-homework-1
+homework-2
 goals-learning-objectives-1
 required-homework-1
 optional-homework
