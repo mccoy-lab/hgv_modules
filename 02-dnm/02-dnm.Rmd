@@ -34,7 +34,7 @@ Because the sequences of homologous chromosomes differ at sites where they carry
 
 Crossovers are required for meiosis because they ensure proper homologous chromosome pairing and segregation (although there are exceptions in some organisms, like male fruit flies). Humans experience 1-4 crossover events per chromosome, with longer chromosomes having more crossovers.
 
-![**Fig. 2.** Possible outcomes for double-strand breaks generated during meiosis I. Adapted from *Molecular Biology of the Cell, 6th Edition* (Alberts et al.)](02-dnm/images/recombination_figure.png)
+![**Fig. 2.** Possible outcomes for double-strand breaks generated during meiosis I. Adapted from *Molecular Biology of the Cell, 6th Edition* (Alberts et al.)](02-dnm/images/recombination_figure.jpg)
 
 
 ## Setup
