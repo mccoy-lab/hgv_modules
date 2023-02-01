@@ -5,7 +5,7 @@ documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Description of Course."
+description: "Description of Course"
 favicon: assets/favicon.ico
 output:
     bookdown::word_document2:
