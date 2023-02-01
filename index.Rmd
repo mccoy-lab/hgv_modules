@@ -84,5 +84,3 @@ Posit is a computing environment for **R**, one of the most widely used coding l
 #### Making a Posit Cloud account
 
 Go to the [Posit Cloud website](https://posit.cloud/) and sign up for an account, using your JHU email.
-
-<!-- Then, join the [HGV Lab workspace](). -->
