@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Authors | Human Genome Variation Lab</title>
+  <title>4.1 What is linkage disequilibrium? | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Authors | Human Genome Variation Lab" />
+  <meta property="og:title" content="4.1 What is linkage disequilibrium? | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Authors | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="4.1 What is linkage disequilibrium? | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="required-homework-2.html"/>
-
+<link rel="prev" href="linkage-disequilibrium.html"/>
+<link rel="next" href="why-do-we-care-about-ld.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -230,165 +230,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="authors" class="section level1 unnumbered">
-<h1>Authors</h1>
-<p> 
- </p>
-<table>
-<thead>
-<tr class="header">
-<th>Credits</th>
-<th>Names</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Pedagogy</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Instructor</td>
-<td><a href="https://mccoy-lab.org/">Rajiv McCoy</a></td>
-</tr>
-<tr class="odd">
-<td>Content Author</td>
-<td><a href="https://stephaniemyan.github.io/">Stephanie Yan</a></td>
-</tr>
-<tr class="even">
-<td>Content Author</td>
-<td><a href="https://kweav.github.io/">Kate Weaver</a></td>
-</tr>
-<tr class="odd">
-<td><strong>Website</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Template</td>
-<td><a href="https://jtleek.com/">Jeff Leek</a> &amp; <a href="https://jhudatascience.org/index.html">The Johns Hopkins Data Science Lab</a></td>
-</tr>
-<tr class="odd">
-<td>Design Inspiration</td>
-<td><a href="https://engineering.jhu.edu/faculty/ali-madooei/">Ali Madooei</a> &amp; <a href="https://cs226sp22.github.io/">JHU Data Structures</a></td>
-</tr>
-<tr class="even">
-<td><strong>Funding</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>JHU Center for Educational Resources</td>
-<td>Techology Fellowship Grant</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
-##  setting  value                       
-##  version  R version 4.0.2 (2020-06-22)
-##  os       Ubuntu 20.04.3 LTS          
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  ctype    en_US.UTF-8                 
-##  tz       Etc/UTC                     
-##  date     2023-02-01                  
-## 
-## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package     * version    date       lib source                            
-##  assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.3)                    
-##  backports     1.1.10     2020-09-15 [1] RSPM (R 4.0.2)                    
-##  blob          1.2.1      2020-01-20 [1] RSPM (R 4.0.3)                    
-##  bookdown      0.24       2022-02-15 [1] Github (rstudio/bookdown@88bc4ea) 
-##  broom         0.7.1      2020-10-02 [1] RSPM (R 4.0.2)                    
-##  callr         3.4.4      2020-09-07 [1] RSPM (R 4.0.2)                    
-##  cellranger    1.1.0      2016-07-27 [1] RSPM (R 4.0.3)                    
-##  cli           2.0.2      2020-02-28 [1] RSPM (R 4.0.0)                    
-##  colorspace    1.4-1      2019-03-18 [1] RSPM (R 4.0.0)                    
-##  crayon        1.3.4      2017-09-16 [1] RSPM (R 4.0.0)                    
-##  data.table    1.13.0     2020-07-24 [1] RSPM (R 4.0.2)                    
-##  DBI           1.1.0      2019-12-15 [1] RSPM (R 4.0.0)                    
-##  dbplyr        1.4.4      2020-05-27 [1] RSPM (R 4.0.0)                    
-##  desc          1.2.0      2018-05-01 [1] RSPM (R 4.0.3)                    
-##  devtools      2.3.2      2020-09-18 [1] RSPM (R 4.0.3)                    
-##  digest        0.6.25     2020-02-23 [1] RSPM (R 4.0.0)                    
-##  dplyr       * 1.0.2      2020-08-18 [1] RSPM (R 4.0.2)                    
-##  ellipsis      0.3.1      2020-05-15 [1] RSPM (R 4.0.3)                    
-##  evaluate      0.14       2019-05-28 [1] RSPM (R 4.0.3)                    
-##  fansi         0.4.1      2020-01-08 [1] RSPM (R 4.0.0)                    
-##  farver        2.0.3      2020-01-16 [1] RSPM (R 4.0.3)                    
-##  forcats     * 0.5.0      2020-03-01 [1] RSPM (R 4.0.0)                    
-##  fs            1.5.0      2020-07-31 [1] RSPM (R 4.0.3)                    
-##  generics      0.0.2      2018-11-29 [1] RSPM (R 4.0.0)                    
-##  ggplot2     * 3.3.2      2020-06-19 [1] RSPM (R 4.0.1)                    
-##  glue          1.6.1      2022-01-22 [1] CRAN (R 4.0.2)                    
-##  gtable        0.3.0      2019-03-25 [1] RSPM (R 4.0.3)                    
-##  haven         2.3.1      2020-06-01 [1] RSPM (R 4.0.2)                    
-##  highr         0.8        2019-03-20 [1] RSPM (R 4.0.3)                    
-##  hms           0.5.3      2020-01-08 [1] RSPM (R 4.0.0)                    
-##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
-##  httr          1.4.2      2020-07-20 [1] RSPM (R 4.0.3)                    
-##  jquerylib     0.1.4      2021-04-26 [1] CRAN (R 4.0.2)                    
-##  jsonlite      1.7.1      2020-09-07 [1] RSPM (R 4.0.2)                    
-##  knitr         1.33       2022-02-15 [1] Github (yihui/knitr@a1052d1)      
-##  labeling      0.3        2014-08-23 [1] RSPM (R 4.0.0)                    
-##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
-##  lubridate     1.7.9      2020-06-08 [1] RSPM (R 4.0.2)                    
-##  magrittr      2.0.2      2022-01-26 [1] CRAN (R 4.0.2)                    
-##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  modelr        0.1.8      2020-05-19 [1] RSPM (R 4.0.3)                    
-##  munsell       0.5.0      2018-06-12 [1] RSPM (R 4.0.3)                    
-##  ottrpal       0.1.2      2022-02-15 [1] Github (jhudsl/ottrpal@1018848)   
-##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
-##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
-##  pkgload       1.1.0      2020-05-29 [1] RSPM (R 4.0.3)                    
-##  prettyunits   1.1.1      2020-01-24 [1] RSPM (R 4.0.3)                    
-##  processx      3.4.4      2020-09-03 [1] RSPM (R 4.0.2)                    
-##  ps            1.3.4      2020-08-11 [1] RSPM (R 4.0.2)                    
-##  purrr       * 0.3.4      2020-04-17 [1] RSPM (R 4.0.3)                    
-##  R.methodsS3   1.8.1      2020-08-26 [1] CRAN (R 4.0.2)                    
-##  R.oo          1.24.0     2020-08-26 [1] CRAN (R 4.0.2)                    
-##  R.utils       2.11.0     2021-09-26 [1] CRAN (R 4.0.2)                    
-##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
-##  Rcpp          1.0.8      2022-01-13 [1] CRAN (R 4.0.2)                    
-##  readr       * 1.4.0      2020-10-05 [1] RSPM (R 4.0.2)                    
-##  readxl        1.3.1      2019-03-13 [1] RSPM (R 4.0.2)                    
-##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  reprex        0.3.0      2019-05-16 [1] RSPM (R 4.0.0)                    
-##  rlang         0.4.10     2022-02-15 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2022-02-15 [1] Github (rstudio/rmarkdown@02d3c25)
-##  rprojroot     2.0.2      2020-11-15 [1] CRAN (R 4.0.2)                    
-##  rstudioapi    0.11       2020-02-07 [1] RSPM (R 4.0.0)                    
-##  rvest         1.0.1      2022-02-15 [1] Github (tidyverse/rvest@4fe39fb)  
-##  scales        1.1.1      2020-05-11 [1] RSPM (R 4.0.3)                    
-##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
-##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
-##  stringr     * 1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2022-02-15 [1] Github (R-lib/testthat@e99155a)   
-##  tibble      * 3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  tidyr       * 1.1.2      2020-08-27 [1] RSPM (R 4.0.2)                    
-##  tidyselect    1.1.0      2020-05-11 [1] RSPM (R 4.0.3)                    
-##  tidyverse   * 1.3.0      2019-11-21 [1] RSPM (R 4.0.3)                    
-##  usethis       2.1.5.9000 2022-02-15 [1] Github (r-lib/usethis@57b109a)    
-##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
-##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.26       2022-02-15 [1] Github (yihui/xfun@74c2a66)       
-##  xml2          1.3.2      2020-04-23 [1] RSPM (R 4.0.3)                    
-##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
-## 
-## [1] /usr/local/lib/R/site-library
-## [2] /usr/local/lib/R/library</code></pre>
-<!-- Author information -->
-<!-- Links -->
-<!-- Fill out this table using these instructions: https://github.com/jhudsl/OTTR_Template/wiki/How-to-give-credits
-
-For JHU courses, You will need to add Ira as a credit:
-
-|Content Publisher|[Ira Gooding]|
-...
-[Ira Gooding]: https://publichealth.jhu.edu/faculty/4130/ira-gooding
--->
-
+<div id="what-is-linkage-disequilibrium" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> What is linkage disequilibrium?</h2>
+<p><strong>Linkage disequlibrium (LD)</strong> refers to correlation among genotypes at multiple sites in the genome. This is a consequence of the fact that chromosomes are transmitted in “chunks” through the generations.</p>
+<p>When mutations arise, they arise on a single chromosome with a given set of alleles. The new mutation will continue to be associated with this genetic background until it is shuffled during the process of meiotic recombination. Together, a set of alleles that tend to occur together because of linkage disequilibrium is called a <strong>haplotype</strong>.</p>
+<center>
+<div class="figure">
+<img src="03-ld/images/ld.jpg" style="width:75.0%" alt="" />
+<p class="caption"><strong>Fig. 1.</strong> After a new mutation arises, recombination over the course of many generations reduces the number of variants in LD with it.</p>
+</div>
+</center>
 </div>
 <hr>
 <center> 
@@ -403,8 +254,8 @@ For JHU courses, You will need to add Ira as a credit:
           </div>
         </div>
       </div>
-<a href="required-homework-2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="linkage-disequilibrium.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="why-do-we-care-about-ld.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
