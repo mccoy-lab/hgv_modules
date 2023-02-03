@@ -221,8 +221,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 What is a confidence interval?
 </summary>
 <p>We use confidence intervals when estimating a value – in this case, the <code>Mother_age</code> and <code>Father_age</code> slope parameters.</p>
-<p>A <strong>confidence interval (CI)</strong> is a range of values for which, for some probability, the interval will contain the true value of the slope.</p>
-<p>So, a 95% CI contains the true value of the slope 95% of the time.</p>
+<p>A <strong>confidence interval (CI)</strong> is a random interval that has a 95% probability of falling on the parameter we are estimating. So, a 95% CI contains the true value of the slope 95% of the time.</p>
+<p>Keep in mind that the definition above (95% of random intervals fall on the true value) is not the same as saying there is a 95% chance that the true value falls within our interval. This latter statement is not accurate.</p>
 </details>
 <hr />
 <p>In R, we get the confidence interval of a parameter from a linear model with the <code>confint</code> function.</p>
