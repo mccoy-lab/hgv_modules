@@ -7,23 +7,9 @@ In this module, we'll use DNA sequencing data from human populations to assess l
 After completing this chapter, you'll be able to:
 
 1. Define linkage disequilibrium.
-2. Describe the data stored in a Variant Call Format (VCF) file.
-3. Manually calculate $D$, $D'$, and $r^2$ from genotype data.
-4. Explain the differences in interpretation for different LD statistics.
-
-
-***
-
-
-## VCF format
-
-Run this code to read in and view the `contiguous_snippet.vcf.gz` VCF file:
-
-```{r}
-# use the `fread` function from `data.table` to read in the vcf
-vcf <- data.table::fread("contiguous_snippet.vcf.gz",
-                         skip = 19, header = TRUE)
-```
+2. Manually calculate $D$, $D'$, and $r^2$ from genotype data.
+3. Understand the differences in interpretation for different LD statistics.
+4. Explain how LD both benefits and limits genetics studies.
 
 
 ***
@@ -50,7 +36,14 @@ head(haplotypes)
 
 ## Are these SNPs in LD?
 
-Run the code block below to use the `table` function to count the occurrence of the four possible haplotypes.
+Run `table` on each SNP column to see which alleles exist at SNP1 and SNP2.
+
+```{r}
+table(haplotypes$snp1_allele)
+table(haplotypes$snp2_allele)
+```
+
+Use the `table` function to count the occurrences of the four possible haplotypes.
 
 ```{r}
 table(haplotypes$snp1_allele, haplotypes$snp2_allele)
@@ -132,11 +125,19 @@ r2
 ***
 
 
+## LDlink
+
+https://ldlink.nci.nih.gov/
+
+
+***
+
+
 ## Homework
 
 #### Goals & Learning Objectives
 
-The goal of this homework is to calculate and interpret LD statistics for two new SNPs.
+The goal of this homework is to calculate and interpret LD statistics for other sets of SNPs.
 
 **Learning Objectives**
 
@@ -144,17 +145,36 @@ The goal of this homework is to calculate and interpret LD statistics for two ne
 
 ## Required homework
 
-We've subset the VCF from class to show haplotypes for a different pair of SNPs (`chr21:13217431` and `chr21:13232002`). Run this code to read it in:
+We've subset the VCF from class to show haplotypes for two different pair of SNPs:
+
+* `chr21:15005329` and `chr21:15007704`
+* `chr21:13217431` and `chr21:13232002`
 
 ```{r}
-# read data
-haplotypes2 <- read.table("snp_haplotypes_hw.txt", header = TRUE)
+# read data for first set of SNPs
+hw1 <- read.table("snp_haplotypes_hw1.txt", header = TRUE)
 
-# preview data
-head(haplotypes2)
+# read data for second set of SNPs
+hw2 <- read.table("snp_haplotypes_hw2.txt", header = TRUE)
 ```
 
-**Assignment:** Using the code from class, calculate $D$, $D'$, and $r^2$ for these two SNPs. Which alleles are segregating together? What does each LD statistic indicate? (Feel free to check your work on LDpair (https://ldlink.nci.nih.gov/?tab=ldpair), although the exact values may be slightly different.)
+**Assignment:** Using the code from class, calculate $D$, $D'$, and $r^2$ for these sets of SNPs. Which alleles are segregating together? What does each LD statistic indicate? (Feel free to check your work on LDpair.)
+
+### First set of SNPs
+
+```{r}
+# D
+```
+
+```{r}
+# D'
+```
+
+```{r}
+# r^2
+```
+
+### Second set of SNPs
 
 ```{r}
 # D

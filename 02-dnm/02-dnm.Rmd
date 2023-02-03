@@ -223,9 +223,9 @@ To do this, we compare the **confidence intervals** of our slope estimates.
 
 We use confidence intervals when estimating a value -- in this case, the `Mother_age` and `Father_age` slope parameters.
 
-A **confidence interval (CI)** is a range of values for which, for some probability, the interval will contain the true value of the slope.
+A **confidence interval (CI)** is a random interval that has a 95% probability of falling on the parameter we are estimating. So, a 95% CI contains the true value of the slope 95% of the time.
 
-So, a 95% CI contains the true value of the slope 95% of the time.
+Keep in mind that the definition above (95% of random intervals fall on the true value) is not the same as saying there is a 95% chance that the true value falls within our interval. This latter statement is not accurate.
 
 </details>
 ***

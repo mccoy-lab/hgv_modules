@@ -13,6 +13,7 @@ library(vcfR)
 # bcftools view -O z -o tmp.vcf.gz -r chr21:15000000-20000000 ALL.chr21.shapeit2_integrated_v1a.GRCh38.20181129.phased.vcf.gz
 # bcftools view -O z -o contiguous_snippet.vcf.gz -S kgp_2505.txt --force-samples tmp.vcf.gz
 
+# contiguous_snippet.vcf.gz is now in the lab OneDrive
 
 #=================================#
 # Create haplotype tables for lab #
@@ -41,6 +42,8 @@ common_snps <- vcf_info %>%
 # extract genotype info for two common SNPs in LD
 common1_pos <- common_snps[32,]$POS # example for class - moderate LD
 common2_pos <- common_snps[33,]$POS
+# common1_pos <- common_snps[11,]$POS # example for hw - not in LD
+# common2_pos <- common_snps[13,]$POS
 # common1_pos <- common_snps[829,]$POS # example for hw - perfect LD
 # common2_pos <- common_snps[830,]$POS
 
@@ -71,5 +74,29 @@ colnames(snp_bind) <- c("sample", "haplotype", "snp1_allele", "snp2_allele")
 # write to table
 write.table(snp_bind, "snp_haplotypes.txt",
             quote = FALSE, sep = "\t", row.names = FALSE)
-# write.table(snp_bind, "snp_haplotypes_hw.txt",
+# write.table(snp_bind, "snp_haplotypes_hw1.txt",
 #             quote = FALSE, sep = "\t", row.names = FALSE)
+# write.table(snp_bind, "snp_haplotypes_hw2.txt",
+#             quote = FALSE, sep = "\t", row.names = FALSE)
+
+
+#===================================================#
+# Code to calculate LD between two SNPs of interest #
+#===================================================#
+
+tab <- table(snp_bind$snp1_allele, snp_bind$snp2_allele)
+tab
+
+total <- tab[1,1] + tab[1,2] + tab[2,1] + tab[2,2]
+h <- tab[1,1] / total
+p1 <- (tab[1,1] + tab[1,2])/total
+q1 <- (tab[1,1] + tab[2,1])/total
+
+D <- h - p1 * q1
+D
+
+Dprime <- D / max(abs(p1 * (1-p1)), abs(q1 * (1-q1)))
+Dprime
+
+r2 <- D^2 / (p1 * (1-p1) * q1 * (1-q1))
+r2
