@@ -1,0 +1,716 @@
+
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+knitr::opts_knit$set(root.dir = '04-pop_structure')
+```
+
+# Population structure
+
+In this lab, we'll implement two common approaches for measuring and visualizing population structure: $F_{ST}$ and principal component analysis (PCA).
+
+#### Learning objectives
+
+After completing this chapter, you'll be able to:
+
+1. Describe the data stored in a Variant Call Format (VCF) file.
+2. Measure population differentiation from genotype data.
+3. Perform and visualize the results of a principal component analysis.
+
+
+## What is a population?
+
+In population genetics, the term **population** refers to a group of interbreeding individuals. Determining whether a group of individuals is a "population" is subjective -- groups exchange migrants at different rates (a process called "gene flow"), and there is no definitive boundary for when they constitute separate populations.
+
+#### What is population structure?
+
+**Population structure** is a consequence of the fact that when two groups of individuals do not freely interbreed, the two populations typically develop different patterns of genetic variation.
+
+Individuals within a population tend to be share greater genetic similarity with each other than with individuals in other populations. These differences manifest through differences in allele frequencies among populations, and result from genetic drift, natural selection, and other evolutionary forces. We can measure such allele frequency differences to reveal evolutionary relationships among populations, as well as evidence of historical natural selection.
+
+![**Fig. 1.** Two populations polymorphic for alleles `A` and `a`. The frequency of `A` in Population 1 is $0.83$, while its frequency in Population 2 is $0.15$.](04-pop_structure/images/pop_structure.jpg)
+
+
+## Geography of Genetic Variants
+
+One quick way to visualize population structure in humans is to look at the allele frequencies of genetic variants in different regions of the world. The [**Geography of Genetic Variants (GGV)**](https://popgen.uchicago.edu/ggv/?data=%221000genomes) browser is a website that plots allele frequencies from the 1000 Genomes dataset.
+
+For a given variant, GGV plots piecharts of its frequency in the 26 populations in 1000 Genomes, superimposed over the population's geographical location.
+
+While some variants have very similar frequencies across populations, others are much more common in specific populations -- usually suggesting that these populations are more closely related to each other.
+<br></br>
+
+![**Fig. 2.** GGV visualization of the allele frequencies for a SNP at `chr1:222087833`.](04-pop_structure/images/ggv.png)
+
+
+## Variant Call Format (VCF)
+
+We're investigating population in genotype data from the [1000 Genomes Project](https://mccoy-lab.github.io/hgv_modules/the-1000-genomes-project.html) -- a sequencing dataset introduced in the genome browsers module.
+
+We'll eventually work with an R-specific form of this data, but first let's look at the full file, which is in [**Variant Call Format (VCF)**](https://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/).
+
+### What is a VCF?
+
+VCF files store **genotype** data at variable sites. Every line of a VCF represents a genetic variant, and contains information about what the variant is and which individuals carry it.
+
+While these are just text files, they have a strange format that goes beyond a simple table. This is a preview of the first few lines of `random_snippet.vcf.gz`, which we'll be working with today:
+
+![**Fig. 3.** A preview of `random_snippet.vcf.gz`.](04-pop_structure/images/vcf_head.png)
+
+***
+<details> <summary> How do you read a VCF file? </summary>
+
+The first section of a VCF is a multi-line **header** -- marked by the `#` character -- which contains metadata and descriptions of the FILTER, INFO, and FORMAT columns. (For example, the INFO column usually includes information like the variant's allele frequency, and each field is described in the header.) The final line of the header gives the names of the columns.
+
+The **data** section of a VCF describes its variants and genotypes. The first 8 columns are about the variant itself -- its position, the reference/alternative alleles, etc.
+
+The rest of the VCF columns contain the **genotypes** of all the samples it has data for. Here, every column is one individual from the 1000 Genomes Project (so there are 2,504 columns total).
+
+</details>
+***
+
+***
+<details> <summary> How do you interpret VCF genotypes? </summary>
+
+* `0|0`: homozygous reference (does not carry the variant)
+* `0|1` or `1|0`: heterozygous
+* `1|1`: homozygous alternate (both chromosomes have the variant)
+* `.`: Missing genotype (could not be confidently called)
+
+The sample-specific columns often include additional genotype information, like the number of sequencing reads from the individual that support the reference vs. alternative alleles. The included fields are specified in the FORMAT column (which in this case just reads `GT`, for "genotype").
+
+</details>
+***
+
+
+## Setup
+
+### R packages
+
+Load these libraries to use for the lab:
+
+```{r, results = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(vcfR)
+```
+
+### Data
+
+#### Genotype data
+
+Our genotype data is in a VCF file called `random_snippet.vcf.gz`, which contains a random subset of variants on chromosome 21 that were genotyped in 1000 Genomes. Use `vcfR` to read in the data:
+
+```{r}
+vcf <- read.vcfR(file = "random_snippet.vcf.gz")
+```
+
+#### Metadata
+
+1000 Genomes provides metadata (like [population labels](https://useast.ensembl.org/Help/Faq?id=532)) for every sample in their dataset. Read in the `integrated_call_samples.txt` metadata file:
+
+```{r}
+metadata <- read.table("integrated_call_samples.txt",
+                       header = TRUE)
+metadata
+```
+
+The columns of this table are:
+
+* `sample`: Sample ID (matches the columns in the VCF file)
+* `pop`: Population that individual belongs to
+* `superpop`: Superpopulation -- continental groupings of the 1000 Genomes populations. The five superpopulations in this dataset are:
+  * **AFR**: African
+  * **AMR**: Admixed American
+  * **EAS**: East Asian
+  * **EUR**: European
+  * **SAS**: South Asian
+* `sex`: Sample sex
+
+
+## Tidying VCF data
+
+If we try to look at `vcf`, we can see that it's an "Object of Class vcfR":
+
+```{r}
+vcf
+```
+
+`vcfR` reformats VCFs into its own data class, which is easy to manipulate using `vcfR` functions, but hard to access directly from the `vcf` variable.
+
+We'll use the `vcfR2tidy` function in order to convert `vcf` into **tidy dataframes** suitable for analysis with R:
+
+```{r, message = FALSE}
+# convert vcf into three tidy dataframes
+tidied <- vcfR2tidy(vcf,
+                    # tell vcfR to turn these INFO fields into integers
+                    info_types = c(AF = "n", EAS_AF = "n",
+                                   EUR_AF = "n", AFR_AF = "n",
+                                   AMR_AF = "n", SAS_AF = "n"))
+tidied
+```
+
+`tidied` is a _list_ (a type of R object) of three dataframes:
+
+* `fix`: Location, identity, allele frequency, etc. of **variants** in the VCF
+* `gt`: **Genotypes** of the VCF samples
+* `meta`: Information from the VCF **header**
+
+We'll be using the variants information from `tidied`, so let's store it in a separate table:
+
+```{r}
+# make variants dataframe
+variants <- tidied$fix
+variants
+```
+
+
+## The allele frequency spectrum
+
+One common visualization of genotype data is the **allele frequency spectrum (AFS)**, which is the _distribution_ of the allele frequencies (AFs) of the variants.
+
+These allele frequencies were calculated in the original VCF, and are now in the `AF` column of `variants`.
+
+***
+<details><summary> Plot the AFS using the data from `variants` </summary>
+
+```{r}
+ggplot(data = variants,
+       aes(x = AF)) + 
+  geom_histogram(bins = 100)
+```
+
+</details>
+***
+
+***
+<details><summary> Interpreting the AFS </summary>
+
+The allele frequencies in this dataset range from 0 to 1, with an exponential decay from zero, indicating that the majority of variants are rare.
+
+This is the expected shape of an AFS, since all variants arise in one individual and are unlikely to spread widely through the population just by chance. This distribution is exacerbated in human populations, where recent population expansions have resulted in an excess of rare variation.
+
+</details>
+***
+
+
+## Common variation
+
+For this lab, we'll subset to just common variants within the VCF -- arbitrarily defined as $0.05 < \textrm{AF} < 0.95$. We can look at where this set of variants lies on the AFS by adding vertical lines at the cutoff allele frequencies:
+
+```{r}
+ggplot(data = variants,
+       aes(x = AF)) + 
+  geom_histogram(bins = 100) + 
+  geom_vline(xintercept = 0.05, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = 0.95, linetype = "dashed", color = "brown")
+```
+
+***
+<details><summary> Why only work with common variants? </summary>
+
+Rare variants are more likely to show fine-grained population structure -- for example, a variant may be carried by just one individual, or just one family. Because there are so many rare variants, including them causes [differences between individuals to be more pronounced than differences between populations](https://bmcgenomdata.biomedcentral.com/articles/10.1186/s12863-020-0833-x).
+
+While this is a biologically true statement, it makes it harder to visualize population structure, which is why we subset to common variation for PCA.
+
+</details>
+***
+
+
+## Subsetting to common variants
+
+Subset the original VCF object to just common variation, using the `variants` dataframe (which contains the AF information):
+
+```{r}
+# choose rows of `variants` that have AFs within range
+common_rows <- (variants$AF > 0.05) & (variants$AF < 0.95)
+
+# subset rows of the vcf object
+vcf_common <- vcf[common_rows, ]
+vcf_common
+```
+
+As expected from the cutoff lines on the AFS plot, there are only 960 variants left after subsetting -- substantially less than our original count of 10,000.
+
+We'll also subset the `variants` dataframe itself to only keep information for the common variants. 
+
+```{r}
+variants_common <- variants[common_rows, ]
+```
+
+***
+<details><summary> Re-plot the AFS of our subsetted data to confirm that we've successfully selected common variants. </summary>
+
+```{r}
+ggplot(data = variants_common, 
+       aes(x = AF)) + 
+  geom_histogram(bins = 90) + 
+  geom_vline(xintercept = 0.05, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = 0.95, linetype = "dashed", color = "brown")
+```
+
+Our data is correctly subset within the dashed lines. Even with just common variation, we still observe an exponential decay of the allele frequencies.
+
+</details>
+***
+
+
+## The F~ST~ statistic
+
+$\mathbf{F_{ST}}$ is a statistic that quantifies differentiation between populations, based on the frequencies of alleles at one variable site.
+
+The version of $\mathrm{F_{ST}}$ that we'll calculate today compares genotypic variance within **subpopulations ("S")** against the **total population ("T")**. One way to conceptualize this is the the deficiency of heterozygotes observed across subpopulations, relative to the proportion that would be expected under random mating (i.e., no population structure).
+
+We calculate this by taking the difference between:
+
+* $\mathbf{H_T}$: The expected frequency of heterozygotes when individuals across all subpopulations are pooled
+* $\mathbf{mean(H_S)}$: The mean frequency of heterozygotes, calculated within each subpopulation and then averaged
+* where $H = 2pq$, and $p$ and $q$ are the frequencies of the two alleles at a site
+
+$$
+\textrm{F}_{ST} = \frac{H_T - \textrm{mean}(H_S)}{H_T}
+$$
+
+$\mathrm{F_{ST}}$ ranges from 0 to 1:
+
+* $\mathrm{F_{ST}} = 0$: No population structure (separating the subpopulations doesn't affect heterozygosity estimates)
+* $\mathrm{F_{ST}} = 1$: Subopulations are very different (ex: one population only carries one allele, while the other population only carries the other)
+
+See [this Nature Review Genetics article](https://pubmed.ncbi.nlm.nih.gov/19687804/) for a more thorough discussion on the use and interpretation of $\mathrm{F_{ST}}$ and related statistics.
+
+
+## The `genetic_diff` function
+
+We'll compute $\textrm{F}_{ST}$ using `vcfR`'s `genetic_diff` function. (This function technically calculates $\textrm{G}_{ST}$, a version of $\textrm{F}_{ST}$ that considers when there are more than two alleles at a given locus. When a locus is biallelic, $\textrm{F}_{ST} = \textrm{G}_{ST}$.)
+
+```{r}
+?genetic_diff
+```
+
+`genetic_diff` requires:
+
+1. `vcfR` object (in our case, `vcf_common`)
+2. Factor indicating populations
+
+***
+<details><summary> What's "Factor indicating populations"? </summary>
+
+The second object for `genetic_diff` needs to be a **vector** (i.e., a list) of population labels for the samples in the VCF.
+
+These labels must be **factors**, which is an R data type that limits a variable to a set of values. In our case, these values are the specific population labels in our dataset. We'll be using the superpopulation groupings for this calculation.
+
+</details>
+***
+
+We can use our `metadata` table to generate a vector of superpopulation labels. Since the superpopulation IDs are in the `superpop` column of that dataframe, we can convert the column from character to factor values with the `as.factor` function.
+
+```{r}
+pop_labels <- as.factor(metadata$superpop)
+head(pop_labels)
+```
+
+Previewing `pop_labels` shows us that there are 26 "levels" in this vector, where each level is a population name.
+
+
+## Calculating F~ST~
+
+Run `genetic_diff` on the VCF of common variants:
+
+```{r }
+# calculate gst
+gst_results <- genetic_diff(vcf_common, pop_labels) %>%
+  # order dataframe by descending gst value
+  arrange(-Gst)
+```
+
+```{r}
+# preview highest gst variants
+head(gst_results)
+
+# preview lowest gst variants
+tail(gst_results)
+```
+
+`genetic_diff` outputs a table of $\textrm{G}_{ST}$ results, where every line corresponds to one variant from the input VCF. Our $\textrm{G}_{ST}$ values range from $0.009$ to $0.565$. 
+
+
+## Distribution of G~ST~ across the genome
+
+***
+<details><summary> Plot the distribution of $\textrm{G}_{ST}$ values from `genetic_diff` </summary>
+
+```{r}
+ggplot(data = gst_results, 
+       aes(x = Gst)) +
+  geom_histogram()
+```
+
+</details>
+***
+
+This is another exponentially decaying distribution, indicating that most common human variants don't show strong differences in allele frequency between populations.
+
+
+## Principal component analysis
+
+**Principal component analysis (PCA)** is a method for representing high-dimensional data (i.e., data with many variables) within a smaller number of dimensions. In our case, every individual in the VCF has genotype measurements for hundreds of variants.
+
+You can think of PCA as a projection all the individuals in our dataset into a cloud, where their position is determined by their combination of genotypes.
+
+* The first **principal component (PC)** is the vector through the cloud of data points that captures the greatest possible variance.
+* The second PC is the vector that captures the second greatest possible variance, and must also be **perpendicular** to the first vector.
+* The same idea applies to the third, fourth, fifth, etc. PCs.
+
+For an in-depth visual walkthrough of PCA, you can look at [this website](http://setosa.io/ev/principal-component-analysis/).
+<br></br>
+
+![**Fig. 4.** A PCA plot that simplifies three-dimensional data into two dimensions.](04-pop_structure/images/pca.jpg)
+
+
+## Reformatting data for PCA
+
+We're using R's `prcomp` function to perform PCA on our genotype data. This function takes a matrix where the rows are the data objects (i.e., individuals) and the columns are the associated measurements (i.e., variants). The values within the matrix also have to be numeric.
+
+To reformat our data for `prcomp`, we need to:
+
+1. Extract genotypes from the VCF with vcfR's `extract.gt` function
+2. Convert the genotypes into numeric values, where
+    * **`0`** is homozygous reference (`0|0`)
+    * **`1`** is heterozygous (`0|1`, `1|0`)
+    * **`2`** is homozygous alternate (`1|1`)
+    * These values also represent the number of alternative alleles that an individual carries.
+3. **Transpose** (i.e., rotate) the matrix so the rows are samples and the columns are variants
+
+We'll use a tidyverse function to convert, or "recode", the genotype values in every column of the matrix.
+
+```{r, results = FALSE}
+# extract genotypes from vcfR object
+gt_matrix <- extract.gt(vcf_common) %>%
+  # convert to dataframe so we can use tidyverse functions
+  as.data.frame() %>%
+  # apply `recode` function to all values in dataframe
+  mutate_all(recode,
+             "0|0" = 0, "1|0" = 1, "0|1" = 1, "1|1" = 2) %>%
+  # convert back to matrix
+  as.matrix()
+
+head(gt_matrix)
+```
+
+```{r, echo = FALSE}
+# The previous code chunk is set to no output,
+# and this code chunk is set to not show the code,
+# so that we can display the matrix without all of the sample columns
+head(gt_matrix[, 1:10])
+```
+
+We transpose the matrix with `prcomp`'s `t` function:
+
+```{r, results = FALSE}
+gt_matrix_T <- t(gt_matrix)
+head(gt_matrix_T)
+```
+
+```{r, echo = FALSE}
+head(gt_matrix_T[, 1:10])
+```
+
+
+
+## Performing PCA
+
+We're finally ready to PCA our genotype matrix with `prcomp`.
+
+```{r}
+pca <- prcomp(gt_matrix_T)
+```
+
+Our output is a `prcomp` object. Like the tidied `vcfR` object we worked with earlier in the lab, this `prcomp` object comprises several tables, which you can preview by typing `pca$` into the console and seeing what R suggests:
+
+* `sdev`: standard deviations of the principle components
+* `rotation`, `center`, `scale`: tables we won't use in this lab
+* `x`: coordinates of the data objects (the 1000 Genomes individuals) on each PC
+
+
+## Reformatting PCA output
+
+We can plot our PCA output using the information in `pca$x`.
+
+```{r, results = FALSE}
+x <- pca$x
+head(x)
+```
+
+```{r, echo = FALSE}
+head(x[, 1:10])
+```
+
+We can see that every row of `x` is one individual, every column is a PC (going up to 960 PCs!), and the value in each cell represents the sample's coordinate on each PC axis.
+
+Let's create a dataframe of the first three PCs to plot:
+
+```{r}
+# create column of sample names
+pca_results <- data.frame(sample = rownames(x),
+                          PC1 = x[, 1], # PC1 values
+                          PC2 = x[, 2], # PC2 values
+                          PC3 = x[, 3]) # PC3 values
+head(pca_results)
+```
+
+To annotate individuals on our plot, we'll **merge** `pca_results` with our `metadata` table. The `merge` function combines two tables, merging them by matching a column of your choice (specified with `by = `).
+
+```{r}
+# merge pca_results and metadata
+pca_results <- merge(pca_results, metadata,
+                     # specify columns to merge on
+                     by.x = "sample", by.y = "sample")
+head(pca_results)
+```
+
+
+## PCA plot
+
+***
+<details><summary> Create a scatterplot of PC1 vs. PC2, coloring by the `superpop` column. </summary>
+
+```{r}
+ggplot(data = pca_results, 
+       aes(x = PC1, y = PC2, color = superpop)) +
+  geom_point()
+```
+
+PC1 separates out the African populations from other populations. This is in line with our knowledge that all non-African populations descend from historical migrations out of Africa -- African populations contain significant genetic diversity that is not represented outside of Africa.
+
+PC2 seems to separate the East Asian and European populations from the other three superpopulations.
+
+</details>
+***
+
+***
+<details><summary> Repeat the plot with PC2 vs. PC3. Which superpopulations do you observe separating on PC3? </summary>
+
+```{r}
+ggplot(data = pca_results, 
+       aes(x = PC2, y = PC3, color = superpop)) +
+  geom_point()
+```
+
+PC3 separates out the Admixed American and South Asian populations, which were collapsed into one group in the first PCA plot.
+
+</details>
+***
+
+
+## Proportion of variance explained
+
+It's hard to tell from the PCA plot whether the separation of populations we see is meaningful, or if the plot is just exaggerating extremely minor differences between groups.
+
+We quantify this by calculating the **proportion of variance explained** for each PC. This tells us how much of the variation in our data is being captured by PC1, PC2, etc.
+
+Variance is the square of the standard deviation, so we can calculate proportion of variance explained from the `sdev` item in our `pca` object. Each value corresponds to the standard deviation for one PC.
+
+```{r}
+sd <- pca$sdev
+head(sd)
+```
+
+The proportion of variance explained by a PC is its variance, divided by the sum of the variances across all PCs. Conveniently, you can calculate this for every PC at once in R:
+
+```{r}
+# divide variance of each PC by sum of all variances
+var_explained <- sd^2 / sum(sd^2)
+
+# proportion of variance explained for:
+var_explained[1] # PC1
+var_explained[2] # PC2
+var_explained[3] # PC3
+```
+
+So, PC1 explains only 9.65% of the variance in our data, PC2 explains 4.34%, and PC3 explains 1.34%.
+
+***
+<details><summary> Add x and y axis labels to your plots with the proportion of variance explained by each PC. This is common practice for PCA. </summary>
+
+```{r}
+ggplot(data = pca_results, 
+       aes(x = PC1, y = PC2, color = superpop)) + 
+  geom_point() + 
+  xlab("PC1 (9.65%)") +
+  ylab("PC2 (4.34%)")
+```
+
+```{r}
+ggplot(data = pca_results, 
+       aes(x = PC2, y = PC3, color = superpop)) + 
+  geom_point() + 
+  xlab("PC2 (4.34%)") +
+  ylab("PC3 (1.34%)")
+```
+
+</details>
+***
+
+
+## Conclusion
+
+In this lab, we used genotype data from the 1000 Genomes Project to calculate two measures of **population structure**.
+
+* We explored the [**Geography of Genetic Variants**](https://popgen.uchicago.edu/ggv/?data=%221000genomes) browser, a useful resource for visualizing allele frequency differences between human populations.
+<br></br>
+* We introduced **VCF format**, a common file format for storing genotype data. Using the `vcfR` package, we read in the VCF and subset to common variants.
+<br></br>
+* We plotted the **allele frequency spectrum** of variants.
+<br></br>
+* By calculating $\mathbf{F_{ST}}$, we found that most variants show very little frequency differentiation across populations.
+<br></br>
+* Finally, we used **PCA** to cluster individuals in our dataset by their genotype information. Plotting individuals in PCA space allowed us to distinguish the five superpopulations of 1000 Genomes.
+
+
+## Homework
+
+We'll now perform PCA using _all_ SNPs in the initial VCF -- not just those that were common in 1000 Genomes individuals. In the optional homework, you'll also use your newly generated PCA plot to predict the ancestry of an unknown sample.
+
+#### Goals & Learning Objectives
+
+The goal of this homework is to perform and interpret the results of PCA.
+
+**Learning Objectives**
+
+* Required homework: Practice performing and interpreting PCA
+* Optional homework: Practice performing PCA and reading code
+
+
+## Required homework
+
+**Assignment:** Re-run the steps we used to generate our PCA plot, this time using the original `vcf` data object. Do these plots look any different from our plots with just common variants?
+
+***
+<details><summary> Solution </summary>
+
+```{r}
+# extract genotypes and convert to numeric form
+gt_matrix_all <- extract.gt(vcf) %>%
+  as.data.frame() %>%
+  mutate_all(recode,
+             "0|0" = 0, "1|0" = 1, "0|1" = 1, "1|1" = 2) %>%
+  as.matrix()
+
+# transpose
+gt_matrix_T_all <- t(gt_matrix_all)
+# perform PCA
+pca_all <- prcomp(gt_matrix_T_all)
+
+# extract coordinates from PCA object
+x_all <- pca_all$x
+
+# create dataframe for plotting
+pca_results_all <- data.frame(sample = rownames(x_all),
+                              PC1 = x_all[, 1],
+                              PC2 = x_all[, 2],
+                              PC3 = x_all[, 3])
+# merge with metadata
+pca_results_all <- merge(pca_results_all, metadata,
+                         # specify columns to merge on
+                         by.x = "sample", by.y = "sample")
+
+# calculate variance explained by each PC
+var_explained_all <- pca_all$sdev^2 / sum(pca_all$sdev^2)
+# print for PC1-PC3
+var_explained_all[1:3]
+
+# PC1 vs. PC2 plot
+ggplot(data = pca_results_all, 
+       aes(x = PC1, y = PC2, color = superpop)) + 
+  geom_point() + 
+  xlab("PC1 (9.15%)") +
+  ylab("PC2 (3.82%)")
+
+# PC2 vs. PC3 plot
+ggplot(data = pca_results_all, 
+       aes(x = PC2, y = PC3, color = superpop)) + 
+  geom_point() + 
+  xlab("PC2 (3.82%)") +
+  ylab("PC3 (1.21%)")
+```
+
+The PCA plots actually look pretty similar to the plots with just common variants!
+
+</details>
+***
+
+
+## Optional homework
+
+We can think of our PCA as a _model_ of human individuals. If we have a mystery individual but we know their genotypes for the variants in our PCA, we can predict where they lie in PCA space and thus guess their ancestry.
+
+We've prepared a VCF, `unknown.vcf.gz`, with genotypes for one mystery sample (`NA21121`). The VCF contains the **exact same variants** as our `random_snippet.vcf.gz` from this class.
+
+Follow the instructions to read in the unknown VCF and predict NA21121's placement on your PCA plot. To avoid having to re-subset to common variants, we'll compare NA21121 to our PCA from the **required homework** (all variants in the VCF).
+
+#### Prepare unknown VCF for PCA
+
+**Assignment:** Using our code from class, read in the unknown VCF file, extract the genotype matrix, recode the genotypes as numbers, and transpose.
+
+***
+<details><summary> Solution </summary>
+
+```{r}
+# read VCF
+unknown <- read.vcfR(file = "unknown.vcf.gz")
+
+# extract and recode genotypes
+unknown_matrix <- extract.gt(unknown) %>%
+  as.data.frame() %>%
+  mutate_all(recode,
+             "0|0" = 0, "1|0" = 1, "0|1" = 1, "1|1" = 2) %>%
+  as.matrix()
+
+# transpose matrix
+unknown_matrix_T <- t(unknown_matrix)
+```
+
+</details>
+***
+
+#### Predict PCA placement of unknown sample
+
+**Assignment:** Run the code below to predict and plot NA21121 on top of your PCA plot from the required homework. If necessary, plot PC2 vs. PC3 as well. What superpopulation do you think NA21121 is from?
+
+***
+<details><summary> Solution </summary>
+
+```{r}
+# predict pca placement of unknown data
+unknown_pca <- predict(pca_all,
+                       unknown_matrix_T)
+
+# create dataframe from predicted PCA
+unknown_results <- data.frame("PC1" = unknown_pca[, "PC1"],
+                              "PC2" = unknown_pca[, "PC2"],
+                              "PC3" = unknown_pca[, "PC3"],
+                              "sample" = "NA21121")
+
+# plot PC1 vs. PC2 and then predicted sample
+ggplot() +
+  # PCA plot from required homework
+  geom_point(data = pca_results_all, 
+             aes(x = PC1, y = PC2, color = superpop)) +
+  # plots the unknown sample's location on the PCs
+  geom_label(data = unknown_results,
+             aes(x = PC1, y = PC2, label = sample)) + 
+  xlab("PC1 (9.15%)") +
+  ylab("PC2 (3.82%)")
+
+# plot PC2 vs. PC3
+ggplot() +
+  geom_point(data = pca_results_all, 
+             aes(x = PC2, y = PC3, color = superpop)) +
+  geom_label(data = unknown_results,
+             aes(x = PC2, y = PC3, label = sample)) + 
+  xlab("PC2 (3.82%)") +
+  ylab("PC3 (1.21%)")
+```
+
+`NA21121` seems to be part of the **SAS (South Asian)** superpopulation. If we look up the sample ID in the [1000 Genomes database](https://www.internationalgenome.org/), we can confirm that it's part of the Gujarati Indians in Houston, TX.
+
+</details>
+***
