@@ -44,7 +44,7 @@ While some variants have very similar frequencies across populations, others are
 
 ## Variant Call Format (VCF)
 
-We're investigating population in genotype data from the [1000 Genomes Project](https://mccoy-lab.github.io/hgv_modules/the-1000-genomes-project.html) -- a sequencing dataset introduced in the genome browsers module.
+We're investigating population structure in genotype data from the [1000 Genomes Project](https://mccoy-lab.github.io/hgv_modules/the-1000-genomes-project.html).
 
 We'll eventually work with an R-specific form of this data, but first let's look at the full file, which is in [**Variant Call Format (VCF)**](https://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/).
 
