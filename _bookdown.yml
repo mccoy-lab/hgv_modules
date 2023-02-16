@@ -5,7 +5,7 @@ rmd_files: ["index.Rmd",
             "01-igv/01-igv.Rmd",
             "02-dnm/02-dnm.Rmd",
             "03-ld/03-ld.Rmd",
-            # "04-pop_structure/04-pop_structure.Rmd",
+            "04-pop_structure/04-pop_structure.Rmd",
             # "06-wright_fisher/06-wright_fisher.Rmd",
             "About.Rmd"]
 delete_merged_file: true
