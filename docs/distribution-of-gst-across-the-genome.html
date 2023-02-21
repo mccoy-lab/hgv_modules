@@ -276,6 +276,13 @@ Plot the distribution of <span class="math inline">\(\textrm{G}_{ST}\)</span> va
 </details>
 <hr />
 <p>This is another exponentially decaying distribution, indicating that most common human variants don’t show strong differences in allele frequency between populations.</p>
+<!-- ## Top G~ST~ hits -->
+<!-- The variants with high $\textrm{G}_{ST}$ values should show differences in allele frequency between populations. Let's examine the top-scoring variant: -->
+<!-- ```{r} -->
+<!-- gst_results[1, ] -->
+<!-- ``` -->
+<!-- We can use the [GGV browser](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22) to look at this variant's distribution of allele frequencies in 1000 Genomes. -->
+<!-- First, because the variants in our VCF were called on the **hg38** genome assembly and the GGV browser uses **hg19** (the previous assembly), we need to **lift over** the variant coordinates to hg19. -->
 </div>
 <hr>
 <center> 
