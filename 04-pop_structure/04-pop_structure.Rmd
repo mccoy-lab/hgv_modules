@@ -374,18 +374,18 @@ First, because the variants in our VCF were called on the **hg38** genome assemb
 </details>
 ***
 
-One common liftover tool [is provided by the UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
+[**One common liftover tool**](https://genome.ucsc.edu/cgi-bin/hgLiftOver) is provided by the UCSC Genome Browser.
 
 ***
 <details><summary> Navigate to the UCSC liftover page. </summary>
 
-Select the assemblies that you want to change coordinates between.
+1. Select the assemblies that you want to change coordinates between.
 
 ![**Fig. 4.** Selecting assemblies for liftover.](04-pop_structure/images/liftover1.png)
 
-In the box, enter the coordinates of our variant of interest. Note that we have to enter these coordinates in `chr:pos-pos` format (`chr21:17753762-17753762` for our SNP).
-
-Hit the `Submit` button. This will generate a file that you can download, which will contain the hg19 coordinates of our variant.
+2. In the box, enter the coordinates of our variant of interest. Note that we have to enter these coordinates in **`chr:pos-pos`** format (`chr21:17753762-17753762` for our SNP).
+<br></br>
+3. Hit the **`Submit`** button. This will generate a file that you can download, which will contain the hg19 coordinates of our variant.
 
 ![**Fig. 5.** Lifting over coordinates of one variant.](04-pop_structure/images/liftover2.png)
 
