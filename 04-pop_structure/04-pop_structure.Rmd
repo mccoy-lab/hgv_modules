@@ -3,7 +3,7 @@
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '04-pop_structure')
 # install vcfR package
-# install.packages('vcfR')
+install.packages('vcfR')
 ```
 
 # Population structure
