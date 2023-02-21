@@ -86,6 +86,8 @@ the-fst-statistic
 the-genetic_diff-function
 calculating-fst
 distribution-of-gst-across-the-genome
+top-gst-hits
+viewing-gst-hits-in-ggv
 principal-component-analysis
 reformatting-data-for-pca
 performing-pca
