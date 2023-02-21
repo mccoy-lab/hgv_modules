@@ -354,17 +354,54 @@ ggplot(data = gst_results,
 This is another exponentially decaying distribution, indicating that most common human variants don't show strong differences in allele frequency between populations.
 
 
-<!-- ## Top G~ST~ hits -->
+## Top G~ST~ hits
 
-<!-- The variants with high $\textrm{G}_{ST}$ values should show differences in allele frequency between populations. Let's examine the top-scoring variant: -->
+The variants with high $\textrm{G}_{ST}$ values should show differences in allele frequency between populations. Let's examine the top-scoring variant:
 
-<!-- ```{r} -->
-<!-- gst_results[1, ] -->
-<!-- ``` -->
+```{r}
+gst_results[1, ]
+```
 
-<!-- We can use the [GGV browser](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22) to look at this variant's distribution of allele frequencies in 1000 Genomes. -->
+We can use the [GGV browser](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22) to look at this variant's distribution of allele frequencies in 1000 Genomes.
 
-<!-- First, because the variants in our VCF were called on the **hg38** genome assembly and the GGV browser uses **hg19** (the previous assembly), we need to **lift over** the variant coordinates to hg19. -->
+First, because the variants in our VCF were called on the **hg38** genome assembly and the GGV browser uses **hg19** (the previous assembly), we need to **lift over** the variant coordinates to hg19.
+
+***
+<details><summary> What is liftover? </summary>
+
+**Liftover** converts genomic coordinates from one genome assembly to another. This can be used to move between different versions of the same genome (ex: hg38 -> hg19), or even to move between assemblies for closely related species (ex: human to chimpanzee).
+
+</details>
+***
+
+One common liftover tool [is provided by the UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
+
+***
+<details><summary> Navigate to the UCSC liftover page. </summary>
+
+Select the assemblies that you want to change coordinates between.
+
+![**Fig. 4.** Selecting assemblies for liftover.](04-pop_structure/images/liftover1.png)
+
+In the box, enter the coordinates of our variant of interest. Note that we have to enter these coordinates in `chr:pos-pos` format (`chr21:17753762-17753762` for our SNP).
+
+Hit the `Submit` button. This will generate a file that you can download, which will contain the hg19 coordinates of our variant.
+
+![**Fig. 5.** Lifting over coordinates of one variant.](04-pop_structure/images/liftover2.png)
+
+</details>
+***
+
+
+## Viewing G~ST~ hits in GGV
+
+Now we can navigate to the [**GGV browser**](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22) and look up the distribution of allele frequencies for this variant, using its hg19 coordinates.
+
+We can see that this variant is at extremely high allele frequencies in all of the African populations of 1000 Genomes, but is extremely rare outside of Africa. This suggests that it was present in the population prior to the out-of-African migration, but that most of the ancestral populations that migrated out of Africa didn't carry it.
+
+Also note that two populations in the Americas also carry this variant at high frequency. These are two African American populations -- **African Caribbean in Barbados (ACB)** and **African Ancestry in SW USA (ASW)**.
+
+![**Fig. 6.** Allele frequencies of our top G~ST~ hit.](04-pop_structure/images/ggv2.png)
 
 
 ## Principal component analysis
@@ -380,7 +417,7 @@ You can think of PCA as a projection all the individuals in our dataset into a c
 For an in-depth visual walkthrough of PCA, you can look at [this website](http://setosa.io/ev/principal-component-analysis/).
 <br></br>
 
-![**Fig. 4.** A PCA plot that simplifies three-dimensional data into two dimensions.](04-pop_structure/images/pca.jpg)
+![**Fig. 7.** A PCA plot that simplifies three-dimensional data into two dimensions.](04-pop_structure/images/pca.jpg)
 
 
 ## Reformatting data for PCA
