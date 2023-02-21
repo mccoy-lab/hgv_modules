@@ -281,19 +281,24 @@ What is liftover?
 <p><strong>Liftover</strong> converts genomic coordinates from one genome assembly to another. This can be used to move between different versions of the same genome (ex: hg38 -&gt; hg19), or even to move between assemblies for closely related species (ex: human to chimpanzee).</p>
 </details>
 <hr />
-<p>One common liftover tool <a href="https://genome.ucsc.edu/cgi-bin/hgLiftOver">is provided by the UCSC Genome Browser</a>.</p>
+<p><a href="https://genome.ucsc.edu/cgi-bin/hgLiftOver"><strong>One common liftover tool</strong></a> is provided by the UCSC Genome Browser.</p>
 <hr />
 <details>
 <summary>
 Navigate to the UCSC liftover page.
 </summary>
-<p>Select the assemblies that you want to change coordinates between.</p>
+<ol style="list-style-type: decimal">
+<li>Select the assemblies that you want to change coordinates between.</li>
+</ol>
 <div class="figure">
 <img src="04-pop_structure/images/liftover1.png" alt="" />
 <p class="caption"><strong>Fig. 4.</strong> Selecting assemblies for liftover.</p>
 </div>
-<p>In the box, enter the coordinates of our variant of interest. Note that we have to enter these coordinates in <code>chr:pos-pos</code> format (<code>chr21:17753762-17753762</code> for our SNP).</p>
-<p>Hit the <code>Submit</code> button. This will generate a file that you can download, which will contain the hg19 coordinates of our variant.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>In the box, enter the coordinates of our variant of interest. Note that we have to enter these coordinates in <strong><code>chr:pos-pos</code></strong> format (<code>chr21:17753762-17753762</code> for our SNP).
+<br></br></li>
+<li>Hit the <strong><code>Submit</code></strong> button. This will generate a file that you can download, which will contain the hg19 coordinates of our variant.</li>
+</ol>
 <div class="figure">
 <img src="04-pop_structure/images/liftover2.png" alt="" />
 <p class="caption"><strong>Fig. 5.</strong> Lifting over coordinates of one variant.</p>
