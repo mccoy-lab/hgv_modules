@@ -43,7 +43,7 @@ vcf <- read.vcfR(file = "random_snippet.vcf.gz")
 ```{r}
 metadata <- read.table("integrated_call_samples.txt",
                        header = TRUE)
-metadata
+head(metadata)
 ```
 
 
@@ -169,6 +169,9 @@ Plot the distribution of G~ST~ across all variants.
 
 ```
 
+Convert to hg19 coordinates: https://genome.ucsc.edu/cgi-bin/hgLiftOver
+
+Examine the top G~ST~ hit(s) in the GGV browser: https://popgen.uchicago.edu/ggv/?data=%221000genomes
 
 
 ***

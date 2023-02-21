@@ -3,7 +3,7 @@
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '04-pop_structure')
 # install vcfR package
-install.packages('vcfR')
+# install.packages('vcfR')
 ```
 
 # Population structure
@@ -29,8 +29,11 @@ In population genetics, the term **population** refers to a group of interbreedi
 
 Individuals within a population tend to be share greater genetic similarity with each other than with individuals in other populations. These differences manifest through differences in allele frequencies among populations, and result from genetic drift, natural selection, and other evolutionary forces. We can measure such allele frequency differences to reveal evolutionary relationships among populations, as well as evidence of historical natural selection.
 
-![**Fig. 1.** Two populations polymorphic for alleles `A` and `a`. The frequency of `A` in Population 1 is $0.83$, while its frequency in Population 2 is $0.15$.](04-pop_structure/images/pop_structure.jpg)
+<center>
 
+![**Fig. 1.** Two populations polymorphic for alleles `A` and `a`. The frequency of `A` in Population 1 is $0.83$, while its frequency in Population 2 is $0.15$.](04-pop_structure/images/pop_structure.jpg){width=75%}
+
+</center>
 
 ## Geography of Genetic Variants
 
@@ -112,7 +115,7 @@ vcf <- read.vcfR(file = "random_snippet.vcf.gz")
 ```{r}
 metadata <- read.table("integrated_call_samples.txt",
                        header = TRUE)
-metadata
+head(metadata)
 ```
 
 The columns of this table are:
@@ -259,7 +262,7 @@ Our data is correctly subset within the dashed lines. Even with just common vari
 
 $\mathbf{F_{ST}}$ is a statistic that quantifies differentiation between populations, based on the frequencies of alleles at one variable site.
 
-The version of $\mathrm{F_{ST}}$ that we'll calculate today compares genotypic variance within **subpopulations ("S")** against the **total population ("T")**. One way to conceptualize this is the the deficiency of heterozygotes observed across subpopulations, relative to the proportion that would be expected under random mating (i.e., no population structure).
+The version of $\mathrm{F_{ST}}$ that we'll calculate today compares genotypic variance within **subpopulations ("S")** against the **total population ("T")**. One way to conceptualize this is the deficiency of heterozygotes observed across subpopulations, relative to the proportion that would be expected under random mating (i.e., no population structure).
 
 We calculate this by taking the difference between:
 
@@ -309,7 +312,7 @@ pop_labels <- as.factor(metadata$superpop)
 head(pop_labels)
 ```
 
-Previewing `pop_labels` shows us that there are 26 "levels" in this vector, where each level is a population name.
+Previewing `pop_labels` shows us that there are five "levels" in this vector, where each level is a superpopulation name.
 
 
 ## Calculating F~ST~
@@ -331,7 +334,7 @@ head(gst_results)
 tail(gst_results)
 ```
 
-`genetic_diff` outputs a table of $\textrm{G}_{ST}$ results, where every line corresponds to one variant from the input VCF. Our $\textrm{G}_{ST}$ values range from $0.009$ to $0.565$. 
+`genetic_diff` outputs a table of $\textrm{G}_{ST}$ results, where every line corresponds to one variant from the input VCF. Our $\textrm{G}_{ST}$ values range from $0.0021$ to $0.56$. 
 
 
 ## Distribution of G~ST~ across the genome
@@ -349,6 +352,19 @@ ggplot(data = gst_results,
 ***
 
 This is another exponentially decaying distribution, indicating that most common human variants don't show strong differences in allele frequency between populations.
+
+
+<!-- ## Top G~ST~ hits -->
+
+<!-- The variants with high $\textrm{G}_{ST}$ values should show differences in allele frequency between populations. Let's examine the top-scoring variant: -->
+
+<!-- ```{r} -->
+<!-- gst_results[1, ] -->
+<!-- ``` -->
+
+<!-- We can use the [GGV browser](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22) to look at this variant's distribution of allele frequencies in 1000 Genomes. -->
+
+<!-- First, because the variants in our VCF were called on the **hg38** genome assembly and the GGV browser uses **hg19** (the previous assembly), we need to **lift over** the variant coordinates to hg19. -->
 
 
 ## Principal component analysis
