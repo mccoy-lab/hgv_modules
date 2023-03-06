@@ -6,7 +6,7 @@ rmd_files: ["index.Rmd",
             "02-dnm/02-dnm.Rmd",
             "03-ld/03-ld.Rmd",
             "04-pop_structure/04-pop_structure.Rmd",
-            "05-gwas1/05-gwas1.Rmd",
+            # "05-gwas1/05-gwas1.Rmd",
             # "06-gwas2/06-gwas2.Rmd",
             # "06-wright_fisher/06-wright_fisher.Rmd",
             "About.Rmd"]
