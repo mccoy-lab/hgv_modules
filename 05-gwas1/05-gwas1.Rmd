@@ -4,7 +4,7 @@ ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '05-gwas1')
 ```
 
-# Genome-wide association studies, pt. I
+# Genome-wide association studies I
 
 In this lab, we'll introduce and discuss the limitations of **genome-wide association studies (GWAS)**.
 
