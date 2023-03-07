@@ -337,21 +337,21 @@ tail(gst_results)
 `genetic_diff` outputs a table of $\textrm{G}_{ST}$ results, where every line corresponds to one variant from the input VCF. Our $\textrm{G}_{ST}$ values range from $0.0021$ to $0.56$. 
 
 
-<!-- ## Distribution of G~ST~ across the genome -->
+## Distribution of G~ST~ across the genome
 
-<!-- *** -->
-<!-- <details><summary> Plot the distribution of $\textrm{G}_{ST}$ values from `genetic_diff` </summary> -->
+***
+<details><summary> Plot the distribution of $\textrm{G}_{ST}$ values from `genetic_diff` </summary>
 
-<!-- ```{r} -->
-<!-- ggplot(data = gst_results,  -->
-<!--        aes(x = Gst)) + -->
-<!--   geom_histogram() -->
-<!-- ``` -->
+```{r}
+ggplot(data = gst_results,
+       aes(x = Gst)) +
+  geom_histogram()
+```
 
-<!-- </details> -->
-<!-- *** -->
+</details>
+***
 
-<!-- This is another exponentially decaying distribution, indicating that most common human variants don't show strong differences in allele frequency between populations. -->
+This is another exponentially decaying distribution, indicating that most common human variants don't show strong differences in allele frequency between populations.
 
 
 ## Top G~ST~ hits
