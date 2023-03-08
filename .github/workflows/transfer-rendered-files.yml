@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
         # Use the yaml-env-action action.
       - name: Load environment from YAML
@@ -60,12 +60,12 @@ jobs:
           results=$(Rscript --vanilla git_repo_check.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
           echo $QUIZ_REPO exists: $results
 
-          echo "::set-output name=git_results::$results"
-          echo "::set-output name=leanpub_repo::$QUIZ_REPO"
+          echo "git_results=$results" >> $GITHUB_OUTPUT
+          echo "leanpub_repo=$QUIZ_REPO" >> $GITHUB_OUTPUT
 
       - name: Checkout code from Leanpub repo
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ steps.git_repo_check.outputs.leanpub_repo }}
           token: ${{ secrets.GH_PAT }}
@@ -79,9 +79,9 @@ jobs:
           # Copy over images folder
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/resources/chapt_screen_images resources/chapt_screen_images
 
-          # Copy over _bookdown.yml 
+          # Copy over _bookdown.yml
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml _bookdown.yml
-          
+
       - name: Create PR with resources files
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         uses: peter-evans/create-pull-request@v3
