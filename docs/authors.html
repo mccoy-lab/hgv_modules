@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="optional-homework-1.html"/>
+<link rel="prev" href="homework-5.html"/>
 
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -242,6 +242,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.23" data-path="required-homework-3.html"><a href="required-homework-3.html"><i class="fa fa-check"></i><b>5.23</b> Required homework</a></li>
 <li class="chapter" data-level="5.24" data-path="optional-homework-1.html"><a href="optional-homework-1.html"><i class="fa fa-check"></i><b>5.24</b> Optional homework</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="genome-wide-association-studies-i.html"><a href="genome-wide-association-studies-i.html"><i class="fa fa-check"></i><b>6</b> Genome-wide association studies I</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="association-studies.html"><a href="association-studies.html"><i class="fa fa-check"></i><b>6.1</b> Association studies</a></li>
+<li class="chapter" data-level="6.2" data-path="gwas-is-just-linear-regression.html"><a href="gwas-is-just-linear-regression.html"><i class="fa fa-check"></i><b>6.2</b> GWAS is just linear regression</a></li>
+<li class="chapter" data-level="6.3" data-path="multiple-testing.html"><a href="multiple-testing.html"><i class="fa fa-check"></i><b>6.3</b> Multiple testing</a></li>
+<li class="chapter" data-level="6.4" data-path="ld-and-gwas.html"><a href="ld-and-gwas.html"><i class="fa fa-check"></i><b>6.4</b> LD and GWAS</a></li>
+<li class="chapter" data-level="6.5" data-path="imputation.html"><a href="imputation.html"><i class="fa fa-check"></i><b>6.5</b> Imputation</a></li>
+<li class="chapter" data-level="6.6" data-path="qq-plots.html"><a href="qq-plots.html"><i class="fa fa-check"></i><b>6.6</b> QQ plots</a></li>
+<li class="chapter" data-level="6.7" data-path="manhattan-plots.html"><a href="manhattan-plots.html"><i class="fa fa-check"></i><b>6.7</b> Manhattan plots</a></li>
+<li class="chapter" data-level="6.8" data-path="sample-size.html"><a href="sample-size.html"><i class="fa fa-check"></i><b>6.8</b> Sample size</a></li>
+<li class="chapter" data-level="6.9" data-path="interpreting-gwas-results.html"><a href="interpreting-gwas-results.html"><i class="fa fa-check"></i><b>6.9</b> Interpreting GWAS results</a></li>
+<li class="chapter" data-level="6.10" data-path="conclusion-4.html"><a href="conclusion-4.html"><i class="fa fa-check"></i><b>6.10</b> Conclusion</a></li>
+<li class="chapter" data-level="6.11" data-path="homework-5.html"><a href="homework-5.html"><i class="fa fa-check"></i><b>6.11</b> Homework</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
 <p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
@@ -317,107 +331,111 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.0.2 (2020-06-22)
-##  os       Ubuntu 20.04.3 LTS          
+##  os       Ubuntu 20.04.5 LTS          
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2023-02-21                  
+##  date     2023-03-08                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package     * version    date       lib source                            
-##  ape           5.4-1      2020-08-13 [1] RSPM (R 4.0.2)                    
-##  assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.3)                    
-##  backports     1.1.10     2020-09-15 [1] RSPM (R 4.0.2)                    
-##  blob          1.2.1      2020-01-20 [1] RSPM (R 4.0.3)                    
-##  bookdown      0.24       2022-02-15 [1] Github (rstudio/bookdown@88bc4ea) 
-##  broom         0.7.1      2020-10-02 [1] RSPM (R 4.0.2)                    
-##  callr         3.4.4      2020-09-07 [1] RSPM (R 4.0.2)                    
-##  cellranger    1.1.0      2016-07-27 [1] RSPM (R 4.0.3)                    
-##  cli           2.0.2      2020-02-28 [1] RSPM (R 4.0.0)                    
-##  cluster       2.1.0      2019-06-19 [2] CRAN (R 4.0.2)                    
-##  colorspace    1.4-1      2019-03-18 [1] RSPM (R 4.0.0)                    
-##  crayon        1.3.4      2017-09-16 [1] RSPM (R 4.0.0)                    
-##  DBI           1.1.0      2019-12-15 [1] RSPM (R 4.0.0)                    
-##  dbplyr        1.4.4      2020-05-27 [1] RSPM (R 4.0.0)                    
-##  desc          1.2.0      2018-05-01 [1] RSPM (R 4.0.3)                    
-##  devtools      2.3.2      2020-09-18 [1] RSPM (R 4.0.3)                    
-##  digest        0.6.25     2020-02-23 [1] RSPM (R 4.0.0)                    
-##  dplyr       * 1.0.2      2020-08-18 [1] RSPM (R 4.0.2)                    
-##  ellipsis      0.3.1      2020-05-15 [1] RSPM (R 4.0.3)                    
-##  evaluate      0.14       2019-05-28 [1] RSPM (R 4.0.3)                    
-##  fansi         0.4.1      2020-01-08 [1] RSPM (R 4.0.0)                    
-##  farver        2.0.3      2020-01-16 [1] RSPM (R 4.0.3)                    
-##  forcats     * 0.5.0      2020-03-01 [1] RSPM (R 4.0.0)                    
-##  fs            1.5.0      2020-07-31 [1] RSPM (R 4.0.3)                    
-##  generics      0.0.2      2018-11-29 [1] RSPM (R 4.0.0)                    
-##  ggplot2     * 3.3.2      2020-06-19 [1] RSPM (R 4.0.1)                    
-##  glue          1.6.1      2022-01-22 [1] CRAN (R 4.0.2)                    
-##  gtable        0.3.0      2019-03-25 [1] RSPM (R 4.0.3)                    
-##  haven         2.3.1      2020-06-01 [1] RSPM (R 4.0.2)                    
-##  highr         0.8        2019-03-20 [1] RSPM (R 4.0.3)                    
-##  hms           0.5.3      2020-01-08 [1] RSPM (R 4.0.0)                    
-##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
-##  httr          1.4.2      2020-07-20 [1] RSPM (R 4.0.3)                    
-##  jquerylib     0.1.4      2021-04-26 [1] CRAN (R 4.0.2)                    
-##  jsonlite      1.7.1      2020-09-07 [1] RSPM (R 4.0.2)                    
-##  knitr         1.33       2022-02-15 [1] Github (yihui/knitr@a1052d1)      
-##  labeling      0.3        2014-08-23 [1] RSPM (R 4.0.0)                    
-##  lattice       0.20-41    2020-04-02 [2] CRAN (R 4.0.2)                    
-##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
-##  lubridate     1.7.9      2020-06-08 [1] RSPM (R 4.0.2)                    
-##  magrittr      2.0.2      2022-01-26 [1] CRAN (R 4.0.2)                    
-##  MASS          7.3-51.6   2020-04-26 [2] CRAN (R 4.0.2)                    
-##  Matrix        1.2-18     2019-11-27 [2] CRAN (R 4.0.2)                    
-##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  memuse        4.1-0      2020-02-17 [1] RSPM (R 4.0.0)                    
-##  mgcv          1.8-31     2019-11-09 [2] CRAN (R 4.0.2)                    
-##  modelr        0.1.8      2020-05-19 [1] RSPM (R 4.0.3)                    
-##  munsell       0.5.0      2018-06-12 [1] RSPM (R 4.0.3)                    
-##  nlme          3.1-148    2020-05-24 [2] CRAN (R 4.0.2)                    
-##  ottrpal       0.1.2      2022-02-15 [1] Github (jhudsl/ottrpal@1018848)   
-##  permute       0.9-5      2019-03-12 [1] RSPM (R 4.0.3)                    
-##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  pinfsc50      1.2.0      2020-06-03 [1] RSPM (R 4.0.0)                    
-##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
-##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
-##  pkgload       1.1.0      2020-05-29 [1] RSPM (R 4.0.3)                    
-##  prettyunits   1.1.1      2020-01-24 [1] RSPM (R 4.0.3)                    
-##  processx      3.4.4      2020-09-03 [1] RSPM (R 4.0.2)                    
-##  ps            1.3.4      2020-08-11 [1] RSPM (R 4.0.2)                    
-##  purrr       * 0.3.4      2020-04-17 [1] RSPM (R 4.0.3)                    
-##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
-##  Rcpp          1.0.8      2022-01-13 [1] CRAN (R 4.0.2)                    
-##  readr       * 1.4.0      2020-10-05 [1] RSPM (R 4.0.2)                    
-##  readxl        1.3.1      2019-03-13 [1] RSPM (R 4.0.2)                    
-##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  reprex        0.3.0      2019-05-16 [1] RSPM (R 4.0.0)                    
-##  rlang         0.4.10     2022-02-15 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2022-02-15 [1] Github (rstudio/rmarkdown@02d3c25)
-##  rprojroot     2.0.2      2020-11-15 [1] CRAN (R 4.0.2)                    
-##  rstudioapi    0.11       2020-02-07 [1] RSPM (R 4.0.0)                    
-##  rvest         1.0.1      2022-02-15 [1] Github (tidyverse/rvest@4fe39fb)  
-##  scales        1.1.1      2020-05-11 [1] RSPM (R 4.0.3)                    
-##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
-##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
-##  stringr     * 1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2022-02-15 [1] Github (R-lib/testthat@e99155a)   
-##  tibble      * 3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  tidyr       * 1.1.2      2020-08-27 [1] RSPM (R 4.0.2)                    
-##  tidyselect    1.1.0      2020-05-11 [1] RSPM (R 4.0.3)                    
-##  tidyverse   * 1.3.0      2019-11-21 [1] RSPM (R 4.0.3)                    
-##  usethis       2.1.5.9000 2022-02-15 [1] Github (r-lib/usethis@57b109a)    
-##  utf8          1.1.4      2018-05-24 [1] RSPM (R 4.0.3)                    
-##  vcfR        * 1.12.0     2020-09-01 [1] RSPM (R 4.0.2)                    
-##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
-##  vegan         2.5-6      2019-09-01 [1] RSPM (R 4.0.0)                    
-##  viridisLite   0.3.0      2018-02-01 [1] RSPM (R 4.0.3)                    
-##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.26       2022-02-15 [1] Github (yihui/xfun@74c2a66)       
-##  xml2          1.3.2      2020-04-23 [1] RSPM (R 4.0.3)                    
-##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
+##  package     * version  date       lib source                            
+##  ape           5.4-1    2020-08-13 [1] RSPM (R 4.0.2)                    
+##  assertthat    0.2.1    2019-03-21 [1] RSPM (R 4.0.5)                    
+##  backports     1.1.10   2020-09-15 [1] RSPM (R 4.0.2)                    
+##  blob          1.2.1    2020-01-20 [1] RSPM (R 4.0.3)                    
+##  bookdown      0.24     2023-03-01 [1] Github (rstudio/bookdown@88bc4ea) 
+##  broom         0.7.1    2020-10-02 [1] RSPM (R 4.0.2)                    
+##  bslib         0.4.2    2022-12-16 [1] CRAN (R 4.0.2)                    
+##  cachem        1.0.7    2023-02-24 [1] CRAN (R 4.0.2)                    
+##  callr         3.5.0    2020-10-08 [1] RSPM (R 4.0.2)                    
+##  cellranger    1.1.0    2016-07-27 [1] RSPM (R 4.0.3)                    
+##  cli           3.6.0    2023-01-09 [1] CRAN (R 4.0.2)                    
+##  cluster       2.1.0    2019-06-19 [2] CRAN (R 4.0.2)                    
+##  colorspace    1.4-1    2019-03-18 [1] RSPM (R 4.0.0)                    
+##  crayon        1.3.4    2017-09-16 [1] RSPM (R 4.0.0)                    
+##  DBI           1.1.0    2019-12-15 [1] RSPM (R 4.0.0)                    
+##  dbplyr        1.4.4    2020-05-27 [1] RSPM (R 4.0.0)                    
+##  desc          1.2.0    2018-05-01 [1] RSPM (R 4.0.3)                    
+##  devtools      2.3.2    2020-09-18 [1] RSPM (R 4.0.3)                    
+##  digest        0.6.25   2020-02-23 [1] RSPM (R 4.0.0)                    
+##  dplyr       * 1.0.2    2020-08-18 [1] RSPM (R 4.0.2)                    
+##  ellipsis      0.3.1    2020-05-15 [1] RSPM (R 4.0.3)                    
+##  evaluate      0.20     2023-01-17 [1] CRAN (R 4.0.2)                    
+##  fansi         0.4.1    2020-01-08 [1] RSPM (R 4.0.0)                    
+##  farver        2.0.3    2020-01-16 [1] RSPM (R 4.0.3)                    
+##  fastmap       1.1.1    2023-02-24 [1] CRAN (R 4.0.2)                    
+##  forcats     * 0.5.0    2020-03-01 [1] RSPM (R 4.0.0)                    
+##  fs            1.5.0    2020-07-31 [1] RSPM (R 4.0.3)                    
+##  generics      0.0.2    2018-11-29 [1] RSPM (R 4.0.0)                    
+##  ggplot2     * 3.3.2    2020-06-19 [1] RSPM (R 4.0.1)                    
+##  glue          1.4.2    2020-08-27 [1] RSPM (R 4.0.5)                    
+##  gtable        0.3.0    2019-03-25 [1] RSPM (R 4.0.3)                    
+##  haven         2.3.1    2020-06-01 [1] RSPM (R 4.0.2)                    
+##  highr         0.8      2019-03-20 [1] RSPM (R 4.0.3)                    
+##  hms           0.5.3    2020-01-08 [1] RSPM (R 4.0.0)                    
+##  htmltools     0.5.4    2022-12-07 [1] CRAN (R 4.0.2)                    
+##  httr          1.4.2    2020-07-20 [1] RSPM (R 4.0.3)                    
+##  jquerylib     0.1.4    2021-04-26 [1] CRAN (R 4.0.2)                    
+##  jsonlite      1.7.1    2020-09-07 [1] RSPM (R 4.0.2)                    
+##  knitr         1.33     2023-03-01 [1] Github (yihui/knitr@a1052d1)      
+##  labeling      0.3      2014-08-23 [1] RSPM (R 4.0.0)                    
+##  lattice       0.20-41  2020-04-02 [2] CRAN (R 4.0.2)                    
+##  lifecycle     1.0.3    2022-10-07 [1] CRAN (R 4.0.2)                    
+##  lubridate     1.7.9    2020-06-08 [1] RSPM (R 4.0.2)                    
+##  magrittr      2.0.3    2022-03-30 [1] CRAN (R 4.0.2)                    
+##  MASS          7.3-51.6 2020-04-26 [2] CRAN (R 4.0.2)                    
+##  Matrix        1.2-18   2019-11-27 [2] CRAN (R 4.0.2)                    
+##  memoise       2.0.1    2021-11-26 [1] CRAN (R 4.0.2)                    
+##  memuse        4.1-0    2020-02-17 [1] RSPM (R 4.0.0)                    
+##  mgcv          1.8-31   2019-11-09 [2] CRAN (R 4.0.2)                    
+##  modelr        0.1.8    2020-05-19 [1] RSPM (R 4.0.3)                    
+##  munsell       0.5.0    2018-06-12 [1] RSPM (R 4.0.3)                    
+##  nlme          3.1-148  2020-05-24 [2] CRAN (R 4.0.2)                    
+##  ottrpal       1.0.1    2023-03-01 [1] Github (jhudsl/ottrpal@a0dcc42)   
+##  permute       0.9-5    2019-03-12 [1] RSPM (R 4.0.3)                    
+##  pillar        1.4.6    2020-07-10 [1] RSPM (R 4.0.2)                    
+##  pinfsc50      1.2.0    2020-06-03 [1] RSPM (R 4.0.0)                    
+##  pkgbuild      1.1.0    2020-07-13 [1] RSPM (R 4.0.2)                    
+##  pkgconfig     2.0.3    2019-09-22 [1] RSPM (R 4.0.3)                    
+##  pkgload       1.1.0    2020-05-29 [1] RSPM (R 4.0.3)                    
+##  prettyunits   1.1.1    2020-01-24 [1] RSPM (R 4.0.3)                    
+##  processx      3.4.4    2020-09-03 [1] RSPM (R 4.0.2)                    
+##  ps            1.4.0    2020-10-07 [1] RSPM (R 4.0.2)                    
+##  purrr       * 0.3.4    2020-04-17 [1] RSPM (R 4.0.5)                    
+##  R6            2.4.1    2019-11-12 [1] RSPM (R 4.0.0)                    
+##  Rcpp          1.0.10   2023-01-22 [1] CRAN (R 4.0.2)                    
+##  readr       * 1.4.0    2020-10-05 [1] RSPM (R 4.0.2)                    
+##  readxl        1.3.1    2019-03-13 [1] RSPM (R 4.0.2)                    
+##  remotes       2.2.0    2020-07-21 [1] RSPM (R 4.0.3)                    
+##  reprex        0.3.0    2019-05-16 [1] RSPM (R 4.0.0)                    
+##  rlang         1.0.6    2022-09-24 [1] CRAN (R 4.0.2)                    
+##  rmarkdown     2.10     2023-03-01 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rprojroot     2.0.3    2022-04-02 [1] CRAN (R 4.0.2)                    
+##  rstudioapi    0.11     2020-02-07 [1] RSPM (R 4.0.0)                    
+##  rvest         1.0.1    2023-03-01 [1] Github (tidyverse/rvest@4fe39fb)  
+##  sass          0.4.5    2023-01-24 [1] CRAN (R 4.0.2)                    
+##  scales        1.1.1    2020-05-11 [1] RSPM (R 4.0.3)                    
+##  sessioninfo   1.1.1    2018-11-05 [1] RSPM (R 4.0.3)                    
+##  stringi       1.5.3    2020-09-09 [1] RSPM (R 4.0.3)                    
+##  stringr     * 1.4.0    2019-02-10 [1] RSPM (R 4.0.3)                    
+##  testthat      3.0.1    2023-03-01 [1] Github (R-lib/testthat@e99155a)   
+##  tibble      * 3.0.3    2020-07-10 [1] RSPM (R 4.0.2)                    
+##  tidyr       * 1.1.2    2020-08-27 [1] RSPM (R 4.0.2)                    
+##  tidyselect    1.1.0    2020-05-11 [1] RSPM (R 4.0.3)                    
+##  tidyverse   * 1.3.0    2019-11-21 [1] RSPM (R 4.0.3)                    
+##  usethis       1.6.3    2020-09-17 [1] RSPM (R 4.0.2)                    
+##  utf8          1.1.4    2018-05-24 [1] RSPM (R 4.0.3)                    
+##  vcfR        * 1.12.0   2020-09-01 [1] RSPM (R 4.0.2)                    
+##  vctrs         0.5.2    2023-01-23 [1] CRAN (R 4.0.2)                    
+##  vegan         2.5-6    2019-09-01 [1] RSPM (R 4.0.0)                    
+##  viridisLite   0.3.0    2018-02-01 [1] RSPM (R 4.0.3)                    
+##  withr         2.3.0    2020-09-22 [1] RSPM (R 4.0.2)                    
+##  xfun          0.26     2023-03-01 [1] Github (yihui/xfun@74c2a66)       
+##  xml2          1.3.2    2020-04-23 [1] RSPM (R 4.0.3)                    
+##  yaml          2.2.1    2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library</code></pre>
@@ -446,7 +464,7 @@ For JHU courses, You will need to add Ira as a credit:
           </div>
         </div>
       </div>
-<a href="optional-homework-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="homework-5.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

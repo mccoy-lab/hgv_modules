@@ -242,6 +242,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.23" data-path="required-homework-3.html"><a href="required-homework-3.html"><i class="fa fa-check"></i><b>5.23</b> Required homework</a></li>
 <li class="chapter" data-level="5.24" data-path="optional-homework-1.html"><a href="optional-homework-1.html"><i class="fa fa-check"></i><b>5.24</b> Optional homework</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="genome-wide-association-studies-i.html"><a href="genome-wide-association-studies-i.html"><i class="fa fa-check"></i><b>6</b> Genome-wide association studies I</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="association-studies.html"><a href="association-studies.html"><i class="fa fa-check"></i><b>6.1</b> Association studies</a></li>
+<li class="chapter" data-level="6.2" data-path="gwas-is-just-linear-regression.html"><a href="gwas-is-just-linear-regression.html"><i class="fa fa-check"></i><b>6.2</b> GWAS is just linear regression</a></li>
+<li class="chapter" data-level="6.3" data-path="multiple-testing.html"><a href="multiple-testing.html"><i class="fa fa-check"></i><b>6.3</b> Multiple testing</a></li>
+<li class="chapter" data-level="6.4" data-path="ld-and-gwas.html"><a href="ld-and-gwas.html"><i class="fa fa-check"></i><b>6.4</b> LD and GWAS</a></li>
+<li class="chapter" data-level="6.5" data-path="imputation.html"><a href="imputation.html"><i class="fa fa-check"></i><b>6.5</b> Imputation</a></li>
+<li class="chapter" data-level="6.6" data-path="qq-plots.html"><a href="qq-plots.html"><i class="fa fa-check"></i><b>6.6</b> QQ plots</a></li>
+<li class="chapter" data-level="6.7" data-path="manhattan-plots.html"><a href="manhattan-plots.html"><i class="fa fa-check"></i><b>6.7</b> Manhattan plots</a></li>
+<li class="chapter" data-level="6.8" data-path="sample-size.html"><a href="sample-size.html"><i class="fa fa-check"></i><b>6.8</b> Sample size</a></li>
+<li class="chapter" data-level="6.9" data-path="interpreting-gwas-results.html"><a href="interpreting-gwas-results.html"><i class="fa fa-check"></i><b>6.9</b> Interpreting GWAS results</a></li>
+<li class="chapter" data-level="6.10" data-path="conclusion-4.html"><a href="conclusion-4.html"><i class="fa fa-check"></i><b>6.10</b> Conclusion</a></li>
+<li class="chapter" data-level="6.11" data-path="homework-5.html"><a href="homework-5.html"><i class="fa fa-check"></i><b>6.11</b> Homework</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
 <p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
@@ -270,7 +284,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <summary>
 Plot the distribution of <span class="math inline">\(\textrm{G}_{ST}\)</span> values from <code>genetic_diff</code>
 </summary>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="distribution-of-gst-across-the-genome.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gst_results, </span>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="distribution-of-gst-across-the-genome.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gst_results,</span>
 <span id="cb97-2"><a href="distribution-of-gst-across-the-genome.html#cb97-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Gst)) <span class="sc">+</span></span>
 <span id="cb97-3"><a href="distribution-of-gst-across-the-genome.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
