@@ -1,4 +1,5 @@
-# Candace Savonen Aug 2022
+# Candace Savonen 2021
+# Updated Jan 2023
 
 name: Pull Request
 
@@ -13,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -22,14 +23,6 @@ jobs:
         uses: doughepi/yaml-env-action@v1.0.0
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
-
-      - name: Verify Dockerfiles changed?
-        uses: tj-actions/verify-changed-files@v8.8
-        id: verify-changed-files
-        with:
-          files: |
-             docker/Dockerfile
-             docker/github_package_list.tsv
 
       # Delete the branch if this has been run before
       - name: Delete branch locally and remotely
@@ -53,9 +46,7 @@ jobs:
       toggle_url_check: "${{ env.URL_CHECKER }}"
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
-      toggle_docker_build: "${{ env.DOCKER_BUILD }}"
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
-      dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
 
 ########################## Make the error reports ##############################
   spell-check:
@@ -99,7 +90,7 @@ jobs:
 
     steps:
       - name: Checkout files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -108,6 +99,7 @@ jobs:
 
       - name: Commit styled files
         run: |
+          git config --system --add safe.directory "$GITHUB_WORKSPACE"
           git add \*.Rmd
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
@@ -124,13 +116,14 @@ jobs:
 
     steps:
       - name: Checkout files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       # Set up git checkout
       - name: Set up git checkout
         run: |
+          git config --system --add safe.directory "$GITHUB_WORKSPACE"
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
 
@@ -167,7 +160,7 @@ jobs:
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
           git diff origin/main -- docs >/dev/null && changes=true || changes=false
-          echo ::set-output name=changes::$changes
+          echo "changes=$changes" >> $GITHUB_OUTPUT
           git add . --force
           git commit -m 'Render preview' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
@@ -175,7 +168,7 @@ jobs:
         shell: bash
 
       - name: Find Comment
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v2
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -189,16 +182,16 @@ jobs:
           bookdown_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/index.html")
           tocless_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/no_toc/index.html")
           docx_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/docs/$course_name.docx")
-          echo ::set-output name=bookdown_link::$bookdown_link
-          echo ::set-output name=tocless_link::$tocless_link
-          echo ::set-output name=docx_link::$docx_link
-          echo ::set-output name=time::$(date +'%Y-%m-%d')
-          echo ::set-output name=commit_id::$GITHUB_SHA
+          echo "bookdown_link=$bookdown_link" >> $GITHUB_OUTPUT
+          echo "tocless_link=$tocless_link" >> $GITHUB_OUTPUT
+          echo "docx_link=$docx_link" >> $GITHUB_OUTPUT
+          echo "time=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "commit_id=$GITHUB_SHA" >> $GITHUB_OUTPUT
           echo ${{steps.commit.outputs.changes}}
 
       - name: Create or update comment
         if: steps.commit.outputs.changes == 'true'
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
@@ -213,7 +206,7 @@ jobs:
 
       - name: Comment if no changes
         if: steps.commit.outputs.changes == 'false'
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
@@ -222,56 +215,3 @@ jobs:
 
             _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
-
-############################## Build Docker ####################################
-
-  build-docker:
-    name: Build Docker image
-    needs: yaml-check
-    runs-on: ubuntu-latest
-    if: ${{needs.yaml-check.outputs.toggle_docker_build == 'yes' && needs.yaml-check.outputs.dockerfiles_changed == 'true' && github.head_ref != 'repo-sync/OTTR_Template/default'}}
-
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v2
-
-      - name: Verify Dockerfiles changed?
-        uses: tj-actions/verify-changed-files@v8.8
-        id: verify-changed-files
-        with:
-          files: |
-             docker/Dockerfile
-             docker/github_package_list.tsv
-
-      - name: Login as jhudsl-robot
-        run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
-
-      # Set up Docker build
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      # Setup layer cache
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-
-      - name: Set up Docker Build
-        uses: docker/setup-buildx-action@v1
-
-      - name: Get token
-        run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
-
-      - name: Build Docker image
-        uses: docker/build-push-action@v2
-        with:
-          push: false
-          load: true
-          context: docker
-          file: docker/Dockerfile
-          tags: jhudsl/base_ottr
