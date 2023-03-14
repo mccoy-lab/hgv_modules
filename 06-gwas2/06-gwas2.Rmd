@@ -54,15 +54,11 @@ Although these data are still available to researchers who want to work with it,
 
 ## Genotype data
 
-As in the population structure module, our genotype data is stored in a [**Variant Call Format (VCF)**](https://mccoy-lab.github.io/hgv_modules/variant-call-format-vcf.html) file.
+As in the population structure module, our genotype data is stored in a [**Variant Call Format (VCF)**](https://mccoy-lab.github.io/hgv_modules/variant-call-format-vcf.html) file. The `genotypes_subset.vcf` file is a small subset of a much larger VCF that we'll use later to run a genome-wide GWAS.
 
-```{r, results = FALSE, eval = FALSE}
+```{r}
 # load the VCF
-vcf <- read.vcfR("genotypes.vcf.gz")
-```
-
-```{r, echo = FALSE, results = FALSE, warning = FALSE, message = FALSE}
-vcf <- read.vcfR("https://www.dropbox.com/s/gfjf4klkekqglb3/genotypes.vcf.gz?dl=1")
+vcf <- read.vcfR("genotypes_subset.vcf")
 ```
 
 We'll first extract just the first SNP in the dataset, using the `vcfR2tidy` function to convert the `vcf` object into tidy dataframes.
@@ -254,7 +250,7 @@ If this was the only SNP that we were investigating, we might find this result p
 
 ## GWAS for multiple SNPs
 
-A GWAS performs the linear regression we just did for every SNP in the dataset. We _could_ write a for loop to do this in R ourselves, but it would be a bit slow because there are 256,896 variants in the VCF.
+A GWAS performs the linear regression we just did, for every SNP in the dataset. We _could_ write a for loop to do this in R ourselves, but it would be a bit slow because there are 256,896 variants in the full VCF.
 
 Because GWAS is such a common approach, researchers have developed software to standardize this process and make it extremely efficient. The most popular software package for GWAS is called **`PLINK`**, which is preloaded into your Cloud session.
 
@@ -284,7 +280,7 @@ system(command = "./plink --file genotypes --linear --snp rs9699599 --pheno GS45
 <details><summary> Breakdown of the PLINK command </summary>
 
 * `./plink`: Use the PLINK software
-* `--file genotypes`: Genotype data files begins with the string "genotypes"
+* `--file genotypes`: Genotype data files (`genotypes.map`, `genotypes.ped`) begin with the string "genotypes"
 * `--linear`:Run a linear additive association test for each SNP
 * `--snp rs9699599`: Only run the analysis for a single SNP (`rs9699599`)
 * `--pheno GS451_IC50.txt`: Phenotype data is located in a file called `GS451_IC50.txt`
