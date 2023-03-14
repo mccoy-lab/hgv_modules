@@ -3,7 +3,7 @@
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '06-gwas2')
 # install packages for the lab
-install.packagexs('qqman')
+install.packages('qqman')
 ```
 
 # Genome-wide association studies II
