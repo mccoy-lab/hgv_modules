@@ -325,8 +325,6 @@ The `plink.assoc.linear` file should now have ~260,000 lines. Load the file into
 
 ```{r, eval = FALSE}
 results <- read.table(file = "plink.assoc.linear", header = TRUE) %>%
-  # create `index` column to store the SNP number before we reorder
-  mutate(index = row_number()) %>%
   # order table by lowest pvalue
   arrange(P)
 
@@ -335,8 +333,6 @@ head(results)
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 results <- read.table(file = "https://www.dropbox.com/s/ukmczgmxhr29aa7/plink.assoc.linear?dl=1", header = TRUE) %>%
-  # create `index` column to store the SNP number before we reorder
-  mutate(index = row_number()) %>%
   # order table by lowest pvalue
   arrange(P)
 head(results)
@@ -362,11 +358,11 @@ SNPs with low p-values occur in peaks of multiple variants. These are not indepe
 
 ## Top GWAS SNP
 
-One common future direction for GWAS studies is following up on the top SNP(s). We can plot boxplots of the top SNP genotype stratified by phenotype:
+One common future direction for GWAS studies is following up on the top SNP(s). Read in `top_snp.vcf`, a VCF of just the top SNP in the dataset, so that we can plot boxplots of the top SNP genotype stratified by phenotype:
 
 ```{r}
 # extract genotypes of the top SNP
-top_snp <- vcfR2tidy(vcf[240916, ])
+top_snp <- vcfR2tidy(read.vcfR("top_snp.vcf"))
 top_snp_gt <- top_snp$gt %>%
   drop_na()
 
@@ -411,7 +407,7 @@ We used genotype and simulated phenotype data from the 1000 Genomes Project to p
 
 Run a GWAS of $\mathrm{IC_{50}}$ for the drug CB1908, using the same genotype data as before. The phenotypes are located in `CB1908_IC50.txt`.
 
-Make a QQ plot and a Manhattan plot of your results. Do you have any genome-wide significant hits? Are they located in or near a gene? For the top GWAS hit, plot the phenotype stratified by genotype.
+Make a QQ plot and a Manhattan plot of your results. Do you have any genome-wide significant hits? Are they located in or near a gene? For the top GWAS hit, plot the phenotype stratified by genotype. (Use `top_snp_hw.vcf` to get the genotypes of the top hit.)
 
 ***
 <details> <summary> Solution </summary>
@@ -437,7 +433,6 @@ manhattan(results)
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 # read in gwas results
 results <- read.table(file = "https://www.dropbox.com/s/g9ldm9kuknbae3l/plink.assoc.linear.hw?dl=1", header = TRUE) %>%
-  mutate(index = row_number()) %>%
   arrange(P)
 
 # qq plot
@@ -458,7 +453,7 @@ From looking it up in the UCSC Genome Browser, `rs10876043` lies within an intro
 
 ```{r}
 # extract top SNP and convert to tidy df
-top_snp <- vcfR2tidy(vcf[184405, ])
+top_snp <- vcfR2tidy(read.vcfR("top_snp_hw.vcf"))
 # get genotype dataframe
 top_snp_gt <- top_snp$gt %>%
   drop_na()
