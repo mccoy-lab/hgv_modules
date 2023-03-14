@@ -302,10 +302,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="phenotype-data" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> Phenotype data</h2>
 <p>Our phenotype for this GWAS is the <span class="math inline">\(\mathbf{IC_{50}}\)</span> – the concentration of the GS451 drug that at which we observe 50% viability in cell culture.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="phenotype-data.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in phenotypes</span></span>
-<span id="cb146-2"><a href="phenotype-data.html#cb146-2" aria-hidden="true" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;GS451_IC50.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb146-3"><a href="phenotype-data.html#cb146-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-4"><a href="phenotype-data.html#cb146-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phenotypes)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="phenotype-data.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in phenotypes</span></span>
+<span id="cb147-2"><a href="phenotype-data.html#cb147-2" aria-hidden="true" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;GS451_IC50.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb147-3"><a href="phenotype-data.html#cb147-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-4"><a href="phenotype-data.html#cb147-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phenotypes)</span></code></pre></div>
 <pre><code>##    FID  IID GS451_IC50
 ## 1 1001 1001   5.594256
 ## 2 1002 1002   8.525633
@@ -323,12 +323,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <summary>
 Plot the distribution of the phenotype.
 </summary>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="phenotype-data.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> phenotypes,</span>
-<span id="cb148-2"><a href="phenotype-data.html#cb148-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> GS451_IC50)) <span class="sc">+</span></span>
-<span id="cb148-3"><a href="phenotype-data.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="phenotype-data.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> phenotypes,</span>
+<span id="cb149-2"><a href="phenotype-data.html#cb149-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> GS451_IC50)) <span class="sc">+</span></span>
+<span id="cb149-3"><a href="phenotype-data.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 1 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>This data looks approximately normally distributed. This is important to check because this is one of the assumptions of linear regression, which we’ll be using to perform the GWAS.</p>
 </details>
 <hr />

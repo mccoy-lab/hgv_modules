@@ -301,7 +301,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="gwas-for-multiple-snps" class="section level2" number="7.9">
 <h2><span class="header-section-number">7.9</span> GWAS for multiple SNPs</h2>
-<p>A GWAS performs the linear regression we just did for every SNP in the dataset. We <em>could</em> write a for loop to do this in R ourselves, but it would be a bit slow because there are 256,896 variants in the VCF.</p>
+<p>A GWAS performs the linear regression we just did, for every SNP in the dataset. We <em>could</em> write a for loop to do this in R ourselves, but it would be a bit slow because there are 256,896 variants in the full VCF.</p>
 <p>Because GWAS is such a common approach, researchers have developed software to standardize this process and make it extremely efficient. The most popular software package for GWAS is called <strong><code>PLINK</code></strong>, which is preloaded into your Cloud session.</p>
 <p>PLINK is a “command-line” tool, so we could either use it by working from the “Terminal” tab in Posit Cloud, or using the <code>system()</code> command within R. For this class we’ll use the latter approach.</p>
 <hr />

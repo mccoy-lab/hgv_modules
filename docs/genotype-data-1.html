@@ -301,18 +301,37 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="genotype-data-1" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Genotype data</h2>
-<p>As in the population structure module, our genotype data is stored in a <a href="https://mccoy-lab.github.io/hgv_modules/variant-call-format-vcf.html"><strong>Variant Call Format (VCF)</strong></a> file.</p>
+<p>As in the population structure module, our genotype data is stored in a <a href="https://mccoy-lab.github.io/hgv_modules/variant-call-format-vcf.html"><strong>Variant Call Format (VCF)</strong></a> file. The <code>genotypes_subset.vcf</code> file is a small subset of a much larger VCF that we’ll use later to run a genome-wide GWAS.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="genotype-data-1.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the VCF</span></span>
-<span id="cb135-2"><a href="genotype-data-1.html#cb135-2" aria-hidden="true" tabindex="-1"></a>vcf <span class="ot">&lt;-</span> <span class="fu">read.vcfR</span>(<span class="st">&quot;genotypes.vcf.gz&quot;</span>)</span></code></pre></div>
+<span id="cb135-2"><a href="genotype-data-1.html#cb135-2" aria-hidden="true" tabindex="-1"></a>vcf <span class="ot">&lt;-</span> <span class="fu">read.vcfR</span>(<span class="st">&quot;genotypes_subset.vcf&quot;</span>)</span></code></pre></div>
+<pre><code>## Scanning file to determine attributes.
+## File attributes:
+##   meta lines: 27
+##   header_line: 28
+##   variant count: 72
+##   column count: 185
+## 
+Meta line 27 read in.
+## All meta lines processed.
+## gt matrix initialized.
+## Character matrix gt created.
+##   Character matrix gt rows: 72
+##   Character matrix gt cols: 185
+##   skip: 0
+##   nrows: 72
+##   row_num: 0
+## 
+Processed variant: 72
+## All variants processed</code></pre>
 <p>We’ll first extract just the first SNP in the dataset, using the <code>vcfR2tidy</code> function to convert the <code>vcf</code> object into tidy dataframes.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="genotype-data-1.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first SNP and convert to tidy df</span></span>
-<span id="cb136-2"><a href="genotype-data-1.html#cb136-2" aria-hidden="true" tabindex="-1"></a>test_snp <span class="ot">&lt;-</span> <span class="fu">vcfR2tidy</span>(vcf[<span class="dv">1</span>, ])</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="genotype-data-1.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first SNP and convert to tidy df</span></span>
+<span id="cb137-2"><a href="genotype-data-1.html#cb137-2" aria-hidden="true" tabindex="-1"></a>test_snp <span class="ot">&lt;-</span> <span class="fu">vcfR2tidy</span>(vcf[<span class="dv">1</span>, ])</span></code></pre></div>
 <pre><code>## Extracting gt element GT</code></pre>
 <p>The <code>gt</code> dataframe within <code>test_snp</code> contains the genotypes of our SNP of interest. In this dataframe, every row is a different individual in the dataset.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="genotype-data-1.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract genotype dataframe</span></span>
-<span id="cb138-2"><a href="genotype-data-1.html#cb138-2" aria-hidden="true" tabindex="-1"></a>test_snp_gt <span class="ot">&lt;-</span> test_snp<span class="sc">$</span>gt</span>
-<span id="cb138-3"><a href="genotype-data-1.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-4"><a href="genotype-data-1.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test_snp_gt)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="genotype-data-1.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract genotype dataframe</span></span>
+<span id="cb139-2"><a href="genotype-data-1.html#cb139-2" aria-hidden="true" tabindex="-1"></a>test_snp_gt <span class="ot">&lt;-</span> test_snp<span class="sc">$</span>gt</span>
+<span id="cb139-3"><a href="genotype-data-1.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-4"><a href="genotype-data-1.html#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test_snp_gt)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   ChromKey    POS Indiv     gt_GT gt_GT_alleles
 ##      &lt;int&gt;  &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;        

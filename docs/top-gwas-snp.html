@@ -301,23 +301,42 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="top-gwas-snp" class="section level2" number="7.13">
 <h2><span class="header-section-number">7.13</span> Top GWAS SNP</h2>
-<p>One common future direction for GWAS studies is following up on the top SNP(s). We can plot boxplots of the top SNP genotype stratified by phenotype:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="top-gwas-snp.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract genotypes of the top SNP</span></span>
-<span id="cb167-2"><a href="top-gwas-snp.html#cb167-2" aria-hidden="true" tabindex="-1"></a>top_snp <span class="ot">&lt;-</span> <span class="fu">vcfR2tidy</span>(vcf[<span class="dv">240916</span>, ])</span></code></pre></div>
+<p>One common future direction for GWAS studies is following up on the top SNP(s). Read in <code>top_snp.vcf</code>, a VCF of just the top SNP in the dataset, so that we can plot boxplots of the top SNP genotype stratified by phenotype:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="top-gwas-snp.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract genotypes of the top SNP</span></span>
+<span id="cb168-2"><a href="top-gwas-snp.html#cb168-2" aria-hidden="true" tabindex="-1"></a>top_snp <span class="ot">&lt;-</span> <span class="fu">vcfR2tidy</span>(<span class="fu">read.vcfR</span>(<span class="st">&quot;top_snp.vcf&quot;</span>))</span></code></pre></div>
+<pre><code>## Scanning file to determine attributes.
+## File attributes:
+##   meta lines: 27
+##   header_line: 28
+##   variant count: 1
+##   column count: 185
+## 
+Meta line 27 read in.
+## All meta lines processed.
+## gt matrix initialized.
+## Character matrix gt created.
+##   Character matrix gt rows: 1
+##   Character matrix gt cols: 185
+##   skip: 0
+##   nrows: 1
+##   row_num: 0
+## 
+Processed variant: 1
+## All variants processed</code></pre>
 <pre><code>## Extracting gt element GT</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="top-gwas-snp.html#cb169-1" aria-hidden="true" tabindex="-1"></a>top_snp_gt <span class="ot">&lt;-</span> top_snp<span class="sc">$</span>gt <span class="sc">%&gt;%</span></span>
-<span id="cb169-2"><a href="top-gwas-snp.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb169-3"><a href="top-gwas-snp.html#cb169-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-4"><a href="top-gwas-snp.html#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="co"># merge with phenotype data</span></span>
-<span id="cb169-5"><a href="top-gwas-snp.html#cb169-5" aria-hidden="true" tabindex="-1"></a>gwas_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(top_snp_gt, phenotypes,</span>
-<span id="cb169-6"><a href="top-gwas-snp.html#cb169-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;Indiv&quot;</span>)</span>
-<span id="cb169-7"><a href="top-gwas-snp.html#cb169-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-8"><a href="top-gwas-snp.html#cb169-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot boxplots</span></span>
-<span id="cb169-9"><a href="top-gwas-snp.html#cb169-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gwas_data) <span class="sc">+</span></span>
-<span id="cb169-10"><a href="top-gwas-snp.html#cb169-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gt_GT_alleles,</span>
-<span id="cb169-11"><a href="top-gwas-snp.html#cb169-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> GS451_IC50))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="top-gwas-snp.html#cb171-1" aria-hidden="true" tabindex="-1"></a>top_snp_gt <span class="ot">&lt;-</span> top_snp<span class="sc">$</span>gt <span class="sc">%&gt;%</span></span>
+<span id="cb171-2"><a href="top-gwas-snp.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb171-3"><a href="top-gwas-snp.html#cb171-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-4"><a href="top-gwas-snp.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="co"># merge with phenotype data</span></span>
+<span id="cb171-5"><a href="top-gwas-snp.html#cb171-5" aria-hidden="true" tabindex="-1"></a>gwas_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(top_snp_gt, phenotypes,</span>
+<span id="cb171-6"><a href="top-gwas-snp.html#cb171-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;Indiv&quot;</span>)</span>
+<span id="cb171-7"><a href="top-gwas-snp.html#cb171-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-8"><a href="top-gwas-snp.html#cb171-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot boxplots</span></span>
+<span id="cb171-9"><a href="top-gwas-snp.html#cb171-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gwas_data) <span class="sc">+</span></span>
+<span id="cb171-10"><a href="top-gwas-snp.html#cb171-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gt_GT_alleles,</span>
+<span id="cb171-11"><a href="top-gwas-snp.html#cb171-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> GS451_IC50))</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <p>Other potential follow-up directions include:</p>
 <ul>
 <li>Investigating the genomic environment in the <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38">UCSC Genome Browser</a></li>

@@ -311,53 +311,72 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="assignment-1" class="section level4" number="7.15.0.2">
 <h4><span class="header-section-number">7.15.0.2</span> Assignment</h4>
 <p>Run a GWAS of <span class="math inline">\(\mathrm{IC_{50}}\)</span> for the drug CB1908, using the same genotype data as before. The phenotypes are located in <code>CB1908_IC50.txt</code>.</p>
-<p>Make a QQ plot and a Manhattan plot of your results. Do you have any genome-wide significant hits? Are they located in or near a gene? For the top GWAS hit, plot the phenotype stratified by genotype.</p>
+<p>Make a QQ plot and a Manhattan plot of your results. Do you have any genome-wide significant hits? Are they located in or near a gene? For the top GWAS hit, plot the phenotype stratified by genotype. (Use <code>top_snp_hw.vcf</code> to get the genotypes of the top hit.)</p>
 <hr />
 <details>
 <summary>
 Solution
 </summary>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="homework-6.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform association test with PLINK</span></span>
-<span id="cb171-2"><a href="homework-6.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="at">command =</span> <span class="st">&quot;./plink --file genotypes --linear --pheno CB1908_IC50.txt --pheno-name CB1908_IC50&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="homework-6.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in gwas results</span></span>
-<span id="cb172-2"><a href="homework-6.html#cb172-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;plink.assoc.linear&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb172-3"><a href="homework-6.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">index =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb172-4"><a href="homework-6.html#cb172-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P)</span>
-<span id="cb172-5"><a href="homework-6.html#cb172-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-6"><a href="homework-6.html#cb172-6" aria-hidden="true" tabindex="-1"></a><span class="co"># qq plot</span></span>
-<span id="cb172-7"><a href="homework-6.html#cb172-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(results<span class="sc">$</span>P)</span>
-<span id="cb172-8"><a href="homework-6.html#cb172-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-9"><a href="homework-6.html#cb172-9" aria-hidden="true" tabindex="-1"></a><span class="co"># manhattan plot</span></span>
-<span id="cb172-10"><a href="homework-6.html#cb172-10" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(results)</span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-103-1.png" width="672" /><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-103-2.png" width="672" /></p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="homework-6.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform association test with PLINK</span></span>
+<span id="cb173-2"><a href="homework-6.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="at">command =</span> <span class="st">&quot;./plink --file genotypes --linear --pheno CB1908_IC50.txt --pheno-name CB1908_IC50&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="homework-6.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in gwas results</span></span>
+<span id="cb174-2"><a href="homework-6.html#cb174-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;plink.assoc.linear&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb174-3"><a href="homework-6.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">index =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb174-4"><a href="homework-6.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P)</span>
+<span id="cb174-5"><a href="homework-6.html#cb174-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-6"><a href="homework-6.html#cb174-6" aria-hidden="true" tabindex="-1"></a><span class="co"># qq plot</span></span>
+<span id="cb174-7"><a href="homework-6.html#cb174-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(results<span class="sc">$</span>P)</span>
+<span id="cb174-8"><a href="homework-6.html#cb174-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-9"><a href="homework-6.html#cb174-9" aria-hidden="true" tabindex="-1"></a><span class="co"># manhattan plot</span></span>
+<span id="cb174-10"><a href="homework-6.html#cb174-10" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(results)</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-102-1.png" width="672" /><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-102-2.png" width="672" /></p>
 <p>On the Manhattan plot, there’s one hit that reaches genome-wide significance.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="homework-6.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view top GWAS hit</span></span>
-<span id="cb173-2"><a href="homework-6.html#cb173-2" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">1</span>, ]</span></code></pre></div>
-<pre><code>##   CHR        SNP       BP A1 TEST NMISS  BETA STAT         P  index
-## 1  12 rs10876043 49190411  G  ADD   161 1.779 7.18 2.518e-11 184405</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="homework-6.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view top GWAS hit</span></span>
+<span id="cb175-2"><a href="homework-6.html#cb175-2" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">1</span>, ]</span></code></pre></div>
+<pre><code>##   CHR        SNP       BP A1 TEST NMISS  BETA STAT         P
+## 1  12 rs10876043 49190411  G  ADD   161 1.779 7.18 2.518e-11</code></pre>
 <p>From looking it up in the UCSC Genome Browser, <code>rs10876043</code> lies within an intron of the <em>DIP2B</em> gene. Finally, we plot this SNP’s genotype stratified by phenotype. (We can extract its genotype information from the <code>vcf</code> object because we know its index number from the <code>results</code> table.)</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="homework-6.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract top SNP and convert to tidy df</span></span>
-<span id="cb175-2"><a href="homework-6.html#cb175-2" aria-hidden="true" tabindex="-1"></a>top_snp <span class="ot">&lt;-</span> <span class="fu">vcfR2tidy</span>(vcf[<span class="dv">184405</span>, ])</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="homework-6.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract top SNP and convert to tidy df</span></span>
+<span id="cb177-2"><a href="homework-6.html#cb177-2" aria-hidden="true" tabindex="-1"></a>top_snp <span class="ot">&lt;-</span> <span class="fu">vcfR2tidy</span>(<span class="fu">read.vcfR</span>(<span class="st">&quot;top_snp_hw.vcf&quot;</span>))</span></code></pre></div>
+<pre><code>## Scanning file to determine attributes.
+## File attributes:
+##   meta lines: 27
+##   header_line: 28
+##   variant count: 1
+##   column count: 185
+## 
+Meta line 27 read in.
+## All meta lines processed.
+## gt matrix initialized.
+## Character matrix gt created.
+##   Character matrix gt rows: 1
+##   Character matrix gt cols: 185
+##   skip: 0
+##   nrows: 1
+##   row_num: 0
+## 
+Processed variant: 1
+## All variants processed</code></pre>
 <pre><code>## Extracting gt element GT</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="homework-6.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get genotype dataframe</span></span>
-<span id="cb177-2"><a href="homework-6.html#cb177-2" aria-hidden="true" tabindex="-1"></a>top_snp_gt <span class="ot">&lt;-</span> top_snp<span class="sc">$</span>gt <span class="sc">%&gt;%</span></span>
-<span id="cb177-3"><a href="homework-6.html#cb177-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb177-4"><a href="homework-6.html#cb177-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-5"><a href="homework-6.html#cb177-5" aria-hidden="true" tabindex="-1"></a><span class="co"># read in phenotype dataframe</span></span>
-<span id="cb177-6"><a href="homework-6.html#cb177-6" aria-hidden="true" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;CB1908_IC50.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb177-7"><a href="homework-6.html#cb177-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create column called `Indiv` that combines FID and IID</span></span>
-<span id="cb177-8"><a href="homework-6.html#cb177-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Indiv =</span> <span class="fu">paste</span>(FID, IID, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>))</span>
-<span id="cb177-9"><a href="homework-6.html#cb177-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-10"><a href="homework-6.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="co"># merge genotype and phenotype info</span></span>
-<span id="cb177-11"><a href="homework-6.html#cb177-11" aria-hidden="true" tabindex="-1"></a>gwas_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(top_snp_gt, phenotypes,</span>
-<span id="cb177-12"><a href="homework-6.html#cb177-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;Indiv&quot;</span>)</span>
-<span id="cb177-13"><a href="homework-6.html#cb177-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-14"><a href="homework-6.html#cb177-14" aria-hidden="true" tabindex="-1"></a><span class="co"># plot genotype by phenotype boxplots</span></span>
-<span id="cb177-15"><a href="homework-6.html#cb177-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gwas_data) <span class="sc">+</span></span>
-<span id="cb177-16"><a href="homework-6.html#cb177-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gt_GT_alleles,</span>
-<span id="cb177-17"><a href="homework-6.html#cb177-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> CB1908_IC50))</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="homework-6.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get genotype dataframe</span></span>
+<span id="cb180-2"><a href="homework-6.html#cb180-2" aria-hidden="true" tabindex="-1"></a>top_snp_gt <span class="ot">&lt;-</span> top_snp<span class="sc">$</span>gt <span class="sc">%&gt;%</span></span>
+<span id="cb180-3"><a href="homework-6.html#cb180-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb180-4"><a href="homework-6.html#cb180-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-5"><a href="homework-6.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="co"># read in phenotype dataframe</span></span>
+<span id="cb180-6"><a href="homework-6.html#cb180-6" aria-hidden="true" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;CB1908_IC50.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb180-7"><a href="homework-6.html#cb180-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create column called `Indiv` that combines FID and IID</span></span>
+<span id="cb180-8"><a href="homework-6.html#cb180-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Indiv =</span> <span class="fu">paste</span>(FID, IID, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>))</span>
+<span id="cb180-9"><a href="homework-6.html#cb180-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-10"><a href="homework-6.html#cb180-10" aria-hidden="true" tabindex="-1"></a><span class="co"># merge genotype and phenotype info</span></span>
+<span id="cb180-11"><a href="homework-6.html#cb180-11" aria-hidden="true" tabindex="-1"></a>gwas_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(top_snp_gt, phenotypes,</span>
+<span id="cb180-12"><a href="homework-6.html#cb180-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;Indiv&quot;</span>)</span>
+<span id="cb180-13"><a href="homework-6.html#cb180-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-14"><a href="homework-6.html#cb180-14" aria-hidden="true" tabindex="-1"></a><span class="co"># plot genotype by phenotype boxplots</span></span>
+<span id="cb180-15"><a href="homework-6.html#cb180-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gwas_data) <span class="sc">+</span></span>
+<span id="cb180-16"><a href="homework-6.html#cb180-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gt_GT_alleles,</span>
+<span id="cb180-17"><a href="homework-6.html#cb180-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> CB1908_IC50))</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 
 </div>
 </div>

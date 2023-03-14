@@ -307,11 +307,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <summary>
 Create boxplots of the phenotype, stratified by genotype of the test SNP.
 </summary>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="genotype-phenotype-boxplots.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gwas_data) <span class="sc">+</span></span>
-<span id="cb155-2"><a href="genotype-phenotype-boxplots.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gt_GT_alleles,</span>
-<span id="cb155-3"><a href="genotype-phenotype-boxplots.html#cb155-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> GS451_IC50))</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="genotype-phenotype-boxplots.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gwas_data) <span class="sc">+</span></span>
+<span id="cb156-2"><a href="genotype-phenotype-boxplots.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gt_GT_alleles,</span>
+<span id="cb156-3"><a href="genotype-phenotype-boxplots.html#cb156-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> GS451_IC50))</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p>It’s unclear whether there’s a relationship here, because the phenotype distributions for these two genotypes are mostly overlapping. To be certain, we’ll now test this with linear regression.</p>
 </details>
 <hr />

@@ -302,22 +302,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="gwas-of-all-snps-with-plink" class="section level2" number="7.11">
 <h2><span class="header-section-number">7.11</span> GWAS of all SNPs with PLINK</h2>
 <p>Now let’s allow PLINK to run the statistical tests for all SNPs by removing the <code>--snp</code> flag.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="gwas-of-all-snps-with-plink.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="at">command =</span> <span class="st">&quot;./plink --file genotypes --linear --pheno GS451_IC50.txt --pheno-name GS451_IC50&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="gwas-of-all-snps-with-plink.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="at">command =</span> <span class="st">&quot;./plink --file genotypes --linear --pheno GS451_IC50.txt --pheno-name GS451_IC50&quot;</span>)</span></code></pre></div>
 <p>The <code>plink.assoc.linear</code> file should now have ~260,000 lines. Load the file into R to look at the results:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="gwas-of-all-snps-with-plink.html#cb163-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;plink.assoc.linear&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb163-2"><a href="gwas-of-all-snps-with-plink.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create `index` column to store the SNP number before we reorder</span></span>
-<span id="cb163-3"><a href="gwas-of-all-snps-with-plink.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">index =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb163-4"><a href="gwas-of-all-snps-with-plink.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># order table by lowest pvalue</span></span>
-<span id="cb163-5"><a href="gwas-of-all-snps-with-plink.html#cb163-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P)</span>
-<span id="cb163-6"><a href="gwas-of-all-snps-with-plink.html#cb163-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-7"><a href="gwas-of-all-snps-with-plink.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
-<pre><code>##   CHR        SNP       BP A1 TEST NMISS   BETA   STAT         P  index
-## 1  19  rs7257475 20372113  T  ADD    88 -3.008 -6.876 9.311e-10 240916
-## 2  19 rs10413538 20370690  T  ADD    86 -3.026 -6.805 1.395e-09 240915
-## 3  21  rs2826383 20844081  A  ADD   166  3.031  5.866 2.392e-08 250839
-## 4  19 rs12972967 20358400  T  ADD    89 -2.421 -5.939 5.760e-08 240914
-## 5   2  rs1358578 51626897  A  ADD   166  2.111  5.307 3.571e-07  26131
-## 6  17  rs3094508 33137048  C  ADD    89  3.532  5.230 1.156e-06 228179</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="gwas-of-all-snps-with-plink.html#cb164-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;plink.assoc.linear&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb164-2"><a href="gwas-of-all-snps-with-plink.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># order table by lowest pvalue</span></span>
+<span id="cb164-3"><a href="gwas-of-all-snps-with-plink.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P)</span>
+<span id="cb164-4"><a href="gwas-of-all-snps-with-plink.html#cb164-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-5"><a href="gwas-of-all-snps-with-plink.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
+<pre><code>##   CHR        SNP       BP A1 TEST NMISS   BETA   STAT         P
+## 1  19  rs7257475 20372113  T  ADD    88 -3.008 -6.876 9.311e-10
+## 2  19 rs10413538 20370690  T  ADD    86 -3.026 -6.805 1.395e-09
+## 3  21  rs2826383 20844081  A  ADD   166  3.031  5.866 2.392e-08
+## 4  19 rs12972967 20358400  T  ADD    89 -2.421 -5.939 5.760e-08
+## 5   2  rs1358578 51626897  A  ADD   166  2.111  5.307 3.571e-07
+## 6  17  rs3094508 33137048  C  ADD    89  3.532  5.230 1.156e-06</code></pre>
 </div>
 <hr>
 <center> 

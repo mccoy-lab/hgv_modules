@@ -303,11 +303,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.8</span> Linear regression</h2>
 <p>The function to perform linear regression in R is <code>lm()</code>. It takes as arguments a data frame (<code>gwas_data</code>) and a model formula of the form <code>outcome ~ predictors</code>.</p>
 <p>In the case of GWAS, our outcome is the phenotype, and our predictor is the SNP genotype. We may also include covariates such as sex, age, or ancestry as additional predictors (called <strong>covariates</strong>) to control for their potential confounding effects. No such data are available here, so we just run the simple genotype vs. phenotype test.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="linear-regression.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test for association between genotype and phenotype</span></span>
-<span id="cb157-2"><a href="linear-regression.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">data =</span> gwas_data,</span>
-<span id="cb157-3"><a href="linear-regression.html#cb157-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">formula =</span> GS451_IC50 <span class="sc">~</span> dosage) <span class="sc">%&gt;%</span></span>
-<span id="cb157-4"><a href="linear-regression.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># directly pipe (%&gt;%) model results to the `summary()` function</span></span>
-<span id="cb157-5"><a href="linear-regression.html#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="linear-regression.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test for association between genotype and phenotype</span></span>
+<span id="cb158-2"><a href="linear-regression.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">data =</span> gwas_data,</span>
+<span id="cb158-3"><a href="linear-regression.html#cb158-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">formula =</span> GS451_IC50 <span class="sc">~</span> dosage) <span class="sc">%&gt;%</span></span>
+<span id="cb158-4"><a href="linear-regression.html#cb158-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># directly pipe (%&gt;%) model results to the `summary()` function</span></span>
+<span id="cb158-5"><a href="linear-regression.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = GS451_IC50 ~ dosage, data = gwas_data)

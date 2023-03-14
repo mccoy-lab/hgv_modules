@@ -308,11 +308,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 Merging requires the sample ID to be identical between the two dataframes.
 </summary>
 <p>Note that in <code>test_snp_gt</code>, the sample ID is in the format <code>FID_IID</code> (i.e., <code>1001_1001</code>), whereas in <code>phenotypes</code> the FID and IID are separate. In order to merge, we create a new column in <code>phenotypes</code> that combines them:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="merging-genotype-and-phenotype-data.html#cb151-1" aria-hidden="true" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> phenotypes <span class="sc">%&gt;%</span></span>
-<span id="cb151-2"><a href="merging-genotype-and-phenotype-data.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create column called `Indiv` that combines FID and IID</span></span>
-<span id="cb151-3"><a href="merging-genotype-and-phenotype-data.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Indiv =</span> <span class="fu">paste</span>(FID, IID, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>))</span>
-<span id="cb151-4"><a href="merging-genotype-and-phenotype-data.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb151-5"><a href="merging-genotype-and-phenotype-data.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phenotypes)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="merging-genotype-and-phenotype-data.html#cb152-1" aria-hidden="true" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> phenotypes <span class="sc">%&gt;%</span></span>
+<span id="cb152-2"><a href="merging-genotype-and-phenotype-data.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create column called `Indiv` that combines FID and IID</span></span>
+<span id="cb152-3"><a href="merging-genotype-and-phenotype-data.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Indiv =</span> <span class="fu">paste</span>(FID, IID, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>))</span>
+<span id="cb152-4"><a href="merging-genotype-and-phenotype-data.html#cb152-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-5"><a href="merging-genotype-and-phenotype-data.html#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phenotypes)</span></code></pre></div>
 <pre><code>##    FID  IID GS451_IC50     Indiv
 ## 1 1001 1001   5.594256 1001_1001
 ## 2 1002 1002   8.525633 1002_1002
@@ -323,11 +323,11 @@ Merging requires the sample ID to be identical between the two dataframes.
 </details>
 <hr />
 <p>Now we can use <code>merge</code> to join the data:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="merging-genotype-and-phenotype-data.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge genotype and phenotype info for test SNP</span></span>
-<span id="cb153-2"><a href="merging-genotype-and-phenotype-data.html#cb153-2" aria-hidden="true" tabindex="-1"></a>gwas_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(test_snp_gt, phenotypes,</span>
-<span id="cb153-3"><a href="merging-genotype-and-phenotype-data.html#cb153-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;Indiv&quot;</span>)</span>
-<span id="cb153-4"><a href="merging-genotype-and-phenotype-data.html#cb153-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-5"><a href="merging-genotype-and-phenotype-data.html#cb153-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gwas_data)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="merging-genotype-and-phenotype-data.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge genotype and phenotype info for test SNP</span></span>
+<span id="cb154-2"><a href="merging-genotype-and-phenotype-data.html#cb154-2" aria-hidden="true" tabindex="-1"></a>gwas_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(test_snp_gt, phenotypes,</span>
+<span id="cb154-3"><a href="merging-genotype-and-phenotype-data.html#cb154-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;Indiv&quot;</span>)</span>
+<span id="cb154-4"><a href="merging-genotype-and-phenotype-data.html#cb154-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-5"><a href="merging-genotype-and-phenotype-data.html#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gwas_data)</span></code></pre></div>
 <pre><code>##       Indiv ChromKey    POS gt_GT gt_GT_alleles dosage  FID  IID GS451_IC50
 ## 1 1001_1001        1 558185   0/0           A/A      0 1001 1001   5.594256
 ## 2 1002_1002        1 558185   0/0           A/A      0 1002 1002   8.525633
