@@ -343,7 +343,6 @@ results <- read.table(file = "https://www.dropbox.com/s/ukmczgmxhr29aa7/plink.as
   mutate(index = row_number()) %>%
   # order table by lowest pvalue
   arrange(P)
-
 head(results)
 ```
 
