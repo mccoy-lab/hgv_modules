@@ -30,7 +30,7 @@ library(qqman)
 
 ```{r}
 # load the VCF
-vcf <- read.vcfR("genotypes.vcf.gz")
+vcf <- read.vcfR("genotypes_subset.vcf")
 
 # extract first SNP and convert to tidy df
 test_snp <- vcfR2tidy(vcf[1, ])
@@ -154,8 +154,6 @@ system(command = "./plink --file genotypes --linear --pheno GS451_IC50.txt --phe
 
 # read in `plink.assoc.linear` file
 results <- read.table(file = "plink.assoc.linear", header = TRUE) %>%
-  # create `index` column to store the SNP number before we reorder
-  mutate(index = row_number()) %>%
   # order table by lowest pvalue
   arrange(P)
 head(results)
@@ -185,7 +183,7 @@ Plot top SNP phenotypes stratified by genotype:
 
 ```{r}
 # extract genotypes of the top SNP
-top_snp <- vcfR2tidy(vcf[240916, ])
+top_snp <- vcfR2tidy(read.vcfR("top_snp.vcf"))
 top_snp_gt <- top_snp$gt %>%
   drop_na()
 
