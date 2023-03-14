@@ -12,3 +12,5 @@ Files to download to Posit Cloud:
 Software to install to Posit Cloud:
 
 * [PLINK](https://www.cog-genomics.org/plink/) stable binary
+* R packages
+ 	* qqman
