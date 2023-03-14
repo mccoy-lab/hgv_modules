@@ -14,7 +14,7 @@ In this lab, we'll perform a GWAS with data adapted from a [workshop created by 
 
 After completing this chapter, you'll be able to:
 
-1. Perform GWAS "by hand" using linear regression.
+1. Perform GWAS of a single SNP using linear regression.
 2. Use PLINK to perform GWAS on all SNPs in a VCF.
 3. Create and interpret common GWAS visualization plots.
 
