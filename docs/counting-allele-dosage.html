@@ -303,19 +303,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.3</span> Counting allele dosage</h2>
 <p>We’re often interested in encoding genotypes as a 0, 1, or 2, which you can think of as the “<strong>dosage</strong>” of the minor allele. This is an <em>additive</em> model, and assumes that the phenotype of the heterozygote is intermediate between those of the two homozygotes.</p>
 <p>We can use the <code>table</code> function on the <code>gt_GT_alleles</code> column to quickly check how many individuals have each genotype.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="counting-allele-dosage.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tabulate genotype counts</span></span>
-<span id="cb140-2"><a href="counting-allele-dosage.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(test_snp_gt<span class="sc">$</span>gt_GT_alleles)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="counting-allele-dosage.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tabulate genotype counts</span></span>
+<span id="cb141-2"><a href="counting-allele-dosage.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(test_snp_gt<span class="sc">$</span>gt_GT_alleles)</span></code></pre></div>
 <pre><code>## 
 ## A/A A/G 
 ##  66  20</code></pre>
 <p>Now we’ll use the <code>mutate</code> function to create a new column of the dataframe that counts the dosage of the minor allele (i.e., how many G’s each person has at that SNP):</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="counting-allele-dosage.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert genotypes to counts (i.e., dosage) of minor allele</span></span>
-<span id="cb142-2"><a href="counting-allele-dosage.html#cb142-2" aria-hidden="true" tabindex="-1"></a>test_snp_gt <span class="ot">&lt;-</span> test_snp_gt <span class="sc">%&gt;%</span></span>
-<span id="cb142-3"><a href="counting-allele-dosage.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count number of Gs</span></span>
-<span id="cb142-4"><a href="counting-allele-dosage.html#cb142-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dosage =</span> <span class="fu">str_count</span>(gt_GT_alleles, <span class="st">&quot;G&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb142-5"><a href="counting-allele-dosage.html#cb142-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb142-6"><a href="counting-allele-dosage.html#cb142-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-7"><a href="counting-allele-dosage.html#cb142-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test_snp_gt)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="counting-allele-dosage.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert genotypes to counts (i.e., dosage) of minor allele</span></span>
+<span id="cb143-2"><a href="counting-allele-dosage.html#cb143-2" aria-hidden="true" tabindex="-1"></a>test_snp_gt <span class="ot">&lt;-</span> test_snp_gt <span class="sc">%&gt;%</span></span>
+<span id="cb143-3"><a href="counting-allele-dosage.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count number of Gs</span></span>
+<span id="cb143-4"><a href="counting-allele-dosage.html#cb143-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dosage =</span> <span class="fu">str_count</span>(gt_GT_alleles, <span class="st">&quot;G&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb143-5"><a href="counting-allele-dosage.html#cb143-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb143-6"><a href="counting-allele-dosage.html#cb143-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-7"><a href="counting-allele-dosage.html#cb143-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test_snp_gt)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   ChromKey    POS Indiv     gt_GT gt_GT_alleles dosage
 ##      &lt;int&gt;  &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;          &lt;int&gt;
@@ -331,8 +331,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 Checking our work with <code>table</code>
 </summary>
 <p>If we run <code>table</code> on the <code>dosage</code> column, we should get the same breakdown of genotypes as we got from the <code>gt_GT_alleles</code> columns.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="counting-allele-dosage.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure we get the same genotype counts</span></span>
-<span id="cb144-2"><a href="counting-allele-dosage.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(test_snp_gt<span class="sc">$</span>dosage)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="counting-allele-dosage.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure we get the same genotype counts</span></span>
+<span id="cb145-2"><a href="counting-allele-dosage.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(test_snp_gt<span class="sc">$</span>dosage)</span></code></pre></div>
 <pre><code>## 
 ##  0  1 
 ## 66 20</code></pre>

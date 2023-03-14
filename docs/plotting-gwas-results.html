@@ -302,12 +302,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting-gwas-results" class="section level2" number="7.12">
 <h2><span class="header-section-number">7.12</span> Plotting GWAS results</h2>
 <p>The <code>qq()</code> and <code>manhattan()</code> functions in the <code>qqman</code> package let us easily create QQ and Manhattan plots to visualize our GWAS results.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="plotting-gwas-results.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># qq plot using the P (pvalues) column</span></span>
-<span id="cb165-2"><a href="plotting-gwas-results.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(results<span class="sc">$</span>P)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="plotting-gwas-results.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># qq plot using the P (pvalues) column</span></span>
+<span id="cb166-2"><a href="plotting-gwas-results.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(results<span class="sc">$</span>P)</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="plotting-gwas-results.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manhattan plot</span></span>
+<span id="cb167-2"><a href="plotting-gwas-results.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(results)</span></code></pre></div>
 <p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="plotting-gwas-results.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manhattan plot</span></span>
-<span id="cb166-2"><a href="plotting-gwas-results.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(results)</span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <p>SNPs with low p-values occur in peaks of multiple variants. These are not independent associations, but rather groups of variants in LD.</p>
 </div>
 <hr>

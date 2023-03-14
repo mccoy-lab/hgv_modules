@@ -302,8 +302,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="gwas-of-one-snp-with-plink" class="section level2" number="7.10">
 <h2><span class="header-section-number">7.10</span> GWAS of one SNP with PLINK</h2>
 <p>First, we’ll replicate the GWAS that we did in R with just the first SNP of the VCF, <code>rs9699599</code>.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="gwas-of-one-snp-with-plink.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replicate first SNP association with PLINK</span></span>
-<span id="cb159-2"><a href="gwas-of-one-snp-with-plink.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="at">command =</span> <span class="st">&quot;./plink --file genotypes --linear --snp rs9699599 --pheno GS451_IC50.txt --pheno-name GS451_IC50&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="gwas-of-one-snp-with-plink.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replicate first SNP association with PLINK</span></span>
+<span id="cb160-2"><a href="gwas-of-one-snp-with-plink.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="at">command =</span> <span class="st">&quot;./plink --file genotypes --linear --snp rs9699599 --pheno GS451_IC50.txt --pheno-name GS451_IC50&quot;</span>)</span></code></pre></div>
 <hr />
 <details>
 <summary>
@@ -311,7 +311,7 @@ Breakdown of the PLINK command
 </summary>
 <ul>
 <li><code>./plink</code>: Use the PLINK software</li>
-<li><code>--file genotypes</code>: Genotype data files begins with the string “genotypes”</li>
+<li><code>--file genotypes</code>: Genotype data files (<code>genotypes.map</code>, <code>genotypes.ped</code>) begin with the string “genotypes”</li>
 <li><code>--linear</code>:Run a linear additive association test for each SNP</li>
 <li><code>--snp rs9699599</code>: Only run the analysis for a single SNP (<code>rs9699599</code>)</li>
 <li><code>--pheno GS451_IC50.txt</code>: Phenotype data is located in a file called <code>GS451_IC50.txt</code></li>
@@ -321,9 +321,9 @@ Breakdown of the PLINK command
 <hr />
 <p>After running PLINK, we get an output file called <code>plink.assoc.linear</code>.</p>
 <p>Now look at the output of the <code>plink.assoc.linear</code> output file that PLINK produced.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="gwas-of-one-snp-with-plink.html#cb160-1" aria-hidden="true" tabindex="-1"></a>snp1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;plink.assoc.linear&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb160-2"><a href="gwas-of-one-snp-with-plink.html#cb160-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-3"><a href="gwas-of-one-snp-with-plink.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(snp1)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="gwas-of-one-snp-with-plink.html#cb161-1" aria-hidden="true" tabindex="-1"></a>snp1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;plink.assoc.linear&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb161-2"><a href="gwas-of-one-snp-with-plink.html#cb161-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-3"><a href="gwas-of-one-snp-with-plink.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(snp1)</span></code></pre></div>
 <pre><code>##   CHR       SNP     BP A1 TEST NMISS  BETA  STAT       P
 ## 1   1 rs9699599 558185  G  ADD    85 1.385 2.036 0.04493</code></pre>
 <hr />
