@@ -2,7 +2,7 @@
 ```{r, include = FALSE}
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '04-pop_structure')
-# install vcfR package
+# install packages for the lab
 install.packages('vcfR')
 ```
 
@@ -15,7 +15,7 @@ In this lab, we'll implement two common approaches for measuring and visualizing
 After completing this chapter, you'll be able to:
 
 1. Describe the data stored in a Variant Call Format (VCF) file.
-2. Measure population differentiation from genotype data.
+2. Plot and interpret an allele frequency spectrum.
 3. Perform and visualize the results of a principal component analysis.
 
 
@@ -197,6 +197,60 @@ This is the expected shape of an AFS, since all variants arise in one individual
 ***
 
 
+## Theoretical AFS
+
+What does a normal AFS should look? Population geneticists have estimated that under neutral expectations, each bin of the AFS should have a height that is equal to 1 over its bin number. We can use this to plot the expected AFS:
+
+```{r}
+# make dataframe with theoretical AFS bins
+# create `af_bin` column with the bin number
+ideal_pop <- tibble(af_bin = 1:100) %>%
+  # create `prop` column with the expected proportion of variants
+  mutate(., prop = 1 / af_bin)
+
+# plot expected AFS
+ggplot(ideal_pop,
+       aes(x = af_bin, y = prop)) +
+  geom_bar(stat = "identity")
+```
+
+***
+<details><summary> How does this compare to the AFS we see from human data? </summary>
+
+The human AFS has many more rare variants, which manifests as a higher peak on the left side of the AFS. This is due to recent population expansion in humans, which results in more human individuals and an accumulation of excess new rare variation.
+
+</details>
+***
+
+***
+<details><summary> How would you expect the AFS to look for a contracting population (ex: endangered species)? </summary>
+
+A contracting population would result in the extinction of many alleles, resulting in more variants that drift to high frequency or go extinct. The AFS for this type of population would look more flat than the neutral expectation (fewer rare alleles, more common ones).
+
+</details>
+***
+
+
+<!-- ## Comparing AFs between populations -->
+
+<!-- compare AFS between populations - sub-population AFS. How would you expect it to look if we compared AFR vs. EUR AFs like on a scatterplot? A lot of correlation due to common ancestry (they've drifted since divergence but there will be correlation in AFs accross snps) -->
+
+<!-- ```{r} -->
+<!-- ggplot(vcf_info, aes(x = as.numeric(AFR_AF), y = as.numeric(EUR_AF))) + -->
+<!--   geom_point() -->
+
+<!-- ggplot(vcf_info, aes(x = as.numeric(EAS_AF), y = as.numeric(EUR_AF))) + -->
+<!--   geom_point() -->
+
+<!-- ggplot(vcf_info, aes(x = as.numeric(EAS_AF), y = as.numeric(SAS_AF))) + -->
+<!--   geom_point() -->
+<!-- ``` -->
+
+<!-- what are the outliers? evidence of selection - variants that have gone to very different frequencies in different populations -->
+
+<!-- less spread with EAS-SAS -- populations shared a common ancestor more recently, so there's been less time for drift to change AFs -->
+
+
 ## Common variation
 
 For this lab, we'll subset to just common variants within the VCF -- arbitrarily defined as $0.05 < \textrm{AF} < 0.95$. We can look at where this set of variants lies on the AFS by adding vertical lines at the cutoff allele frequencies:
@@ -256,152 +310,6 @@ Our data is correctly subset within the dashed lines. Even with just common vari
 
 </details>
 ***
-
-
-## The F~ST~ statistic
-
-$\mathbf{F_{ST}}$ is a statistic that quantifies differentiation between populations, based on the frequencies of alleles at one variable site.
-
-The version of $\mathrm{F_{ST}}$ that we'll calculate today compares genotypic variance within **subpopulations ("S")** against the **total population ("T")**. One way to conceptualize this is the deficiency of heterozygotes observed across subpopulations, relative to the proportion that would be expected under random mating (i.e., no population structure).
-
-We calculate this by taking the difference between:
-
-* $\mathbf{H_T}$: The expected frequency of heterozygotes when individuals across all subpopulations are pooled
-* $\mathbf{mean(H_S)}$: The mean frequency of heterozygotes, calculated within each subpopulation and then averaged
-* where $H = 2pq$, and $p$ and $q$ are the frequencies of the two alleles at a site
-
-$$
-\textrm{F}_{ST} = \frac{H_T - \textrm{mean}(H_S)}{H_T}
-$$
-
-$\mathrm{F_{ST}}$ ranges from 0 to 1:
-
-* $\mathrm{F_{ST}} = 0$: No population structure (separating the subpopulations doesn't affect heterozygosity estimates)
-* $\mathrm{F_{ST}} = 1$: Subopulations are very different (ex: one population only carries one allele, while the other population only carries the other)
-
-See [this Nature Review Genetics article](https://pubmed.ncbi.nlm.nih.gov/19687804/) for a more thorough discussion on the use and interpretation of $\mathrm{F_{ST}}$ and related statistics.
-
-
-## The `genetic_diff` function
-
-We'll compute $\textrm{F}_{ST}$ using `vcfR`'s `genetic_diff` function. (This function technically calculates $\textrm{G}_{ST}$, a version of $\textrm{F}_{ST}$ that considers when there are more than two alleles at a given locus. When a locus is biallelic, $\textrm{F}_{ST} = \textrm{G}_{ST}$.)
-
-```{r}
-?genetic_diff
-```
-
-`genetic_diff` requires:
-
-1. `vcfR` object (in our case, `vcf_common`)
-2. Factor indicating populations
-
-***
-<details><summary> What's "Factor indicating populations"? </summary>
-
-The second object for `genetic_diff` needs to be a **vector** (i.e., a list) of population labels for the samples in the VCF.
-
-These labels must be **factors**, which is an R data type that limits a variable to a set of values. In our case, these values are the specific population labels in our dataset. We'll be using the superpopulation groupings for this calculation.
-
-</details>
-***
-
-We can use our `metadata` table to generate a vector of superpopulation labels. Since the superpopulation IDs are in the `superpop` column of that dataframe, we can convert the column from character to factor values with the `as.factor` function.
-
-```{r}
-pop_labels <- as.factor(metadata$superpop)
-head(pop_labels)
-```
-
-Previewing `pop_labels` shows us that there are five "levels" in this vector, where each level is a superpopulation name.
-
-
-## Calculating F~ST~
-
-Run `genetic_diff` on the VCF of common variants:
-
-```{r }
-# calculate gst
-gst_results <- genetic_diff(vcf_common, pop_labels) %>%
-  # order dataframe by descending gst value
-  arrange(-Gst)
-```
-
-```{r}
-# preview highest gst variants
-head(gst_results)
-
-# preview lowest gst variants
-tail(gst_results)
-```
-
-`genetic_diff` outputs a table of $\textrm{G}_{ST}$ results, where every line corresponds to one variant from the input VCF. Our $\textrm{G}_{ST}$ values range from $0.0021$ to $0.56$. 
-
-
-## Distribution of G~ST~ across the genome
-
-***
-<details><summary> Plot the distribution of $\textrm{G}_{ST}$ values from `genetic_diff` </summary>
-
-```{r}
-ggplot(data = gst_results,
-       aes(x = Gst)) +
-  geom_histogram()
-```
-
-</details>
-***
-
-This is another exponentially decaying distribution, indicating that most common human variants don't show strong differences in allele frequency between populations.
-
-
-## Top G~ST~ hits
-
-The variants with high $\textrm{G}_{ST}$ values should show differences in allele frequency between populations. Let's examine the top-scoring variant:
-
-```{r}
-gst_results[1, ]
-```
-
-We can use the [GGV browser](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22) to look at this variant's distribution of allele frequencies in 1000 Genomes.
-
-First, because the variants in our VCF were called on the **hg38** genome assembly and the GGV browser uses **hg19** (the previous assembly), we need to **lift over** the variant coordinates to hg19.
-
-***
-<details><summary> What is liftover? </summary>
-
-**Liftover** converts genomic coordinates from one genome assembly to another. This can be used to move between different versions of the same genome (ex: hg38 -> hg19), or even to move between assemblies for closely related species (ex: human to chimpanzee).
-
-</details>
-***
-
-[**One common liftover tool**](https://genome.ucsc.edu/cgi-bin/hgLiftOver) is provided by the UCSC Genome Browser.
-
-***
-<details><summary> Navigate to the UCSC liftover page. </summary>
-
-1. Select the assemblies that you want to change coordinates between.
-
-![**Fig. 4.** Selecting assemblies for liftover.](04-pop_structure/images/liftover1.png)
-
-2. In the box, enter the coordinates of our variant of interest. Note that we have to enter these coordinates in **`chr:pos-pos`** format (`chr21:17753762-17753762` for our SNP).
-<br></br>
-3. Hit the **`Submit`** button. This will generate a file that you can download, which will contain the hg19 coordinates of our variant.
-
-![**Fig. 5.** Lifting over coordinates of one variant.](04-pop_structure/images/liftover2.png)
-
-</details>
-***
-
-
-## Viewing G~ST~ hits in GGV
-
-Now we can navigate to the [**GGV browser**](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22) and look up the distribution of allele frequencies for this variant, using its hg19 coordinates.
-
-We can see that this variant is at extremely high allele frequencies in all of the African populations of 1000 Genomes, but is extremely rare outside of Africa. This suggests that it was present in the population prior to the out-of-African migration, but that most of the ancestral populations that migrated out of Africa didn't carry it.
-
-Also note that two populations in the Americas also carry this variant at high frequency. These are two African American populations -- **African Caribbean in Barbados (ACB)** and **African Ancestry in SW USA (ASW)**.
-
-![**Fig. 6.** Allele frequencies of our top G~ST~ hit.](04-pop_structure/images/ggv2.png)
 
 
 ## Principal component analysis
