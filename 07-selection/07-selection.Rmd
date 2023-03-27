@@ -101,28 +101,6 @@ library(ggtree)
 ```
 
 
-## Data (for F~ST~)
-
-We're once again working with data from the 1000 Genomes Project. As in the population structure module, we'll read in genotype data (in VCF form) and metadata on the populations that each sample is from.
-
-```{r}
-# read genotype data with vcfR
-vcf <- read.vcfR(file = "random_variable_sites.vcf.gz")
-```
-
-```{r, eval = FALSE}
-# read metadata
-metadata <- read.table("integrated_call_samples.txt",
-                       header = TRUE)
-head(metadata)
-```
-```{r,echo = FALSE, warning = FALSE, message = FALSE}
-metadata <- read.table(file = "../04-pop_structure/integrated_call_samples.txt",
-                       header = TRUE)
-head(metadata)
-```
-
-
 ## The F~ST~ statistic
 
 $\mathbf{F_{ST}}$ is a statistic that quantifies differences in allele frequencies between populations at one variable site.
@@ -145,6 +123,23 @@ $\mathrm{F_{ST}}$ ranges from 0 to 1:
 * $\mathrm{F_{ST}} = 1$: Subopulations are very different (ex: one population only carries one allele, while the other population only carries the other)
 
 See [this Nature Review Genetics article](https://pubmed.ncbi.nlm.nih.gov/19687804/) for a more thorough discussion on the use and interpretation of $\mathrm{F_{ST}}$ and related statistics.
+
+
+## Data (for F~ST~)
+
+We're once again working with data from the 1000 Genomes Project. As in the population structure module, we'll read in genotype data (in VCF form) and metadata on the populations that each sample is from.
+
+```{r}
+# read genotype data with vcfR
+vcf <- read.vcfR(file = "random_variable_sites.vcf.gz")
+```
+
+```{r}
+# read metadata
+metadata <- read.table("integrated_call_samples.txt",
+                       header = TRUE)
+head(metadata)
+```
 
 
 ## The `genetic_diff` function
@@ -234,7 +229,7 @@ One complicating factor is that the browser is based on the **hg19** reference g
 ***
 <details><summary> How do you compare variants between genome builds? </summary>
 
-There are many ways of converting from genome coordinate system to the other. One way is to look up the ID of the SNP in the UCSC Genome Browser, using its **chromosome** and **position**:
+There are many ways of converting from genome coordinate system to the other. One way is to look up the ID of the SNP in the [UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38), using its **chromosome** and **position**:
 
 <center>
 
@@ -449,7 +444,7 @@ tr_mean <- rtree(n = 3,
 # plot average tree
 ggtree(tr_mean, layout = "daylight") +
   geom_treescale(width = 0.1) +
-  geom_tiplab(label = c("RPS", "PNG", "CHB"))
+  geom_tip(label = c("RPS", "PNG", "CHB"))
 ```
 
 ```{r}
@@ -485,18 +480,17 @@ In this lab, we used three approaches to identify selection in multi-population 
   * Using the [**PopHuman browser**](pophuman.uab.cat), we saw that the _LCT_ locus -- the most famous example of selection in humans -- exhibits both elevated EHH and reduced genetic diversity ($\pi$).
 
 
-<!-- ## Homework -->
+## Homework
 
-<!-- #### Goals & Learning Objectives -->
+#### Goals & Learning Objectives
 
-<!-- * Interpret multiple statistics for measuring selection -->
-<!-- * Explain how specific statistics can give different results because they measure different genetic signatures -->
+* Interpret multiple statistics for measuring selection
+* Explain how specific statistics can give different results because they measure different genetic signatures
 
+### Required homework
 
-<!-- ### Required homework -->
+Read [**this review paper**](https://www.science.org/doi/10.1126/science.aaf5098) on genomic evidence of human local adaptation by Fan et al. Find examples of local adaptation (genes and populations) in the paper, and look up the relevant populations (or related populations) and tests of selection in the [PopHuman browser](pophuman.uab.cat).
 
-<!-- Read [**this review paper**](https://www.science.org/doi/10.1126/science.aaf5098) on genomic evidence of human local adaptation by Fan et al. Find examples of local adaptation (genes and populations) in the paper, and look up the relevant populations (or related populations) and tests of selection in the [PopHuman browser](pophuman.uab.cat). -->
-
-<!-- - Are the signatures of selection apparent?  -->
-<!-- - Are the signature apparent based on all statistics? -->
-<!-- - Why do certain statistics capture evidence of selection at certain loci but not others? -->
+- Are the signatures of selection apparent?
+- Are the signature apparent based on all statistics?
+- Why do certain statistics capture evidence of selection at certain loci but not others?
