@@ -97,7 +97,7 @@ In addition to `tidyverse` and `vcfR`, we'll also be using `ggtree`, an R packag
 ```{r}
 library(tidyverse)
 library(vcfR)
-# library(ggtree)
+library(ggtree)
 ```
 
 
