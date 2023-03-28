@@ -154,6 +154,10 @@ calculating-pbs-1
 manhattan-plot-of-pbs-results
 top-pbs-hits
 plotting-pbs-trees
+extended-haplotype-homozygosity
+plotting-ehh
+integrated-haplotype-statistic
+the-pophuman-browser
 conclusion-6
 homework-7
 goals-learning-objectives-4

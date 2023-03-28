@@ -297,10 +297,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.17" data-path="manhattan-plot-of-pbs-results.html"><a href="manhattan-plot-of-pbs-results.html"><i class="fa fa-check"></i><b>8.17</b> Manhattan plot of PBS results</a></li>
 <li class="chapter" data-level="8.18" data-path="top-pbs-hits.html"><a href="top-pbs-hits.html"><i class="fa fa-check"></i><b>8.18</b> Top PBS hits</a></li>
 <li class="chapter" data-level="8.19" data-path="plotting-pbs-trees.html"><a href="plotting-pbs-trees.html"><i class="fa fa-check"></i><b>8.19</b> Plotting PBS trees</a></li>
-<li class="chapter" data-level="8.20" data-path="conclusion-6.html"><a href="conclusion-6.html"><i class="fa fa-check"></i><b>8.20</b> Conclusion</a></li>
-<li class="chapter" data-level="8.21" data-path="homework-7.html"><a href="homework-7.html"><i class="fa fa-check"></i><b>8.21</b> Homework</a>
+<li class="chapter" data-level="8.20" data-path="extended-haplotype-homozygosity.html"><a href="extended-haplotype-homozygosity.html"><i class="fa fa-check"></i><b>8.20</b> Extended haplotype homozygosity</a></li>
+<li class="chapter" data-level="8.21" data-path="plotting-ehh.html"><a href="plotting-ehh.html"><i class="fa fa-check"></i><b>8.21</b> Plotting EHH</a></li>
+<li class="chapter" data-level="8.22" data-path="integrated-haplotype-statistic.html"><a href="integrated-haplotype-statistic.html"><i class="fa fa-check"></i><b>8.22</b> Integrated haplotype statistic</a></li>
+<li class="chapter" data-level="8.23" data-path="the-pophuman-browser.html"><a href="the-pophuman-browser.html"><i class="fa fa-check"></i><b>8.23</b> The PopHuman browser</a></li>
+<li class="chapter" data-level="8.24" data-path="conclusion-6.html"><a href="conclusion-6.html"><i class="fa fa-check"></i><b>8.24</b> Conclusion</a></li>
+<li class="chapter" data-level="8.25" data-path="homework-7.html"><a href="homework-7.html"><i class="fa fa-check"></i><b>8.25</b> Homework</a>
 <ul>
-<li class="chapter" data-level="8.21.1" data-path="homework-7.html"><a href="homework-7.html#required-homework-4"><i class="fa fa-check"></i><b>8.21.1</b> Required homework</a></li>
+<li class="chapter" data-level="8.25.1" data-path="homework-7.html"><a href="homework-7.html#required-homework-4"><i class="fa fa-check"></i><b>8.25.1</b> Required homework</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
@@ -395,14 +399,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  backports     1.1.10   2020-09-15 [1] RSPM (R 4.0.2)                    
 ##  BiocManager   1.30.10  2019-11-16 [1] RSPM (R 4.0.0)                    
 ##  blob          1.2.1    2020-01-20 [1] RSPM (R 4.0.3)                    
-##  bookdown      0.24     2023-03-10 [1] Github (rstudio/bookdown@88bc4ea) 
+##  bookdown      0.24     2023-03-28 [1] Github (rstudio/bookdown@88bc4ea) 
 ##  broom         0.7.1    2020-10-02 [1] RSPM (R 4.0.2)                    
 ##  bslib         0.4.2    2022-12-16 [1] CRAN (R 4.0.2)                    
 ##  cachem        1.0.7    2023-02-24 [1] CRAN (R 4.0.2)                    
 ##  calibrate     1.7.7    2020-06-19 [1] RSPM (R 4.0.1)                    
 ##  callr         3.5.0    2020-10-08 [1] RSPM (R 4.0.2)                    
 ##  cellranger    1.1.0    2016-07-27 [1] RSPM (R 4.0.3)                    
-##  cli           3.6.0    2023-01-09 [1] CRAN (R 4.0.2)                    
+##  cli           3.6.1    2023-03-23 [1] CRAN (R 4.0.2)                    
 ##  cluster       2.1.0    2019-06-19 [2] CRAN (R 4.0.2)                    
 ##  colorspace    1.4-1    2019-03-18 [1] RSPM (R 4.0.0)                    
 ##  crayon        1.3.4    2017-09-16 [1] RSPM (R 4.0.0)                    
@@ -427,11 +431,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  haven         2.3.1    2020-06-01 [1] RSPM (R 4.0.2)                    
 ##  highr         0.8      2019-03-20 [1] RSPM (R 4.0.3)                    
 ##  hms           0.5.3    2020-01-08 [1] RSPM (R 4.0.0)                    
-##  htmltools     0.5.4    2022-12-07 [1] CRAN (R 4.0.2)                    
+##  htmltools     0.5.5    2023-03-23 [1] CRAN (R 4.0.2)                    
 ##  httr          1.4.2    2020-07-20 [1] RSPM (R 4.0.3)                    
 ##  jquerylib     0.1.4    2021-04-26 [1] CRAN (R 4.0.2)                    
 ##  jsonlite      1.7.1    2020-09-07 [1] RSPM (R 4.0.2)                    
-##  knitr         1.33     2023-03-10 [1] Github (yihui/knitr@a1052d1)      
+##  knitr         1.33     2023-03-28 [1] Github (yihui/knitr@a1052d1)      
 ##  labeling      0.3      2014-08-23 [1] RSPM (R 4.0.0)                    
 ##  lattice       0.20-41  2020-04-02 [2] CRAN (R 4.0.2)                    
 ##  lazyeval      0.2.2    2019-03-15 [1] RSPM (R 4.0.3)                    
@@ -446,10 +450,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  modelr        0.1.8    2020-05-19 [1] RSPM (R 4.0.3)                    
 ##  munsell       0.5.0    2018-06-12 [1] RSPM (R 4.0.3)                    
 ##  nlme          3.1-148  2020-05-24 [2] CRAN (R 4.0.2)                    
-##  ottrpal       1.0.1    2023-03-10 [1] Github (jhudsl/ottrpal@151e412)   
+##  ottrpal       1.0.1    2023-03-28 [1] Github (jhudsl/ottrpal@151e412)   
 ##  patchwork     1.0.1    2020-06-22 [1] RSPM (R 4.0.2)                    
 ##  permute       0.9-5    2019-03-12 [1] RSPM (R 4.0.3)                    
-##  pillar        1.4.6    2020-07-10 [1] RSPM (R 4.0.2)                    
+##  pillar        1.9.0    2023-03-22 [1] CRAN (R 4.0.2)                    
 ##  pinfsc50      1.2.0    2020-06-03 [1] RSPM (R 4.0.0)                    
 ##  pkgbuild      1.1.0    2020-07-13 [1] RSPM (R 4.0.2)                    
 ##  pkgconfig     2.0.3    2019-09-22 [1] RSPM (R 4.0.3)                    
@@ -465,19 +469,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  readxl        1.3.1    2019-03-13 [1] RSPM (R 4.0.2)                    
 ##  remotes       2.2.0    2020-07-21 [1] RSPM (R 4.0.3)                    
 ##  reprex        0.3.0    2019-05-16 [1] RSPM (R 4.0.0)                    
-##  rlang         1.0.6    2022-09-24 [1] CRAN (R 4.0.2)                    
-##  rmarkdown     2.10     2023-03-10 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rlang         1.1.0    2023-03-14 [1] CRAN (R 4.0.2)                    
+##  rmarkdown     2.10     2023-03-28 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     2.0.3    2022-04-02 [1] CRAN (R 4.0.2)                    
 ##  rstudioapi    0.11     2020-02-07 [1] RSPM (R 4.0.0)                    
 ##  rvcheck       0.1.8    2020-03-01 [1] RSPM (R 4.0.0)                    
-##  rvest         1.0.1    2023-03-10 [1] Github (tidyverse/rvest@4fe39fb)  
+##  rvest         1.0.1    2023-03-28 [1] Github (tidyverse/rvest@4fe39fb)  
 ##  sass          0.4.5    2023-01-24 [1] CRAN (R 4.0.2)                    
 ##  scales        1.1.1    2020-05-11 [1] RSPM (R 4.0.3)                    
 ##  sessioninfo   1.1.1    2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3    2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr     * 1.4.0    2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1    2023-03-10 [1] Github (R-lib/testthat@e99155a)   
-##  tibble      * 3.0.3    2020-07-10 [1] RSPM (R 4.0.2)                    
+##  testthat      3.0.1    2023-03-28 [1] Github (R-lib/testthat@e99155a)   
+##  tibble      * 3.2.1    2023-03-20 [1] CRAN (R 4.0.2)                    
 ##  tidyr       * 1.1.2    2020-08-27 [1] RSPM (R 4.0.2)                    
 ##  tidyselect    1.1.0    2020-05-11 [1] RSPM (R 4.0.3)                    
 ##  tidytree      0.3.3    2020-04-02 [1] RSPM (R 4.0.3)                    
@@ -486,11 +490,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  usethis       1.6.3    2020-09-17 [1] RSPM (R 4.0.2)                    
 ##  utf8          1.1.4    2018-05-24 [1] RSPM (R 4.0.3)                    
 ##  vcfR        * 1.12.0   2020-09-01 [1] RSPM (R 4.0.2)                    
-##  vctrs         0.5.2    2023-01-23 [1] CRAN (R 4.0.2)                    
+##  vctrs         0.6.1    2023-03-22 [1] CRAN (R 4.0.2)                    
 ##  vegan         2.5-6    2019-09-01 [1] RSPM (R 4.0.0)                    
 ##  viridisLite   0.3.0    2018-02-01 [1] RSPM (R 4.0.3)                    
 ##  withr         2.3.0    2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.26     2023-03-10 [1] Github (yihui/xfun@74c2a66)       
+##  xfun          0.26     2023-03-28 [1] Github (yihui/xfun@74c2a66)       
 ##  xml2          1.3.2    2020-04-23 [1] RSPM (R 4.0.3)                    
 ##  yaml          2.2.1    2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
