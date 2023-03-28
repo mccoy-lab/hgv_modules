@@ -319,7 +319,6 @@ We've pre-calculated pairwise $\textrm{F}_{ST}$ between the Rampasasa, Han Chine
 
 ```{r}
 fst_results <- read.table("fst_results.txt.gz", header = TRUE)
-
 head(fst_results)
 ```
 
@@ -464,6 +463,10 @@ ggtree(tr_top, layout = "daylight") +
 
 <!-- ## Extended haplotype homozygosity -->
 
+
+```{r}
+library(fakeverse)
+```
 
 
 ## Conclusion
