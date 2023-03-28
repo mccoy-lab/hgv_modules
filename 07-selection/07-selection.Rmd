@@ -464,11 +464,6 @@ ggtree(tr_top, layout = "daylight") +
 <!-- ## Extended haplotype homozygosity -->
 
 
-```{r}
-library(fakeverse)
-```
-
-
 ## Conclusion
 
 In this lab, we used three approaches to identify selection in multi-population sequencing data.
