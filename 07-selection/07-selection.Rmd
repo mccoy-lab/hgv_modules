@@ -443,7 +443,7 @@ tr_mean <- rtree(n = 3,
 # plot average tree
 ggtree(tr_mean, layout = "daylight") +
   geom_treescale(width = 0.1) +
-  geom_tip(label = c("RPS", "PNG", "CHB"))
+  geom_tiplab(label = c("RPS", "PNG", "CHB"))
 ```
 
 ```{r}
@@ -457,7 +457,7 @@ tr_top <- rtree(n = 3,
 # plot top snp tree
 ggtree(tr_top, layout = "daylight") +
   geom_treescale(width = 0.1) +
-  geom_tip(label = c("RPS", "PNG", "CHB"))
+  geom_tiplab(label = c("RPS", "PNG", "CHB"))
 ```
 
 
