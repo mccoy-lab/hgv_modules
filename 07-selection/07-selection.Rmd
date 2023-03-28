@@ -461,7 +461,75 @@ ggtree(tr_top, layout = "daylight") +
 ```
 
 
-<!-- ## Extended haplotype homozygosity -->
+## Extended haplotype homozygosity
+
+The haplotype-based class of selection statistics quantifies long haplotypes that result from a selective sweep.
+
+**Extended haplotype homozygosity (EHH)** is defined as the probability that any two haplotypes in a population are homozygous at SNPs in specific genomic region. EHH should be elevated in regions under historical selection, because a sweep causes one haplotype to rise to high frequency, and decay as you move further from the site under selection.
+
+<center>
+
+![**Fig. 9 (from David Reich).** Recombination breaks down the haplotype under selection (red) as you move further from the core variant.](07-selection/images/hapotype_decay.png){width=80%}
+
+</center>
+
+
+## Plotting EHH
+
+EHH can be visualized with phylogeny-like plots like the one below. The width of the blue bar (the haplotype of interest) represents the haplotype's frequency in a population, and the steps in the plot indicate historical recombination.
+
+The other branches of the phylogeny (in red) indicate other haplotypes in this region. An overrepresentation of one haplotype over the others creates the observation of extreme EHH.
+
+<center>
+
+![**Fig. 10 (from David Reich).** Overrepresentation of the blue haplotype indicates extreme EHH, a possible signature of selection.](07-selection/images/ehh.png){width=80%}
+
+</center>
+
+***
+<details><summary> EHH plot for real data </summary>
+
+This plot shows EHH calculated for the CEU population of 1000 Genomes (Utah Residents [CEPH] with Northern and Western European Ancestry), zoomed in at the lactase (**_LCT_**) locus. A haplotype in this locus underwent a selective sweep in ancestor of European populations that allowed digestion of milk into adulthood, resulting in a present-day signature of EHH that stretches across megabases of sequence.
+
+In contrast, the ancestral haplotype (bottom) displays a much greater diversity and recombination.
+
+<center>
+
+![**Fig. 11.** EHH calculated for the lactase locus.](07-selection/images/lct.png)
+
+</center>
+
+</details>
+***
+
+
+## Integrated haplotype statistic
+
+If you calculate EHH for both the new and ancestral haplotypes at a locus, you can compare them to calculate the **integrated haplotype statistic (iHS)**, which is the ratio of the area under the EHH curve for the derived and ancestral haplotypes.
+
+<center>
+
+![**Fig. 12.** Comparing the EHH of two alleles to calculate iHS.](07-selection/images/ihs.png)
+
+</center>
+
+
+## The PopHuman browser
+
+While some R packages exist to compute EHH and iHS (e.g., the `rehh` package), they require some tricky processing of VCF files. Moreover, these statistics have already been computed genome-wide for all of the populations in the 1000 Genomes dataset, available from the [**PopHuman browser**](https://pophuman.uab.cat/).
+
+This browser lets you pull up results for several population genetic signatures. Look up the lactase (**_LCT_**) gene in the search bar, and then click `Select tracks` in the upper left-hand corner to choose:
+
+* iHS for the CEU (European) population
+* **pi** for the CEU population. This is a measure of nucleotide diversity, which we expect to be low in a region under historical selection
+
+<center>
+
+![**Fig. 13.** iHS and $\pi$ in the _LCT_ region.](07-selection/images/pophuman.png)
+
+</center>
+
+Note that if we compare both of these statistics to the genome-wide mean (yellow lines), we can see how dramatically they deviate from expectations in this genomic region.
 
 
 ## Conclusion
@@ -475,7 +543,7 @@ In this lab, we used three approaches to identify selection in multi-population 
   * One of the top PBS hits was in the fatty acid desaturase gene cluster (FADS).
 <br></br>
 * Finally, we discussed **extended haplotype homozygosity (EHH)** and related statistics, which detect long haplotypes that result from a **selective sweep**.
-  * Using the [**PopHuman browser**](pophuman.uab.cat), we saw that the _LCT_ locus -- the most famous example of selection in humans -- exhibits both elevated EHH and reduced genetic diversity ($\pi$).
+  * Using the [**PopHuman browser**](https://pophuman.uab.cat/), we saw that the _LCT_ locus -- the most famous example of selection in humans -- exhibits both elevated EHH and reduced genetic diversity ($\pi$).
 
 
 ## Homework
@@ -487,7 +555,7 @@ In this lab, we used three approaches to identify selection in multi-population 
 
 ### Required homework
 
-Read [**this review paper**](https://www.science.org/doi/10.1126/science.aaf5098) on genomic evidence of human local adaptation by Fan et al. Find examples of local adaptation (genes and populations) in the paper, and look up the relevant populations (or related populations) and tests of selection in the [PopHuman browser](pophuman.uab.cat).
+Read [**this review paper**](https://www.science.org/doi/10.1126/science.aaf5098) on genomic evidence of human local adaptation by Fan et al. Find examples of local adaptation (genes and populations) in the paper, and look up the relevant populations (or related populations) and tests of selection in the [PopHuman browser](https://pophuman.uab.cat/).
 
 - Are the signatures of selection apparent?
 - Are the signature apparent based on all statistics?
