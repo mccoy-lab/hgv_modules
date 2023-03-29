@@ -331,7 +331,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-genetic_diff-function" class="section level2" number="8.7">
 <h2><span class="header-section-number">8.7</span> The <code>genetic_diff</code> function</h2>
 <p>We’ll compute <span class="math inline">\(\textrm{F}_{ST}\)</span> using <code>vcfR</code>’s <code>genetic_diff</code> function. (This function technically calculates <span class="math inline">\(\textrm{G}_{ST}\)</span>, a version of <span class="math inline">\(\textrm{F}_{ST}\)</span> that considers when there are more than two alleles at a given locus. When a locus is biallelic, <span class="math inline">\(\textrm{F}_{ST} = \textrm{G}_{ST}\)</span>.)</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="the-genetic_diff-function.html#cb179-1" aria-hidden="true" tabindex="-1"></a>?genetic_diff</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="the-genetic_diff-function.html#cb176-1" aria-hidden="true" tabindex="-1"></a>?genetic_diff</span></code></pre></div>
 <p><code>genetic_diff</code> requires:</p>
 <ol style="list-style-type: decimal">
 <li><code>vcfR</code> object (in our case, <code>vcf</code>)</li>
@@ -347,8 +347,8 @@ What’s “Factor indicating populations”?
 </details>
 <hr />
 <p>We can use our <code>metadata</code> table to generate a vector of superpopulation labels. Since the superpopulation IDs are in the <code>superpop</code> column of that dataframe, we can convert the column from character to factor values with the <code>as.factor</code> function.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="the-genetic_diff-function.html#cb180-1" aria-hidden="true" tabindex="-1"></a>pop_labels <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(metadata<span class="sc">$</span>superpop)</span>
-<span id="cb180-2"><a href="the-genetic_diff-function.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pop_labels)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="the-genetic_diff-function.html#cb177-1" aria-hidden="true" tabindex="-1"></a>pop_labels <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(metadata<span class="sc">$</span>superpop)</span>
+<span id="cb177-2"><a href="the-genetic_diff-function.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pop_labels)</span></code></pre></div>
 <pre><code>## [1] EUR EUR EUR EUR EUR EUR
 ## Levels: AFR AMR EAS EUR SAS</code></pre>
 <p>Previewing <code>pop_labels</code> shows us that there are five “levels” in this vector, where each level is a superpopulation name.</p>

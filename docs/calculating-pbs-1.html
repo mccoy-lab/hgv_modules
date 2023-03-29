@@ -344,31 +344,31 @@ The <code>mutate()</code> function
 </details>
 <hr />
 <p>Filling in the gaps in the code block below, use <code>mutate</code> to calculate T and PBS on the FST values:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="calculating-pbs-1.html#cb195-1" aria-hidden="true" tabindex="-1"></a>pbs <span class="ot">&lt;-</span> fst_results <span class="sc">%&gt;%</span></span>
-<span id="cb195-2"><a href="calculating-pbs-1.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate branch lengths between populations</span></span>
-<span id="cb195-3"><a href="calculating-pbs-1.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">T_rps_chb =</span> _________,</span>
-<span id="cb195-4"><a href="calculating-pbs-1.html#cb195-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_rps_png =</span> _________,</span>
-<span id="cb195-5"><a href="calculating-pbs-1.html#cb195-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_png_chb =</span> _________,) <span class="sc">%&gt;%</span></span>
-<span id="cb195-6"><a href="calculating-pbs-1.html#cb195-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate pbs</span></span>
-<span id="cb195-7"><a href="calculating-pbs-1.html#cb195-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pbs =</span> _________) <span class="sc">%&gt;%</span></span>
-<span id="cb195-8"><a href="calculating-pbs-1.html#cb195-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sort by descending pbs value</span></span>
-<span id="cb195-9"><a href="calculating-pbs-1.html#cb195-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>pbs)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="calculating-pbs-1.html#cb192-1" aria-hidden="true" tabindex="-1"></a>pbs <span class="ot">&lt;-</span> fst_results <span class="sc">%&gt;%</span></span>
+<span id="cb192-2"><a href="calculating-pbs-1.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate branch lengths between populations</span></span>
+<span id="cb192-3"><a href="calculating-pbs-1.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">T_rps_chb =</span> _________,</span>
+<span id="cb192-4"><a href="calculating-pbs-1.html#cb192-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_rps_png =</span> _________,</span>
+<span id="cb192-5"><a href="calculating-pbs-1.html#cb192-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_png_chb =</span> _________,) <span class="sc">%&gt;%</span></span>
+<span id="cb192-6"><a href="calculating-pbs-1.html#cb192-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate pbs</span></span>
+<span id="cb192-7"><a href="calculating-pbs-1.html#cb192-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pbs =</span> _________) <span class="sc">%&gt;%</span></span>
+<span id="cb192-8"><a href="calculating-pbs-1.html#cb192-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sort by descending pbs value</span></span>
+<span id="cb192-9"><a href="calculating-pbs-1.html#cb192-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>pbs)</span></code></pre></div>
 <hr />
 <details>
 <summary>
 Solution
 </summary>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="calculating-pbs-1.html#cb196-1" aria-hidden="true" tabindex="-1"></a>pbs <span class="ot">&lt;-</span> fst_results <span class="sc">%&gt;%</span></span>
-<span id="cb196-2"><a href="calculating-pbs-1.html#cb196-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate branch lengths between populations</span></span>
-<span id="cb196-3"><a href="calculating-pbs-1.html#cb196-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">T_rps_chb =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fst.rps.chb),</span>
-<span id="cb196-4"><a href="calculating-pbs-1.html#cb196-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_rps_png =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fst.rps.png),</span>
-<span id="cb196-5"><a href="calculating-pbs-1.html#cb196-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_png_chb =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fst.png.chb)) <span class="sc">%&gt;%</span></span>
-<span id="cb196-6"><a href="calculating-pbs-1.html#cb196-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate pbs</span></span>
-<span id="cb196-7"><a href="calculating-pbs-1.html#cb196-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pbs =</span> ((T_rps_png <span class="sc">+</span> T_rps_chb) <span class="sc">-</span> (T_png_chb)) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb196-8"><a href="calculating-pbs-1.html#cb196-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sort by descending pbs value</span></span>
-<span id="cb196-9"><a href="calculating-pbs-1.html#cb196-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>pbs)</span>
-<span id="cb196-10"><a href="calculating-pbs-1.html#cb196-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb196-11"><a href="calculating-pbs-1.html#cb196-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pbs)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="calculating-pbs-1.html#cb193-1" aria-hidden="true" tabindex="-1"></a>pbs <span class="ot">&lt;-</span> fst_results <span class="sc">%&gt;%</span></span>
+<span id="cb193-2"><a href="calculating-pbs-1.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate branch lengths between populations</span></span>
+<span id="cb193-3"><a href="calculating-pbs-1.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">T_rps_chb =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fst.rps.chb),</span>
+<span id="cb193-4"><a href="calculating-pbs-1.html#cb193-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_rps_png =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fst.rps.png),</span>
+<span id="cb193-5"><a href="calculating-pbs-1.html#cb193-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">T_png_chb =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fst.png.chb)) <span class="sc">%&gt;%</span></span>
+<span id="cb193-6"><a href="calculating-pbs-1.html#cb193-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate pbs</span></span>
+<span id="cb193-7"><a href="calculating-pbs-1.html#cb193-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pbs =</span> ((T_rps_png <span class="sc">+</span> T_rps_chb) <span class="sc">-</span> (T_png_chb)) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb193-8"><a href="calculating-pbs-1.html#cb193-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sort by descending pbs value</span></span>
+<span id="cb193-9"><a href="calculating-pbs-1.html#cb193-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>pbs)</span>
+<span id="cb193-10"><a href="calculating-pbs-1.html#cb193-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-11"><a href="calculating-pbs-1.html#cb193-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pbs)</span></code></pre></div>
 <pre><code>##   chr       pos   rps.af   chb.af    png.af fst.rps.chb fst.rps.png fst.png.chb
 ## 1  11 126880301 0.833333 0.296117 0.0571429    0.734021    0.823884    0.216269
 ## 2  11 126883747 0.833333 0.296117 0.0571429    0.734021    0.823884    0.216269
