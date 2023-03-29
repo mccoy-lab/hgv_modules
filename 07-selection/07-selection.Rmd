@@ -75,7 +75,7 @@ This decreased diversity signature fades over time as new mutations arise on the
 
 <center>
 
-![**Fig. 3.** (A) Selective sweeps reduce genetic diversity. (B)-(D) Summary of common signatures of selection.](07-selection/images/selection.png){width=85%}
+![**Fig. 3.** (A) Selective sweeps reduce genetic diversity. (B)-(D) Summary of common signatures of selection.](07-selection/images/selection.jpg){width=85%}
 
 </center>
 
@@ -469,7 +469,7 @@ The haplotype-based class of selection statistics quantifies long haplotypes tha
 
 <center>
 
-![**Fig. 9 (from David Reich).** Recombination breaks down the haplotype under selection (red) as you move further from the core variant.](07-selection/images/hapotype_decay.png){width=80%}
+![**Fig. 9 (from David Reich).** Recombination breaks down the haplotype under selection (red) as you move further from the core variant.](07-selection/images/haplotype_decay.png){width=80%}
 
 </center>
 
@@ -520,7 +520,7 @@ While some R packages exist to compute EHH and iHS (e.g., the `rehh` package), t
 
 This browser lets you pull up results for several population genetic signatures. Look up the lactase (**_LCT_**) gene in the search bar, and then click `Select tracks` in the upper left-hand corner to choose:
 
-* iHS for the CEU (European) population
+* **iHS** for the CEU (European) population
 * **pi** for the CEU population. This is a measure of nucleotide diversity, which we expect to be low in a region under historical selection
 
 <center>
