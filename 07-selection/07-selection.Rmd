@@ -75,7 +75,7 @@ This decreased diversity signature fades over time as new mutations arise on the
 
 <center>
 
-![**Fig. 3.** (A) Selective sweeps reduce genetic diversity. (B)-(D) Summary of common signatures of selection.](07-selection/images/selection.jpg){width=85%}
+![**Fig. 3.** (A) Selective sweeps reduce genetic diversity. (B)-(D) Summary of common signatures of selection.](07-selection/images/selection.jpg)
 
 </center>
 
@@ -94,7 +94,7 @@ Because recombination breaks down haplotypes over time, a longer haplotype impli
 
 In addition to `tidyverse` and `vcfR`, we'll also be using `ggtree`, an R package for visualizing trees associated with PBS outliers.
 
-```{r}
+```{r, results = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(vcfR)
 library(ggtree)
