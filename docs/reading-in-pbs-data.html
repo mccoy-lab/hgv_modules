@@ -331,8 +331,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="reading-in-pbs-data" class="section level2" number="8.15">
 <h2><span class="header-section-number">8.15</span> Reading in PBS data</h2>
 <p>We’ve pre-calculated pairwise <span class="math inline">\(\textrm{F}_{ST}\)</span> between the Rampasasa, Han Chinese, and Papua New Guinea populations. Load the results for chromosome 11 into R:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="reading-in-pbs-data.html#cb191-1" aria-hidden="true" tabindex="-1"></a>fst_results <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;fst_results.txt.gz&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb191-2"><a href="reading-in-pbs-data.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fst_results)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="reading-in-pbs-data.html#cb188-1" aria-hidden="true" tabindex="-1"></a>fst_results <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;fst_results.txt.gz&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb188-2"><a href="reading-in-pbs-data.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fst_results)</span></code></pre></div>
 <pre><code>##   chr       pos    rps.af    chb.af    png.af fst.rps.chb fst.rps.png
 ## 1  11 100001950 0.1666670 0.0145631 0.0428571  0.32524800   0.0845486
 ## 2  11 100003476 0.0555556 0.0339806 0.1000000 -0.01078610  -0.0118052

@@ -331,8 +331,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-for-fst" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Data (for F<sub>ST</sub>)</h2>
 <p>We’re once again working with data from the 1000 Genomes Project. As in the population structure module, we’ll read in genotype data (in VCF form) and metadata on the populations that each sample is from.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-for-fst.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read genotype data with vcfR</span></span>
-<span id="cb175-2"><a href="data-for-fst.html#cb175-2" aria-hidden="true" tabindex="-1"></a>vcf <span class="ot">&lt;-</span> <span class="fu">read.vcfR</span>(<span class="at">file =</span> <span class="st">&quot;random_variable_sites.vcf.gz&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-for-fst.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read genotype data with vcfR</span></span>
+<span id="cb172-2"><a href="data-for-fst.html#cb172-2" aria-hidden="true" tabindex="-1"></a>vcf <span class="ot">&lt;-</span> <span class="fu">read.vcfR</span>(<span class="at">file =</span> <span class="st">&quot;random_variable_sites.vcf.gz&quot;</span>)</span></code></pre></div>
 <pre><code>## Scanning file to determine attributes.
 ## File attributes:
 ##   meta lines: 19
@@ -361,10 +361,10 @@ Processed variant 8000
 Processed variant 9000
 Processed variant: 9748
 ## All variants processed</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="data-for-fst.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read metadata</span></span>
-<span id="cb177-2"><a href="data-for-fst.html#cb177-2" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;integrated_call_samples.txt&quot;</span>,</span>
-<span id="cb177-3"><a href="data-for-fst.html#cb177-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb177-4"><a href="data-for-fst.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metadata)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-for-fst.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read metadata</span></span>
+<span id="cb174-2"><a href="data-for-fst.html#cb174-2" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;integrated_call_samples.txt&quot;</span>,</span>
+<span id="cb174-3"><a href="data-for-fst.html#cb174-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb174-4"><a href="data-for-fst.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metadata)</span></code></pre></div>
 <pre><code>##    sample pop superpop    sex
 ## 1 HG00096 GBR      EUR   male
 ## 2 HG00097 GBR      EUR female
