@@ -9,7 +9,8 @@ rmd_files: ["index.Rmd",
             "05-gwas1/05-gwas1.Rmd",
             "06-gwas2/06-gwas2.Rmd",
             "07-selection/07-selection.Rmd",
-            # "08-wright_fisher/08-wright_fisher.Rmd",
+            "08-archaic_admixture/08-archaic_admixture.Rmd",
+            # "09-wright_fisher/09-wright_fisher.Rmd",
             "About.Rmd"]
 delete_merged_file: true
 # new_session: yes
