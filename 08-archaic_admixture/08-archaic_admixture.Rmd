@@ -391,7 +391,7 @@ ggplot(f4_filtered,
 
 In this lab, we assessed evidence for Neanderthal introgression into specific human populations.
 
-* We reviewed the $\mathbf{D}$ **statistic**, which asks whether a variant shows an imbalance in the population inheritance patterns expected from **incomplete lineage sorting (ILS)**. Such an imbalance implies introgression into one of the populations.
+* We reviewed the $\mathbf{D}$ **statistic**, which asks whether a variant shows an imbalance in the population inheritance patterns expected from **incomplete lineage sorting (ILS)**. Such an imbalance implies historical introgression into one population.
 <br></br>
 * With `admixr`, we calculated the $D$ statistic for one individual from each of seven modern human populations, identifying significant evidence for Neanderthal introgression into the ancestors of non-African -- but not African -- populations.
 <br></br>
