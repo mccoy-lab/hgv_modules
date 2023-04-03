@@ -216,7 +216,7 @@ We can give `d()` a list of populations to compute the $D$ statistic for, where:
 * `Y`: The **introgressing** population (Vindija Neanderthal)
 * `Z`: Outgroup (chimpanzee)
 
-```{r}
+```{r, message = FALSE}
 # create vector of populations of interest
 pops <- c("French", "Sardinian", "Han", "Papuan",
           # including three African populations
