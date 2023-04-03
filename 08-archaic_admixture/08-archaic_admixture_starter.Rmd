@@ -1,0 +1,245 @@
+# Archaic admixture
+
+In this lab, we'll discuss three common statistics, $D$, $f_{4}$, and the $f_{4}$-ratio, which are used for quantifying and testing hypotheses related to admixture (or "introgression").
+
+#### Learning objectives
+
+After completing this chapter, you'll be able to:
+
+1. Explain how incomplete lineage sorting can create patterns of allele sharing that are discordant with species relationships.
+2. Describe how introgression is expected to affect patterns of allele sharing.
+3. Interpret the D and f4 statistics and their asssociated p-values.
+4. Interpret the f4-ratio ratio statistic and whether it implies differences in archaic admixture between populations.
+
+
+***
+
+
+## Setup
+
+### R packages
+
+```{r, results = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(admixr)
+```
+
+
+***
+
+
+## Data
+
+Get data using `admixr`'s `download_data()` function:
+
+```{r}
+# download data into current directory
+prefix <- download_data(dirname = ".")
+```
+
+```{r}
+# read in eigenstrat files
+snps <- eigenstrat(prefix)
+snps
+```
+
+
+***
+
+
+## Computing the D statistic
+
+```{r}
+?d
+```
+
+We give `d()` a list of populations to compute the D statistic for, where:
+
+* `W`: Our population of interest
+* `X`: An assumed **unadmixed** population (Yoruba)
+* `Y`: The **introgressing** population (Vindija Neanderthal)
+* `Z`: Outgroup (chimpanzee)
+
+Compute D between French, Sardinian, Vindija (Neanderthal), and chimpanzee:
+
+```{r}
+d_result <- d(data = snps,
+              # provide population names to calculate D between
+              W = "French", X = "Sardinian", Y = "Vindija", Z = "Chimp")
+
+d_result
+```
+
+Convert the Z score into a p-value:
+
+```{r}
+d_result <- d_result %>%
+  # convert z score into pvalue
+  mutate(p = 2 * pnorm(-abs(Zscore)))
+
+d_result
+```
+
+
+
+***
+
+
+## Computing D for all populations
+
+```{r}
+# create vector of populations of interest
+pops <- c("French", "Sardinian", "Han", "Papuan",
+          # including three African populations
+          "Khomani_San", "Mbuti", "Dinka")
+
+# calculate D
+d_result <- d(data = snps,
+              W = pops, X = "Yoruba", Y = "Vindija", Z = "Chimp") %>%
+  # convert z score into pvalue
+  mutate(p = 2 * pnorm(-abs(Zscore)))
+
+d_result
+```
+
+
+***
+
+
+## Plotting the D statistic
+
+Run the code block to plot the D statistic and standard error for each population.
+
+```{r}
+ggplot(d_result,
+       aes(fct_reorder(W, D), D, color = p < 0.05)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_errorbar(aes(ymin = D - 1.96 * stderr, ymax = D + 1.96 * stderr), width = 0.5) +
+  xlab("Population")
+```
+
+
+***
+
+
+## f4 statistic
+
+Run the code block below to compute the f4 statistic for all populations.
+
+```{r}
+f4_result <- f4(data = snps,
+                W = pops, X = "Yoruba", Y = "Vindija", Z = "Chimp") %>%
+  # convert z score into pvalue
+  mutate(p = 2 * pnorm(-abs(Zscore)))
+
+f4_result
+```
+
+
+***
+
+
+## f4-ratio statistic
+
+Calculate the f4-ratio using the code block below.
+
+```{r}
+f4_ratio_result <- f4ratio(data = snps,
+                           X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
+  # convert z score to pvalue
+  mutate(p = 2 * pnorm(-abs(Zscore)))
+
+f4_ratio_result
+```
+
+
+***
+
+
+## Plotting f4-ratio results
+
+Run the code below to plot the $f_{4}$-ratio values we computed.
+
+```{r}
+ggplot(f4_ratio_result,
+       aes(fct_reorder(X, alpha), alpha, color = p < 0.05)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr), width = 0.5) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  labs(y = "Neanderthal ancestry proportion", x = "Present-day individual")
+```
+
+
+***
+
+
+## Computing statistics in genomic intervals
+
+```{r}
+# get the path to the `regions.bed` file
+bed <- file.path(dirname(prefix), "regions.bed")
+
+# option 1: KEEP only these regions for analysis
+new_snps_keep <- filter_bed(snps, bed)
+# option 2: REMOVE these regions from analysis
+new_snps_remove <- filter_bed(snps, bed, remove = TRUE)
+```
+
+Re-calculate f4-ratio:
+
+```{r}
+# f4-ratio with the regions removed
+f4_filtered <- f4ratio(data = new_snps_remove,
+                       X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
+  # convert z score to pvalue
+  mutate(p = 2 * pnorm(-abs(Zscore)))
+
+f4_filtered
+```
+
+Plot the region-excluded f4-ratios:
+
+```{r}
+ggplot(f4_filtered,
+       aes(fct_reorder(X, alpha), alpha, color = p < 0.05)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr), width = 0.5) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  labs(y = "Neanderthal ancestry proportion", x = "Present-day individual")
+```
+
+
+***
+
+
+## Homework
+
+#### Learning Objectives
+
+* Practice calculating introgression statistics in `admixr`
+* Interpret the biological significance of region-specific values of the $f_4$-ratio
+
+#### Assignment
+
+Follow these steps to create your own genome stratifications for calculating the $f_4$ ratio statistic.
+
+1. Go to the [**UCSC Table Browser**](http://genome.ucsc.edu/cgi-bin/hgTables), where you can find a wide selection of annotations for the human genome.
+2. Make sure you set the `assembly:` drop-down box to `Feb. 2009 (GRCh37/hg19)`.
+3. Use the `group:` and `track:` menus to select any set of genomic regions.
+    * You can click the `data format description` button and scroll to the `Description` section to find out what each annotation represents.
+4. Under the `Retrieve and display data` section, set the `output format:` to BED.
+5. Enter an `output filename:` (ex: `all_genes.bed`).
+6. Click `get output` to download the file.
+7. In Posit Cloud, upload your file using the `Upload` button in the `Files` panel (bottom right).
+8. Run the code block below to reformat the BED file (this matches the UCSC's chromosome naming format with the format used in the `snps` data):
+
+```{r, eval = FALSE}
+# fill in blank with the name of your bed file
+system(command = "sed -i 's/chr//g' ________")
+
+# get the path to your bed file
+bed <- file.path("________")
+```
+
+Compute the $f_4$ ratio statistic within and outside of the genomic intervals. Repeat for another set of genome annotations to contrast Neanderthal ancestry in different genomic elements.

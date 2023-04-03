@@ -193,6 +193,7 @@ How do we know whether the ABBA-BABA counts are significantly different? We can 
 d_result <- d_result %>%
   # convert z score into pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
+
 d_result
 ```
 
@@ -225,6 +226,7 @@ d_result <- d(data = snps,
               W = pops, X = "Yoruba", Y = "Vindija", Z = "Chimp") %>%
   # convert z score into pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
+
 d_result
 ```
 
@@ -253,7 +255,7 @@ ggplot(d_result,
 ```
 
 
-## $f_{4}$ and $f_{4}$-ratio statistics
+## $f_{4}$ statistic
 
 The $\mathbf{f_{4}}$ **statistic** -- not to be confused with the $\mathrm{F_{ST}}$ from the previous week -- is very similar to the *D* statistic. Its main advantage is that it is proportional to the branch length separating two pairs of populations.
 
@@ -284,6 +286,7 @@ f4_ratio_result <- f4ratio(data = snps,
                            X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
   # convert z score to pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
+
 f4_ratio_result
 ```
 
@@ -364,6 +367,7 @@ f4_filtered <- f4ratio(data = new_snps_remove,
                        X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
   # convert z score to pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
+
 f4_filtered
 ```
 
@@ -406,7 +410,7 @@ In this lab, we assessed evidence for Neanderthal introgression into specific hu
 
 #### Assignment
 
-Follow these steps to create your own genome stratifications for calculating the $D$ and $f_4$ ratio statistics.
+Follow these steps to create your own genome stratifications for calculating the $f_4$ ratio statistic.
 
 1. Go to the [**UCSC Table Browser**](http://genome.ucsc.edu/cgi-bin/hgTables), where you can find a wide selection of annotations for the human genome.
 2. Make sure you set the `assembly:` drop-down box to `Feb. 2009 (GRCh37/hg19)`.
@@ -416,13 +420,56 @@ Follow these steps to create your own genome stratifications for calculating the
 5. Enter an `output filename:` (ex: `all_genes.bed`).
 6. Click `get output` to download the file.
 7. In Posit Cloud, upload your file using the `Upload` button in the `Files` panel (bottom right).
+8. Run the code block below to reformat the BED file. The code matches the UCSC's chromosome naming format with the format used in the `snps` data:
 
-Compute the $D$ and $f_4$ ratio statistics within and outside of the genomic intervals. Repeat for another set of genome annotations to contrast Neanderthal ancestry in different genomic elements.
+```{r, eval = FALSE}
+# fill in blank with the name of your bed file
+system(command = "sed -i 's/chr//g' ________")
+
+# get the path to your bed file
+bed <- file.path("________")
+```
+
+Compute the $f_4$ ratio statistic within and outside of the genomic intervals. Repeat for another set of genome annotations to contrast Neanderthal ancestry in different genomic elements.
 
 ***
 <details> <summary> Solution </summary>
 
+Download tracklist of haploinsufficient genes (`Phenotype and Literature` -> `Haploinsufficiency`).
 
+```{r}
+# get the path to the `regions.bed` file
+bed <- file.path("haploinsufficient.bed")
+
+# option 1: KEEP only these regions for analysis
+new_snps_keep <- filter_bed(snps, bed)
+# option 2: REMOVE these regions from analysis
+new_snps_remove <- filter_bed(snps, bed, remove = TRUE)
+```
+
+Re-calculate the $f_4$-ratio:
+
+```{r}
+# f4-ratio with the regions kept
+f4_keep <- f4ratio(data = new_snps_keep,
+                       X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
+  # convert z score to pvalue
+  mutate(p = 2 * pnorm(-abs(Zscore)))
+
+f4_keep
+```
+
+```{r}
+# f4-ratio with the regions removed
+f4_remove <- f4ratio(data = new_snps_remove,
+                       X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
+  # convert z score to pvalue
+  mutate(p = 2 * pnorm(-abs(Zscore)))
+
+f4_remove
+```
+
+Some of the alpha values for each population change when excluding/restricting to haploinsufficient genes, but their standard error ranges still overlap between the two $f_4$-ratio calculations, so they likely aren't truly different.
 
 </details>
 ***
