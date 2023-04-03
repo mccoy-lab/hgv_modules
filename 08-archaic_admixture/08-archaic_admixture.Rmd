@@ -1,6 +1,7 @@
 ```{r, include = FALSE}
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '08-archaic_admixture')
+knitr::opts_chunk$set(engine.opts = list(R = "-l"))
 # install packages for the lab
 install.packages("admixr")
 ```
@@ -189,7 +190,7 @@ The middle columns give the actual value of $D$ and its standard error, as well 
 
 How do we know whether the ABBA-BABA counts are significantly different? We can convert the Z score into a p-value:
 
-```{r}
+```{r, message = FALSE}
 d_result <- d_result %>%
   # convert z score into pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
