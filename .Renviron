@@ -1,1 +1,2 @@
-PATH=08-archaic_admixture/bin:
+#PATH="/usr/local/clang7/bin:${PATH}"
+PATH=08-archaic_admixture/bin:${PATH}
