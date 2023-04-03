@@ -163,7 +163,7 @@ As input, `d()` asks for:
 
 Let's compute $D$ for four of the individuals we have data for: French, Sardinian, Vindija (Neanderthal), and chimpanzee.
 
-```{r}
+```{r, message = FALSE}
 d_result <- d(data = snps,
               # provide population names to calculate D between
               W = "French", X = "Sardinian", Y = "Vindija", Z = "Chimp")

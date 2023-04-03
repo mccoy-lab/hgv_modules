@@ -1,0 +1,1 @@
+export PATH="./08-archaic_admixture/bin:$PATH"
