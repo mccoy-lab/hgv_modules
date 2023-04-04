@@ -62,7 +62,7 @@ ILS can create discordant **`ABBA`** or **`BABA`** trees for a given SNP. Under 
 
 ## Evidence of introgression
 
-Discordant trees can also be produced by **introgression**. In this case, the B allele arises on the Neanderthal lineage and is passed from Neanderthals into a human population, creating either an `ABBA` or `BABA` pattern (depending on which population receives Neanderthal gene flow).
+Discordant trees can also be produced by **introgression**. In this case, the B allele arises on the Neanderthal lineage and is passed from Neanderthals into a human population, creating **either an `ABBA` or `BABA` pattern** (depending on which population receives Neanderthal gene flow).
 
 <center>
 
@@ -246,7 +246,7 @@ d_result
 
 
 ***
-<details> <summary> How do we interpret these $D$ results? </summary>
+<details> <summary> Interpretation of $D$ results </summary>
 
 This is the result that was published in [**Green et al. 2010**](https://www.science.org/doi/full/10.1126/science.1188021), revealing evidence for gene flow from Neanderthals into the ancestors of non-African populations.
 
@@ -346,7 +346,7 @@ We know that Oceanian populations also experienced introgression from Denisovans
 
 ## Computing statistics in genomic intervals
 
-We've so far computed the $D$, $f_4$, and $f_4$-ratio statistics across the entire genome, but we can also restrict computation of these statistics to particular genomic intervals, such as genes, promoters, enhancers, etc.
+We've so far computed the $D$, $f_4$, and $f_4$-ratio statistics across the entire genome, but we can also restrict computation to particular genomic intervals, such as genes, promoters, enhancers, etc.
 
 ***
 <details> <summary> What would region-specific differences imply? </summary>
@@ -431,9 +431,9 @@ In this lab, we assessed evidence for Neanderthal introgression into specific hu
 <br></br>
 * With `admixr`, we calculated the $D$ statistic for one individual from each of seven modern human populations, identifying significant evidence for Neanderthal introgression into the ancestors of non-African -- but not African -- populations.
 <br></br>
-* We also calculated the $f_4$ statistic, which is very similar to the $D$ statistic but is proportional to the genetic distance between two populations.
+* We also calculated the $\mathbf{f_4}$ **statistic**, which is very similar to the $D$ statistic but is proportional to the genetic distance between two populations.
 <br></br>
-* Finally, we computed the $f_4$-ratio, whose value indicates the proportion of introgressed ancestry in each population.
+* Finally, we computed the $\mathbf{f_4}$**-ratio**, whose value indicates the proportion of introgressed ancestry in each population.
   * We observed a higher proportion of Neanderthal ancestry in the Papuan individual in our dataset, which is likely an artifact of Denisovan introgression into Oceanian populations.
 
 
@@ -456,7 +456,7 @@ Follow these steps to create your own genome stratifications for calculating the
 5. Enter an `output filename:` (ex: `all_genes.bed`).
 6. Click `get output` to download the file.
 7. In Posit Cloud, upload your file using the `Upload` button in the `Files` panel (bottom right).
-8. Run the code block below to reformat the BED file. The code matches the UCSC's chromosome naming format with the format used in the `snps` data:
+8. **Run the code block below** to reformat the BED file. The code matches the UCSC's chromosome naming format with the format used in the `snps` data:
 
 ```{r, eval = FALSE}
 # fill in blank with the name of your bed file
