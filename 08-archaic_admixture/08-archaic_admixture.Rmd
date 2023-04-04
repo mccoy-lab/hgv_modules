@@ -15,7 +15,7 @@ After completing this chapter, you'll be able to:
 
 1. Explain how incomplete lineage sorting can create patterns of allele sharing that are discordant with species relationships.
 2. Describe how introgression is expected to affect patterns of allele sharing.
-3. Interpret the $D$ and $f_4$ statistics and their asssociated p-values.
+3. Interpret the $D$ and $f_4$ statistics and their associated p-values.
 4. Interpret the $f_{4}$-ratio ratio statistic and whether it implies differences in archaic admixture between populations.
 
 
