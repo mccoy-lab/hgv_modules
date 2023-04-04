@@ -496,8 +496,8 @@ f4_keep
 ```
 ```{r, echo = FALSE}
 # read in table with the `f4_keep` data
-write.table(f4_keep, "f4_keep.txt",
-            sep = "\t", row.names = FALSE, quote = FALSE)
+# write.table(f4_keep, "f4_keep.txt",
+#             sep = "\t", row.names = FALSE, quote = FALSE)
 f4_keep <- read.table("f4_keep.txt", header = TRUE)
 f4_keep
 ```
@@ -513,8 +513,8 @@ f4_remove
 ```
 ```{r, echo = FALSE}
 # read in table with the `f4_remove` data
-write.table(f4_remove, "f4_remove.txt",
-            sep = "\t", row.names = FALSE, quote = FALSE)
+# write.table(f4_remove, "f4_remove.txt",
+#             sep = "\t", row.names = FALSE, quote = FALSE)
 f4_remove <- read.table("f4_remove.txt", header = TRUE)
 f4_remove
 ```
