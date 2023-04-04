@@ -378,7 +378,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Enter an <code>output filename:</code> (ex: <code>all_genes.bed</code>).</li>
 <li>Click <code>get output</code> to download the file.</li>
 <li>In Posit Cloud, upload your file using the <code>Upload</code> button in the <code>Files</code> panel (bottom right).</li>
-<li>Run the code block below to reformat the BED file. The code matches the UCSC’s chromosome naming format with the format used in the <code>snps</code> data:</li>
+<li><strong>Run the code block below</strong> to reformat the BED file. The code matches the UCSC’s chromosome naming format with the format used in the <code>snps</code> data:</li>
 </ol>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="homework-8.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fill in blank with the name of your bed file</span></span>
 <span id="cb223-2"><a href="homework-8.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="at">command =</span> <span class="st">&quot;sed -i &#39;s/chr//g&#39; ________&quot;</span>)</span>
