@@ -2,7 +2,7 @@
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '08-archaic_admixture')
 # install packages for the lab
-# install.packages("admixr")
+install.packages("admixr")
 ```
 
 # Archaic admixture
