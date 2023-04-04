@@ -1,0 +1,2 @@
+W	X	Y	Z	D	stderr	Zscore	BABA	ABBA	nsnps
+French	Sardinian	Vindija	Chimp	0.0038	0.0074	0.511	10974	10891	487843

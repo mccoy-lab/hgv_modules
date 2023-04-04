@@ -1,9 +1,8 @@
 ```{r, include = FALSE}
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '08-archaic_admixture')
-knitr::opts_chunk$set(engine.opts = list(R = "-l"))
 # install packages for the lab
-install.packages("admixr")
+# install.packages("admixr")
 ```
 
 # Archaic admixture
@@ -164,11 +163,18 @@ As input, `d()` asks for:
 
 Let's compute $D$ for four of the individuals we have data for: French, Sardinian, Vindija (Neanderthal), and chimpanzee.
 
-```{r, message = FALSE}
+```{r, eval = FALSE}
 d_result <- d(data = snps,
               # provide population names to calculate D between
               W = "French", X = "Sardinian", Y = "Vindija", Z = "Chimp")
 
+d_result
+```
+```{r, echo = FALSE}
+# read in table with the `d_result` data
+# write.table(d_result, "d_all_Yoruba.txt",
+#             sep = "\t", row.names = FALSE, quote = FALSE)
+d_result <- read.table("d_French_Sardinian.txt", header = TRUE)
 d_result
 ```
 
@@ -190,7 +196,7 @@ The middle columns give the actual value of $D$ and its standard error, as well 
 
 How do we know whether the ABBA-BABA counts are significantly different? We can convert the Z score into a p-value:
 
-```{r, message = FALSE}
+```{r}
 d_result <- d_result %>%
   # convert z score into pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
@@ -216,7 +222,7 @@ We can give `d()` a list of populations to compute the $D$ statistic for, where:
 * `Y`: The **introgressing** population (Vindija Neanderthal)
 * `Z`: Outgroup (chimpanzee)
 
-```{r, message = FALSE}
+```{r, eval = FALSE}
 # create vector of populations of interest
 pops <- c("French", "Sardinian", "Han", "Papuan",
           # including three African populations
@@ -230,6 +236,14 @@ d_result <- d(data = snps,
 
 d_result
 ```
+```{r, echo = FALSE}
+# read in table with the `d_result` data
+# write.table(d_result, "d_all_Yoruba.txt",
+#             sep = "\t", row.names = FALSE, quote = FALSE)
+d_result <- read.table("d_all_Yoruba.txt", header = TRUE)
+d_result
+```
+
 
 ***
 <details> <summary> How do we interpret these $D$ results? </summary>
@@ -262,12 +276,19 @@ The $\mathbf{f_{4}}$ **statistic** -- not to be confused with the $\mathrm{F_{ST
 
 Compute the $f_{4}$ statistic for all populations using the code below:
 
-```{r}
+```{r, eval = FALSE}
 f4_result <- f4(data = snps,
                 W = pops, X = "Yoruba", Y = "Vindija", Z = "Chimp") %>%
   # convert z score into pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
 
+f4_result
+```
+```{r, echo = FALSE}
+# read in table with the `f4_result` data
+# write.table(f4_result, "f4_all.txt",
+#             sep = "\t", row.names = FALSE, quote = FALSE)
+f4_result <- read.table("f4_all.txt", header = TRUE)
 f4_result
 ```
 
@@ -282,12 +303,19 @@ As implied by its name, this simply a ratio of two different $f_{4}$ statistics.
 
 Calculate the $f_{4}$-ratio using the code block below:
 
-```{r}
+```{r, eval = FALSE}
 f4_ratio_result <- f4ratio(data = snps,
                            X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
   # convert z score to pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
 
+f4_ratio_result
+```
+```{r, echo = FALSE}
+# read in table with the `f4_ratio_result` data
+# write.table(f4_ratio_result, "f4_ratio_all.txt",
+#             sep = "\t", row.names = FALSE, quote = FALSE)
+f4_ratio_result <- read.table("f4_ratio_all.txt", header = TRUE)
 f4_ratio_result
 ```
 
@@ -347,7 +375,7 @@ We can utilize these files in `admixr`'s `filter_bed()` function, which excludes
 
 Run the code below to re-calculate the $f_4$-ratio with `regions.bed`. We can create a new `snps` data object that either **keeps** or **excludes** these regions from our analysis.
 
-```{r}
+```{r, eval = FALSE}
 # get the path to the `regions.bed` file
 bed <- file.path(dirname(prefix), "regions.bed")
 
@@ -362,13 +390,20 @@ new_snps_remove <- filter_bed(snps, bed, remove = TRUE)
 
 Now we can re-calculate the $f_4$-ratio on one of the filtered SNP sets.
 
-```{r}
+```{r, eval = FALSE}
 # f4-ratio with the regions removed
 f4_filtered <- f4ratio(data = new_snps_remove,
                        X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
   # convert z score to pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
 
+f4_filtered
+```
+```{r, echo = FALSE}
+# read in table with the `f4_filtered` data
+# write.table(f4_filtered, "f4_filtered.txt",
+#             sep = "\t", row.names = FALSE, quote = FALSE)
+f4_filtered <- read.table("f4_filtered.txt", header = TRUE)
 f4_filtered
 ```
 
@@ -438,7 +473,7 @@ Compute the $f_4$ ratio statistic within and outside of the genomic intervals. R
 
 Download tracklist of haploinsufficient genes (`Phenotype and Literature` -> `Haploinsufficiency`).
 
-```{r}
+```{r, eval = FALSE}
 # get the path to the `regions.bed` file
 bed <- file.path("haploinsufficient.bed")
 
@@ -450,7 +485,7 @@ new_snps_remove <- filter_bed(snps, bed, remove = TRUE)
 
 Re-calculate the $f_4$-ratio:
 
-```{r}
+```{r, eval = FALSE}
 # f4-ratio with the regions kept
 f4_keep <- f4ratio(data = new_snps_keep,
                        X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
@@ -459,14 +494,28 @@ f4_keep <- f4ratio(data = new_snps_keep,
 
 f4_keep
 ```
+```{r, echo = FALSE}
+# read in table with the `f4_keep` data
+write.table(f4_keep, "f4_keep.txt",
+            sep = "\t", row.names = FALSE, quote = FALSE)
+f4_keep <- read.table("f4_keep.txt", header = TRUE)
+f4_keep
+```
 
-```{r}
+```{r, eval = FALSE}
 # f4-ratio with the regions removed
 f4_remove <- f4ratio(data = new_snps_remove,
                        X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
   # convert z score to pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
 
+f4_remove
+```
+```{r, echo = FALSE}
+# read in table with the `f4_remove` data
+write.table(f4_remove, "f4_remove.txt",
+            sep = "\t", row.names = FALSE, quote = FALSE)
+f4_remove <- read.table("f4_remove.txt", header = TRUE)
 f4_remove
 ```
 
