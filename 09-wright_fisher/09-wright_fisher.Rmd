@@ -31,8 +31,6 @@ In all populations, **genetic drift** acts to change allele frequencies over tim
 
 Drift differs from **selection**, which is a deterministic (non-random) change in an allele's frequency. If an allele is under selection, it's more likely to increase or decrease in frequency depending on whether it is beneficial or deleterious. Genetic drift, on the other hand, cannot consistently cause an allele's frequency to increase or decrease.
 
-Both drift and selection occur in real populations, but drift is thought to be the [primary driver](https://www.nature.com/scitable/topicpage/neutral-theory-the-null-hypothesis-of-molecular-839/) of allele frequency changes, outweighing the impacts of selection.
-
 
 ## The Wright-Fisher model
 

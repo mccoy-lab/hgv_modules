@@ -548,12 +548,12 @@ In this lab, we used three approaches to identify selection in multi-population 
 
 ## Homework
 
-#### Goals & Learning Objectives
+#### Learning Objectives
 
 * Interpret multiple statistics for measuring selection
 * Explain how specific statistics can give different results because they measure different genetic signatures
 
-### Required homework
+#### Assignment
 
 Read [**this review paper**](https://www.science.org/doi/10.1126/science.aaf5098) on genomic evidence of human local adaptation by Fan et al. Find examples of local adaptation (genes and populations) in the paper, and look up the relevant populations (or related populations) and tests of selection in the [PopHuman browser](https://pophuman.uab.cat/).
 
