@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.12 Computing D for all populations | Human Genome Variation Lab</title>
+  <title>10.3 Allele frequency, fixation, and loss | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.12 Computing D for all populations | Human Genome Variation Lab" />
+  <meta property="og:title" content="10.3 Allele frequency, fixation, and loss | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.12 Computing D for all populations | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="10.3 Allele frequency, fixation, and loss | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="converting-to-p-values.html"/>
-<link rel="next" href="plotting-the-d-statistic.html"/>
+<link rel="prev" href="the-wright-fisher-model.html"/>
+<link rel="next" href="modeling-allele-frequencies.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -380,52 +380,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="computing-d-for-all-populations" class="section level2" number="9.12">
-<h2><span class="header-section-number">9.12</span> Computing D for all populations</h2>
-<p>We can give <code>d()</code> a list of populations to compute the <span class="math inline">\(D\)</span> statistic for, where:</p>
-<ul>
-<li><code>W</code>: A vector of our populations of interest</li>
-<li><code>X</code>: An assumed <strong>unadmixed</strong> population (Yoruba)</li>
-<li><code>Y</code>: The <strong>introgressing</strong> population (Vindija Neanderthal)</li>
-<li><code>Z</code>: Outgroup (chimpanzee)</li>
-</ul>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="computing-d-for-all-populations.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create vector of populations of interest</span></span>
-<span id="cb211-2"><a href="computing-d-for-all-populations.html#cb211-2" aria-hidden="true" tabindex="-1"></a>pops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;French&quot;</span>, <span class="st">&quot;Sardinian&quot;</span>, <span class="st">&quot;Han&quot;</span>, <span class="st">&quot;Papuan&quot;</span>,</span>
-<span id="cb211-3"><a href="computing-d-for-all-populations.html#cb211-3" aria-hidden="true" tabindex="-1"></a>          <span class="co"># including three African populations</span></span>
-<span id="cb211-4"><a href="computing-d-for-all-populations.html#cb211-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Khomani_San&quot;</span>, <span class="st">&quot;Mbuti&quot;</span>, <span class="st">&quot;Dinka&quot;</span>)</span>
-<span id="cb211-5"><a href="computing-d-for-all-populations.html#cb211-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-6"><a href="computing-d-for-all-populations.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate D</span></span>
-<span id="cb211-7"><a href="computing-d-for-all-populations.html#cb211-7" aria-hidden="true" tabindex="-1"></a>d_result <span class="ot">&lt;-</span> <span class="fu">d</span>(<span class="at">data =</span> snps,</span>
-<span id="cb211-8"><a href="computing-d-for-all-populations.html#cb211-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">W =</span> pops, <span class="at">X =</span> <span class="st">&quot;Yoruba&quot;</span>, <span class="at">Y =</span> <span class="st">&quot;Vindija&quot;</span>, <span class="at">Z =</span> <span class="st">&quot;Chimp&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb211-9"><a href="computing-d-for-all-populations.html#cb211-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert z score into pvalue</span></span>
-<span id="cb211-10"><a href="computing-d-for-all-populations.html#cb211-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(Zscore)))</span>
-<span id="cb211-11"><a href="computing-d-for-all-populations.html#cb211-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-12"><a href="computing-d-for-all-populations.html#cb211-12" aria-hidden="true" tabindex="-1"></a>d_result</span></code></pre></div>
-<pre><code>##             W      X       Y     Z       D   stderr Zscore  BABA  ABBA  nsnps
-## 1      French Yoruba Vindija Chimp  0.0313 0.006933  4.510 15802 14844 487753
-## 2   Sardinian Yoruba Vindija Chimp  0.0287 0.006792  4.222 15729 14852 487646
-## 3         Han Yoruba Vindija Chimp  0.0278 0.006609  4.199 15780 14928 487925
-## 4      Papuan Yoruba Vindija Chimp  0.0457 0.006571  6.953 16131 14721 487694
-## 5 Khomani_San Yoruba Vindija Chimp  0.0066 0.006292  1.051 16168 15955 487564
-## 6       Mbuti Yoruba Vindija Chimp -0.0005 0.006345 -0.074 15751 15766 487642
-## 7       Dinka Yoruba Vindija Chimp -0.0009 0.006124 -0.151 15131 15159 487667
-##              p
-## 1 6.482763e-06
-## 2 2.421441e-05
-## 3 2.680963e-05
-## 4 3.575987e-12
-## 5 2.932586e-01
-## 6 9.410104e-01
-## 7 8.799757e-01</code></pre>
-<hr />
-<details>
-<summary>
-Interpretation of <span class="math inline">\(D\)</span> results
-</summary>
-<p>This is the result that was published in <a href="https://www.science.org/doi/full/10.1126/science.1188021"><strong>Green et al. 2010</strong></a>, revealing evidence for gene flow from Neanderthals into the ancestors of non-African populations.</p>
-<p>We see significant evidence of Neanderthal introgression into the genomes of the non-African samples (French, Sardinian, Han, Papuan), but not the African samples (although we know from recent research that this is an oversimplification).</p>
-</details>
-<hr />
+<div id="allele-frequency-fixation-and-loss" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Allele frequency, fixation, and loss</h2>
+<p>The Wright-Fisher model describes the behavior of a single <strong>allele</strong>, which can be at any variable site in a population (a SNP, insertion/deletion, version of a gene, etc.).</p>
+<p>The allele of interest begins the simulation at some initial <strong>allele frequency (AF)</strong>. This allele frequency is the proportion of individuals in the population who carry that allele, and is always between 0 and 1.</p>
+<p>An allele becomes <strong>fixed</strong> in a population if it reaches an allele frequency of 1, and is <strong>lost</strong> if it reaches a frequency of 0. At either of these points, it is no longer considered a variable site because either everyone or no one in the population carries it.</p>
+<center>
+<div class="figure">
+<img src="09-wright_fisher/images/fixation.png" alt="" />
+<p class="caption"><strong>Fig. 2 (<a href="https://sites.radford.edu/~rsheehy/Gen_flash/popgen/">source</a>).</strong> Trajectories of alleles at two loci fixing, at <code>AF = 0</code> and <code>AF = 1</code>.</p>
+</div>
+</center>
 </div>
 <hr>
 <center> 
@@ -440,8 +405,8 @@ Interpretation of <span class="math inline">\(D\)</span> results
           </div>
         </div>
       </div>
-<a href="converting-to-p-values.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="plotting-the-d-statistic.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-wright-fisher-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modeling-allele-frequencies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

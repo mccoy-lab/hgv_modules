@@ -193,7 +193,7 @@ simulating-evolution
 learning-objectives-12
 genetic-drift
 the-wright-fisher-model
-allele-frequency-fixation-and-extinction
+allele-frequency-fixation-and-loss
 modeling-allele-frequencies
 the-binomial-distribution
 setup-6
