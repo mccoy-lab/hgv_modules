@@ -1,3 +1,4 @@
+fig:unnamed-chunk-143
 homepage
 instructor
 schedule-logistics
