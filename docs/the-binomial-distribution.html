@@ -384,7 +384,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.5</span> The binomial distribution</h2>
 <p>Instead of having to actually simulate all the coin flips, we can get the number of allele carriers by performing a single draw from a <strong>binomial distribution</strong> with size <code>N</code> (# of individual) and success probability <code>p = AF</code>. This distribution tells you how many successes you expect to see from a set of <code>N</code> independent coin flips.</p>
 <p>If we try to draw 100,000 times from a binomial distribution with population size <code>100</code> and success probability (AF) <code>0.5</code>, it will look something like this:</p>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-143"></span>
+<img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-143-1.png" alt="100,000 draws from a binomial distribution." width="672" />
+<p class="caption">
+Figure 10.1: 100,000 draws from a binomial distribution.
+</p>
+</div>
 <p>The majority of the distribution lies between 48 and 52. Just as we expect based on the allele frequency, the next generation will most likely have around 48-52 individuals with the <code>A</code> allele. But because this is a random draw, there’s a small chance that we might end up with many more or many fewer than that number.</p>
 </div>
 <hr>
