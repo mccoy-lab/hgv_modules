@@ -53,7 +53,7 @@ What does real human genomic data look like? How are these data analyzed in prac
 #### Educational Objectives
 
 * Explore the ways in which human genomic data is generated, encoded, summarized, and visualized.
-*	Develop an awareness of potential confounding factors and approaches by which they can be overcome.
+*	Develop an awareness of confounding factors in genomic analysis.
 * Establish familiarity working with summarized forms of genomic data in R, as well as resources for further independent learning.
 
 
