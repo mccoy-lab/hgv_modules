@@ -45,13 +45,13 @@ In this model, we assume that a population:
 Populations in the real world don't behave like an ideal Wright-Fisher population, so their **effective population size** `Ne` is usually much smaller than their actual population size. The effective population size of the human population is only [12,800--14,400](https://www.pnas.org/content/109/44/17758) individuals, even though its actual size is around 8 billion.
 
 
-## Allele frequency, fixation, and extinction
+## Allele frequency, fixation, and loss
 
 The Wright-Fisher model describes the behavior of a single **allele**, which can be at any variable site in a population (a SNP, insertion/deletion, version of a gene, etc.).
 
 The allele of interest begins the simulation at some initial **allele frequency (AF)**. This allele frequency is the proportion of individuals in the population who carry that allele, and is always between 0 and 1.
 
-An allele becomes **fixed** in a population when it reaches an allele frequency of either 0 or 1. At either of these points, it is no longer considered a variable site because either everyone or no one in the population carries it.
+An allele becomes **fixed** in a population if it reaches an allele frequency of 1, and is **lost** if it reaches a frequency of 0. At either of these points, it is no longer considered a variable site because either everyone or no one in the population carries it.
 
 <center>
 
@@ -141,7 +141,7 @@ rbinom(n = 1, size = 100, prob = 0.5) / 100
 ***
 <details> <summary> Why do we get a different number every time we run `rbinom`? </summary>
 
-`rbinom` generates a random number between 1 and 100. Because it's random, the number it draws will be different every time we run it.
+`rbinom` generates a random number between 0 and 100. Because it's random, the number it draws will be different every time we run it.
 
 </details>
 ***
