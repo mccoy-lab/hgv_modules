@@ -55,7 +55,7 @@ An allele becomes **fixed** in a population when it reaches an allele frequency 
 
 <center>
 
-![**Fig. 2 ([source](https://sites.radford.edu/~rsheehy/Gen_flash/popgen/)).** Alleles are considered fixed at `AF = 0` or `AF = `.](09-wright_fisher/images/fixation.png)
+![**Fig. 2 ([source](https://sites.radford.edu/~rsheehy/Gen_flash/popgen/)).** Trajectories of alleles at two loci fixing, at `AF = 0` and `AF = 1`.](09-wright_fisher/images/fixation.png)
 
 </center>
 
@@ -83,7 +83,7 @@ Instead of having to actually simulate all the coin flips, we can get the number
 
 If we try to draw 100,000 times from a binomial distribution with population size `100` and success probability (AF) `0.5`, it will look something like this:
 
-```{r, echo = FALSE, warning = FALSE}
+```{r, echo = FALSE, warning = FALSE, fig.align = 'center', fig.cap = "100,000 draws from a binomial distribution."}
 set.seed(5)
 library(ggplot2)
 data = data.frame(num = rbinom(n = 100000, size = 1000, prob = 0.5))
@@ -447,8 +447,8 @@ ggplot(data = results,
        aes(x = gen, y = afs)) +
   geom_line()
 
-# simulate a very small population
-results <- run_sim(Ne = 10, freq = 0.5, generations = 1000)
+# simulate a population with AF closer to 0
+results <- run_sim(Ne = 1000, freq = 0.1, generations = 1000)
 
 # plot output
 ggplot(data = results,
@@ -475,8 +475,6 @@ In this lab, we built a Wright-Fisher simulation for one allele, allowing us to 
 * We observed that smaller population sizes and more extreme AFs (closer to 0 or 1) generally decrease an allele's time to fixation.
 
 This simple simulation forms the core of most models used in evolutionary genetics research, which often extend this model to simulate more complex phenomena (such as different forms of selection).
-
-<!-- ![**Fig. 2. Simulating balancing selection with SLiM.** Each vertical line represents a SNP, with height corresponding to the SNP's current frequency. As the simulation progresses, two distinct haplotypes of mutations begin to rise and fall in frequency together, but neither fully fixes because balancing selection favors intermediate frequencies.](09-wright_fisher/images/balancing.gif) -->
 
 
 ## Homework
