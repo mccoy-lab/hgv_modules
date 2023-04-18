@@ -200,11 +200,18 @@ The GTEx Portal provides [links for downloading](https://gtexportal.org/home/dat
 
 For ease of manipulation in R, we've subset this data to 150 samples, highly expressed genes, and only data from **liver** and **lung** tissue.
 
-```{r, message = FALSE}
+```{r, eval = FALSE}
 gtex <- read_table("gtex_subset.txt.gz")
 
 head(gtex)
 ```
+```{r, message = FALSE, echo = FALSE}
+# code block to preview gtex file since loading it into bookdown won't work
+# write.table(head(gtex), "gtex_head.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+read_table("gtex_head.txt") %>%
+  head()
+```
+
 
 The columns of this dataframe are:
 
@@ -233,11 +240,17 @@ Using this dataset, we can fit **regression models** to ask about differences in
 
 First we subset the data to the relevant gene and tissue (_ACE2_ and lung) for our test:
 
-```{r}
+```{r, eval = FALSE}
 subset <- gtex %>%
   # filter for tissue and gene of interest
   filter(Tissue == "Lung" & Gene_Name == "ACE2")
 
+head(subset)
+```
+```{r, echo = FALSE}
+# code block to preview gtex file since loading it into bookdown won't work
+# write.table(subset, "gtex_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+subset <- read_table("gtex_ace2.txt")
 head(subset)
 ```
 
