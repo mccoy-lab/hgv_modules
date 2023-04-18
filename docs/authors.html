@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="homework-9.html"/>
+<link rel="prev" href="homework-10.html"/>
 
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -359,6 +359,24 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.20" data-path="conclusion-8.html"><a href="conclusion-8.html"><i class="fa fa-check"></i><b>10.20</b> Conclusion</a></li>
 <li class="chapter" data-level="10.21" data-path="homework-9.html"><a href="homework-9.html"><i class="fa fa-check"></i><b>10.21</b> Homework</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="gene-expression.html"><a href="gene-expression.html"><i class="fa fa-check"></i><b>11</b> Gene expression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gene-expression-1.html"><a href="gene-expression-1.html"><i class="fa fa-check"></i><b>11.1</b> Gene expression</a></li>
+<li class="chapter" data-level="11.2" data-path="the-genotype-tissue-expression-project.html"><a href="the-genotype-tissue-expression-project.html"><i class="fa fa-check"></i><b>11.2</b> The Genotype-Tissue Expression project</a></li>
+<li class="chapter" data-level="11.3" data-path="gtex-portal.html"><a href="gtex-portal.html"><i class="fa fa-check"></i><b>11.3</b> GTEx portal</a></li>
+<li class="chapter" data-level="11.4" data-path="genetic-effects-on-gene-expression.html"><a href="genetic-effects-on-gene-expression.html"><i class="fa fa-check"></i><b>11.4</b> Genetic effects on gene expression</a></li>
+<li class="chapter" data-level="11.5" data-path="expression-qtls.html"><a href="expression-qtls.html"><i class="fa fa-check"></i><b>11.5</b> Expression QTLs</a></li>
+<li class="chapter" data-level="11.6" data-path="eqtls-in-the-gtex-portal.html"><a href="eqtls-in-the-gtex-portal.html"><i class="fa fa-check"></i><b>11.6</b> eQTLs in the GTEx Portal</a></li>
+<li class="chapter" data-level="11.7" data-path="splicing-qtls.html"><a href="splicing-qtls.html"><i class="fa fa-check"></i><b>11.7</b> Splicing QTLs</a></li>
+<li class="chapter" data-level="11.8" data-path="setup-7.html"><a href="setup-7.html"><i class="fa fa-check"></i><b>11.8</b> Setup</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="setup-7.html"><a href="setup-7.html#r-packages-6"><i class="fa fa-check"></i><b>11.8.1</b> R packages</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="data-5.html"><a href="data-5.html"><i class="fa fa-check"></i><b>11.9</b> Data</a></li>
+<li class="chapter" data-level="11.10" data-path="differential-gene-expression.html"><a href="differential-gene-expression.html"><i class="fa fa-check"></i><b>11.10</b> Differential gene expression</a></li>
+<li class="chapter" data-level="11.11" data-path="conclusion-9.html"><a href="conclusion-9.html"><i class="fa fa-check"></i><b>11.11</b> Conclusion</a></li>
+<li class="chapter" data-level="11.12" data-path="homework-10.html"><a href="homework-10.html"><i class="fa fa-check"></i><b>11.12</b> Homework</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
 <p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
@@ -441,7 +459,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2023-04-11                  
+##  date     2023-04-18                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version  date       lib source                            
@@ -495,7 +513,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  lifecycle     1.0.3    2022-10-07 [1] CRAN (R 4.0.2)                    
 ##  lubridate     1.7.9    2020-06-08 [1] RSPM (R 4.0.2)                    
 ##  magrittr      2.0.3    2022-03-30 [1] CRAN (R 4.0.2)                    
-##  MASS          7.3-51.6 2020-04-26 [2] CRAN (R 4.0.2)                    
+##  MASS        * 7.3-51.6 2020-04-26 [2] CRAN (R 4.0.2)                    
 ##  Matrix        1.2-18   2019-11-27 [2] CRAN (R 4.0.2)                    
 ##  memoise       2.0.1    2021-11-26 [1] CRAN (R 4.0.2)                    
 ##  memuse        4.1-0    2020-02-17 [1] RSPM (R 4.0.0)                    
@@ -578,7 +596,7 @@ For JHU courses, You will need to add Ira as a credit:
           </div>
         </div>
       </div>
-<a href="homework-9.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="homework-10.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
