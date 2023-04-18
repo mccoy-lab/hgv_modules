@@ -41,7 +41,7 @@ Sequencing mRNA molecules (**RNA sequencing**), aligning them to a reference gen
 
 In 2010, the NIH launched the first large-scale dataset of gene expression data, called the **[Genotype-Tissue Expression (GTEx)](https://gtexportal.org/home/tissueSummaryPage) project**. The final version of this dataset (v8) was released in 2020.
 
-GTEx is currently the most comprehensive gene expression dataset in existence. It involved the sequencing of **(whole genomes (DNA-seq))** as well as **transcriptomes (RNA-seq)** from 948 recently-deceased individuals, with up to 54 tissues sampled throughout their bodies. 
+GTEx is currently the most comprehensive gene expression dataset in existence. It involved the sequencing of **whole genomes (DNA-seq)** as well as **transcriptomes (RNA-seq)** from 948 recently-deceased individuals, with up to 54 tissues sampled throughout their bodies. 
 
 One of the main motivations of GTEx was to better understand the genetic control of gene expression. How does genetic variation contribute to variation in amount, splicing, and tissue specificity of expressed RNA?
 
@@ -54,7 +54,7 @@ One of the main motivations of GTEx was to better understand the genetic control
 
 ## GTEx portal
 
-The [GTEx Portal](https://gtexportal.org/) provides an interface to summarize and visualize these data. In the search bar, we can look up a gene of interest and see:
+The [**GTEx Portal**](https://gtexportal.org/) provides an interface to summarize and visualize these data. In the search bar, we can look up a gene of interest and see:
 
 * Violin plots depicting inter-individual variation in gene expression across all tissues
 * Variants that impact expression or splicing of that gene
@@ -185,7 +185,7 @@ Now we'll look at the GTEx data ourselves to perform our own gene expression ana
 
 In addition to `tidyverse`, we'll also load the `MASS` package, which is useful for various statistical functions.
 
-```{r, warning = FALSE}
+```{r, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(MASS)
 ```
@@ -205,9 +205,8 @@ head(gtex)
 ```{r, message = FALSE, echo = FALSE}
 # code block to preview gtex file since loading it into bookdown won't work
 # write.table(head(gtex), "gtex_head.txt", sep = "\t", quote = FALSE, row.names = FALSE)
-read_table("gtex_head.txt") %>%
-  head() %>%
-  print()
+gtex_head <- read_table("gtex_head.txt")
+gtex_head
 ```
 
 
@@ -249,7 +248,7 @@ head(subset)
 # code block to preview gtex file since loading it into bookdown won't work
 # write.table(subset, "gtex_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
 subset <- read_table("gtex_ace2.txt")
-print(head(subset))
+head(subset)
 ```
 
 Then we can fit a model to our data. Note that we're using the `glm.nb` function, which uses a **negative binomial distribution** -- good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.
