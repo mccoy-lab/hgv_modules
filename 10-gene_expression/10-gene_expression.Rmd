@@ -233,7 +233,7 @@ The expression levels in this table have been **normalized** to account for fact
 
 ## Differential gene expression
 
-Using this dataset, we can fit **regression models** to ask about differences in gene expression between conditions. For example, let's say we're interested in whether [the _ACE2_ gene](https://www.nytimes.com/interactive/2020/03/11/science/how-coronavirus-hijacks-your-cells.html) exhibits differences in expression between males and females.
+Using this dataset, we can fit **regression models** to ask about differences in gene expression between conditions. For example, let's say we're interested in whether [the _ACE2_ gene](https://www.nytimes.com/interactive/2020/03/11/science/how-coronavirus-hijacks-your-cells.html) -- the receptor bound by the SARS-CoV-2 virus -- exhibits differences in expression between males and females.
 
 First we subset the data to the relevant gene and tissue (_ACE2_ and lung) for our test:
 
