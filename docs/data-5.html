@@ -402,9 +402,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.9</span> Data</h2>
 <p>The GTEx Portal provides <a href="https://gtexportal.org/home/datasets">links for downloading</a> curated and summarized forms of its data, including giant matrices that encode the expression of every gene across all samples and tissues.</p>
 <p>For ease of manipulation in R, we’ve subset this data to 150 samples, highly expressed genes, and only data from <strong>liver</strong> and <strong>lung</strong> tissue.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-5.html#cb267-1" aria-hidden="true" tabindex="-1"></a>gtex <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">&quot;gtex_subset.txt.gz&quot;</span>)</span>
-<span id="cb267-2"><a href="data-5.html#cb267-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb267-3"><a href="data-5.html#cb267-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gtex)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-5.html#cb265-1" aria-hidden="true" tabindex="-1"></a>gtex <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">&quot;gtex_subset.txt.gz&quot;</span>)</span>
+<span id="cb265-2"><a href="data-5.html#cb265-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-3"><a href="data-5.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gtex)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 1
 ##   `Sample\tAge\tSex\tDeath_Hardy\tTissue\tGene_ID\tGene_Name\tCounts`
 ##   &lt;chr&gt;                                                              
