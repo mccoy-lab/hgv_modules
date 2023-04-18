@@ -7,23 +7,20 @@ knitr::opts_knit$set(root.dir = '10-gene_expression')
 
 # Gene expression
 
-In this lab, we'll build a simulation to explore genetic drift using the Wright-Fisher model.
+In this lab, we'll use data from the Genotype-Tissue Expression (GTEx) Project to explore how genetic variation impacts gene expression.
 
 #### Learning objectives
 
 After completing this chapter, you'll be able to:
 
-1. Describe the phenomenon of genetic drift.
-2. Explain why random draws from a binomial distribution are a good way to mimic the effect of drift.
-3. Interpret allele frequency patterns that occur as a result of drift.
-4. Write a for loop in R.
+1. Define expression and splicing quantitative trait loci.
+2. Explain the challenge of multiple testing in eQTL studies and how it is typically handled.
+3. Navigate the GTEx Portal to find expression data for genes of interest.
 
 
 ## Gene expression
 
 In this class, we've mostly discussed variation at the level of DNA sequence. However, variation in **gene expression** -- and how it interacts with genotype data -- is an equally important aspect of phenotype diversity.
-
-It's thought that many phenotypic differences within and between species trace back to differences in gene regulation, rather than in protein-coding sequences.
 
 ***
 <details> <summary> Measuring gene expression </summary>
@@ -182,7 +179,7 @@ The GTEx Portal also provides a list of sQTLs for each gene. Note that the violi
 
 ## Setup
 
-Now we'll look at the GTEx data ourselves to create our own visualizations of gene expression.
+Now we'll look at the GTEx data ourselves to perform our own gene expression analyses.
 
 ### R packages
 
@@ -254,19 +251,49 @@ subset <- read_table("gtex_ace2.txt")
 head(subset)
 ```
 
-Then we can fit a model to our data. Note that we're using the `glm.nb` function, which uses a **negative binomial distribution** (good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts).
+Then we can fit a model to our data. Note that we're using the `glm.nb` function, which uses a **negative binomial distribution** -- good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.
 
-```{r}
+```{r, eval = FALSE}
 # fit model and print summary
 glm.nb(formula = Counts ~ factor(Sex),
        data = subset) %>%
   summary()
 ```
+```
+Call:
+glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 0.9820746913, 
+    link = log)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.0205  -0.9991  -0.5441  -0.0219   4.9984  
+
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept)    5.5530     0.1709  32.494  < 2e-16 ***
+factor(Sex)M  -0.7907     0.2121  -3.727 0.000194 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for Negative Binomial(0.9821) family taken to be 1)
+
+    Null deviance: 129.67  on 99  degrees of freedom
+Residual deviance: 115.01  on 98  degrees of freedom
+AIC: 1214.5
+
+Number of Fisher Scoring iterations: 1
+
+
+              Theta:  0.982 
+          Std. Err.:  0.123 
+
+ 2 x log-likelihood:  -1208.475 
+```
 
 ***
-<details> <summary> Is there a sex-specific difference in _ACE2_ expression? </summary>
+<details> <summary> Does sex impact _ACE2_ expression? </summary>
 
-The p-value is significant (`p = 0.000194`), suggesting that _ACE2_ expression differs between males and females. Based on the coefficient of `-0.7907`, it looks like males tend to have ~0.8 fewer _ACE2_ transcripts in lung tissue.
+The p-value is significant (`p = 0.000194`), suggesting that sex does affect _ACE2_ expression. Based on the coefficient of `-0.7907`, it looks like males tend to have ~0.8 fewer _ACE2_ transcripts in lung tissue.
 
 </details>
 ***
@@ -292,4 +319,6 @@ In this lab, we explored the **GTEx** dataset to understand how genetic variatio
 
 #### Assignment
 
-Fit a linear model (or multiple!) to the GTEx data we downloaded in class and test for differential expression between two conditions. For example, you could look at another gene, compare between tissues, age groups, or Hardy classifications, etc. Based on the results, does your gene exhibit any significant difference in expression between conditions?
+Fit a regression model (or multiple!) to the GTEx data we downloaded in class and test for differential expression between two (or more) conditions. For example, you could look at another gene, compare between tissues, age groups, or Hardy classifications, etc.
+
+Based on the results, does the condition affect expression of your gene?
