@@ -206,7 +206,8 @@ head(gtex)
 # code block to preview gtex file since loading it into bookdown won't work
 # write.table(head(gtex), "gtex_head.txt", sep = "\t", quote = FALSE, row.names = FALSE)
 read_table("gtex_head.txt") %>%
-  head()
+  head() %>%
+  print()
 ```
 
 
@@ -244,11 +245,11 @@ subset <- gtex %>%
 
 head(subset)
 ```
-```{r, echo = FALSE}
+```{r, echo = FALSE, message = FALSE}
 # code block to preview gtex file since loading it into bookdown won't work
 # write.table(subset, "gtex_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
 subset <- read_table("gtex_ace2.txt")
-head(subset)
+print(head(subset))
 ```
 
 Then we can fit a model to our data. Note that we're using the `glm.nb` function, which uses a **negative binomial distribution** -- good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.
