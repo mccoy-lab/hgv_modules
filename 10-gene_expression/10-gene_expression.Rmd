@@ -2,7 +2,7 @@
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '10-gene_expression')
 # install packages for the lab
-install.packages("MASS")
+# install.packages("MASS")
 ```
 
 # Gene expression
