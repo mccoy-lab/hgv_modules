@@ -11,6 +11,7 @@ rmd_files: ["index.Rmd",
             "07-selection/07-selection.Rmd",
             "08-archaic_admixture/08-archaic_admixture.Rmd",
             "09-wright_fisher/09-wright_fisher.Rmd",
+            "10-gene_expression/10-gene_expression.Rmd",
             "About.Rmd"]
 delete_merged_file: true
 # new_session: yes

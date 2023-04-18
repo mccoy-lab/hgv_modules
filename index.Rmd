@@ -38,11 +38,11 @@ Please bring your laptop with you to every class. If you don’t have a working 
 | **Session 7:** <br/> _March 7, 2023_ | Genome-wide association studies -- part I |
 | **Session 8:** <br/> _March 14, 2023_ | Genome-wide association studies -- part II |
 | | _Spring break -- no class_ |
-| **Session 9:** <br/> _March 28, 2023_ | Scans for selection -- part I |
+| **Session 9:** <br/> _March 28, 2023_ | Scans for selection |
 | **Session 10:** <br/> _April 4, 2023_ | Archaic admixture |
-| **Session 11:** <br/> _April 11, 2023_ | Simulating evolution -- part I |
-| **Session 12:** <br/> _April 18, 2023_ | Simulating evolution -- part II |
-| **Session 13:** <br/> _April 25, 2023_ | TBD |
+| **Session 11:** <br/> _April 11, 2023_ | Simulating evolution |
+| **Session 12:** <br/> _April 18, 2023_ | Gene expression |
+| **Session 13:** <br/> _April 25, 2023_ | Coronavirus phylogenetics |
 
 ## Course Description
 
