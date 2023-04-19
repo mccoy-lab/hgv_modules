@@ -253,11 +253,11 @@ read.table("gtex_ace2.txt", header = TRUE) %>%
 Then we can fit a model to our data. Note that we're using the `glm.nb` function, which uses a **negative binomial distribution** -- good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.
 
 ```{r}
-library(MASS)
-# fit model and print summary
-model <- glm.nb(formula = Counts ~ factor(Sex),
-       data = subset)
-summary(model)
+# library(MASS)
+# # fit model and print summary
+# model <- glm.nb(formula = Counts ~ factor(Sex),
+#                 data = subset)
+# summary(model)
 ```
 ```
 Call:
