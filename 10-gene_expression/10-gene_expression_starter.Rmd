@@ -34,7 +34,7 @@ library(MASS)
 ### Data
 
 ```{r}
-gtex <- read_table("gtex_subset.txt.gz")
+gtex <- read.table("gtex_subset.txt.gz", header = TRUE)
 
 head(gtex)
 ```
