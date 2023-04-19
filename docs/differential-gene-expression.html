@@ -407,20 +407,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb267-3"><a href="differential-gene-expression.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tissue <span class="sc">==</span> <span class="st">&quot;Lung&quot;</span> <span class="sc">&amp;</span> Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
 <span id="cb267-4"><a href="differential-gene-expression.html#cb267-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb267-5"><a href="differential-gene-expression.html#cb267-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 1
-##   `Sample\tAge\tSex\tDeath_Hardy\tTissue\tGene_ID\tGene_Name\tCounts`
-##   &lt;chr&gt;                                                              
-## 1 &quot;GTEX-111YS\t60-69\tM\t0\tLung\tENSG00000130234.10\tACE2\t640&quot;     
-## 2 &quot;GTEX-1128S\t60-69\tF\t2\tLung\tENSG00000130234.10\tACE2\t64&quot;      
-## 3 &quot;GTEX-11DXX\t60-69\tF\t0\tLung\tENSG00000130234.10\tACE2\t236&quot;     
-## 4 &quot;GTEX-11DXZ\t50-59\tM\t0\tLung\tENSG00000130234.10\tACE2\t174&quot;     
-## 5 &quot;GTEX-11EMC\t60-69\tF\t2\tLung\tENSG00000130234.10\tACE2\t162&quot;     
-## 6 &quot;GTEX-11EQ9\t30-39\tM\t2\tLung\tENSG00000130234.10\tACE2\t85&quot;</code></pre>
+<pre><code>##       Sample   Age Sex Death_Hardy Tissue            Gene_ID Gene_Name Counts
+## 1 GTEX-111YS 60-69   M           0   Lung ENSG00000130234.10      ACE2    640
+## 2 GTEX-1128S 60-69   F           2   Lung ENSG00000130234.10      ACE2     64
+## 3 GTEX-11DXX 60-69   F           0   Lung ENSG00000130234.10      ACE2    236
+## 4 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
+## 5 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162
+## 6 GTEX-11EQ9 30-39   M           2   Lung ENSG00000130234.10      ACE2     85</code></pre>
 <p>Then we can fit a model to our data. Note that we’re using the <code>glm.nb</code> function, which uses a <strong>negative binomial distribution</strong> – good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="differential-gene-expression.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
-<span id="cb269-2"><a href="differential-gene-expression.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Sex),</span>
-<span id="cb269-3"><a href="differential-gene-expression.html#cb269-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> subset) <span class="sc">%&gt;%</span></span>
-<span id="cb269-4"><a href="differential-gene-expression.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="differential-gene-expression.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(MASS)</span></span>
+<span id="cb269-2"><a href="differential-gene-expression.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # fit model and print summary</span></span>
+<span id="cb269-3"><a href="differential-gene-expression.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="co"># model &lt;- glm.nb(formula = Counts ~ factor(Sex),</span></span>
+<span id="cb269-4"><a href="differential-gene-expression.html#cb269-4" aria-hidden="true" tabindex="-1"></a><span class="co">#                 data = subset)</span></span>
+<span id="cb269-5"><a href="differential-gene-expression.html#cb269-5" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span></code></pre></div>
 <pre><code>Call:
 glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 0.9820746913, 
     link = log)

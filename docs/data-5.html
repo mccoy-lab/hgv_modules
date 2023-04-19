@@ -402,18 +402,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.9</span> Data</h2>
 <p>The GTEx Portal provides <a href="https://gtexportal.org/home/datasets">links for downloading</a> curated and summarized forms of its data, including giant matrices that encode the expression of every gene across all samples and tissues.</p>
 <p>For ease of manipulation in R, we’ve subset this data to 150 samples, highly expressed genes, and only data from <strong>liver</strong> and <strong>lung</strong> tissue.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-5.html#cb265-1" aria-hidden="true" tabindex="-1"></a>gtex <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">&quot;gtex_subset.txt.gz&quot;</span>)</span>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-5.html#cb265-1" aria-hidden="true" tabindex="-1"></a>gtex <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;gtex_subset.txt.gz&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb265-2"><a href="data-5.html#cb265-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb265-3"><a href="data-5.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gtex)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 1
-##   `Sample\tAge\tSex\tDeath_Hardy\tTissue\tGene_ID\tGene_Name\tCounts`
-##   &lt;chr&gt;                                                              
-## 1 &quot;GTEX-111YS\t60-69\tM\t0\tLung\tENSG00000187634.11\tSAMD11\t59&quot;    
-## 2 &quot;GTEX-111YS\t60-69\tM\t0\tLung\tENSG00000188976.10\tNOC2L\t2789&quot;   
-## 3 &quot;GTEX-111YS\t60-69\tM\t0\tLung\tENSG00000187961.13\tKLHL17\t716&quot;   
-## 4 &quot;GTEX-111YS\t60-69\tM\t0\tLung\tENSG00000187583.10\tPLEKHN1\t47&quot;   
-## 5 &quot;GTEX-111YS\t60-69\tM\t0\tLung\tENSG00000187642.9\tPERM1\t23&quot;      
-## 6 &quot;GTEX-111YS\t60-69\tM\t0\tLung\tENSG00000188290.10\tHES4\t534&quot;</code></pre>
+<pre><code>##       Sample   Age Sex Death_Hardy Tissue            Gene_ID Gene_Name Counts
+## 1 GTEX-111YS 60-69   M           0   Lung ENSG00000187634.11    SAMD11     59
+## 2 GTEX-111YS 60-69   M           0   Lung ENSG00000188976.10     NOC2L   2789
+## 3 GTEX-111YS 60-69   M           0   Lung ENSG00000187961.13    KLHL17    716
+## 4 GTEX-111YS 60-69   M           0   Lung ENSG00000187583.10   PLEKHN1     47
+## 5 GTEX-111YS 60-69   M           0   Lung  ENSG00000187642.9     PERM1     23
+## 6 GTEX-111YS 60-69   M           0   Lung ENSG00000188290.10      HES4    534</code></pre>
 <p>The columns of this dataframe are:</p>
 <ul>
 <li><code>Sample</code>: Individual sequenced</li>
