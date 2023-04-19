@@ -255,9 +255,9 @@ Then we can fit a model to our data. Note that we're using the `glm.nb` function
 ```{r}
 library(MASS)
 # fit model and print summary
-glm.nb(formula = Counts ~ factor(Sex),
-       data = subset) %>%
-  summary()
+model <- glm.nb(formula = Counts ~ factor(Sex),
+       data = subset)
+summary(model)
 ```
 ```
 Call:
