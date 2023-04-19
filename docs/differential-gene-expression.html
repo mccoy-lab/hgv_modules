@@ -402,11 +402,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.10</span> Differential gene expression</h2>
 <p>Using this dataset, we can fit <strong>regression models</strong> to ask about differences in gene expression between conditions. For example, let’s say we’re interested in whether <a href="https://www.nytimes.com/interactive/2020/03/11/science/how-coronavirus-hijacks-your-cells.html">the <em>ACE2</em> gene</a> – the receptor bound by the SARS-CoV-2 virus – exhibits differences in expression between males and females.</p>
 <p>First we subset the data to the relevant gene and tissue (<em>ACE2</em> and lung) for our test:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="differential-gene-expression.html#cb269-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> gtex <span class="sc">%&gt;%</span></span>
-<span id="cb269-2"><a href="differential-gene-expression.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter for tissue and gene of interest</span></span>
-<span id="cb269-3"><a href="differential-gene-expression.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tissue <span class="sc">==</span> <span class="st">&quot;Lung&quot;</span> <span class="sc">&amp;</span> Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
-<span id="cb269-4"><a href="differential-gene-expression.html#cb269-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb269-5"><a href="differential-gene-expression.html#cb269-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="differential-gene-expression.html#cb267-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> gtex <span class="sc">%&gt;%</span></span>
+<span id="cb267-2"><a href="differential-gene-expression.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter for tissue and gene of interest</span></span>
+<span id="cb267-3"><a href="differential-gene-expression.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tissue <span class="sc">==</span> <span class="st">&quot;Lung&quot;</span> <span class="sc">&amp;</span> Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
+<span id="cb267-4"><a href="differential-gene-expression.html#cb267-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb267-5"><a href="differential-gene-expression.html#cb267-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 1
 ##   `Sample\tAge\tSex\tDeath_Hardy\tTissue\tGene_ID\tGene_Name\tCounts`
 ##   &lt;chr&gt;                                                              
@@ -417,10 +417,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 5 &quot;GTEX-11EMC\t60-69\tF\t2\tLung\tENSG00000130234.10\tACE2\t162&quot;     
 ## 6 &quot;GTEX-11EQ9\t30-39\tM\t2\tLung\tENSG00000130234.10\tACE2\t85&quot;</code></pre>
 <p>Then we can fit a model to our data. Note that we’re using the <code>glm.nb</code> function, which uses a <strong>negative binomial distribution</strong> – good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="differential-gene-expression.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
-<span id="cb271-2"><a href="differential-gene-expression.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Sex),</span>
-<span id="cb271-3"><a href="differential-gene-expression.html#cb271-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> subset) <span class="sc">%&gt;%</span></span>
-<span id="cb271-4"><a href="differential-gene-expression.html#cb271-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="differential-gene-expression.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
+<span id="cb269-2"><a href="differential-gene-expression.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Sex),</span>
+<span id="cb269-3"><a href="differential-gene-expression.html#cb269-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> subset) <span class="sc">%&gt;%</span></span>
+<span id="cb269-4"><a href="differential-gene-expression.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>Call:
 glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 0.9820746913, 
     link = log)
