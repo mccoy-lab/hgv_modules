@@ -414,40 +414,40 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 4 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
 ## 5 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162
 ## 6 GTEX-11EQ9 30-39   M           2   Lung ENSG00000130234.10      ACE2     85</code></pre>
-<pre><code>## [1] &quot;M&quot; &quot;F&quot; &quot;F&quot; &quot;M&quot; &quot;F&quot;</code></pre>
 <p>Then we can fit a model to our data. Note that we’re using the <code>glm.nb</code> function, which uses a <strong>negative binomial distribution</strong> – good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="differential-gene-expression.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
-<span id="cb270-2"><a href="differential-gene-expression.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model &lt;- glm.nb(formula = Counts ~ factor(Sex),</span></span>
-<span id="cb270-3"><a href="differential-gene-expression.html#cb270-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                 data = subset)</span></span>
-<span id="cb270-4"><a href="differential-gene-expression.html#cb270-4" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span></code></pre></div>
-<pre><code>Call:
-glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 0.9820746913, 
-    link = log)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--2.0205  -0.9991  -0.5441  -0.0219   4.9984  
-
-Coefficients:
-             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)    5.5530     0.1709  32.494  &lt; 2e-16 ***
-factor(Sex)M  -0.7907     0.2121  -3.727 0.000194 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for Negative Binomial(0.9821) family taken to be 1)
-
-    Null deviance: 129.67  on 99  degrees of freedom
-Residual deviance: 115.01  on 98  degrees of freedom
-AIC: 1214.5
-
-Number of Fisher Scoring iterations: 1
-
-
-              Theta:  0.982 
-          Std. Err.:  0.123 
-
- 2 x log-likelihood:  -1208.475 </code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="differential-gene-expression.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
+<span id="cb269-2"><a href="differential-gene-expression.html#cb269-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Sex),</span>
+<span id="cb269-3"><a href="differential-gene-expression.html#cb269-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> subset)</span>
+<span id="cb269-4"><a href="differential-gene-expression.html#cb269-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 0.9820746913, 
+##     link = log)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.0205  -0.9991  -0.5441  -0.0219   4.9984  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)    5.5530     0.1709  32.494  &lt; 2e-16 ***
+## factor(Sex)M  -0.7907     0.2121  -3.727 0.000194 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for Negative Binomial(0.9821) family taken to be 1)
+## 
+##     Null deviance: 129.67  on 99  degrees of freedom
+## Residual deviance: 115.01  on 98  degrees of freedom
+## AIC: 1214.5
+## 
+## Number of Fisher Scoring iterations: 1
+## 
+## 
+##               Theta:  0.982 
+##           Std. Err.:  0.123 
+## 
+##  2 x log-likelihood:  -1208.475</code></pre>
 <hr />
 <details>
 <summary>
