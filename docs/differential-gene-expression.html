@@ -414,11 +414,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 4 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
 ## 5 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162
 ## 6 GTEX-11EQ9 30-39   M           2   Lung ENSG00000130234.10      ACE2     85</code></pre>
+<pre><code>## [1] &quot;M&quot; &quot;F&quot; &quot;F&quot; &quot;M&quot; &quot;F&quot;</code></pre>
 <p>Then we can fit a model to our data. Note that we’re using the <code>glm.nb</code> function, which uses a <strong>negative binomial distribution</strong> – good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="differential-gene-expression.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # fit model and print summary</span></span>
-<span id="cb269-2"><a href="differential-gene-expression.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model &lt;- glm.nb(formula = Counts ~ factor(Sex),</span></span>
-<span id="cb269-3"><a href="differential-gene-expression.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                 data = subset)</span></span>
-<span id="cb269-4"><a href="differential-gene-expression.html#cb269-4" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="differential-gene-expression.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
+<span id="cb270-2"><a href="differential-gene-expression.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model &lt;- glm.nb(formula = Counts ~ factor(Sex),</span></span>
+<span id="cb270-3"><a href="differential-gene-expression.html#cb270-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                 data = subset)</span></span>
+<span id="cb270-4"><a href="differential-gene-expression.html#cb270-4" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span></code></pre></div>
 <pre><code>Call:
 glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 0.9820746913, 
     link = log)
