@@ -433,15 +433,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 Running bootstraps:       100 / 100
 ## Calculating bootstrap values... done.</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="assess-bootstrap-support.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace &quot;NA&quot; with zero in bootstrap results</span></span>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="assess-bootstrap-support.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace &quot;NA&quot; with zero in bootstrap results; do not label terminal nodes</span></span>
 <span id="cb282-2"><a href="assess-bootstrap-support.html#cb282-2" aria-hidden="true" tabindex="-1"></a>myBoots[<span class="fu">is.na</span>(myBoots)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb282-3"><a href="assess-bootstrap-support.html#cb282-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-4"><a href="assess-bootstrap-support.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="co"># re-plot tree with bootstrap values</span></span>
-<span id="cb282-5"><a href="assess-bootstrap-support.html#cb282-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb282-6"><a href="assess-bootstrap-support.html#cb282-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
-<span id="cb282-7"><a href="assess-bootstrap-support.html#cb282-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names) <span class="sc">+</span></span>
-<span id="cb282-8"><a href="assess-bootstrap-support.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="at">label =</span> myBoots, <span class="at">geom =</span> <span class="st">&quot;label&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#deebf7&quot;</span>) <span class="sc">+</span></span>
-<span id="cb282-9"><a href="assess-bootstrap-support.html#cb282-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">30</span>)</span></code></pre></div>
+<span id="cb282-3"><a href="assess-bootstrap-support.html#cb282-3" aria-hidden="true" tabindex="-1"></a>myBoots <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">25</span>), myBoots)</span>
+<span id="cb282-4"><a href="assess-bootstrap-support.html#cb282-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb282-5"><a href="assess-bootstrap-support.html#cb282-5" aria-hidden="true" tabindex="-1"></a><span class="co"># re-plot tree with bootstrap values</span></span>
+<span id="cb282-6"><a href="assess-bootstrap-support.html#cb282-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-7"><a href="assess-bootstrap-support.html#cb282-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb282-8"><a href="assess-bootstrap-support.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names) <span class="sc">+</span></span>
+<span id="cb282-9"><a href="assess-bootstrap-support.html#cb282-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> myBoots), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb282-10"><a href="assess-bootstrap-support.html#cb282-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 25 rows containing missing values (geom_label).</code></pre>
 <p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 </div>
 <hr>
