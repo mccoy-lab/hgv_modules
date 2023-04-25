@@ -286,15 +286,16 @@ myBoots <- boot.phylo(tree, dna,
                                                  which(ids == "HQ166910"))), 
                       rooted = TRUE)
 
-# replace "NA" with zero in bootstrap results
+# replace "NA" with zero in bootstrap results; do not label terminal nodes
 myBoots[is.na(myBoots)] <- 0
+myBoots <- c(rep(NA, 25), myBoots)
 
 # re-plot tree with bootstrap values
 ggtree(tree, branch.length = "none") +
   theme_tree2() +
   geom_tiplab(label = names) +
-  geom_nodelab(label = myBoots, geom = "label", fill = "#deebf7") +
-  xlim(0, 30)
+  geom_label(aes(label = myBoots), size = 3) +
+  xlim(0, 15)
 ```
 
 
