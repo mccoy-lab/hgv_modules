@@ -1,17 +1,16 @@
-## Data
-
-Files to download to Posit Cloud:
+### Files to download to Posit Cloud:
 
 * The data for this module is downloaded live in class with `admixr`'s `download_data` function. A backup version of the data is on the project [OneDrive](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EnYTot749PJMlHm1_WS6OSQB07oaFleCCvzzwCHzW4d2Iw?e=cqgX2B).
 
-Software to install to Posit Cloud:
+
+### Software to install to Posit Cloud:
 
 * [`AdmixTools`](https://github.com/DReichLab/AdmixTools)
 * R packages
 	* `admixr`
 
 
-## Debugging notes
+### Debugging notes
 
 In order to run the `admixr` functions, I had to:
 

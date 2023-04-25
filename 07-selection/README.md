@@ -1,4 +1,4 @@
-Files to download to Posit Cloud:
+### Files to download to Posit Cloud:
 
 From this repo:
 
@@ -7,7 +7,7 @@ From this repo:
 * `fst_results.txt.gz` (1.4 MB)
 
 
-Software to install to Posit Cloud:
+### Software to install to Posit Cloud:
 
 * R packages
 	* `ggtree`
