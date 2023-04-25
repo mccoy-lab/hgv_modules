@@ -250,3 +250,6 @@ computing-pairwise-distance
 building-a-phylogenetic-tree
 assess-bootstrap-support
 conclusion-10
+homework-11
+learning-objectives-17
+assignment-6
