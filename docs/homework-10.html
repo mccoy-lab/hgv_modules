@@ -430,6 +430,62 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">11.12.0.2</span> Assignment</h4>
 <p>Fit a regression model (or multiple!) to the GTEx data we downloaded in class and test for differential expression between two (or more) conditions. For example, you could look at another gene, compare between tissues, age groups, or Hardy classifications, etc.</p>
 <p>Based on the results, does the condition affect expression of your gene?</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<p>As an example, we’ll test for differences in <em>ACE2</em> expression between liver and lung tissue. First we subset the GTEx data to just the <em>ACE2</em> gene:</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="homework-10.html#cb271-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> gtex <span class="sc">%&gt;%</span></span>
+<span id="cb271-2"><a href="homework-10.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter gene of interest</span></span>
+<span id="cb271-3"><a href="homework-10.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
+<span id="cb271-4"><a href="homework-10.html#cb271-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="homework-10.html#cb271-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
+<pre><code>##       Sample   Age Sex Death_Hardy Tissue            Gene_ID Gene_Name Counts
+## 1 GTEX-111YS 60-69   M           0   Lung ENSG00000130234.10      ACE2    640
+## 2 GTEX-1128S 60-69   F           2   Lung ENSG00000130234.10      ACE2     64
+## 3 GTEX-11DXX 60-69   F           0   Lung ENSG00000130234.10      ACE2    236
+## 4 GTEX-11DXZ 50-59   M           0  Liver ENSG00000130234.10      ACE2    211
+## 5 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
+## 6 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162</code></pre>
+<p>Then we fit a model with <code>glm.nb</code>:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="homework-10.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
+<span id="cb273-2"><a href="homework-10.html#cb273-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Tissue),</span>
+<span id="cb273-3"><a href="homework-10.html#cb273-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> subset)</span>
+<span id="cb273-4"><a href="homework-10.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm.nb(formula = Counts ~ factor(Tissue), data = subset, init.theta = 1.034483188, 
+##     link = log)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.9604  -0.9618  -0.4892   0.0681   6.6469  
+## 
+## Coefficients:
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)          4.6651     0.1370   34.05  &lt; 2e-16 ***
+## factor(Tissue)Lung   0.4491     0.1688    2.66  0.00781 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for Negative Binomial(1.0345) family taken to be 1)
+## 
+##     Null deviance: 180.46  on 151  degrees of freedom
+## Residual deviance: 173.75  on 150  degrees of freedom
+## AIC: 1819
+## 
+## Number of Fisher Scoring iterations: 1
+## 
+## 
+##               Theta:  1.034 
+##           Std. Err.:  0.106 
+## 
+##  2 x log-likelihood:  -1812.977</code></pre>
+<p>The p-value is significant (<code>p = 0.00781</code>), suggesting that <em>ACE2</em> expression does differ between liver and lung.</p>
+<p>The coefficient estimate, <code>0.4491</code>, indicates that RNA-seq counts for <em>ACE2</em> are <span class="math inline">\(0.45\)</span> transcripts higher in lung than in liver.</p>
+</details>
+<hr />
 
 </div>
 </div>

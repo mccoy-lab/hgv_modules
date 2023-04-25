@@ -422,8 +422,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="metadata-1" class="section level4" number="12.7.0.1">
 <h4><span class="header-section-number">12.7.0.1</span> Metadata</h4>
 <p>The <code>accessions</code> dataframe contains the GenBank IDs and full names of the coronavirus sequences we’re using:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-6.html#cb272-1" aria-hidden="true" tabindex="-1"></a>accessions <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;accessions.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb272-2"><a href="data-6.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(accessions)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="data-6.html#cb276-1" aria-hidden="true" tabindex="-1"></a>accessions <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;accessions.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb276-2"><a href="data-6.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(accessions)</span></code></pre></div>
 <pre><code>##         id                                      name
 ## 1 DQ022305    DQ022305.2 Bat SARS coronavirus HKU3-1
 ## 2 DQ071615       DQ071615.1 Bat SARS coronavirus Rp3
@@ -431,10 +431,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 4 JX993988  JX993988.1 Bat coronavirus Cp/Yunnan2011
 ## 5 FJ588686        FJ588686.1 Bat SARS CoV Rs672/2006
 ## 6 JX993987 JX993987.1 Bat coronavirus Rp/Shaanxi2011</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-6.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make vectors of the GenBank IDs and full names</span></span>
-<span id="cb274-2"><a href="data-6.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="co"># these will be used as input to functions later</span></span>
-<span id="cb274-3"><a href="data-6.html#cb274-3" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> accessions<span class="sc">$</span>id</span>
-<span id="cb274-4"><a href="data-6.html#cb274-4" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> accessions<span class="sc">$</span>name</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="data-6.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make vectors of the GenBank IDs and full names</span></span>
+<span id="cb278-2"><a href="data-6.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="co"># these will be used as input to functions later</span></span>
+<span id="cb278-3"><a href="data-6.html#cb278-3" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> accessions<span class="sc">$</span>id</span>
+<span id="cb278-4"><a href="data-6.html#cb278-4" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> accessions<span class="sc">$</span>name</span></code></pre></div>
 <p>The SARS-CoV-2 sequence we’re using is <code>MT093631</code> (<code>MT093631.2 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/CHN/WH-09/2020</code>).</p>
 </div>
 <div id="dna-sequences" class="section level4" number="12.7.0.2">
