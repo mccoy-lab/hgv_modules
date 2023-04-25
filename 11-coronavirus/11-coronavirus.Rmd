@@ -265,7 +265,7 @@ Although the distance between SARS-CoV-2 and RaTG13 in the phylogeny looks small
 
 A useful tool for evaluating confidence in a phylogenetic tree (or any other metric) is **[bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))**. This statistical method is based on resampling data with replacement from the original dataset.
 
-In our case, we resample aligned sites (i.e., bases) from the original alignment, then building a new tree with the resampled data. By repeating this procedure many times, we can evaluate confidence in various parts of the original tree by asking how often the trees from resampled data contain these features.
+In our case, we resample aligned sites (i.e., bases) from the original alignment, then build a new tree with the resampled data. By repeating this procedure many times, we can evaluate confidence in various parts of the original tree by asking how often the trees from resampled data contain these features.
 
 Run the code below to implement bootstrapping in the `boot.phylo()` function. The output is a vector of bootstrap support values, which we can overlay onto the tree.
 
