@@ -205,8 +205,8 @@ We can plot this matrix to visualize it:
 ```{r}
 # use the "melt_dist" function from harrietr package to convert
 # the distance matrix to "long" format for ggplot
-D_melted <- rbind(melt_dist(D, order = accessions),
-                  melt_dist(t(D), order = rev(accessions)))
+D_melted <- rbind(melt_dist(D, order = accessions$id),
+                  melt_dist(t(D), order = rev(accessions$id)))
 
 # plot distance matrix
 ggplot(data = D_melted) +
@@ -239,7 +239,7 @@ Using the distance matrix, we can now:
 # build a neighbor joining tree
 tree <- nj(D)
 # manually "root" the tree by setting HQ166910 bat coronavirus as an outgroup
-tree <- root(tree, which(accessions == "HQ166910"))
+tree <- root(tree, which(accessions$id == "HQ166910"))
 # rotate tree at nodes to make it look tidier (i.e., "ladderized")
 tree <- ladderize(tree)
 
@@ -276,7 +276,7 @@ set.seed(123)
 myBoots <- boot.phylo(tree, dna,
                       function(x) ladderize(root(nj(dist.dna(x, model = "TN93")),
                                                  # root tree at bat RaTG13 coronavirus
-                                                 which(accessions == "HQ166910"))),
+                                                 which(accessions$id == "HQ166910"))),
                       rooted = TRUE)
 
 # replace "NA" with zero in bootstrap results
