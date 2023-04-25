@@ -429,6 +429,49 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">12.13.0.2</span> Assignment</h4>
 <p><code>hw_accessions.txt</code> and <code>hw_aligned.fa</code> provide the alignments and metadata for 24 human SARS-CoV-2 sequences, plus the bat RaTG13 coronavirus strain.</p>
 <p>Use this data to repeat the analysis we did in class (compute distance matrix, construct neighbor joining tree, perform bootstrapping for confidence values) to build a phylogeny of SARS-CoV-2 strains. You should use RaTG13 (accession: <code>MN996532</code>) as an outgroup.</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<p>Read in accession data:</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="homework-11.html#cb288-1" aria-hidden="true" tabindex="-1"></a>accessions <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;hw_accessions.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb288-2"><a href="homework-11.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="co"># make vectors of accessions IDs and full names</span></span>
+<span id="cb288-3"><a href="homework-11.html#cb288-3" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> accessions<span class="sc">$</span>id</span>
+<span id="cb288-4"><a href="homework-11.html#cb288-4" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> accessions<span class="sc">$</span>name</span></code></pre></div>
+<p>Construct distance matrix:</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="homework-11.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read fasta file</span></span>
+<span id="cb289-2"><a href="homework-11.html#cb289-2" aria-hidden="true" tabindex="-1"></a>dna <span class="ot">&lt;-</span> <span class="fu">read.dna</span>(<span class="st">&quot;hw_aligned.fa&quot;</span>, <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>, <span class="at">as.matrix =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb289-3"><a href="homework-11.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pairwise distance matrix</span></span>
+<span id="cb289-4"><a href="homework-11.html#cb289-4" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">dist.dna</span>(dna, <span class="at">model =</span> <span class="st">&quot;TN93&quot;</span>, <span class="at">as.matrix =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Build neighbor joining tree:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="homework-11.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the tree</span></span>
+<span id="cb290-2"><a href="homework-11.html#cb290-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">nj</span>(D)</span>
+<span id="cb290-3"><a href="homework-11.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="co"># manually root tree at RaTG13 coronavirus</span></span>
+<span id="cb290-4"><a href="homework-11.html#cb290-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">root</span>(tree, <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;MN996532&quot;</span>))</span>
+<span id="cb290-5"><a href="homework-11.html#cb290-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ladderize tree</span></span>
+<span id="cb290-6"><a href="homework-11.html#cb290-6" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">ladderize</span>(tree)</span></code></pre></div>
+<p>Bootstrap to determine tree uncertainty:</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="homework-11.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb291-2"><a href="homework-11.html#cb291-2" aria-hidden="true" tabindex="-1"></a>myBoots <span class="ot">&lt;-</span> <span class="fu">boot.phylo</span>(tree, dna, </span>
+<span id="cb291-3"><a href="homework-11.html#cb291-3" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">function</span>(x) <span class="fu">ladderize</span>(<span class="fu">root</span>(<span class="fu">nj</span>(<span class="fu">dist.dna</span>(x,</span>
+<span id="cb291-4"><a href="homework-11.html#cb291-4" aria-hidden="true" tabindex="-1"></a>                                                             <span class="at">model =</span> <span class="st">&quot;TN93&quot;</span>)),</span>
+<span id="cb291-5"><a href="homework-11.html#cb291-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;MN996532&quot;</span>))), </span>
+<span id="cb291-6"><a href="homework-11.html#cb291-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rooted =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+Running bootstraps:       100 / 100
+## Calculating bootstrap values... done.</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="homework-11.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace &quot;NA&quot; with zero</span></span>
+<span id="cb293-2"><a href="homework-11.html#cb293-2" aria-hidden="true" tabindex="-1"></a>myBoots[<span class="fu">is.na</span>(myBoots)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
+<p>Plot the bootstrapped tree:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="homework-11.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb294-2"><a href="homework-11.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb294-3"><a href="homework-11.html#cb294-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names) <span class="sc">+</span></span>
+<span id="cb294-4"><a href="homework-11.html#cb294-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="at">label =</span> myBoots, <span class="at">geom =</span> <span class="st">&quot;label&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#deebf7&quot;</span>) <span class="sc">+</span></span>
+<span id="cb294-5"><a href="homework-11.html#cb294-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">25</span>)</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+</details>
+<hr />
 
 </div>
 </div>
