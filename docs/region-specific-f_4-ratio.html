@@ -419,9 +419,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="region-specific-f_4-ratio" class="section level2" number="9.19">
 <h2><span class="header-section-number">9.19</span> Region-specific <span class="math inline">\(f_4\)</span> ratio</h2>
-<p>Now we can re-calculate the <span class="math inline">\(f_4\)</span>-ratio on one of the filtered SNP sets.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="region-specific-f_4-ratio.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># f4-ratio with the regions removed</span></span>
-<span id="cb220-2"><a href="region-specific-f_4-ratio.html#cb220-2" aria-hidden="true" tabindex="-1"></a>f4_filtered <span class="ot">&lt;-</span> <span class="fu">f4ratio</span>(<span class="at">data =</span> new_snps_remove,</span>
+<p>Now we can re-calculate the <span class="math inline">\(f_4\)</span>-ratio only within promoter regions.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="region-specific-f_4-ratio.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># f4-ratio with only promoters</span></span>
+<span id="cb220-2"><a href="region-specific-f_4-ratio.html#cb220-2" aria-hidden="true" tabindex="-1"></a>f4_filtered <span class="ot">&lt;-</span> <span class="fu">f4ratio</span>(<span class="at">data =</span> new_snps_keep,</span>
 <span id="cb220-3"><a href="region-specific-f_4-ratio.html#cb220-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">X =</span> pops, <span class="at">A =</span> <span class="st">&quot;Altai&quot;</span>, <span class="at">B =</span> <span class="st">&quot;Vindija&quot;</span>, <span class="at">C =</span> <span class="st">&quot;Yoruba&quot;</span>, <span class="at">O =</span> <span class="st">&quot;Chimp&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb220-4"><a href="region-specific-f_4-ratio.html#cb220-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert z score to pvalue</span></span>
 <span id="cb220-5"><a href="region-specific-f_4-ratio.html#cb220-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(Zscore)))</span>
@@ -441,12 +441,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 Plot the region-excluded <span class="math inline">\(f_4\)</span>-ratios
 </summary>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="region-specific-f_4-ratio.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(f4_filtered,</span>
-<span id="cb222-2"><a href="region-specific-f_4-ratio.html#cb222-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="fu">fct_reorder</span>(X, alpha), alpha, <span class="at">color =</span> p <span class="sc">&lt;</span> <span class="fl">0.05</span>)) <span class="sc">+</span></span>
+<span id="cb222-2"><a href="region-specific-f_4-ratio.html#cb222-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> alpha, <span class="at">color =</span> p <span class="sc">&lt;</span> <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb222-3"><a href="region-specific-f_4-ratio.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb222-4"><a href="region-specific-f_4-ratio.html#cb222-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> alpha <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> stderr, <span class="at">ymax =</span> alpha <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> stderr), <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb222-5"><a href="region-specific-f_4-ratio.html#cb222-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb222-6"><a href="region-specific-f_4-ratio.html#cb222-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Neanderthal ancestry proportion&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Present-day individual&quot;</span>)</span></code></pre></div>
 <p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p>Except for the Han population, we see almost no Neanderthal ancestry when we calculate the <span class="math inline">\(f_4\)</span>-ratio within promoters – supporting the idea that <a href="https://www.pnas.org/doi/full/10.1073/pnas.1814338116">functionally important genomic regions are depleted for Neanderthal introgression</a>.</p>
 </details>
 <hr />
 </div>
