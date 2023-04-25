@@ -253,7 +253,7 @@ tree <- ladderize(tree)
 # plot the tree
 ggtree(tree) +
   theme_tree2() +
-  geom_tiplab(label = names, size = 4) +
+  geom_tiplab(aes(label = names), size = 4) +
   xlim(0, 1.2)
 ```
 
@@ -293,7 +293,7 @@ myBoots <- c(rep(NA, 25), myBoots)
 # re-plot tree with bootstrap values
 ggtree(tree, branch.length = "none") +
   theme_tree2() +
-  geom_tiplab(label = names) +
+  geom_tiplab(aes(label = names)) +
   geom_label(aes(label = myBoots), size = 3) +
   xlim(0, 15)
 ```
