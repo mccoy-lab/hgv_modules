@@ -261,11 +261,12 @@ We see significant evidence of Neanderthal introgression into the genomes of the
 Use this code to plot the $D$ statistic and standard error calculated for each population. This is a visual representation of the data in the `d_result` table:
 
 ```{r}
-ggplot(d_result,
-       aes(fct_reorder(W, D), D, color = p < 0.05)) +
+ggplot(data = d_result,
+       aes(x = W, y = D, color = p < 0.05)) +
   geom_point() +
   geom_hline(yintercept = 0, linetype = 2) +
-  geom_errorbar(aes(ymin = D - 1.96 * stderr, ymax = D + 1.96 * stderr), width = 0.5) +
+  geom_errorbar(aes(ymin = D - 1.96 * stderr, ymax = D + 1.96 * stderr),
+                width = 0.5) +
   xlab("Population")
 ```
 
@@ -327,10 +328,11 @@ For this statistic, `alpha` represents the proportion of the genome whose ancest
 Run the code below to plot the $f_{4}$-ratio values we computed:
 
 ```{r}
-ggplot(f4_ratio_result,
-       aes(fct_reorder(X, alpha), alpha, color = p < 0.05)) +
+ggplot(data = f4_ratio_result,
+       aes(x = X, y = alpha, color = p < 0.05)) +
   geom_point() +
-  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr), width = 0.5) +
+  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr),
+                width = 0.5) +
   geom_hline(yintercept = 0, linetype = 2) +
   labs(y = "Neanderthal ancestry proportion", x = "Present-day individual")
 ```
@@ -373,11 +375,11 @@ Annotations of **genomic intervals** are commonly represented in a file format c
 
 We can utilize these files in `admixr`'s `filter_bed()` function, which excludes or restricts analyses to genomic intervals within a BED file.
 
-Run the code below to re-calculate the $f_4$-ratio with `regions.bed`. We can create a new `snps` data object that either **keeps** or **excludes** these regions from our analysis.
+Run the code below to re-calculate the $f_4$-ratio with `promoters_hg19.bed` -- a bed file containing the coordiinates for promoters annotated in the [Ensembl Regulatory Build](https://useast.ensembl.org/info/genome/funcgen/data/accessing-regulation.html). We can create a new `snps` data object that either **keeps** or **excludes** these regions from our analysis.
 
 ```{r, eval = FALSE}
 # get the path to the `regions.bed` file
-bed <- file.path(dirname(prefix), "regions.bed")
+bed <- file.path("promoters_hg19.bed")
 
 # option 1: KEEP only these regions for analysis
 new_snps_keep <- filter_bed(snps, bed)
@@ -388,11 +390,11 @@ new_snps_remove <- filter_bed(snps, bed, remove = TRUE)
 
 ## Region-specific $f_4$ ratio
 
-Now we can re-calculate the $f_4$-ratio on one of the filtered SNP sets.
+Now we can re-calculate the $f_4$-ratio only within promoter regions.
 
 ```{r, eval = FALSE}
-# f4-ratio with the regions removed
-f4_filtered <- f4ratio(data = new_snps_remove,
+# f4-ratio with only promoters
+f4_filtered <- f4ratio(data = new_snps_keep,
                        X = pops, A = "Altai", B = "Vindija", C = "Yoruba", O = "Chimp") %>%
   # convert z score to pvalue
   mutate(p = 2 * pnorm(-abs(Zscore)))
@@ -412,12 +414,14 @@ f4_filtered
 
 ```{r}
 ggplot(f4_filtered,
-       aes(fct_reorder(X, alpha), alpha, color = p < 0.05)) +
+       aes(x = X, y = alpha, color = p < 0.05)) +
   geom_point() +
   geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr), width = 0.5) +
   geom_hline(yintercept = 0, linetype = 2) +
   labs(y = "Neanderthal ancestry proportion", x = "Present-day individual")
 ```
+
+Except for the Han population, we see almost no Neanderthal ancestry when we calculate the $f_4$-ratio within promoters -- supporting the idea that [functionally important genomic regions are depleted for Neanderthal introgression](https://www.pnas.org/doi/full/10.1073/pnas.1814338116).
 
 </details>
 ***
@@ -433,8 +437,8 @@ In this lab, we assessed evidence for Neanderthal introgression into specific hu
 <br></br>
 * We also calculated the $\mathbf{f_4}$ **statistic**, which is very similar to the $D$ statistic but is proportional to the genetic distance between two populations.
 <br></br>
-* Finally, we computed the $\mathbf{f_4}$**-ratio**, whose value indicates the proportion of introgressed ancestry in each population.
-  * We observed a higher proportion of Neanderthal ancestry in the Papuan individual in our dataset, which is likely an artifact of Denisovan introgression into Oceanian populations.
+* We computed the $\mathbf{f_4}$**-ratio**, whose value indicates the proportion of introgressed ancestry in each population.
+* Finally, we computed the $\mathbf{f_4}$**-ratio** within just promoter regions, where we observed a depletion of Neanderthal ancestry.
 
 
 ## Homework

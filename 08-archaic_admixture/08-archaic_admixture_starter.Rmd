@@ -19,7 +19,7 @@ After completing this chapter, you'll be able to:
 
 ### R packages
 
-```{r, results = FALSE, message = FALSE, warning = FALSE}
+```{r}
 library(tidyverse)
 library(admixr)
 ```
@@ -111,11 +111,12 @@ d_result
 Run the code block to plot the D statistic and standard error for each population.
 
 ```{r}
-ggplot(d_result,
-       aes(fct_reorder(W, D), D, color = p < 0.05)) +
+ggplot(data = d_result,
+       aes(x = W, y = D, D, color = p < 0.05)) +
   geom_point() +
   geom_hline(yintercept = 0, linetype = 2) +
-  geom_errorbar(aes(ymin = D - 1.96 * stderr, ymax = D + 1.96 * stderr), width = 0.5) +
+  geom_errorbar(aes(ymin = D - 1.96 * stderr, ymax = D + 1.96 * stderr),
+                width = 0.5) +
   xlab("Population")
 ```
 
@@ -162,10 +163,11 @@ f4_ratio_result
 Run the code below to plot the $f_{4}$-ratio values we computed.
 
 ```{r}
-ggplot(f4_ratio_result,
-       aes(fct_reorder(X, alpha), alpha, color = p < 0.05)) +
+ggplot(data = f4_ratio_result,
+       aes(x = X, y = alpha, color = p < 0.05)) +
   geom_point() +
-  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr), width = 0.5) +
+  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr),
+                width = 0.5) +
   geom_hline(yintercept = 0, linetype = 2) +
   labs(y = "Neanderthal ancestry proportion", x = "Present-day individual")
 ```
@@ -178,7 +180,7 @@ ggplot(f4_ratio_result,
 
 ```{r}
 # get the path to the `regions.bed` file
-bed <- file.path(dirname(prefix), "regions.bed")
+bed <- file.path("promoters_hg19.bed")
 
 # option 1: KEEP only these regions for analysis
 new_snps_keep <- filter_bed(snps, bed)
@@ -201,10 +203,11 @@ f4_filtered
 Plot the region-excluded f4-ratios:
 
 ```{r}
-ggplot(f4_filtered,
-       aes(fct_reorder(X, alpha), alpha, color = p < 0.05)) +
+ggplot(data = f4_filtered,
+       aes(x = X, y = alpha, color = p < 0.05)) +
   geom_point() +
-  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr), width = 0.5) +
+  geom_errorbar(aes(ymin = alpha - 2 * stderr, ymax = alpha + 2 * stderr),
+                width = 0.5) +
   geom_hline(yintercept = 0, linetype = 2) +
   labs(y = "Neanderthal ancestry proportion", x = "Present-day individual")
 ```
@@ -234,7 +237,7 @@ Follow these steps to create your own genome stratifications for calculating the
 7. In Posit Cloud, upload your file using the `Upload` button in the `Files` panel (bottom right).
 8. Run the code block below to reformat the BED file (this matches the UCSC's chromosome naming format with the format used in the `snps` data):
 
-```{r, eval = FALSE}
+```{r}
 # fill in blank with the name of your bed file
 system(command = "sed -i 's/chr//g' ________")
 

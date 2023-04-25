@@ -1,6 +1,9 @@
 ### Files to download to Posit Cloud:
 
-* The data for this module is downloaded live in class with `admixr`'s `download_data` function. A backup version of the data is on the project [OneDrive](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EnYTot749PJMlHm1_WS6OSQB07oaFleCCvzzwCHzW4d2Iw?e=cqgX2B).
+* From Github or [this OneDrive folder](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EkwJFRhy1DZNt8Dg42caT6wBXzvq9p7DTskMmwk-nbaOow?e=3OpzbZ):
+	* `promoters_hg19.bed`
+
+* Most of the data for this module is downloaded live in class with `admixr`'s `download_data` function. A backup version of the data is on [OneDrive](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EkwJFRhy1DZNt8Dg42caT6wBXzvq9p7DTskMmwk-nbaOow?e=3OpzbZ).
 
 
 ### Software to install to Posit Cloud:
