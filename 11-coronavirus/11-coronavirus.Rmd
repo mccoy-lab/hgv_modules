@@ -138,6 +138,13 @@ accessions <- read.table("accessions.txt", header = TRUE, sep = "\t")
 head(accessions)
 ```
 
+```{r}
+# make vectors of the GenBank IDs and full names
+# these will be used as input to functions later
+ids <- accessions$id
+names <- accessions$name
+```
+
 The SARS-CoV-2 sequence we're using is `MT093631` (`MT093631.2 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/CHN/WH-09/2020`).
 
 #### DNA sequences
@@ -205,8 +212,8 @@ We can plot this matrix to visualize it:
 ```{r}
 # use the "melt_dist" function from harrietr package to convert
 # the distance matrix to "long" format for ggplot
-D_melted <- rbind(melt_dist(D, order = accessions$id),
-                  melt_dist(t(D), order = rev(accessions$id)))
+D_melted <- rbind(melt_dist(D, order = ids),
+                  melt_dist(t(D), order = rev(ids)))
 
 # plot distance matrix
 ggplot(data = D_melted) +
@@ -238,15 +245,15 @@ Using the distance matrix, we can now:
 ```{r}
 # build a neighbor joining tree
 tree <- nj(D)
-# manually "root" the tree by setting HQ166910 bat coronavirus as an outgroup
-tree <- root(tree, which(accessions$id == "HQ166910"))
+# manually "root" the tree by setting HQ166910 as an outgroup
+tree <- root(tree, which(ids == "HQ166910"))
 # rotate tree at nodes to make it look tidier (i.e., "ladderized")
 tree <- ladderize(tree)
 
 # plot the tree
 ggtree(tree) +
   theme_tree2() +
-  geom_tiplab(label = accessions$name, size = 4) +
+  geom_tiplab(label = names, size = 4) +
   xlim(0, 1.2)
 ```
 
@@ -273,10 +280,10 @@ Run the code below to implement bootstrapping in the `boot.phylo()` function. Th
 # set random seed
 set.seed(123)
 # bootstrap and build new trees to evaluate uncertainty
-myBoots <- boot.phylo(tree, dna,
-                      function(x) ladderize(root(nj(dist.dna(x, model = "TN93")),
-                                                 # root tree at bat RaTG13 coronavirus
-                                                 which(accessions$id == "HQ166910"))),
+myBoots <- boot.phylo(tree, dna, 
+                      function(x) ladderize(root(nj(dist.dna(x,
+                                                             model = "TN93")),
+                                                 which(ids == "HQ166910"))), 
                       rooted = TRUE)
 
 # replace "NA" with zero in bootstrap results
@@ -285,9 +292,9 @@ myBoots[is.na(myBoots)] <- 0
 # re-plot tree with bootstrap values
 ggtree(tree, branch.length = "none") +
   theme_tree2() +
-  geom_tiplab(label = accessions$name) +
+  geom_tiplab(label = names) +
   geom_nodelab(label = myBoots, geom = "label", fill = "#deebf7") +
-  xlim(0, 25)
+  xlim(0, 30)
 ```
 
 
