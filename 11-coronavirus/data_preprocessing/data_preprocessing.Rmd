@@ -1,0 +1,101 @@
+Code written by Rajiv for downloading coronavirus genome sequences from GenBank and aligning them.
+
+```{r}
+library(tidyverse)
+library(ape) # phylogenetics
+library(DECIPHER) # aligner
+library(ggtree) # tree visualization
+library(harrietr) # melt_dist() function
+```
+
+## Retrieve sequences (ape)
+
+The first block of code retrieves coronavirus genome sequences from the GenBank database. GenBank uses codes called "accession numbers" to refer to sequences. The `read.Genbank()` function from `ape` downloads sequences based on a list of accession numbers.
+
+We then write the data to FASTA format (https://en.wikipedia.org/wiki/FASTA_format), which is the simplest way to provide the data to the DECIPHER aligner.
+
+```{r, message = FALSE}
+# list of Genbank accession numbers for various corona-like viruses (search "coronavirus" in Genbank)
+# I obtained this list from this recent paper (https://www.cell.com/cell/fulltext/S0092-8674(20)30229-4)
+# I could have alternatively searched for these genomes in GenBank
+accessions <- c("DQ022305", "DQ071615", "DQ412043", "JX993988", "FJ588686",
+                "JX993987", "DQ412042", "KJ473816", "KJ473811", "KY417145",
+                "MN996532", "MT093631", "MG772933", "MG772934", "KF569996",
+                "KF367457", "KY417151", "KC881005", "KT444582", "GU190215",
+                "AY304488", "AY278488", "AY291315", "KY352407", "HQ166910")
+
+# read sequences from GenBank based on their accession numbers
+seqs <- read.GenBank(accessions)
+
+# write data to a fasta file
+write.FASTA(seqs, file = "sequences.fa", append = FALSE)
+```
+
+Make metadata table with accessions and names of sequences:
+
+```{r}
+names <- data.frame(name = attributes(seqs)$description) %>%
+  separate(name, into = c("id", NA), sep = ", ") %>%
+  separate(id, into = c("accession"), extra = "drop", sep = "\\.", remove = FALSE) %>%
+  setnames("name", "id")
+
+write.table(names[, c("id", "name")], "accessions.txt",
+            sep = "\t", row.names = FALSE, quote = FALSE)
+```
+
+
+## Align sequences (DECIPHER)
+
+We next read the FASTA file in using the `readDNAStringSet()` function. Then align the sequences using the `AlignSeqs()` function from DECIPHER. We can view the resulting alignments using `BrowseSeqs()`. The `AdjustAlignment()` function further refines the alignment by shifting sequences as one might otherwise do manually. Finally, we output the data to another "aligned" FASTA file, to be read in by `ape`.
+
+```{r, message = FALSE}
+# read data from fasta file
+fasta <- readDNAStringSet("sequences.fa", format = "fasta")
+
+# Align sequences with DECIPHER
+# Read more about this alignment algorithm here:
+# https://bioconductor.org/packages/release/bioc/vignettes/DECIPHER/inst/doc/ArtOfAlignmentInR.pdf
+aligned <- AlignSeqs(fasta)
+# look at alignments
+BrowseSeqs(aligned, highlight = 0)
+
+# AdjustAlignment helps mitigate alignment errors
+aligned <- AdjustAlignment(aligned)
+# look at alignments
+BrowseSeqs(aligned, highlight = 0)
+
+# write data to aligned fasta file
+writeXStringSet(aligned, file = "sequences_aligned.fa")
+```
+
+
+## Homework
+
+Pull out 24 SARS-CoV-2 sequences from the [nextstrain github](https://github.com/nextstrain/ncov/blob/master/data/example_metadata.tsv), adding in bat RaTG13 coronavirus (`MN996532`) to use as an outgroup:
+
+```{r}
+# get 24 coronavirus sequences from nextstrain
+ncov <- read_tsv("example_metadata.tsv") %>%
+  .[sample(418, 24), ] %>%
+  .[, c("strain", "genbank_accession")] %>%
+  # add in bat coronavirus
+  rbind(.,
+        data.frame(strain = "Bat RATG13 coronavirus",
+                   genbank_accession = "MN996532"))
+
+# get fasta sequences
+ids <- ncov$genbank_accession
+seqs <- read.GenBank(ids)
+write.FASTA(seqs, file = "sarscov2_seqs.fa", append = FALSE)
+
+# align sequences
+fasta <- readDNAStringSet("sarscov2_seqs.fa", format = "fasta")
+# align sequences with DECIPHER
+aligned <- AlignSeqs(fasta)
+# write data to aligned fasta file
+writeXStringSet(aligned, file = "hw_aligned.fa")
+
+# write accession metadata to file
+write.table(ncov, "hw_accessions.txt",
+            sep = "\t", row.names = FALSE, quote = FALSE)
+```

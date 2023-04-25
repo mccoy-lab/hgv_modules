@@ -292,3 +292,38 @@ In this lab, we explored the **GTEx** dataset to understand how genetic variatio
 Fit a regression model (or multiple!) to the GTEx data we downloaded in class and test for differential expression between two (or more) conditions. For example, you could look at another gene, compare between tissues, age groups, or Hardy classifications, etc.
 
 Based on the results, does the condition affect expression of your gene?
+
+***
+<details> <summary> Solution </summary>
+
+As an example, we'll test for differences in _ACE2_ expression between liver and lung tissue. First we subset the GTEx data to just the _ACE2_ gene:
+
+```{r, eval = FALSE}
+subset <- gtex %>%
+  # filter gene of interest
+  filter(Gene_Name == "ACE2")
+
+head(subset)
+```
+```{r, echo = FALSE, message = FALSE}
+# code block to preview hw file since loading it into bookdown won't work
+# write.table(subset, "hw_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+subset <- read.table("hw_ace2.txt", header = TRUE)
+head(subset)
+```
+
+Then we fit a model with `glm.nb`:
+
+```{r}
+# fit model and print summary
+model <- glm.nb(formula = Counts ~ factor(Tissue),
+                data = subset)
+summary(model)
+```
+
+The p-value is significant (`p = 0.00781`), suggesting that _ACE2_ expression does differ between liver and lung.
+
+The coefficient estimate, `0.4491`, indicates that RNA-seq counts for _ACE2_ are $0.45$ transcripts higher in lung than in liver.
+
+</details>
+***
