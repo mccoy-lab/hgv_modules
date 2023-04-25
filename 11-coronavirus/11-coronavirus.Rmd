@@ -308,3 +308,21 @@ In this module, we visualized evolutionary relationships between coronavirus str
 <br></br>
 * Using the sequences of other coronavirus strains from GenBank, we placed SARS-CoV-2 onto a **neighbor joining** phylogeny of closely related viruses.
   * We used **bootstrapping** to provide confidence estimates for branches on our neighbor joining tree.
+  
+
+## Homework
+
+#### Learning Objectives
+
+* Practice building and interpreting phylogenies in R
+
+#### Assignment
+
+`hw_accessions.txt` and `hw_aligned.fa` provide the alignments and metadata for 24 human SARS-CoV-2 sequences, plus the bat RaTG13 coronavirus strain.
+
+Use this data to repeat the analysis we did in class (compute distance matrix, construct neighbor joining tree, perform bootstrapping for confidence values) to build a phylogeny of SARS-CoV-2 strains. You should use RaTG13 (accession: `MN996532`) as an outgroup.
+
+```{r}
+
+```
+
