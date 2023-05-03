@@ -27,55 +27,30 @@ https://popgen.uchicago.edu/ggv/?data=%221000genomes
 
 ```{r}
 library(tidyverse)
-library(vcfR)
 ```
 
 ### Genotype data
 
 ```{r}
-vcf <- read.vcfR(file = "random_snippet.vcf.gz")
+# all variants
+all <- read.table("all_variants.txt.gz")
+
+# only common variants
+common <- read.table("common_variants.txt.gz")
 ```
 
-![](images/vcf_head.png)
+```{r}
+# preview first 10 columns of `all` dataframe
+head(all[, 1:10])
+```
 
 ### Metadata
 
 ```{r}
 metadata <- read.table("integrated_call_samples.txt",
                        header = TRUE)
+
 head(metadata)
-```
-
-
-***
-
-
-## Tidying VCF data
-
-`vcf` is an "Object of Class vcfR":
-
-```{r}
-vcf
-```
-
-Use the `vcfR2tidy` function to convert `vcf` into tidy dataframes:
-
-```{r, message = FALSE}
-# convert vcf into three tidy dataframes
-tidied <- vcfR2tidy(vcf,
-                    # tell vcfR to turn these INFO fields into integers
-                    info_types = c(AF = "n", EAS_AF = "n",
-                                   EUR_AF = "n", AFR_AF = "n",
-                                   AMR_AF = "n", SAS_AF = "n"))
-tidied
-```
-
-Store the variants information from `tidied` in a separate table:
-
-```{r}
-# make variants dataframe
-variants <- tidied$fix
-variants
 ```
 
 
@@ -94,84 +69,64 @@ Plot the _distribution_ of variant allele frequencies, using the `AF` column of 
 ***
 
 
-## Subset to common variants
+## Theoretical AFS
+
+```{r}
+# make dataframe with theoretical AFS bins
+# create `af_bin` column with the bin number
+ideal_pop <- tibble(af_bin = 1:100) %>%
+  # create `prop` column with the expected proportion of variants
+  mutate(., prop = 1 / af_bin)
+
+head(ideal_pop)
+```
+
+```{r}
+# plot expected AFS
+ggplot(ideal_pop,
+       aes(x = af_bin, y = prop)) +
+  geom_bar(stat = "identity")
+```
+
+
+***
+
+
+## AF correlations between populations
+
+Plot African vs. European AF on a scatterplot.
+
+```{r}
+
+```
+
+Plot AF correlations for some other population pairs.
+
+```{r}
+
+```
+
+
+***
+
+
+## Common variation
 
 We can look at which variants are "common" by adding vertical lines to the AFS plot.
 
 ```{r}
-ggplot(data = variants,
+ggplot(data = all,
        aes(x = AF)) + 
   geom_histogram(bins = 100) + 
   geom_vline(xintercept = 0.05, linetype = "dashed", color = "blue") +
   geom_vline(xintercept = 0.95, linetype = "dashed", color = "brown")
 ```
 
-Run this code block to subset `vcf` and the `variants` dataframe to just common variation:
-
-```{r}
-# choose rows of `variants` that have AFs within range
-common_rows <- (variants$AF > 0.05) & (variants$AF < 0.95)
-
-# subset rows of the vcf object
-vcf_common <- vcf[common_rows, ]
-vcf_common
-
-# subset the variants dataframe as well
-variants_common <- variants[common_rows, ]
-```
-
-Re-plot the AFS to confirm that our subsetting worked.
+Plot the AFS of the `common` dataframe, including the dashed lines we used above.
 
 ```{r}
 
 ```
-
-
-
-***
-
-
-## The F~ST~ statistic
-
-F~ST~ quantifies differentiation between populations, based on the frequencies of alleles at one variable site.
-
-$$
-\textrm{F}_{ST} = \frac{H_T - \textrm{mean}(H_S)}{H_T}
-$$
-
-We'll calculate F~ST~ with the `genetic_diff` function from `vcfR`.
-
-```{r}
-?genetic_diff
-```
-
-Use the `metadata` table to generate a vector of superpopulation labels for `genetic_diff`, converting to factors:
-
-```{r}
-pop_labels <- as.factor(metadata$superpop)
-pop_labels
-```
-
-Run `genetic_diff` on the VCF of common variants:
-
-```{r }
-# calculate gst
-gst_results <- genetic_diff(vcf_common, pop_labels) %>%
-  # order dataframe by descending gst value
-  arrange(-Gst)
-
-head(gst_results)
-```
-
-Plot the distribution of G~ST~ across all variants.
-
-```{r}
-
-```
-
-Convert to hg19 coordinates: https://genome.ucsc.edu/cgi-bin/hgLiftOver
-
-Examine the top G~ST~ hit(s) in the GGV browser: https://popgen.uchicago.edu/ggv/?data=%221000genomes
 
 
 ***
@@ -185,32 +140,24 @@ http://setosa.io/ev/principal-component-analysis/
 
 We're using R's `prcomp` function to perform PCA on our genotype data. To reformat our data for `prcomp`, we need to:
 
-1. Extract genotypes with vcfR's `extract.gt` function
-2. Convert the genotypes into numeric values with tidyverse's `recode` function
-    * **`0`** is homozygous reference (`0|0`)
-    * **`1`** is heterozygous (`0|1`, `1|0`)
-    * **`2`** is homozygous alternate (`1|1`)
+1. Subset the `common` dataframe to just the genotype columnss
+2. Convert into a matrix
 3. **Transpose** (i.e., rotate) the matrix so the rows are samples and the columns are variants
 
 ```{r}
-# extract genotypes from vcfR object
-gt_matrix <- extract.gt(vcf_common) %>%
-  # convert to dataframe so we can use tidyverse functions
-  as.data.frame() %>%
-  # apply `recode` function to all values in dataframe
-  mutate_all(recode,
-             "0|0" = 0, "1|0" = 1, "0|1" = 1, "1|1" = 2) %>%
-  # convert back to matrix
+# subset to just genotype columns
+gt_matrix <- common[, 7:2510] %>%
   as.matrix()
 
-head(gt_matrix)
+head(gt_matrix[, 1:10])
 ```
 
 Transpose the matrix with `prcomp`'s `t` function:
 
-```{r, results = FALSE}
+```{r}
 gt_matrix_T <- t(gt_matrix)
-head(gt_matrix_T)
+
+head(gt_matrix_T[, 1:10])
 ```
 
 ### Performing PCA
@@ -218,6 +165,12 @@ head(gt_matrix_T)
 ```{r}
 pca <- prcomp(gt_matrix_T)
 ```
+
+
+***
+
+
+## PCA output
 
 We can plot our PCA output using the information in `pca$x`.
 
@@ -247,6 +200,8 @@ pca_results <- merge(pca_results, metadata,
 head(pca_results)
 ```
 
+### Plot PCA output
+
 Create _scatterplots_ of PC1 vs. PC2 and PC2 vs. PC3, coloring by the `superpop` column:
 
 ```{r}
@@ -259,7 +214,11 @@ Create _scatterplots_ of PC1 vs. PC2 and PC2 vs. PC3, coloring by the `superpop`
 
 ```
 
-### Proportion of variance explained
+
+***
+
+
+## Proportion of variance explained
 
 We can calculate proportion of variance explained from the `sdev` item in our `pca` object.
 
@@ -300,11 +259,7 @@ Add x and y axis labels to your PCA plots with the proportion of variance explai
 
 We'll now perform PCA using _all_ SNPs in the initial VCF -- not just those that were common in 1000 Genomes individuals. In the optional homework, you'll also use your newly generated PCA plot to predict the ancestry of an unknown sample.
 
-#### Goals & Learning Objectives
-
-The goal of this homework is to perform and interpret the results of PCA.
-
-**Learning Objectives**
+#### Learning Objectives
 
 * Required homework: Practice performing and interpreting PCA
 * Optional homework: Practice performing PCA and reading code
@@ -312,7 +267,7 @@ The goal of this homework is to perform and interpret the results of PCA.
 
 ## Required homework
 
-**Assignment:** Re-run the steps we used to generate our PCA plot, this time using the original `vcf` data object. Do these plots look any different from our plots with just common variants?
+**Assignment:** Re-run the steps we used to generate our PCA plot, this time using the `all` dataframe. Do these plots look any different from our plots with just common variants?
 
 ```{r}
 
@@ -324,25 +279,22 @@ The goal of this homework is to perform and interpret the results of PCA.
 
 ## Optional homework
 
-We can think of our PCA as a _model_ of human individuals. If we have a mystery individual but we know their genotypes for the variants in our PCA, we can predict where they lie in PCA space and thus guess their ancestry.
+We can think of our PCA as a _model_ of human individuals. If we have a mystery individual but we know their genotypes for the variants in our PCA, we can _predict_ where they should lie in PCA space and thus guess their ancestry.
 
-We've prepared a VCF, `unknown.vcf.gz`, with genotypes for one mystery sample (`NA21121`). The VCF contains the **exact same variants** as our `random_snippet.vcf.gz` from this class.
+We've prepared a file, `unknown.txt`, which contains genotypes for one mystery sample (`NA21121`). We'll compare it to the PCA model that you created for the required homework.
 
-Follow the instructions to read in the unknown VCF and predict NA21121's placement on your PCA plot. To avoid having to re-subset to common variants, we'll compare NA21121 to our PCA from the **required homework** (all variants in the VCF).
+Follow the instructions to predict NA21121's placement on your PCA plot.
 
-### Prepare unknown VCF for PCA
+#### Prepare unknown sample for PCA
 
-**Assignment:** Using our code from class, read in the unknown VCF file, extract the genotype matrix, recode the genotypes as numbers, and transpose.
+**Assignment:** Read in `unknown.txt`, convert it to a matrix, and transpose.
 
 ```{r}
-# read VCF
+# read file and convert to matrix
 unknown <- _________
 
-# extract and recode genotypes
-unknown_matrix <- _________
-
 # transpose matrix
-unknown_matrix_T <- _________
+unknown_T <- _________
 ```
 
 ### Predict PCA placement of unknown sample
@@ -351,8 +303,8 @@ unknown_matrix_T <- _________
 
 ```{r}
 # predict pca placement of unknown data
-unknown_pca <- predict(_________, # your PCA object with all variants
-                       unknown_matrix_T)
+unknown_pca <- predict(_________, # your PCA object with `all` dataframe
+                       unknown_T)
 
 # create dataframe from predicted PCA
 unknown_results <- data.frame("PC1" = unknown_pca[, "PC1"],
