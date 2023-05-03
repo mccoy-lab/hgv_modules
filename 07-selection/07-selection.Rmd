@@ -127,17 +127,20 @@ See [this Nature Review Genetics article](https://pubmed.ncbi.nlm.nih.gov/196878
 
 ## Data (for F~ST~)
 
-We're once again working with data from the 1000 Genomes Project. As in the population structure module, we'll read in genotype data (in VCF form) and metadata on the populations that each sample is from.
+We're working with genotype data, in **VCF** form, from the 1000 Genomes Project.
 
 ```{r}
 # read genotype data with vcfR
 vcf <- read.vcfR(file = "random_variable_sites.vcf.gz")
 ```
 
+We'll also read in a **metadata** table with information on which populations each sample is from.
+
 ```{r}
 # read metadata
 metadata <- read.table("integrated_call_samples.txt",
                        header = TRUE)
+
 head(metadata)
 ```
 
@@ -469,7 +472,7 @@ The haplotype-based class of selection statistics quantifies long haplotypes tha
 
 <center>
 
-![**Fig. 9 (from David Reich).** Recombination breaks down the haplotype under selection (red) as you move further from the core variant.](07-selection/images/haplotype_decay.png){width=80%}
+![**Fig. 9.** EHH measures how likely two haplotypes are to carry the same variant at a given location -- a signature that we expect recent selection to exaggerate.](07-selection/images/ehh.jpg){width=80%}
 
 </center>
 
@@ -482,7 +485,7 @@ The other branches of the phylogeny (in red) indicate other haplotypes in this r
 
 <center>
 
-![**Fig. 10 (from David Reich).** Overrepresentation of the blue haplotype indicates extreme EHH, a possible signature of selection.](07-selection/images/ehh.png){width=80%}
+![**Fig. 10 (from David Reich).** Overrepresentation of the blue haplotype indicates extreme EHH, a possible signature of selection.](07-selection/images/ehh_plot.png){width=80%}
 
 </center>
 
@@ -509,7 +512,7 @@ If you calculate EHH for both the new and ancestral haplotypes at a locus, you c
 
 <center>
 
-![**Fig. 12.** Comparing the EHH of two alleles to calculate iHS.](07-selection/images/ihs.png)
+![**Fig. 12.** Comparing the EHH of haplotypes carrying the derived and ancestral alleles to calculate iHS.](07-selection/images/ihs.png)
 
 </center>
 
