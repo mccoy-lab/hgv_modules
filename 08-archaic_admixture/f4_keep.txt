@@ -1,8 +1,0 @@
-A	B	X	C	O	alpha	stderr	Zscore	p
-Altai	Vindija	French	Yoruba	Chimp	0.03058	0.009385	3.258	0.00112200406341996
-Altai	Vindija	Sardinian	Yoruba	Chimp	0.018057	0.009117	1.981	0.0475912735871464
-Altai	Vindija	Han	Yoruba	Chimp	0.023127	0.009617	2.405	0.0161724657842039
-Altai	Vindija	Papuan	Yoruba	Chimp	0.036462	0.008964	4.068	4.7418381382133e-05
-Altai	Vindija	Khomani_San	Yoruba	Chimp	-0.001223	0.008774	-0.139	0.889450149047983
-Altai	Vindija	Mbuti	Yoruba	Chimp	-0.015781	0.0091	-1.734	0.0829180831682982
-Altai	Vindija	Dinka	Yoruba	Chimp	-0.004929	0.008235	-0.599	0.549172884569561
