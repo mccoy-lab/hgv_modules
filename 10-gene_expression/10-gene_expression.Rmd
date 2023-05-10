@@ -1,8 +1,6 @@
 ```{r, include = FALSE}
 ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '10-gene_expression')
-# install packages for the lab
-# install.packages("MASS")
 ```
 
 # Gene expression
@@ -197,15 +195,14 @@ The GTEx Portal provides [links for downloading](https://gtexportal.org/home/dat
 
 For ease of manipulation in R, we've subset this data to 150 samples, highly expressed genes, and only data from **liver** and **lung** tissue.
 
-```{r, eval = FALSE}
+```{r gtex-subset-read}
 gtex <- read.table("gtex_subset.txt.gz", header = TRUE)
 
 head(gtex)
 ```
 ```{r, message = FALSE, echo = FALSE}
-# code block to preview gtex file since loading it into bookdown won't work
-# write.table(head(gtex), "gtex_head.txt", sep = "\t", quote = FALSE, row.names = FALSE)
-read.table("gtex_head.txt", header = TRUE) %>%
+# file doesn't load in bookdown, so read it from google drive
+read.table("https://drive.google.com/uc?export=download&id=1391X_47zTF4qh0URmmsqOwAifCZl8wKS", header = TRUE) %>%
   head()
 ```
 
@@ -245,9 +242,8 @@ subset <- gtex %>%
 head(subset)
 ```
 ```{r, echo = FALSE, message = FALSE}
-# code block to preview gtex file since loading it into bookdown won't work
-# write.table(subset, "gtex_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
-subset <- read.table("gtex_ace2.txt", header = TRUE)
+# file doesn't load in bookdown, so read it from google drive
+subset <- read.table("https://drive.google.com/uc?export=download&id=1FrLHrFRfvsOWKKOo6ZBAE8BbhZsb2iqa", header = TRUE)
 head(subset)
 ```
 
@@ -308,7 +304,7 @@ head(subset)
 ```{r, echo = FALSE, message = FALSE}
 # code block to preview hw file since loading it into bookdown won't work
 # write.table(subset, "hw_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
-subset <- read.table("hw_ace2.txt", header = TRUE)
+subset <- read.table("data_for_rendering/hw_ace2.txt", header = TRUE)
 head(subset)
 ```
 

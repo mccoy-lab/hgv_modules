@@ -170,7 +170,7 @@ d_result <- d(data = snps,
 
 d_result
 ```
-```{r, echo = FALSE}
+```{r read-snps-data, echo = FALSE}
 # read in table with the result data bc we can't run admixr on bookdown
 d_result <- read.table("https://drive.google.com/uc?export=download&id=10eHG6hbuSxxUTXrWMc9ubBnSvuIhQQ6F", header = TRUE)
 d_result
