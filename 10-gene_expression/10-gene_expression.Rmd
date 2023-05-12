@@ -234,7 +234,7 @@ Using this dataset, we can fit **regression models** to ask about differences in
 
 First we subset the data to the relevant gene and tissue (_ACE2_ and lung) for our test:
 
-```{r, eval = FALSE}
+```{r}
 subset <- gtex %>%
   # filter for tissue and gene of interest
   filter(Tissue == "Lung" & Gene_Name == "ACE2")
@@ -294,7 +294,7 @@ Based on the results, does the condition affect expression of your gene?
 
 As an example, we'll test for differences in _ACE2_ expression between liver and lung tissue. First we subset the GTEx data to just the _ACE2_ gene:
 
-```{r, eval = FALSE}
+```{r}
 subset <- gtex %>%
   # filter gene of interest
   filter(Gene_Name == "ACE2")
@@ -304,7 +304,7 @@ head(subset)
 ```{r, echo = FALSE, message = FALSE}
 # code block to preview hw file since loading it into bookdown won't work
 # write.table(subset, "hw_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
-subset <- read.table("data_for_rendering/hw_ace2.txt", header = TRUE)
+subset <- read.table("https://drive.google.com/uc?export=download&id=1FrLHrFRfvsOWKKOo6ZBAE8BbhZsb2iqa", header = TRUE)
 head(subset)
 ```
 
