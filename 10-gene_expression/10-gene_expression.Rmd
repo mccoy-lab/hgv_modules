@@ -200,12 +200,6 @@ gtex <- read.table("gtex_subset.txt.gz", header = TRUE)
 
 head(gtex)
 ```
-```{r, message = FALSE, echo = FALSE}
-# file doesn't load in bookdown, so read it from google drive
-read.table("https://drive.google.com/uc?export=download&id=1391X_47zTF4qh0URmmsqOwAifCZl8wKS", header = TRUE) %>%
-  head()
-```
-
 
 The columns of this dataframe are:
 
@@ -239,11 +233,6 @@ subset <- gtex %>%
   # filter for tissue and gene of interest
   filter(Tissue == "Lung" & Gene_Name == "ACE2")
 
-head(subset)
-```
-```{r, echo = FALSE, message = FALSE}
-# file doesn't load in bookdown, so read it from google drive
-subset <- read.table("https://drive.google.com/uc?export=download&id=1FrLHrFRfvsOWKKOo6ZBAE8BbhZsb2iqa", header = TRUE)
 head(subset)
 ```
 
@@ -299,12 +288,6 @@ subset <- gtex %>%
   # filter gene of interest
   filter(Gene_Name == "ACE2")
 
-head(subset)
-```
-```{r, echo = FALSE, message = FALSE}
-# code block to preview hw file since loading it into bookdown won't work
-# write.table(subset, "hw_ace2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
-subset <- read.table("https://drive.google.com/uc?export=download&id=1FrLHrFRfvsOWKKOo6ZBAE8BbhZsb2iqa", header = TRUE)
 head(subset)
 ```
 
