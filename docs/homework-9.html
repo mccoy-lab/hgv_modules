@@ -433,18 +433,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 Solution
 </summary>
 <p>As an example, we’ll test for differences in <em>ACE2</em> expression between liver and lung tissue. First we subset the GTEx data to just the <em>ACE2</em> gene:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="homework-9.html#cb268-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> gtex <span class="sc">%&gt;%</span></span>
-<span id="cb268-2"><a href="homework-9.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter gene of interest</span></span>
-<span id="cb268-3"><a href="homework-9.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
-<span id="cb268-4"><a href="homework-9.html#cb268-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-5"><a href="homework-9.html#cb268-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
-<pre><code>##       Sample   Age Sex Death_Hardy Tissue            Gene_ID Gene_Name Counts
-## 1 GTEX-111YS 60-69   M           0   Lung ENSG00000130234.10      ACE2    640
-## 2 GTEX-1128S 60-69   F           2   Lung ENSG00000130234.10      ACE2     64
-## 3 GTEX-11DXX 60-69   F           0   Lung ENSG00000130234.10      ACE2    236
-## 4 GTEX-11DXZ 50-59   M           0  Liver ENSG00000130234.10      ACE2    211
-## 5 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
-## 6 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="homework-9.html#cb266-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> gtex <span class="sc">%&gt;%</span></span>
+<span id="cb266-2"><a href="homework-9.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter gene of interest</span></span>
+<span id="cb266-3"><a href="homework-9.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
+<span id="cb266-4"><a href="homework-9.html#cb266-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-5"><a href="homework-9.html#cb266-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
 <pre><code>##       Sample   Age Sex Death_Hardy Tissue            Gene_ID Gene_Name Counts
 ## 1 GTEX-111YS 60-69   M           0   Lung ENSG00000130234.10      ACE2    640
 ## 2 GTEX-1128S 60-69   F           2   Lung ENSG00000130234.10      ACE2     64
@@ -453,10 +446,10 @@ Solution
 ## 5 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
 ## 6 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162</code></pre>
 <p>Then we fit a model with <code>glm.nb</code>:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="homework-9.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
-<span id="cb271-2"><a href="homework-9.html#cb271-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Tissue),</span>
-<span id="cb271-3"><a href="homework-9.html#cb271-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> subset)</span>
-<span id="cb271-4"><a href="homework-9.html#cb271-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="homework-9.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
+<span id="cb268-2"><a href="homework-9.html#cb268-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Tissue),</span>
+<span id="cb268-3"><a href="homework-9.html#cb268-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> subset)</span>
+<span id="cb268-4"><a href="homework-9.html#cb268-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = Counts ~ factor(Tissue), data = subset, init.theta = 1.034483188, 

@@ -422,19 +422,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Use <code>HQ166910</code> as the <a href="https://en.wikipedia.org/wiki/Outgroup_(cladistics)"><strong>outgroup</strong></a> to root the tree (with the <code>root()</code> function)</li>
 <li>Use the <code>ladderize()</code> function to re-orient the tree into a tidier format for plotting</li>
 </ul>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="building-a-phylogenetic-tree.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="co"># build a neighbor joining tree</span></span>
-<span id="cb281-2"><a href="building-a-phylogenetic-tree.html#cb281-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">nj</span>(D)</span>
-<span id="cb281-3"><a href="building-a-phylogenetic-tree.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="co"># manually &quot;root&quot; the tree by setting HQ166910 as an outgroup</span></span>
-<span id="cb281-4"><a href="building-a-phylogenetic-tree.html#cb281-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">root</span>(tree, <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;HQ166910&quot;</span>))</span>
-<span id="cb281-5"><a href="building-a-phylogenetic-tree.html#cb281-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rotate tree at nodes to make it look tidier (i.e., &quot;ladderized&quot;)</span></span>
-<span id="cb281-6"><a href="building-a-phylogenetic-tree.html#cb281-6" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">ladderize</span>(tree)</span>
-<span id="cb281-7"><a href="building-a-phylogenetic-tree.html#cb281-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb281-8"><a href="building-a-phylogenetic-tree.html#cb281-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the tree</span></span>
-<span id="cb281-9"><a href="building-a-phylogenetic-tree.html#cb281-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
-<span id="cb281-10"><a href="building-a-phylogenetic-tree.html#cb281-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
-<span id="cb281-11"><a href="building-a-phylogenetic-tree.html#cb281-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb281-12"><a href="building-a-phylogenetic-tree.html#cb281-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="building-a-phylogenetic-tree.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># build a neighbor joining tree</span></span>
+<span id="cb278-2"><a href="building-a-phylogenetic-tree.html#cb278-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">nj</span>(D)</span>
+<span id="cb278-3"><a href="building-a-phylogenetic-tree.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="co"># manually &quot;root&quot; the tree by setting HQ166910 as an outgroup</span></span>
+<span id="cb278-4"><a href="building-a-phylogenetic-tree.html#cb278-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">root</span>(tree, <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;HQ166910&quot;</span>))</span>
+<span id="cb278-5"><a href="building-a-phylogenetic-tree.html#cb278-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rotate tree at nodes to make it look tidier (i.e., &quot;ladderized&quot;)</span></span>
+<span id="cb278-6"><a href="building-a-phylogenetic-tree.html#cb278-6" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">ladderize</span>(tree)</span>
+<span id="cb278-7"><a href="building-a-phylogenetic-tree.html#cb278-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb278-8"><a href="building-a-phylogenetic-tree.html#cb278-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the tree</span></span>
+<span id="cb278-9"><a href="building-a-phylogenetic-tree.html#cb278-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
+<span id="cb278-10"><a href="building-a-phylogenetic-tree.html#cb278-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb278-11"><a href="building-a-phylogenetic-tree.html#cb278-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb278-12"><a href="building-a-phylogenetic-tree.html#cb278-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">1.2</span>)</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>On the tree, we can see that the 2019-nCov sample (<code>MT093631.2 Severe acute respiratory syndrome coronavirus 2</code>) groups most closely with <code>Bat coronavirus RaTG13</code>.</p>
 <hr />
 <details>

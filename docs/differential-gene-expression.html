@@ -418,11 +418,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.10</span> Differential gene expression</h2>
 <p>Using this dataset, we can fit <strong>regression models</strong> to ask about differences in gene expression between conditions. For example, let’s say we’re interested in whether <a href="https://www.nytimes.com/interactive/2020/03/11/science/how-coronavirus-hijacks-your-cells.html">the <em>ACE2</em> gene</a> – the receptor bound by the SARS-CoV-2 virus – exhibits differences in expression between males and females.</p>
 <p>First we subset the data to the relevant gene and tissue (<em>ACE2</em> and lung) for our test:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="differential-gene-expression.html#cb263-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> gtex <span class="sc">%&gt;%</span></span>
-<span id="cb263-2"><a href="differential-gene-expression.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter for tissue and gene of interest</span></span>
-<span id="cb263-3"><a href="differential-gene-expression.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tissue <span class="sc">==</span> <span class="st">&quot;Lung&quot;</span> <span class="sc">&amp;</span> Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
-<span id="cb263-4"><a href="differential-gene-expression.html#cb263-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-5"><a href="differential-gene-expression.html#cb263-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="differential-gene-expression.html#cb262-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> gtex <span class="sc">%&gt;%</span></span>
+<span id="cb262-2"><a href="differential-gene-expression.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter for tissue and gene of interest</span></span>
+<span id="cb262-3"><a href="differential-gene-expression.html#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tissue <span class="sc">==</span> <span class="st">&quot;Lung&quot;</span> <span class="sc">&amp;</span> Gene_Name <span class="sc">==</span> <span class="st">&quot;ACE2&quot;</span>)</span>
+<span id="cb262-4"><a href="differential-gene-expression.html#cb262-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-5"><a href="differential-gene-expression.html#cb262-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subset)</span></code></pre></div>
 <pre><code>##       Sample   Age Sex Death_Hardy Tissue            Gene_ID Gene_Name Counts
 ## 1 GTEX-111YS 60-69   M           0   Lung ENSG00000130234.10      ACE2    640
 ## 2 GTEX-1128S 60-69   F           2   Lung ENSG00000130234.10      ACE2     64
@@ -430,47 +430,40 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 4 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
 ## 5 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162
 ## 6 GTEX-11EQ9 30-39   M           2   Lung ENSG00000130234.10      ACE2     85</code></pre>
-<pre><code>##       Sample   Age Sex Death_Hardy Tissue            Gene_ID Gene_Name Counts
-## 1 GTEX-111YS 60-69   M           0   Lung ENSG00000130234.10      ACE2    640
-## 2 GTEX-1128S 60-69   F           2   Lung ENSG00000130234.10      ACE2     64
-## 3 GTEX-11DXX 60-69   F           0   Lung ENSG00000130234.10      ACE2    236
-## 4 GTEX-11DXZ 50-59   M           0  Liver ENSG00000130234.10      ACE2    211
-## 5 GTEX-11DXZ 50-59   M           0   Lung ENSG00000130234.10      ACE2    174
-## 6 GTEX-11EMC 60-69   F           2   Lung ENSG00000130234.10      ACE2    162</code></pre>
 <p>Then we can fit a model to our data. Note that we’re using the <code>glm.nb</code> function, which uses a <strong>negative binomial distribution</strong> – good for modeling discrete (i.e., non-continuous) data, such as sequencing read counts.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="differential-gene-expression.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
-<span id="cb266-2"><a href="differential-gene-expression.html#cb266-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Sex),</span>
-<span id="cb266-3"><a href="differential-gene-expression.html#cb266-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> subset)</span>
-<span id="cb266-4"><a href="differential-gene-expression.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="differential-gene-expression.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and print summary</span></span>
+<span id="cb264-2"><a href="differential-gene-expression.html#cb264-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(<span class="at">formula =</span> Counts <span class="sc">~</span> <span class="fu">factor</span>(Sex),</span>
+<span id="cb264-3"><a href="differential-gene-expression.html#cb264-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> subset)</span>
+<span id="cb264-4"><a href="differential-gene-expression.html#cb264-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 1.068149124, 
+## glm.nb(formula = Counts ~ factor(Sex), data = subset, init.theta = 0.9820746913, 
 ##     link = log)
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -2.0345  -1.0236  -0.5121   0.0298   5.8896  
+## -2.0205  -0.9991  -0.5441  -0.0219   4.9984  
 ## 
 ## Coefficients:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)    5.3493     0.1400  38.206  &lt; 2e-16 ***
-## factor(Sex)M  -0.5964     0.1694  -3.521 0.000429 ***
+## (Intercept)    5.5530     0.1709  32.494  &lt; 2e-16 ***
+## factor(Sex)M  -0.7907     0.2121  -3.727 0.000194 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## (Dispersion parameter for Negative Binomial(1.0681) family taken to be 1)
+## (Dispersion parameter for Negative Binomial(0.9821) family taken to be 1)
 ## 
-##     Null deviance: 186.27  on 151  degrees of freedom
-## Residual deviance: 173.10  on 150  degrees of freedom
-## AIC: 1812.8
+##     Null deviance: 129.67  on 99  degrees of freedom
+## Residual deviance: 115.01  on 98  degrees of freedom
+## AIC: 1214.5
 ## 
 ## Number of Fisher Scoring iterations: 1
 ## 
 ## 
-##               Theta:  1.068 
-##           Std. Err.:  0.110 
+##               Theta:  0.982 
+##           Std. Err.:  0.123 
 ## 
-##  2 x log-likelihood:  -1806.840</code></pre>
+##  2 x log-likelihood:  -1208.475</code></pre>
 <hr />
 <details>
 <summary>
