@@ -58,6 +58,8 @@ Then you're all set to start!
 
 Raw data (+ pre-processing scripts), figure design files, and a second copy of the data for each module are available in [this Google Drive folder](https://drive.google.com/drive/u/0/folders/1vsK1meEmo8g2ElyjMi4l3EvFCnjjtueR).
 
+The course website was designed with the JHU Data Science Lab's [OTTR template](https://github.com/jhudsl/OTTR_Template).
+
 ***
 
 # Questions?

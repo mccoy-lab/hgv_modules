@@ -9,7 +9,7 @@ install.packages('qqman')
 
 # Genome-wide association studies II
 
-In this lab, we'll perform a GWAS with data adapted from a [workshop created by Heather Wheeler](https://github.com/hwheeler01/GWAS_workshop) from Loyola University Chicago.
+In this lab, we'll perform a GWAS. The data and exercises for this module were adapted from a [workshop created by **Heather Wheeler**](https://github.com/hwheeler01/GWAS_workshop) from Loyola University Chicago.
 
 #### Learning objectives
 
