@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.5 Genotype data | Human Genome Variation Lab</title>
+  <title>3.11 Required homework | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.5 Genotype data | Human Genome Variation Lab" />
+  <meta property="og:title" content="3.11 Required homework | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.5 Genotype data | Human Genome Variation Lab" />
+  <meta name="twitter:title" content="3.11 Required homework | Human Genome Variation Lab" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="setup-3.html"/>
-<link rel="next" href="metadata.html"/>
+<link rel="prev" href="homework-1.html"/>
+<link rel="next" href="optional-homework.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -410,42 +410,54 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="genotype-data" class="section level2" number="6.5">
-<h2><span class="header-section-number">6.5</span> Genotype data</h2>
-<p>We’ve summarized genotype data from the <a href="https://mccoy-lab.github.io/hgv_modules/the-1000-genomes-project.html">1000 Genomes Project</a> into two files:</p>
-<ul>
-<li><code>all_variants.txt.gz</code>, which contains a random selection of variants on chr21</li>
-<li><code>common_variants.txt</code>, which contains only those variants in <code>all_variants</code> that are common across populations</li>
-</ul>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="genotype-data.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all variants</span></span>
-<span id="cb108-2"><a href="genotype-data.html#cb108-2" aria-hidden="true" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;all_variants.txt.gz&quot;</span>)</span>
-<span id="cb108-3"><a href="genotype-data.html#cb108-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-4"><a href="genotype-data.html#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="co"># only common variants</span></span>
-<span id="cb108-5"><a href="genotype-data.html#cb108-5" aria-hidden="true" tabindex="-1"></a>common <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;common_variants.txt.gz&quot;</span>)</span>
-<span id="cb108-6"><a href="genotype-data.html#cb108-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-7"><a href="genotype-data.html#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="co"># preview first 10 columns of `all` dataframe</span></span>
-<span id="cb108-8"><a href="genotype-data.html#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(all[, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code></pre></div>
-<pre><code>##                  AF AFR_AF AMR_AF EAS_AF EUR_AF SAS_AF HG00096 HG00097 HG00099
-## chr21_10005999 0.02   0.06   0.00      0   0.00   0.00       0       0       0
-## chr21_10325486 0.02   0.00   0.01      0   0.03   0.04       0       0       0
-## chr21_10336823 0.00   0.00   0.00      0   0.00   0.00       0       0       0
-## chr21_10337236 0.00   0.00   0.00      0   0.00   0.00       0       0       0
-## chr21_10339129 0.00   0.00   0.00      0   0.00   0.00       0       0       0
-## chr21_10339141 0.00   0.00   0.00      0   0.00   0.00       0       0       0
-##                HG00100
-## chr21_10005999       0
-## chr21_10325486       0
-## chr21_10336823       0
-## chr21_10337236       0
-## chr21_10339129       0
-## chr21_10339141       0</code></pre>
-<p>The <strong>index</strong> of the dataframe is the variant ID.
-* The first column (<code>AF</code>) contains the variant’s <strong>allele frequency (AF)</strong> dataset-wide.
-* The next five columns contain the variant’s AF in each of the five 1000 Genomes superpopulations.
-* The rest of the columns provide variant <strong>genotypes</strong> for each individual in 1000 Genomes, where:
-* <code>0</code> is homozygous reference
-* <code>1</code> is heterozygous
-* <code>2</code> is homozygous for variant</p>
+<div id="required-homework" class="section level2" number="3.11">
+<h2><span class="header-section-number">3.11</span> Required homework</h2>
+<p>The data from the paper has been pre-filtered for you. Run this code block to read it in:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="required-homework.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read data</span></span>
+<span id="cb17-2"><a href="required-homework.html#cb17-2" aria-hidden="true" tabindex="-1"></a>crossovers <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;crossovers.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-3"><a href="required-homework.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="required-homework.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># preview data</span></span>
+<span id="cb17-5"><a href="required-homework.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(crossovers)</span></code></pre></div>
+<pre><code>##   Proband_id n_pat_xover n_mat_xover Father_age Mother_age
+## 1          3          22          51         29         28
+## 2         10          26          50         26         26
+## 3         11          25          38         25         22
+## 4         15          24          50         31         26
+## 5         20          27          35         26         24
+## 6         22          28          40         39         31</code></pre>
+<p>The columns in this table are:</p>
+<ol style="list-style-type: decimal">
+<li><code>Proband_id</code>: ID of the child</li>
+<li><code>n_pat_xover</code>: Number of crossovers (carried by the child) that occurred in the paternal gametes</li>
+<li><code>n_mat_xover</code>: Number of crossovers that occurred in the maternal gametes</li>
+<li><code>Father_age</code>: Father’s age at proband’s birth</li>
+<li><code>Mother_age</code>: Mother’s age at proband’s birth</li>
+</ol>
+<p><strong>Assignment:</strong> Using the <code>ggplot</code> code from this module, plot the relationship between parental age and number of crossovers. As with the DNM data, make one plot for the maternal crossovers and one plot for the paternal. Do you think parental age impacts crossover number?</p>
+<hr />
+<details>
+<summary>
+Solution
+</summary>
+<p>Plot paternal crossovers:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="required-homework.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> crossovers,</span>
+<span id="cb19-2"><a href="required-homework.html#cb19-2" aria-hidden="true" tabindex="-1"></a>       <span class="co"># x axis is paternal age</span></span>
+<span id="cb19-3"><a href="required-homework.html#cb19-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Father_age,</span>
+<span id="cb19-4"><a href="required-homework.html#cb19-4" aria-hidden="true" tabindex="-1"></a>           <span class="co"># y axis is number of crossovers</span></span>
+<span id="cb19-5"><a href="required-homework.html#cb19-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> n_pat_xover)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="required-homework.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Plot maternal crossovers:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="required-homework.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> crossovers,</span>
+<span id="cb20-2"><a href="required-homework.html#cb20-2" aria-hidden="true" tabindex="-1"></a>       <span class="co"># x axis is maternal age</span></span>
+<span id="cb20-3"><a href="required-homework.html#cb20-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Mother_age,</span>
+<span id="cb20-4"><a href="required-homework.html#cb20-4" aria-hidden="true" tabindex="-1"></a>           <span class="co"># y axis is number of crossovers</span></span>
+<span id="cb20-5"><a href="required-homework.html#cb20-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> n_mat_xover)) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="required-homework.html#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Just by eye, it doesn’t really seem that age affects number of crossovers for either mothers or fathers.</p>
+</details>
+<hr />
 </div>
 <hr>
 <center> 
@@ -460,8 +472,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="setup-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="metadata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="homework-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="optional-homework.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
