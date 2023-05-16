@@ -14,7 +14,7 @@ output:
 
 # Homepage
 
-This is the course homepage and online textbook for Human Genome Variation with Computational Lab (`AS.020.321`).
+This is the course homepage and digital textbook for Human Genome Variation with Computational Lab (`AS.020.321`).
 
 #### Instructor
 
