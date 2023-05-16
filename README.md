@@ -18,7 +18,7 @@ These modules (and the accompanying [digital textbook](https://mccoy-lab.github.
 
 ## As an Instructor
 
-We run our course through [Posit Cloud](https://posit.cloud/) and recommend this approach if possible (although you have to pay for _____).
+We run our course through [Posit Cloud](https://posit.cloud/) and recommend this approach if possible (although you'll likely have to pay for the Cloud Instructor plan).
 
 #### Creating the course workspace
 
