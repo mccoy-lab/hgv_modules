@@ -1,9 +1,13 @@
-### Files to download to Posit Cloud
+# Module Setup
+
+## Data
+
+Download from this Github directory:
 
 (none)
 
+## Software
 
-### Software to install to Posit Cloud
+Install these software packages:
 
-* R packages
-	* `tidyverse`
+(none)

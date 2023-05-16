@@ -1,21 +1,25 @@
-### Files to download to Posit Cloud:
+# Module Setup
 
-* From Github or [this OneDrive folder](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EkwJFRhy1DZNt8Dg42caT6wBXzvq9p7DTskMmwk-nbaOow?e=3OpzbZ):
-	* `promoters_hg19.bed`
+## Data
 
-* Most of the data for this module is downloaded live in class with `admixr`'s `download_data` function. A backup version of the data is on [OneDrive](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EkwJFRhy1DZNt8Dg42caT6wBXzvq9p7DTskMmwk-nbaOow?e=3OpzbZ).
+Download from this Github directory:
 
+* `promoters_hg19.bed`
 
-### Software to install to Posit Cloud:
+Most of the data for this module is downloaded live with `admixr`'s `download_data` function. A backup copy is on [Google Drive](https://drive.google.com/file/d/1FL7qRcdlKn1CaLpp2ukIMAQfNqzgYdZO/view?usp=share_link).
+
+## Software
+
+Install these software packages:
 
 * [`AdmixTools`](https://github.com/DReichLab/AdmixTools)
-* R packages
+* R packages (install within R)
+	* `tidyverse`
 	* `admixr`
-
 
 ### Debugging notes
 
-In order to run the `admixr` functions, I had to:
+In order to run the `admixr` functions within R, I had to:
 
 * Add path to the AdmixTools `bin` directory to my `~/.bash_profile`:
 ```

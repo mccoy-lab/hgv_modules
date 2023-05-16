@@ -135,15 +135,11 @@ https://ldlink.nci.nih.gov/
 
 ## Homework
 
-#### Goals & Learning Objectives
+#### Learning Objectives
 
-The goal of this homework is to calculate and interpret LD statistics for other sets of SNPs.
+* Calculate and interpret LD statistics
 
-**Learning Objectives**
-
-* Practice calculating and interpreting LD statistics
-
-## Required homework
+#### Assignment
 
 We've subset the VCF from class to show haplotypes for two different pair of SNPs:
 

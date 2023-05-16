@@ -1,15 +1,19 @@
-### Files to download to Posit Cloud
+# Module Setup
 
-* From this repo:
-	* `accessions.txt`
-	* `aligned.fa`
-	* `hw_accessions.txt`
-	* `hw_aligned.fa`
+## Data
 
+Download from this Github directory:
 
-### Software to install to Posit Cloud
+* `accessions.txt`
+* `aligned.fa`
+* `hw_accessions.txt`
+* `hw_aligned.fa`
 
-* R packages
+## Software
+
+Install these software packages:
+
+* R packages (install within R)
 	* `tidyverse`
 	* `ape`
 	* `ggtree`

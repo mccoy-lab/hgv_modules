@@ -135,14 +135,10 @@ confint(__________, __________, level = __________)
 
 So far, we've only looked at the _de novo_ mutation data from [the Halldorsson et al. paper](https://science.sciencemag.org/content/363/6425/eaau1043). Now we'll use their data on the number of maternal and paternal origin crossovers (i.e., how many crossovers occurred across all chromosomes in the maternal and paternal gametes).
 
-#### Goals & Learning Objectives
+#### Learning Objectives
 
-The goal of this homework is to practice with ggplot and explore data on crossover frequency.
-
-**Learning Objectives**
-
-* Required homework: Practice visualizing data with `ggplot2`
-* Extra credit: Practice interpreting linear models
+* Practice visualizing data with `ggplot2`
+* Interpret p-values and effect sizes from linear models
 
 
 ## Required homework

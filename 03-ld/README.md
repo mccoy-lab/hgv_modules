@@ -1,11 +1,15 @@
-### Files to download to Posit Cloud
+# Module Setup
 
-* From Github or [this OneDrive folder](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EkwJFRhy1DZNt8Dg42caT6wBXzvq9p7DTskMmwk-nbaOow?e=3OpzbZ):
-	* `snp_haplotypes.txt`
-	* `snp_haplotypes_hw1.txt`
-	* `snp_haplotypes_hw2.txt`
+## Data
 
+Download from this Github directory:
 
-### Software to install to Posit Cloud
+* `snp_haplotypes.txt`
+* `snp_haplotypes_hw1.txt`
+* `snp_haplotypes_hw2.txt`
+
+## Software
+
+Install these software packages:
 
 (none)

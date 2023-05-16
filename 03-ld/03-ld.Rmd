@@ -39,7 +39,11 @@ Linkage disequilibrium also means that correlation between a genotype at a parti
 
 Beyond mutation and recombination, other evolutionary forces such as gene flow, genetic drift, and natural selection can also influence patterns of LD observed in population genetic data. Measuring linkage disequilibrium is therefore important for both medical and evolutionary studies.
 
+<center>
+
 ![**Fig. 2.** LD can be used to impute missing genotypes, but also complicates genetic association studies (such as finding variants that cause disease). Non-causal variants in LD will perfectly co-occur with the causal variant, making it difficult to determine which one is truly causal.](03-ld/images/imputation_gwas.jpg)
+
+</center>
 
 
 ## Setup
@@ -101,7 +105,11 @@ If these two SNPs were in **linkage _equilibrium_**, the allele at SNP1 would gi
 4. `G` `T`
 <br></br>
 
+<center>
+
 ![**Fig. 4.** When two SNPs are in perfect LD, seeing an allele on one haplotype perfectly predicts which allele is on the other haplotype.](03-ld/images/perfect_ld.jpg)
+
+</center>
 
 
 ## Counting haplotypes with `table`
@@ -308,7 +316,11 @@ Go to LDlink's **LDpair** tool, which computes $D'$ and $r^2$ between pairs of S
 * If using SNP position, note that our data was aligned to the GRCh38 reference genome.
 <br></br>
 
+<center>
+
 ![**Fig. 5.** LDpair results for the two SNPs from this class.](03-ld/images/ldpair.png)
+
+</center>
 
 We can see that these $D'$ and $r^2$ statistics, as well as the 4x4 table, are very similar to what we calculated by hand! (The values aren't identical because we're using a slightly different genotyping dataset.)
 
@@ -320,7 +332,11 @@ We can see that these $D'$ and $r^2$ statistics, as well as the 4x4 table, are v
 Open LDproxy and use it to search for one of the SNPs from today (it may take the webpage a minute to load the results).
 <br></br>
 
+<center>
+
 ![**Fig. 6.** LDproxy results for `rs28574812`.](03-ld/images/ldproxy.jpg)
+
+</center>
 
 To generate this plot, LDproxy calculated $r^2$ between our SNP of interest and all other SNPs in a 500kb window. As expected, we can see that LD is strongest for variants that are closest to the SNP.
 
@@ -366,16 +382,11 @@ In this lab, we used genotype data from the 1000 Genomes Project to ask whether 
 
 ## Homework
 
-#### Goals & Learning Objectives
+#### Learning Objectives
 
-The goal of this homework is to calculate and interpret LD statistics for other sets of SNPs.
+* Calculate and interpret LD statistics
 
-**Learning Objectives**
-
-* Practice calculating and interpreting LD statistics
-
-
-## Required homework
+#### Assignment
 
 We've subset the VCF from class to show haplotypes for two different pair of SNPs:
 

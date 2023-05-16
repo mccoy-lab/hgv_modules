@@ -1,11 +1,15 @@
-### Files to download to Posit Cloud
+# Module Setup
 
-* From [this OneDrive folder](https://livejohnshopkins.sharepoint.com/:f:/s/mccoy_lab/EkwJFRhy1DZNt8Dg42caT6wBXzvq9p7DTskMmwk-nbaOow?e=3OpzbZ):
-	* `gtex_subset.txt.gz` (26.4 MB)
+## Data
 
+Download from this Github directory:
 
-### Software to install to Posit Cloud
+* `gtex_subset.txt.gz` (26.4 MB)
 
-* R packages
+## Software
+
+Install these software packages:
+
+* R packages (install within R)
 	* `tidyverse`
 	* `MASS`

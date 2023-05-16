@@ -37,7 +37,6 @@ Please bring your laptop with you to every class. If you don’t have a working 
 | **Session 6:** | Population structure -- part II |
 | **Session 7:** | Genome-wide association studies -- part I |
 | **Session 8:** | Genome-wide association studies -- part II |
-| | _Spring break -- no class_ |
 | **Session 9:** | Scans for selection -- part I |
 | **Session 10:** | Scans for selection -- part II |
 | **Session 11:** | Archaic admixture |
