@@ -28,7 +28,9 @@ After completing this chapter, you'll be able to:
 
 Constructing a phylogeny for human sequences is complicated by **recombination** (as well as diploidy and sex chromosomes), which means that every non-recombined segment of the genome has its own phylogenetic history.
 
-Viral phylogenies are simpler to construct because they don't recombine, and instead just accumulate mutations. This is similar to the human Y chromosome.
+Viral phylogenies are simpler to construct because they [recombine less frequently](https://www.nature.com/articles/nrmicro2614) than human chromosomes do. While the frequency of recombination varies by virus, [~3% of SARS-CoV-2 lineages](https://www.nature.com/articles/s41586-022-05189-9) show evidence of recombination (as opposed to 100% of human lineages, since recombination is an essential component of human meiosis).
+
+Similar to the human Y chromosome, viral genomes typically accumulate mutations without recombination to split up haplotypes.
 
 </details>
 ***
