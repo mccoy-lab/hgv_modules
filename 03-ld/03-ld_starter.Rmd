@@ -85,15 +85,15 @@ D
 ## Measuring LD with D'
 
 $$
-D' = \frac{D}{\mathrm{max}(-p_1 (1-p_1), -q_1 (1-q_1))}, \mathrm{\:for\:} D < 0 \\
-D' = \frac{D}{\mathrm{min}(p_1 (1-p_1), q_1 (1-q_1))}, \mathrm{\:for\:} D > 0
+D' = \frac{D}{\mathrm{max}(-p_1 q_1, -(1-p_1)(1-q_1))}, \mathrm{\:for\:} D < 0 \\
+D' = \frac{D}{\mathrm{min}(p_1 (1-q_1), q_1(1-p_1) )}, \mathrm{\:for\:} D > 0
 $$
 
 Determine the minimum of $p_1 (1-p_1)$ and $q_1 (1-q_1)$:
 
 ```{r}
-p1 * (1-p1)
-q1 * (1-q1)
+p1 * (1-q1)
+q1 * (1-p1)
 ```
 
 Use the formula above to calculate D':
@@ -144,7 +144,7 @@ https://ldlink.nci.nih.gov/
 We've subset the VCF from class to show haplotypes for two different pair of SNPs:
 
 * `chr21:15005329` and `chr21:15007704`
-* `chr21:13217431` and `chr21:13232002`
+* `chr21:15336586` and `chr21:15336794`
 
 ```{r}
 # read data for first set of SNPs
