@@ -427,8 +427,8 @@ Why does the range of <span class="math inline">\(D\)</span> change?
 <hr />
 <p>The <span class="math inline">\(\mathbf{D&#39;}\)</span> statistic fixes this issue by dividing <span class="math inline">\(D\)</span> by its theoretical maximum. <span class="math inline">\(D&#39;\)</span> is constrained between <span class="math inline">\([-1, 1]\)</span>, where more extreme values denote stronger LD.</p>
 <p><span class="math display">\[
-D&#39; = \frac{D}{\mathrm{max}(-p_1 (1-p_1), -q_1 (1-q_1))}, \mathrm{\:for\:} D &lt; 0 \\
-D&#39; = \frac{D}{\mathrm{min}(p_1 (1-p_1), q_1 (1-q_1))}, \mathrm{\:for\:} D &gt; 0
+D&#39; = \frac{D}{\mathrm{max}(-p_1 q_1, -(1-p_1)(1-q_1))}, \mathrm{\:for\:} D &lt; 0 \\
+D&#39; = \frac{D}{\mathrm{min}(p_1 (1-q_1), q_1(1-p_1) )}, \mathrm{\:for\:} D &gt; 0
 \]</span></p>
 <p><span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> are the frequencies of the alleles at SNP1 and SNP2.</p>
 <hr />
@@ -437,15 +437,15 @@ D&#39; = \frac{D}{\mathrm{min}(p_1 (1-p_1), q_1 (1-q_1))}, \mathrm{\:for\:} D &g
 Use this formula to calculate <span class="math inline">\(D&#39;\)</span> for our two SNPs of interest.
 </summary>
 <p>Because <span class="math inline">\(D\)</span> is positive, we use the second formula for <span class="math inline">\(D&#39;\)</span>. First, we need to find the denominator, which is the minimum of <span class="math inline">\(p_1 (1-p_1)\)</span> and <span class="math inline">\(q_1 (1-q_1)\)</span>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="measuring-ld-with-d-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1) <span class="co"># pmin</span></span></code></pre></div>
-<pre><code>## [1] 0.2138636</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="measuring-ld-with-d-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>q1) <span class="co"># qmin</span></span></code></pre></div>
-<pre><code>## [1] 0.2458915</code></pre>
-<p><code>p1 * (1-p1)</code> is smaller, so we plug that into our <span class="math inline">\(D&#39;\)</span> formula:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="measuring-ld-with-d-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a>Dprime <span class="ot">&lt;-</span> D <span class="sc">/</span> (p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1))</span>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="measuring-ld-with-d-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>q1)</span></code></pre></div>
+<pre><code>## [1] 0.3008145</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="measuring-ld-with-d-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1)</span></code></pre></div>
+<pre><code>## [1] 0.1748161</code></pre>
+<p><code>q1 * (1-p1)</code> is smaller, so we plug that into our <span class="math inline">\(D&#39;\)</span> formula:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="measuring-ld-with-d-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a>Dprime <span class="ot">&lt;-</span> D <span class="sc">/</span> (q1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1))</span>
 <span id="cb43-2"><a href="measuring-ld-with-d-1.html#cb43-2" aria-hidden="true" tabindex="-1"></a>Dprime</span></code></pre></div>
-<pre><code>## [1] 0.6586931</code></pre>
-<p>This tells us that LD between these two SNPs is 65.9% of its theoretical maximum.</p>
+<pre><code>## [1] 0.8058206</code></pre>
+<p>This tells us that LD between these two SNPs is 80.6% of its theoretical maximum.</p>
 </details>
 <hr />
 </div>
