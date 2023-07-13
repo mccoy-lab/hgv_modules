@@ -1,18 +1,8 @@
-book_filename: "hgv_lab"
+book_filename: "swcmdb"
 chapter_name: ""
-repo: https://github.com/mccoy-lab/hgv_modules/
+repo: https://github.com/stephaniemyan/swcmdb/
 rmd_files: ["index.Rmd",
-            "01-igv/01-igv.Rmd",
-            "02-dnm/02-dnm.Rmd",
-            "03-ld/03-ld.Rmd",
-            "04-wright_fisher/04-wright_fisher.Rmd",
-            "05-pop_structure/05-pop_structure.Rmd",
-            "06-gwas1/06-gwas1.Rmd",
-            "07-gwas2/07-gwas2.Rmd",
-            "08-selection/08-selection.Rmd",
-            "09-archaic_admixture/09-archaic_admixture.Rmd",
-            "10-gene_expression/10-gene_expression.Rmd",
-            "11-coronavirus/11-coronavirus.Rmd",
+            "test.Rmd",
             "About.Rmd"]
 delete_merged_file: true
 # new_session: yes

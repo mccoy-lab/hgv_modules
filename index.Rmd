@@ -1,5 +1,5 @@
 ---
-title: "Human Genome Variation Lab"
+title: "CMDB Bootcamp"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -14,17 +14,19 @@ output:
 
 # Homepage
 
-This is the course homepage and digital textbook for Human Genome Variation with Computational Lab (`AS.020.321`).
+This is the course homepage and digital textbook for CMDB Bootcamp.
 
-#### Instructor
+#### Instructors
 
 Rajiv McCoy, `rajiv.mccoy[at]jhu.edu`
+Mike Sauria, `mike.sauria[at]jhu.edu`
+Fred Tan, `tan[at]ciwemb.edu`
 
 #### Schedule & Logistics
 
 Class is **Tuesdays from 3-3:50PM**, in **UTL G89**.
 
-Please bring your laptop with you to every class. If you don’t have a working laptop, contact me so that we can find a solution.
+Please bring your laptop with you to every class.
 <br></br>
 
 |Session|Content|
