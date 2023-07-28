@@ -417,19 +417,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>This intuition is summarized in <span class="math inline">\(\mathbf{D}\)</span>, a population genetics statistic for measuring LD between two SNPs.
 <br></br></p>
 <p><span class="math display">\[
-D = h_{pq} - p_1*q_1
+D = h_{12} - p_1*p_2
 \]</span></p>
 <ul>
-<li><span class="math inline">\(\mathbf{h_{pq}}\)</span> is the frequency of our haplotype of interest (<code>A</code> <code>C</code>).</li>
-<li><span class="math inline">\(\mathbf{p_1*q_1}\)</span> is the product of the frequencies of the two alleles on this haplotype (<code>A</code> at SNP1 and <code>C</code> at SNP2)</li>
+<li><span class="math inline">\(\mathbf{h_{12}}\)</span> is the frequency of our haplotype of interest (<code>A</code> <code>C</code>).</li>
+<li><span class="math inline">\(\mathbf{p_1*p_2}\)</span> is the product of the frequencies of the two alleles on this haplotype (<code>A</code> at SNP1 and <code>C</code> at SNP2)</li>
 </ul>
 <hr />
 <details>
 <summary>
 How do we interpret <span class="math inline">\(D\)</span>?
 </summary>
-<p>If two SNPs are in <strong>linkage equilibrium</strong>, <span class="math inline">\(h_{pq}\)</span> and <span class="math inline">\(p_1*q_1\)</span> should be the same, and we should get <span class="math inline">\(D = 0\)</span>.</p>
-<p>If two SNPs are in <strong>linkage disequilibrium</strong>, <span class="math inline">\(p_1*q_1\)</span> should be different from <span class="math inline">\(h_{pq}\)</span>, so that <span class="math inline">\(D \neq 0\)</span>.</p>
+<p>If two SNPs are in <strong>linkage equilibrium</strong>, <span class="math inline">\(h_{12}\)</span> and <span class="math inline">\(p_1*p_2\)</span> should be the same, and we should get <span class="math inline">\(D = 0\)</span>.</p>
+<p>If two SNPs are in <strong>linkage disequilibrium</strong>, <span class="math inline">\(p_1*p_2\)</span> should be different from <span class="math inline">\(h_{12}\)</span>, so that <span class="math inline">\(D \neq 0\)</span>.</p>
 </details>
 <hr />
 </div>

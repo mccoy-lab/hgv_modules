@@ -414,7 +414,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.10</span> Measuring LD with <span class="math inline">\(r^2\)</span></h2>
 <p><span class="math inline">\(\mathbf{r^2}\)</span> is the most common statistic for measuring LD. Its value ranges from [0, 1], where 1 indicates maximum LD.</p>
 <p><span class="math display">\[
-r^2 = \frac{D^2}{p_1 (1-p_1) q_1 (1-q_1)}
+r^2 = \frac{D^2}{p_1 (1-p_1) p_2 (1-p_2)}
 \]</span></p>
 <p>Although it looks similar to the formulas for <span class="math inline">\(D\)</span> and <span class="math inline">\(D&#39;\)</span>, <span class="math inline">\(r^2\)</span> is actually derived from the <strong>correlation coefficient</strong> of the frequencies of SNP1 and SNP2, and has a slightly different interpretation:</p>
 <ul>
@@ -426,7 +426,7 @@ r^2 = \frac{D^2}{p_1 (1-p_1) q_1 (1-q_1)}
 <summary>
 Calculate <span class="math inline">\(r^2\)</span> for our two SNPs of interest.
 </summary>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="measuring-ld-with-r2.html#cb45-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> D<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (p1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p1)<span class="sc">*</span>q1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>q1))</span>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="measuring-ld-with-r2.html#cb45-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> D<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (p1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p1)<span class="sc">*</span>p2<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p2))</span>
 <span id="cb45-2"><a href="measuring-ld-with-r2.html#cb45-2" aria-hidden="true" tabindex="-1"></a>r2</span></code></pre></div>
 <pre><code>## [1] 0.3773631</code></pre>
 <p><span class="math inline">\(r^2 = 0.38\)</span>, indicating that these SNPs are in moderate LD.</p>

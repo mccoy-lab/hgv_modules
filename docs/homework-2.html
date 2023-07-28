@@ -444,30 +444,30 @@ Solution for first set of SNPs
 ##   T    2 1751</code></pre>
 <p>All four possible haplotypes exist in this population.
 <br></br></p>
-<p><span class="math inline">\(\mathbf{D = h_{pq} - p_1*q_1}\)</span></p>
+<p><span class="math inline">\(\mathbf{D = h_{12} - p_1*p_2}\)</span></p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="homework-2.html#cb50-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">747</span> <span class="sc">/</span> <span class="dv">5008</span></span>
 <span id="cb50-2"><a href="homework-2.html#cb50-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> (<span class="dv">747</span> <span class="sc">+</span> <span class="dv">2508</span>)<span class="sc">/</span><span class="dv">5008</span></span>
-<span id="cb50-3"><a href="homework-2.html#cb50-3" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> (<span class="dv">747</span> <span class="sc">+</span> <span class="dv">2</span>)<span class="sc">/</span><span class="dv">5008</span></span>
+<span id="cb50-3"><a href="homework-2.html#cb50-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> (<span class="dv">747</span> <span class="sc">+</span> <span class="dv">2</span>)<span class="sc">/</span><span class="dv">5008</span></span>
 <span id="cb50-4"><a href="homework-2.html#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-5"><a href="homework-2.html#cb50-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> h <span class="sc">-</span> p1 <span class="sc">*</span> q1</span>
+<span id="cb50-5"><a href="homework-2.html#cb50-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> h <span class="sc">-</span> p1 <span class="sc">*</span> p2</span>
 <span id="cb50-6"><a href="homework-2.html#cb50-6" aria-hidden="true" tabindex="-1"></a>D</span></code></pre></div>
 <pre><code>## [1] 0.05195286</code></pre>
 <p><span class="math inline">\(D\)</span> is non-zero, which suggests that these SNPs <strong>might be in LD</strong>.
 <br></br></p>
-<p><span class="math inline">\(\mathbf{D&#39; = \frac{D}{\mathrm{min}(p_1 (1-q_1), (1-p_1)q_1)}}\)</span> <strong>(because <span class="math inline">\(D &gt; 0\)</span>)</strong></p>
-<p>First we determine the denominator by calculating which of <span class="math inline">\(p_1 (1-q_1)\)</span> and <span class="math inline">\((1-p_1)q_1\)</span> is smaller:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="homework-2.html#cb52-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>q1)</span></code></pre></div>
+<p><span class="math inline">\(\mathbf{D&#39; = \frac{D}{\mathrm{min}(p_1 (1-p_2), p_2(1-p_1))}}\)</span> <strong>(because <span class="math inline">\(D &gt; 0\)</span>)</strong></p>
+<p>First we determine the denominator by calculating which of <span class="math inline">\(p_1 (1-p_2)\)</span> and <span class="math inline">\(p_2(1-p_1)\)</span> is smaller:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="homework-2.html#cb52-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p2)</span></code></pre></div>
 <pre><code>## [1] 0.5527516</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="homework-2.html#cb54-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> q1</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="homework-2.html#cb54-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1)</span></code></pre></div>
 <pre><code>## [1] 0.05235222</code></pre>
-<p><span class="math inline">\((1-p1) * q1\)</span> is smaller, so we use it for the denominator. <span class="math inline">\(D&#39;\)</span> is:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="homework-2.html#cb56-1" aria-hidden="true" tabindex="-1"></a>Dprime <span class="ot">&lt;-</span> D <span class="sc">/</span> ((<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> q1)</span>
+<p><span class="math inline">\(p_2(1-p_1)\)</span> is smaller, so we use it for the denominator. <span class="math inline">\(D&#39;\)</span> is:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="homework-2.html#cb56-1" aria-hidden="true" tabindex="-1"></a>Dprime <span class="ot">&lt;-</span> D <span class="sc">/</span> ((<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> p2)</span>
 <span id="cb56-2"><a href="homework-2.html#cb56-2" aria-hidden="true" tabindex="-1"></a>Dprime</span></code></pre></div>
 <pre><code>## [1] 0.9923717</code></pre>
 <p><span class="math inline">\(D&#39; = 0.99\)</span>, which indicates <strong>very high LD</strong> (almost no recombination has occurred between alleles on this haplotype).
 <br></br></p>
 <p><span class="math inline">\(\mathbf{r^2 = \frac{D^2}{p_1 (1-p_1) q_1 (1-q_1)}}\)</span></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="homework-2.html#cb58-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> D<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> q1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>q1))</span>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="homework-2.html#cb58-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> D<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> p2 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p2))</span>
 <span id="cb58-2"><a href="homework-2.html#cb58-2" aria-hidden="true" tabindex="-1"></a>r2</span></code></pre></div>
 <pre><code>## [1] 0.09327254</code></pre>
 <p>However, <span class="math inline">\(r^2 = 0.09\)</span> (<strong>linkage equilibrium</strong>)! This is because one of the haplotypes, <code>A</code> <code>T</code>, is very rare – there are only two copies in the population. <span class="math inline">\(r^2\)</span> tells us that the counts of the <code>A</code> <code>T</code> haplotype are so low that an <code>A</code> at SNP1 doesn’t do a great job of predicting when SNP2 is <code>T</code>.</p>
@@ -486,30 +486,30 @@ Solution for second set of SNPs
 ##   G    0 1486</code></pre>
 <p>The only haplotypes that exist in this population are <code>A</code> <code>C</code> and <code>G</code> <code>G</code>.
 <br></br></p>
-<p><span class="math inline">\(\mathbf{D = h_{pq} - p_1*q_1}\)</span></p>
+<p><span class="math inline">\(\mathbf{D = h_{12} - p_1*p_2}\)</span></p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="homework-2.html#cb62-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">3522</span> <span class="sc">/</span> <span class="dv">5008</span></span>
 <span id="cb62-2"><a href="homework-2.html#cb62-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> (<span class="dv">3522</span> <span class="sc">+</span> <span class="dv">0</span>)<span class="sc">/</span><span class="dv">5008</span></span>
-<span id="cb62-3"><a href="homework-2.html#cb62-3" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> (<span class="dv">3522</span> <span class="sc">+</span> <span class="dv">0</span>)<span class="sc">/</span><span class="dv">5008</span></span>
+<span id="cb62-3"><a href="homework-2.html#cb62-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> (<span class="dv">3522</span> <span class="sc">+</span> <span class="dv">0</span>)<span class="sc">/</span><span class="dv">5008</span></span>
 <span id="cb62-4"><a href="homework-2.html#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-5"><a href="homework-2.html#cb62-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> h <span class="sc">-</span> p1 <span class="sc">*</span> q1</span>
+<span id="cb62-5"><a href="homework-2.html#cb62-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> h <span class="sc">-</span> p1 <span class="sc">*</span> p2</span>
 <span id="cb62-6"><a href="homework-2.html#cb62-6" aria-hidden="true" tabindex="-1"></a>D</span></code></pre></div>
 <pre><code>## [1] 0.2086794</code></pre>
 <p><span class="math inline">\(D\)</span> is non-zero, which suggests that these SNPs might be in LD.
 <br></br></p>
 <p><span class="math inline">\(\mathbf{D&#39; = \frac{D}{\mathrm{min}(p_1 (1-q_1), (1-p_1)q_1 )}}\)</span> <strong>(because <span class="math inline">\(D &gt; 0\)</span>)</strong></p>
-<p>First we determine the denominator by calculating which of <span class="math inline">\(p_1 (1-p_1)\)</span> and <span class="math inline">\(q_1 (1-q_1)\)</span> is smaller:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="homework-2.html#cb64-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>q1)</span></code></pre></div>
+<p>First we determine the denominator by calculating which of <span class="math inline">\(p_1 (1-p_1)\)</span> and <span class="math inline">\(p_2 (1-p_2)\)</span> is smaller:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="homework-2.html#cb64-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p2)</span></code></pre></div>
 <pre><code>## [1] 0.2086794</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="homework-2.html#cb66-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> q1</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="homework-2.html#cb66-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1)</span></code></pre></div>
 <pre><code>## [1] 0.2086794</code></pre>
 <p>The two values are exactly the same, so we can use either for the denominator. <span class="math inline">\(D&#39;\)</span> is:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="homework-2.html#cb68-1" aria-hidden="true" tabindex="-1"></a>Dprime <span class="ot">&lt;-</span> D <span class="sc">/</span> (p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>q1))</span>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="homework-2.html#cb68-1" aria-hidden="true" tabindex="-1"></a>Dprime <span class="ot">&lt;-</span> D <span class="sc">/</span> (p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p2))</span>
 <span id="cb68-2"><a href="homework-2.html#cb68-2" aria-hidden="true" tabindex="-1"></a>Dprime</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p><span class="math inline">\(D&#39; = 1\)</span>! These SNPs are in maximum LD (no recombination has occured between them).
 <br></br></p>
-<p><span class="math inline">\(\mathbf{r^2 = \frac{D^2}{p_1 (1-p_1) q_1 (1-q_1)}}\)</span></p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="homework-2.html#cb70-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> D<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> q1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>q1))</span>
+<p><span class="math inline">\(\mathbf{r^2 = \frac{D^2}{p_1 (1-p_1) p_2 (1-p_2)}}\)</span></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="homework-2.html#cb70-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> D<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (p1 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p1) <span class="sc">*</span> p2 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p2))</span>
 <span id="cb70-2"><a href="homework-2.html#cb70-2" aria-hidden="true" tabindex="-1"></a>r2</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p><span class="math inline">\(r^2 = 1\)</span>! These SNPs are in maximum LD (everyone who carries an <code>A</code> at SNP1 has an <code>A</code> at SNP2, and everyone with a <code>G</code> at SNP1 has a <code>G</code> at SNP2).</p>

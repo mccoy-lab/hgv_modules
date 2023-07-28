@@ -419,18 +419,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##   A 2655  801
 ##   G  170 1382</code></pre>
 <p><span class="math display">\[
-D = h_{pq} - p_1*q_1
+D = h_{12} - p_1*p_2
 \]</span></p>
 <hr />
 <details>
 <summary>
-What are <span class="math inline">\(h_{pq}\)</span>, <span class="math inline">\(p_1\)</span>, and <span class="math inline">\(q_1\)</span>?
+What are <span class="math inline">\(h_{12}\)</span>, <span class="math inline">\(p_1\)</span>, and <span class="math inline">\(p_2\)</span>?
 </summary>
-<p><span class="math inline">\(h_{pq}\)</span> is the probability of seeing the <code>A</code> <code>C</code> haplotype. This is equal to the number of <code>A</code> <code>C</code> haplotypes over the number of total haplotypes:</p>
+<p><span class="math inline">\(h_{12}\)</span> is the probability of seeing the <code>A</code> <code>C</code> haplotype. This is equal to the number of <code>A</code> <code>C</code> haplotypes over the number of total haplotypes:</p>
 <p><span class="math display">\[\frac{2655}{2655 + 170 + 801 + 1382} = \frac{2655}{5008}\]</span></p>
 <p><span class="math inline">\(p_1\)</span> is the probability that SNP1 is <code>A</code>. We can get this by adding across the first <strong>row</strong> of the table (i.e., adding the number of <code>A</code> <code>C</code> and <code>A</code> <code>T</code> haplotypes):</p>
 <p><span class="math display">\[\frac{2655 + 801}{5008}\]</span></p>
-<p><span class="math inline">\(q_1\)</span> is the probability that SNP2 is <code>C</code>. We can get this by adding across the first <strong>column</strong> of the table (i.e., adding the number of <code>A</code> <code>C</code> and <code>G</code> <code>G</code> haplotypes):</p>
+<p><span class="math inline">\(p_2\)</span> is the probability that SNP2 is <code>C</code>. We can get this by adding across the first <strong>column</strong> of the table (i.e., adding the number of <code>A</code> <code>C</code> and <code>G</code> <code>G</code> haplotypes):</p>
 <p><span class="math display">\[\frac{2655 + 170}{5008}\]</span></p>
 <p>(Note that the denominator is always 5008 – the total number of haplotypes in our dataframe.)</p>
 </details>
@@ -440,10 +440,10 @@ Now we can plug in the corresponding probabilities to calculate <code>D</code>:<
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="calculating-d.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define our probabilities of interest</span></span>
 <span id="cb37-2"><a href="calculating-d.html#cb37-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">2655</span> <span class="sc">/</span> <span class="dv">5008</span></span>
 <span id="cb37-3"><a href="calculating-d.html#cb37-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> (<span class="dv">2655</span> <span class="sc">+</span> <span class="dv">801</span>) <span class="sc">/</span> <span class="dv">5008</span></span>
-<span id="cb37-4"><a href="calculating-d.html#cb37-4" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> (<span class="dv">2655</span> <span class="sc">+</span> <span class="dv">170</span>) <span class="sc">/</span> <span class="dv">5008</span></span>
+<span id="cb37-4"><a href="calculating-d.html#cb37-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> (<span class="dv">2655</span> <span class="sc">+</span> <span class="dv">170</span>) <span class="sc">/</span> <span class="dv">5008</span></span>
 <span id="cb37-5"><a href="calculating-d.html#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-6"><a href="calculating-d.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate D</span></span>
-<span id="cb37-7"><a href="calculating-d.html#cb37-7" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> h <span class="sc">-</span> (p1 <span class="sc">*</span> q1)</span>
+<span id="cb37-7"><a href="calculating-d.html#cb37-7" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> h <span class="sc">-</span> (p1 <span class="sc">*</span> p2)</span>
 <span id="cb37-8"><a href="calculating-d.html#cb37-8" aria-hidden="true" tabindex="-1"></a>D</span></code></pre></div>
 <pre><code>## [1] 0.1408705</code></pre>
 <p><span class="math inline">\(D = 0.14\)</span>, which is non-zero, suggesting that these SNPs are in LD.</p>
