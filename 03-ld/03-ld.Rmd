@@ -166,18 +166,18 @@ This intuition is summarized in $\mathbf{D}$, a population genetics statistic fo
 <br></br>
 
 $$
-D = h_{pq} - p_1*q_1
+D = h_{12} - p_1*p_2
 $$
 
-* $\mathbf{h_{pq}}$ is the frequency of our haplotype of interest (`A` `C`).
-* $\mathbf{p_1*q_1}$ is the product of the frequencies of the two alleles on this haplotype (`A` at SNP1 and `C` at SNP2)
+* $\mathbf{h_{12}}$ is the frequency of our haplotype of interest (`A` `C`).
+* $\mathbf{p_1*p_2}$ is the product of the frequencies of the two alleles on this haplotype (`A` at SNP1 and `C` at SNP2)
 
 ***
 <details> <summary> How do we interpret $D$? </summary>
 
-If two SNPs are in **linkage equilibrium**, $h_{pq}$ and $p_1*q_1$ should be the same, and we should get $D = 0$.
+If two SNPs are in **linkage equilibrium**, $h_{12}$ and $p_1*p_2$ should be the same, and we should get $D = 0$.
 
-If two SNPs are in **linkage disequilibrium**, $p_1*q_1$ should be different from $h_{pq}$, so that $D \neq 0$.
+If two SNPs are in **linkage disequilibrium**, $p_1*p_2$ should be different from $h_{12}$, so that $D \neq 0$.
 
 </details>
 ***
@@ -192,13 +192,13 @@ table(haplotypes$snp1_allele, haplotypes$snp2_allele)
 ```
 
 $$
-D = h_{pq} - p_1*q_1
+D = h_{12} - p_1*p_2
 $$
 
 ***
-<details> <summary> What are $h_{pq}$, $p_1$, and $q_1$? </summary>
+<details> <summary> What are $h_{12}$, $p_1$, and $p_2$? </summary>
 
-$h_{pq}$ is the probability of seeing the `A` `C` haplotype. This is equal to the number of `A` `C` haplotypes over the number of total haplotypes:
+$h_{12}$ is the probability of seeing the `A` `C` haplotype. This is equal to the number of `A` `C` haplotypes over the number of total haplotypes:
 
 $$\frac{2655}{2655 + 170 + 801 + 1382} = \frac{2655}{5008}$$
 
@@ -206,7 +206,7 @@ $p_1$ is the probability that SNP1 is `A`. We can get this by adding across the 
 
 $$\frac{2655 + 801}{5008}$$
 
-$q_1$ is the probability that SNP2 is `C`. We can get this by adding across the first **column** of the table (i.e., adding the number of `A` `C` and `G` `G` haplotypes):
+$p_2$ is the probability that SNP2 is `C`. We can get this by adding across the first **column** of the table (i.e., adding the number of `A` `C` and `G` `G` haplotypes):
 
 $$\frac{2655 + 170}{5008}$$
 
@@ -222,10 +222,10 @@ Now we can plug in the corresponding probabilities to calculate `D`:
 # define our probabilities of interest
 h <- 2655 / 5008
 p1 <- (2655 + 801) / 5008
-q1 <- (2655 + 170) / 5008
+p2 <- (2655 + 170) / 5008
 
 # calculate D
-D <- h - (p1 * q1)
+D <- h - (p1 * p2)
 D
 ```
 
@@ -241,8 +241,8 @@ Aside from being nonzero, what does the value of $D$ mean? This is surprisingly 
 
 The possible values of $D$ depend on the frequencies of the alleles at each SNP. For example:
 
-* If $p_1 = 0.5$ and $q_1 = 0.5$, then $D$ is between $[-0.25, 0.25]$
-* If $p_1 = 0.1$ and $q_1 = 0.7$, then $D$ is between $[-0.07, 0.03]$
+* If $p_1 = 0.5$ and $p_2 = 0.5$, then $D$ is between $[-0.25, 0.25]$
+* If $p_1 = 0.1$ and $p_2 = 0.7$, then $D$ is between $[-0.07, 0.03]$
 
 </details>
 ***
@@ -250,8 +250,8 @@ The possible values of $D$ depend on the frequencies of the alleles at each SNP.
 The $\mathbf{D'}$ statistic fixes this issue by dividing $D$ by its theoretical maximum. $D'$ is constrained between $[-1, 1]$, where more extreme values denote stronger LD.
 
 $$
-D' = \frac{D}{\mathrm{max}(-p_1 q_1, -(1-p_1)(1-q_1))}, \mathrm{\:for\:} D < 0 \\
-D' = \frac{D}{\mathrm{min}(p_1 (1-q_1), q_1(1-p_1) )}, \mathrm{\:for\:} D > 0
+D' = \frac{D}{\mathrm{max}(-p_1 p_2, -(1-p_1)(1-p_2))}, \mathrm{\:for\:} D < 0 \\
+D' = \frac{D}{\mathrm{min}(p_1 (1-p_2), p_2(1-p_1) )}, \mathrm{\:for\:} D > 0
 $$
 
 $p_1$ and $p_2$ are the frequencies of the alleles at SNP1 and SNP2.
@@ -259,17 +259,17 @@ $p_1$ and $p_2$ are the frequencies of the alleles at SNP1 and SNP2.
 ***
 <details> <summary> Use this formula to calculate $D'$ for our two SNPs of interest. </summary>
 
-Because $D$ is positive, we use the second formula for $D'$. First, we need to find the denominator, which is the minimum of $p_1 (1-p_1)$ and $q_1 (1-q_1)$.
+Because $D$ is positive, we use the second formula for $D'$. First, we need to find the denominator, which is the minimum of $p_1 (1-p_2)$ and $p_2 (1-p_1)$.
 
 ```{r}
-p1 * (1-q1)
-q1 * (1-p1)
+p1 * (1-p2)
+p2 * (1-p1)
 ```
 
-`q1 * (1-p1)` is smaller, so we plug that into our $D'$ formula:
+`p2 * (1-p1)` is smaller, so we plug that into our $D'$ formula:
 
 ```{r}
-Dprime <- D / (q1 * (1-p1))
+Dprime <- D / (p2 * (1-p1))
 Dprime
 ```
 
@@ -284,7 +284,7 @@ This tells us that LD between these two SNPs is 80.6% of its theoretical maximum
 $\mathbf{r^2}$ is the most common statistic for measuring LD. Its value ranges from [0, 1], where 1 indicates maximum LD.
 
 $$
-r^2 = \frac{D^2}{p_1 (1-p_1) q_1 (1-q_1)}
+r^2 = \frac{D^2}{p_1 (1-p_1) p_2 (1-p_2)}
 $$
 
 Although it looks similar to the formulas for $D$ and $D'$, $r^2$ is actually derived from the **correlation coefficient** of the frequencies of SNP1 and SNP2, and has a slightly different interpretation:
@@ -296,7 +296,7 @@ Although it looks similar to the formulas for $D$ and $D'$, $r^2$ is actually de
 <details> <summary> Calculate $r^2$ for our two SNPs of interest. </summary>
 
 ```{r}
-r2 <- D^2 / (p1*(1-p1)*q1*(1-q1))
+r2 <- D^2 / (p1*(1-p1)*p2*(1-p2))
 r2
 ```
 
@@ -415,33 +415,33 @@ table(hw1$snp1_allele, hw1$snp2_allele)
 All four possible haplotypes exist in this population.
 <br></br>
 
-$\mathbf{D = h_{pq} - p_1*q_1}$
+$\mathbf{D = h_{12} - p_1*p_2}$
 
 ```{r}
 h <- 747 / 5008
 p1 <- (747 + 2508)/5008
-q1 <- (747 + 2)/5008
+p2 <- (747 + 2)/5008
 
-D <- h - p1 * q1
+D <- h - p1 * p2
 D
 ```
 
 $D$ is non-zero, which suggests that these SNPs **might be in LD**.
 <br></br>
 
-$\mathbf{D' = \frac{D}{\mathrm{min}(p_1 (1-q_1), (1-p_1)q_1)}}$ **(because $D > 0$)**
+$\mathbf{D' = \frac{D}{\mathrm{min}(p_1 (1-p_2), p_2(1-p_1))}}$ **(because $D > 0$)**
 
-First we determine the denominator by calculating which of $p_1 (1-q_1)$ and $(1-p_1)q_1$ is smaller:
+First we determine the denominator by calculating which of $p_1 (1-p_2)$ and $p_2(1-p_1)$ is smaller:
 
 ```{r}
-p1 * (1-q1)
-(1-p1) * q1
+p1 * (1-p2)
+p2 * (1-p1)
 ```
 
-$(1-p1) * q1$ is smaller, so we use it for the denominator. $D'$ is:
+$p_2(1-p_1)$ is smaller, so we use it for the denominator. $D'$ is:
 
 ```{r}
-Dprime <- D / ((1-p1) * q1)
+Dprime <- D / ((1-p1) * p2)
 Dprime
 ```
 
@@ -451,7 +451,7 @@ $D' = 0.99$, which indicates **very high LD** (almost no recombination has occur
 $\mathbf{r^2 = \frac{D^2}{p_1 (1-p_1) q_1 (1-q_1)}}$
 
 ```{r}
-r2 <- D^2 / (p1 * (1-p1) * q1 * (1-q1))
+r2 <- D^2 / (p1 * (1-p1) * p2 * (1-p2))
 r2
 ```
 
@@ -472,14 +472,14 @@ table(hw2$snp1_allele, hw2$snp2_allele)
 The only haplotypes that exist in this population are `A` `C` and `G` `G`.
 <br></br>
 
-$\mathbf{D = h_{pq} - p_1*q_1}$
+$\mathbf{D = h_{12} - p_1*p_2}$
 
 ```{r}
 h <- 3522 / 5008
 p1 <- (3522 + 0)/5008
-q1 <- (3522 + 0)/5008
+p2 <- (3522 + 0)/5008
 
-D <- h - p1 * q1
+D <- h - p1 * p2
 D
 ```
 
@@ -488,27 +488,27 @@ $D$ is non-zero, which suggests that these SNPs might be in LD.
 
 $\mathbf{D' = \frac{D}{\mathrm{min}(p_1 (1-q_1), (1-p_1)q_1 )}}$ **(because $D > 0$)**
 
-First we determine the denominator by calculating which of $p_1 (1-p_1)$ and $q_1 (1-q_1)$ is smaller:
+First we determine the denominator by calculating which of $p_1 (1-p_1)$ and $p_2 (1-p_2)$ is smaller:
 
 ```{r}
-p1 * (1-q1)
-(1-p1) * q1
+p1 * (1-p2)
+p2 * (1-p1)
 ```
 
 The two values are exactly the same, so we can use either for the denominator. $D'$ is:
 
 ```{r}
-Dprime <- D / (p1 * (1-q1))
+Dprime <- D / (p1 * (1-p2))
 Dprime
 ```
 
 $D' = 1$! These SNPs are in maximum LD (no recombination has occured between them).
 <br></br>
 
-$\mathbf{r^2 = \frac{D^2}{p_1 (1-p_1) q_1 (1-q_1)}}$
+$\mathbf{r^2 = \frac{D^2}{p_1 (1-p_1) p_2 (1-p_2)}}$
 
 ```{r}
-r2 <- D^2 / (p1 * (1-p1) * q1 * (1-q1))
+r2 <- D^2 / (p1 * (1-p1) * p2 * (1-p2))
 r2
 ```
 
