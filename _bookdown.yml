@@ -3,7 +3,8 @@ chapter_name: ""
 repo: https://github.com/stephaniemyan/swcmdb/
 rmd_files: ["index.Rmd",
             "test.Rmd",
-            "About.Rmd"]
+            "About.Rmd"
+            "AB_test.Rmd"]
 delete_merged_file: true
 # new_session: yes
 # rmd_subdir: yes

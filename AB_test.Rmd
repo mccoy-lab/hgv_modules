@@ -1,0 +1,11 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# TESTING
+
+text 
+
+## No bad cards
+
+![](../docs/AB_test/images/images.jpg )
