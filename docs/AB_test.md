@@ -8,4 +8,4 @@ text
 
 in my grandfather's deck
 
-![](../docs/AB_test/images/images.jpg )
+<img src="UWg65Y2.jpg" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
