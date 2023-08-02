@@ -11,5 +11,5 @@ text
 in my grandfather's deck
 
 ```{r, fig.alt="Alternative text", echo = FALSE, outwidth="100%",}
-ottrapal::include_slide(https://docs.google.com/presentation/d/1zjymWqXfsfgv2TVxZ6xu_FcM3U49wPSzmMyJP_qoVjc/present?slide=id.p)
+ottrapal::include_slide("https://docs.google.com/presentation/d/1zjymWqXfsfgv2TVxZ6xu_FcM3U49wPSzmMyJP_qoVjc/present?slide=id.p")
 ```
