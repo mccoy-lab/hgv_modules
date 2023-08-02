@@ -2,7 +2,6 @@ book_filename: "swcmdb"
 chapter_name: ""
 repo: https://github.com/andrew-bortvin/swcmdb/
 rmd_files: ["index.Rmd",
-            "test.Rmd",
             "AB_test.Rmd",
             "About.Rmd"]
 delete_merged_file: true
