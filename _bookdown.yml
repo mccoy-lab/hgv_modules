@@ -1,6 +1,6 @@
 book_filename: "swcmdb"
 chapter_name: ""
-repo: https://github.com/stephaniemyan/swcmdb/
+repo: https://github.com/andrew-bortvin/swcmdb/
 rmd_files: ["index.Rmd",
             "test.Rmd",
             "About.Rmd",
