@@ -10,6 +10,4 @@ text
 
 in my grandfather's deck
 
-```{r, fig.alt="Alternative text", echo = FALSE, outwidth="100%",}
-ottrpal::include_slide("https://docs.google.com/presentation/d/1zjymWqXfsfgv2TVxZ6xu_FcM3U49wPSzmMyJP_qoVjc/edit#slide=id.p")
-```
+<img src="UWg65Y2.jpg" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
