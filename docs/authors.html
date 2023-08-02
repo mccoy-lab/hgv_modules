@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="recombination.html"/>
+<link rel="prev" href="no-bad-cards.html"/>
 
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -73,10 +73,9 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Homepage</a></li>
-<li class="chapter" data-level="2" data-path="discovering-mutations.html"><a href="discovering-mutations.html"><i class="fa fa-check"></i><b>2</b> Discovering mutations</a>
+<li class="chapter" data-level="2" data-path="testing.html"><a href="testing.html"><i class="fa fa-check"></i><b>2</b> TESTING</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="de-novo-mutations.html"><a href="de-novo-mutations.html"><i class="fa fa-check"></i><b>2.1</b> <em>De novo</em> mutations</a></li>
-<li class="chapter" data-level="2.2" data-path="recombination.html"><a href="recombination.html"><i class="fa fa-check"></i><b>2.2</b> Recombination</a></li>
+<li class="chapter" data-level="2.1" data-path="no-bad-cards.html"><a href="no-bad-cards.html"><i class="fa fa-check"></i><b>2.1</b> No bad cards</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
@@ -160,7 +159,7 @@
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2023-07-14                  
+##  date     2023-08-02                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source                            
@@ -176,42 +175,31 @@
 ##  digest        0.6.25  2020-02-23 [1] RSPM (R 4.0.0)                    
 ##  ellipsis      0.3.1   2020-05-15 [1] RSPM (R 4.0.3)                    
 ##  evaluate      0.20    2023-01-17 [1] CRAN (R 4.0.2)                    
-##  fansi         0.4.1   2020-01-08 [1] RSPM (R 4.0.0)                    
 ##  fastmap       1.1.1   2023-02-24 [1] CRAN (R 4.0.2)                    
 ##  fs            1.5.0   2020-07-31 [1] RSPM (R 4.0.3)                    
 ##  glue          1.4.2   2020-08-27 [1] RSPM (R 4.0.5)                    
-##  hms           0.5.3   2020-01-08 [1] RSPM (R 4.0.0)                    
 ##  htmltools     0.5.5   2023-03-23 [1] CRAN (R 4.0.2)                    
 ##  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.0.2)                    
 ##  jsonlite      1.7.1   2020-09-07 [1] RSPM (R 4.0.2)                    
 ##  knitr         1.33    2023-03-28 [1] Github (yihui/knitr@a1052d1)      
-##  lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.0.2)                    
 ##  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.0.2)                    
 ##  memoise       2.0.1   2021-11-26 [1] CRAN (R 4.0.2)                    
-##  ottrpal       1.0.1   2023-03-28 [1] Github (jhudsl/ottrpal@151e412)   
-##  pillar        1.9.0   2023-03-22 [1] CRAN (R 4.0.2)                    
 ##  pkgbuild      1.1.0   2020-07-13 [1] RSPM (R 4.0.2)                    
-##  pkgconfig     2.0.3   2019-09-22 [1] RSPM (R 4.0.3)                    
 ##  pkgload       1.1.0   2020-05-29 [1] RSPM (R 4.0.3)                    
 ##  prettyunits   1.1.1   2020-01-24 [1] RSPM (R 4.0.3)                    
 ##  processx      3.4.4   2020-09-03 [1] RSPM (R 4.0.2)                    
 ##  ps            1.4.0   2020-10-07 [1] RSPM (R 4.0.2)                    
 ##  R6            2.4.1   2019-11-12 [1] RSPM (R 4.0.0)                    
-##  readr         1.4.0   2020-10-05 [1] RSPM (R 4.0.2)                    
 ##  remotes       2.2.0   2020-07-21 [1] RSPM (R 4.0.3)                    
 ##  rlang         1.1.0   2023-03-14 [1] CRAN (R 4.0.2)                    
 ##  rmarkdown     2.10    2023-03-28 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     2.0.3   2022-04-02 [1] CRAN (R 4.0.2)                    
-##  rstudioapi    0.11    2020-02-07 [1] RSPM (R 4.0.0)                    
 ##  sass          0.4.5   2023-01-24 [1] CRAN (R 4.0.2)                    
 ##  sessioninfo   1.1.1   2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3   2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr       1.4.0   2019-02-10 [1] RSPM (R 4.0.3)                    
 ##  testthat      3.0.1   2023-03-28 [1] Github (R-lib/testthat@e99155a)   
-##  tibble        3.2.1   2023-03-20 [1] CRAN (R 4.0.2)                    
 ##  usethis       1.6.3   2020-09-17 [1] RSPM (R 4.0.2)                    
-##  utf8          1.1.4   2018-05-24 [1] RSPM (R 4.0.3)                    
-##  vctrs         0.6.1   2023-03-22 [1] CRAN (R 4.0.2)                    
 ##  withr         2.3.0   2020-09-22 [1] RSPM (R 4.0.2)                    
 ##  xfun          0.26    2023-03-28 [1] Github (yihui/xfun@74c2a66)       
 ##  yaml          2.2.1   2020-02-01 [1] RSPM (R 4.0.3)                    
@@ -243,7 +231,7 @@ For JHU courses, You will need to add Ira as a credit:
           </div>
         </div>
       </div>
-<a href="recombination.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="no-bad-cards.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

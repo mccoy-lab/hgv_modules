@@ -1,7 +1,5 @@
 homepage
 instructors
 schedule-logistics
-discovering-mutations
-learning-objectives
-de-novo-mutations
-recombination
+testing
+no-bad-cards
