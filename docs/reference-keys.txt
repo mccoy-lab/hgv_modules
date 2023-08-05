@@ -1,5 +1,6 @@
 homepage
 instructors
 schedule-logistics
-testing
-no-bad-cards
+the-unix-shell
+navigating-files-and-directories
+working-with-files-and-directories
