@@ -5,7 +5,7 @@ rmd_files: ["index.Rmd",
             "About.Rmd",
             "01_Unix.Rmd"]
 delete_merged_file: true
-new_session: yes
+#new_session: yes
 #rmd_subdir: yes
 language:
   ui:
