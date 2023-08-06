@@ -3,6 +3,9 @@ chapter_name: ""
 repo: https://github.com/andrew-bortvin/swcmdb/
 rmd_files: ["index.Rmd",
             "bootcamp_rmd/01_Unix.Rmd",
+            "bootcamp_rmd/02_PythonDay1.Rmd",
+            "bootcamp_rmd/04_PythonDay2.Rmd",
+            "bootcamp_rmd/03_Git.Rmd",
             "About.Rmd"]
 delete_merged_file: true
 #new_session: yes

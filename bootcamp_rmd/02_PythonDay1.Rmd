@@ -1,0 +1,15 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Python Fundamentals
+
+## Processing Tabular Data
+
+## Plotting
+
+## Lists
+
+## Loops
