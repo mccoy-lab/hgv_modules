@@ -57,13 +57,13 @@ A lot of mathematical operations in Python are straightforward. Here are some of
 
 We can perform mathematical operations on values directly:
 
-```{r, engine="python'}
+```{r, engine="python"}
 print(2 + 3)
 ```
 
 or we can operate on variables: 
 
-```{r, engine="python}
+```{r, engine="python"}
 myValue = 4 
 print(myValue**2)
 ```
