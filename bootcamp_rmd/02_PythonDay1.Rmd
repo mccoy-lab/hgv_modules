@@ -4,7 +4,7 @@ ottrpal::set_knitr_image_path()
 
 # Python 
 
-## Python Fundamentals
+## Python Fundamentals - Data Types, Variables, Math, Functions
 
 ### Types of Data
 
@@ -67,4 +67,56 @@ or we can operate on variables:
 myValue = 4 
 print(myValue**2)
 ```
+
+Mathematical conversions will automatically convert integers to floats when appropriate: 
+
+```{r, engine="python"}
+print(3 + 2.2)
+```
+
+We can save the output of an expression as a variable:
+
+```{r, engine="python"}
+my_product = 2 * 10
+print(my_product)
+```
+
+And likewise we can perform mathematical operations on variables with numerical values: 
+
+```{r, engine="python"}
+number1 = 7
+print(number1 / 2)
+```
+
+### Functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
