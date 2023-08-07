@@ -9,6 +9,9 @@ python
 python-fundamentals
 types-of-data
 variables
+four-test
+five-test
+six-test
 processing-tabular-data
 plotting
 lists
