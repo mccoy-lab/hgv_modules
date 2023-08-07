@@ -6,6 +6,10 @@ ottrpal::set_knitr_image_path()
 
 ## Python Fundamentals
 
+### Variables
+
+#### Yet another subheading
+
 ## Processing Tabular Data
 
 ## Plotting
