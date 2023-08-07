@@ -47,16 +47,24 @@ The data name can be almost anything. Here are the rules to consider when naming
 * Variables are case sensitive (i.e. Python would interpret my_number, MY_NUMBER, and My_Number as different variables)
 * Python has a set of "reserved words" that cannot be used as variable names. These are words that already have a set meaning in Python, such as 'True', 'False', 'for', and 'if'. A full list can be found here: https://www.programiz.com/python-programming/keywords-identifier
 
-#### Four test
+### Mathematical Operations 
 
-##### Five Test
+A lot of mathematical operations in Python are straightforward. Here are some of the basic operations we can perform
 
-###### Six Test
+* `+` and `-` – addition and subtraction
+* `*` and `/` – multiplication and division
+* `**` – Exponentials
 
-## Processing Tabular Data
+We can perform mathematical operations on values directly:
 
-## Plotting
+```{r, engine="python'}
+print(2 + 3)
+```
 
-## Lists
+or we can operate on variables: 
 
-## Loops
+```{r, engine="python}
+myValue = 4 
+print(myValue**2)
+```
+
