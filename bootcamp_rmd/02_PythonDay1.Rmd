@@ -31,6 +31,21 @@ Note the second example – `85.3` is a float; `"85.3"` is a string.
 
 ### Variables
 
+A variable is assigned using the equals sign, with this general syntax:
+
+`variable_name = value`. 
+
+For example:
+
+* `composer = "buxtehude"` 
+* `year = 1637` 
+
+The data name can be almost anything. Here are the rules to consider when naming a variable:
+
+* A variable name must start with a letter or underscore
+* A variable name can only consist of letters, numbers, or underscores
+* Variables are case sensitive (i.e. Python would interpret my_number, MY_NUMBER, and My_Number as different variables)
+* Python has a set of "reserved words" that cannot be used as variable names. These are words that already have a set meaning in Python, such as 'True', 'False', 'for', and 'if'. A full list can be found here: https://www.programiz.com/python-programming/keywords-identifier
 
 ## Processing Tabular Data
 
