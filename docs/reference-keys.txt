@@ -9,13 +9,7 @@ python
 python-fundamentals
 types-of-data
 variables
-four-test
-five-test
-six-test
-processing-tabular-data
-plotting
-lists
-loops
+mathematical-operations
 errors
 git
 tracking-changes
