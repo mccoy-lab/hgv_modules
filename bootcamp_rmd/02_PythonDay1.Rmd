@@ -6,9 +6,31 @@ ottrpal::set_knitr_image_path()
 
 ## Python Fundamentals
 
+### Types of Data
+
+**Integers** Integers are whole numbers, without a decimal point. For example:
+
+* 2
+* -3 
+* 0
+
+**Floats** Floats are numbers with a decimal point. For example: 
+
+* 1.2
+* -3.0
+* 26/3 (This one doesn't actually have a decimal point written in by me, but is a float because the expression evaluates to 8.666)
+
+**Strings** Strings are character data enclosed by single ' or double " quotation marks. Any text enclosed by quotes will be treated as a string.
+
+* "My Grandpa's deck has no pathetic cards"
+* '85.3'
+
+Note the second example – `85.3` is a float; `"85.3"` is a string.
+
+**Booleans** A Boolean has two possible values: `True` and `False`. These can be expressed interchangeably as `1` or `0`, respectively.  
+
 ### Variables
 
-#### Yet another subheading
 
 ## Processing Tabular Data
 
