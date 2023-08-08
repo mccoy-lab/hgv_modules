@@ -129,11 +129,9 @@ pig.upper()
 
 ## Lists 
 
+**TEST**
 
-
-## Loops 
-
-
+## For Loops 
 
 
 ## Modules 
@@ -162,9 +160,13 @@ Now, instead of writing out `matplotlib.pyplot`, we can just write `plt`. The pr
 plt.show()
 ```
 
-### Matplotlib 
+## Plotting 
 
+In this course, we will use the library Matplotlib for plotting. For concision, we will import the `matplotlib.pyplot` module with the name `plt`, as such:
 
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot as plt
+```
 
 
 
