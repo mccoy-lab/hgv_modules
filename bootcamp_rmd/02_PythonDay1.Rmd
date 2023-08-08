@@ -88,6 +88,36 @@ number1 = 7
 print(number1 / 2)
 ```
 
+### Order of operations
+
+Python follows the usual mathematical order of operations. And like usual in math, we can use parenthesis () to enforce a specific order.
+
+```{r, engine="python"}
+print(6 - 7 * 2 + (8-4) * 4)
+```
+
+### Comparisons 
+
+In Python, comparisons will always return a Boolean, i.e. either True or False. We can use the following syntax to compare values:
+
+* `<` and `>` to compare greater than/less than
+* `<=` and `>=` for greater than or equal to/less than or equal to
+
+For example: 
+
+```{r, engine="python"}
+print(5.3 < 17)
+print(4. >= (8/2))
+```
+
+* `==` checks if two values are equal. `!=` checks that two values are different.
+
+```{r, engine="python"}
+print((2**3) != (17 - 9))
+```
+
+Note that a single equals sign = is used to assign values. So `var1 = 3` is setting `var1` equal to `3`. However, a double equals sign `==` is used to compare values. `var1 == 3` is checking if the value of `var1` is `3`.
+
 ## Built-In Functions and Methods 
 
 ### Functions
