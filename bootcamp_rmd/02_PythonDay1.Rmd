@@ -4,7 +4,7 @@ ottrpal::set_knitr_image_path()
 
 # Python 
 
-## Python Fundamentals - Data Types, Variables, Math, Functions
+## Data Types, Variables, Math
 
 ### Types of Data
 
@@ -88,12 +88,46 @@ number1 = 7
 print(number1 / 2)
 ```
 
-### Functions
+## Built-In Functions 
+
+A **function** is a block of code that performs a task. Python comes with a substantial set of pre-written functions. 
+
+***Text on how a function is formulated - name, parentheses, optionally arguments*** 
+
+***Is it worth talking about named arguments or positional arguments. Be introspective about this***
+
+For example, the `print()` function displays ***FINISH ME***
+
+***OTHER Built-In FUNCTIONS***
+
+## Modules 
+
+Often, we need to make use of functions beyond those that are packaged with Python. To do this, we can import a **module**, or a collection of pre-written functions. A module is imported with the following syntax: `import <module name>`. For example, to import the popular plotting module Matplotlib, we write:
+
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot
+```
+
+To use a function from this module, we need to reference both the package name and the function name, with the general syntax: `moduleName.functionName()`. To user Matplotlib's `show()` function, we would write:
+
+```{r, engine='python', eval=FALSE}
+matplotlib.pyplot.show()
+```
+
+What if you don't want to write out `matplotlib.pyplot` in full each time that you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example: 
+
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot as plt
+```
+
+Now, instead of writing out `matplotlib.pyplot`, we can just write `plt`. The previous `matplotlib.pyplot.show()` command is shortened to:
+
+```{r, engine='python', eval=FALSE}
+plt.show()
+```
 
 
-
-
-
+### Numpy 
 
 
 
