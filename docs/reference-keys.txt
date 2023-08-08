@@ -19,9 +19,9 @@ split
 join
 strip
 lists
-loops
+for-loops
 modules
-matplotlib
+plotting
 errors
 git
 tracking-changes
