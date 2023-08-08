@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Python | CMDB Bootcamp</title>
+  <title>3.3 Modules | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Python | CMDB Bootcamp" />
+  <meta property="og:title" content="3.3 Modules | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Python | CMDB Bootcamp" />
+  <meta name="twitter:title" content="3.3 Modules | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="working-with-files-and-directories.html"/>
-<link rel="next" href="data-types-variables-math.html"/>
+<link rel="prev" href="built-in-functions.html"/>
+<link rel="next" href="errors.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -183,8 +183,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="python" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Python</h1>
+<div id="modules" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Modules</h2>
+<p>Often, we need to make use of functions beyond those that are packaged with Python. To do this, we can import a <strong>module</strong>, or a collection of pre-written functions. A module is imported with the following syntax: <code>import &lt;module name&gt;</code>. For example, to import the popular plotting module Matplotlib, we write:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="modules.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span></code></pre></div>
+<p>To use a function from this module, we need to reference both the package name and the function name, with the general syntax: <code>moduleName.functionName()</code>. To user Matplotlib’s <code>show()</code> function, we would write:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="modules.html#cb12-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre></div>
+<p>What if you don’t want to write out <code>matplotlib.pyplot</code> in full each time that you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="modules.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<p>Now, instead of writing out <code>matplotlib.pyplot</code>, we can just write <code>plt</code>. The previous <code>matplotlib.pyplot.show()</code> command is shortened to:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="modules.html#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div id="numpy" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Numpy</h3>
+
+</div>
 </div>
 <hr>
 <center> 
@@ -199,8 +211,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="working-with-files-and-directories.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-types-variables-math.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="built-in-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

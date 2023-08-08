@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Python | CMDB Bootcamp</title>
+  <title>3.1 Data Types, Variables, Math | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Python | CMDB Bootcamp" />
+  <meta property="og:title" content="3.1 Data Types, Variables, Math | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Python | CMDB Bootcamp" />
+  <meta name="twitter:title" content="3.1 Data Types, Variables, Math | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="working-with-files-and-directories.html"/>
-<link rel="next" href="data-types-variables-math.html"/>
+<link rel="prev" href="python.html"/>
+<link rel="next" href="built-in-functions.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -183,8 +183,74 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="python" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Python</h1>
+<div id="data-types-variables-math" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Data Types, Variables, Math</h2>
+<div id="types-of-data" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Types of Data</h3>
+<p><strong>Integers</strong> Integers are whole numbers, without a decimal point. For example:</p>
+<ul>
+<li>2</li>
+<li>-3</li>
+<li>0</li>
+</ul>
+<p><strong>Floats</strong> Floats are numbers with a decimal point. For example:</p>
+<ul>
+<li>1.2</li>
+<li>-3.0</li>
+<li>26/3 (This one doesn’t actually have a decimal point written in by me, but is a float because the expression evaluates to 8.666)</li>
+</ul>
+<p><strong>Strings</strong> Strings are character data enclosed by single ’ or double ” quotation marks. Any text enclosed by quotes will be treated as a string.</p>
+<ul>
+<li>“My Grandpa’s deck has no pathetic cards”</li>
+<li>‘85.3’</li>
+</ul>
+<p>Note the second example – <code>85.3</code> is a float; <code>"85.3"</code> is a string.</p>
+<p><strong>Booleans</strong> A Boolean has two possible values: <code>True</code> and <code>False</code>. These can be expressed interchangeably as <code>1</code> or <code>0</code>, respectively.</p>
+</div>
+<div id="variables" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Variables</h3>
+<p>A variable is assigned using the equals sign, with this general syntax:</p>
+<p><code>variable_name = value</code>.</p>
+<p>For example:</p>
+<ul>
+<li><code>composer = "buxtehude"</code></li>
+<li><code>year = 1637</code></li>
+</ul>
+<p>The data name can be almost anything. Here are the rules to consider when naming a variable:</p>
+<ul>
+<li>A variable name must start with a letter or underscore</li>
+<li>A variable name can only consist of letters, numbers, or underscores</li>
+<li>Variables are case sensitive (i.e. Python would interpret my_number, MY_NUMBER, and My_Number as different variables)</li>
+<li>Python has a set of “reserved words” that cannot be used as variable names. These are words that already have a set meaning in Python, such as ‘True’, ‘False’, ‘for’, and ‘if’. A full list can be found here: <a href="https://www.programiz.com/python-programming/keywords-identifier" class="uri">https://www.programiz.com/python-programming/keywords-identifier</a></li>
+</ul>
+</div>
+<div id="mathematical-operations" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Mathematical Operations</h3>
+<p>A lot of mathematical operations in Python are straightforward. Here are some of the basic operations we can perform</p>
+<ul>
+<li><code>+</code> and <code>-</code> – addition and subtraction</li>
+<li><code>*</code> and <code>/</code> – multiplication and division</li>
+<li><code>**</code> – Exponentials</li>
+</ul>
+<p>We can perform mathematical operations on values directly:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="data-types-variables-math.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## 5</code></pre>
+<p>or we can operate on variables:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="data-types-variables-math.html#cb3-1" aria-hidden="true" tabindex="-1"></a>myValue <span class="op">=</span> <span class="dv">4</span> </span>
+<span id="cb3-2"><a href="data-types-variables-math.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myValue<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 16</code></pre>
+<p>Mathematical conversions will automatically convert integers to floats when appropriate:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="data-types-variables-math.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">+</span> <span class="fl">2.2</span>)</span></code></pre></div>
+<pre><code>## 5.2</code></pre>
+<p>We can save the output of an expression as a variable:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="data-types-variables-math.html#cb7-1" aria-hidden="true" tabindex="-1"></a>my_product <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb7-2"><a href="data-types-variables-math.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_product)</span></code></pre></div>
+<pre><code>## 20</code></pre>
+<p>And likewise we can perform mathematical operations on variables with numerical values:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="data-types-variables-math.html#cb9-1" aria-hidden="true" tabindex="-1"></a>number1 <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb9-2"><a href="data-types-variables-math.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(number1 <span class="op">/</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 3.5</code></pre>
+</div>
 </div>
 <hr>
 <center> 
@@ -199,8 +265,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="working-with-files-and-directories.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-types-variables-math.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="python.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="built-in-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

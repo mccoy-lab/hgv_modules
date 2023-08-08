@@ -6,11 +6,13 @@ introducing-the-shell
 navigating-files-and-directories
 working-with-files-and-directories
 python
-python-fundamentals---data-types-variables-math-functions
+data-types-variables-math
 types-of-data
 variables
 mathematical-operations
-functions
+built-in-functions
+modules
+numpy
 errors
 git
 tracking-changes
