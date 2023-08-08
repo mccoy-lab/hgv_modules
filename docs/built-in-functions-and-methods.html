@@ -207,6 +207,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="built-in-functions-and-methods.html#cb13-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
 <span id="cb13-2"><a href="built-in-functions-and-methods.html#cb13-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span></code></pre></div>
 <pre><code>## &#39;PEPPA&#39;</code></pre>
+<p>Using a method may or not modify the underlying object. For example, the <code>.upper()</code> method shows you the uppercase version of a string but does <em>not</em> modify the actual variable that you are operating on. Observe the following code block:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="built-in-functions-and-methods.html#cb15-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
+<span id="cb15-2"><a href="built-in-functions-and-methods.html#cb15-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span></code></pre></div>
+<pre><code>## &#39;PEPPA&#39;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="built-in-functions-and-methods.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
+<pre><code>## peppa</code></pre>
+<p>When we use the upper method on <code>pig</code>, we do not actually make a change to <code>pig</code> itself. To save the uppercase version of <code>pig</code>, we need to use variable assignment, for example as such:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="built-in-functions-and-methods.html#cb19-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
+<span id="cb19-2"><a href="built-in-functions-and-methods.html#cb19-2" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> pig.upper()</span>
+<span id="cb19-3"><a href="built-in-functions-and-methods.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
+<pre><code>## PEPPA</code></pre>
+<p>Some methods operate differently. For example, the list <code>.append()</code> method which we will learn about <em>does</em> modify the underlying variable, so in the following code block:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="built-in-functions-and-methods.html#cb21-1" aria-hidden="true" tabindex="-1"></a>myList <span class="op">=</span> []</span>
+<span id="cb21-2"><a href="built-in-functions-and-methods.html#cb21-2" aria-hidden="true" tabindex="-1"></a>myList.append(<span class="st">&#39;apple&#39;</span>)</span></code></pre></div>
+<p>the line <code>myList.append('apple')</code> does actually modify <code>myList</code>, so there’s no need to type something like <code>myList = myList.append('apple')</code> (this would in fact be an error). This is something you’ll have to keep track of on a case-by-case basis as you learn new methods.</p>
 </div>
 </div>
 <hr>
