@@ -10,9 +10,14 @@ data-types-variables-math
 types-of-data
 variables
 mathematical-operations
-built-in-functions
+built-in-functions-and-methods
+functions
+methods
+string-methods
+lists
+loops
 modules
-numpy
+matplotlib
 errors
 git
 tracking-changes
