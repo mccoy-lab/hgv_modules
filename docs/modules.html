@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.5 Modules | CMDB Bootcamp</title>
+  <title>3.6 Modules | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.5 Modules | CMDB Bootcamp" />
+  <meta property="og:title" content="3.6 Modules | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.5 Modules | CMDB Bootcamp" />
+  <meta name="twitter:title" content="3.6 Modules | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
 <link rel="prev" href="loops.html"/>
 <link rel="next" href="errors.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
@@ -155,13 +155,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.1" data-path="built-in-functions-and-methods.html"><a href="built-in-functions-and-methods.html#functions"><i class="fa fa-check"></i><b>3.2.1</b> Functions</a></li>
 <li class="chapter" data-level="3.2.2" data-path="built-in-functions-and-methods.html"><a href="built-in-functions-and-methods.html#methods"><i class="fa fa-check"></i><b>3.2.2</b> Methods</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>3.3</b> Lists</a></li>
-<li class="chapter" data-level="3.4" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>3.4</b> Loops</a></li>
-<li class="chapter" data-level="3.5" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>3.5</b> Modules</a>
+<li class="chapter" data-level="3.3" data-path="string-methods.html"><a href="string-methods.html"><i class="fa fa-check"></i><b>3.3</b> String Methods</a></li>
+<li class="chapter" data-level="3.4" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>3.4</b> Lists</a></li>
+<li class="chapter" data-level="3.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>3.5</b> Loops</a></li>
+<li class="chapter" data-level="3.6" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>3.6</b> Modules</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="modules.html"><a href="modules.html#matplotlib"><i class="fa fa-check"></i><b>3.5.1</b> Matplotlib</a></li>
+<li class="chapter" data-level="3.6.1" data-path="modules.html"><a href="modules.html#matplotlib"><i class="fa fa-check"></i><b>3.6.1</b> Matplotlib</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>3.6</b> Errors</a></li>
+<li class="chapter" data-level="3.7" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>3.7</b> Errors</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
@@ -189,8 +190,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="modules" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Modules</h2>
+<div id="modules" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Modules</h2>
 <p>Often, we need to make use of functions beyond those that are packaged with Python. To do this, we can import a <strong>module</strong>, or a collection of pre-written functions. A module is imported with the following syntax: <code>import &lt;module name&gt;</code>. For example, to import the popular plotting module Matplotlib, we write:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="modules.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span></code></pre></div>
 <p>To use a function from this module, we need to reference both the package name and the function name, with the general syntax: <code>moduleName.functionName()</code>. To user Matplotlib’s <code>show()</code> function, we would write:</p>
@@ -199,8 +200,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="modules.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 <p>Now, instead of writing out <code>matplotlib.pyplot</code>, we can just write <code>plt</code>. The previous <code>matplotlib.pyplot.show()</code> command is shortened to:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="modules.html#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<div id="matplotlib" class="section level3" number="3.5.1">
-<h3><span class="header-section-number">3.5.1</span> Matplotlib</h3>
+<div id="matplotlib" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Matplotlib</h3>
 
 </div>
 </div>
