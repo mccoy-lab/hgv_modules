@@ -81,7 +81,7 @@ my_product = 2 * 10
 print(my_product)
 ```
 
-And likewise we can perform mathematical operations on variables with numerical values: 
+And likewise we can perform mathematical operations on variables, provided these variables store numeric data: 
 
 ```{r, engine="python"}
 number1 = 7
@@ -126,13 +126,13 @@ Now, instead of writing out `matplotlib.pyplot`, we can just write `plt`. The pr
 plt.show()
 ```
 
-
 ### Numpy 
 
+Numpy is a library designed for mathematical operations on matrices and arrays, and is particularly useful for working with tabular data. 
 
-
-
-
+```{r, engine='python}
+import numpy
+```
 
 
 
