@@ -149,6 +149,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#types-of-data"><i class="fa fa-check"></i><b>3.1.1</b> Types of Data</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#variables"><i class="fa fa-check"></i><b>3.1.2</b> Variables</a></li>
 <li class="chapter" data-level="3.1.3" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#mathematical-operations"><i class="fa fa-check"></i><b>3.1.3</b> Mathematical Operations</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#order-of-operations"><i class="fa fa-check"></i><b>3.1.4</b> Order of operations</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#comparisons"><i class="fa fa-check"></i><b>3.1.5</b> Comparisons</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="built-in-functions-and-methods.html"><a href="built-in-functions-and-methods.html"><i class="fa fa-check"></i><b>3.2</b> Built-In Functions and Methods</a>
 <ul>
@@ -191,13 +193,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="modules" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Modules</h2>
 <p>Often, we need to make use of functions beyond those that are packaged with Python. To do this, we can import a <strong>module</strong>, or a collection of pre-written functions. A module is imported with the following syntax: <code>import &lt;module name&gt;</code>. For example, to import the popular plotting module Matplotlib, we write:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="modules.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="modules.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span></code></pre></div>
 <p>To use a function from this module, we need to reference both the package name and the function name, with the general syntax: <code>moduleName.functionName()</code>. To user Matplotlib’s <code>show()</code> function, we would write:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="modules.html#cb23-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="modules.html#cb31-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre></div>
 <p>What if you don’t want to write out <code>matplotlib.pyplot</code> in full each time that you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="modules.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="modules.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 <p>Now, instead of writing out <code>matplotlib.pyplot</code>, we can just write <code>plt</code>. The previous <code>matplotlib.pyplot.show()</code> command is shortened to:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="modules.html#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="modules.html#cb33-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <hr>
 <center> 

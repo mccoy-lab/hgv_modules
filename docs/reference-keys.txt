@@ -10,6 +10,8 @@ data-types-variables-math
 types-of-data
 variables
 mathematical-operations
+order-of-operations
+comparisons
 built-in-functions-and-methods
 functions
 methods

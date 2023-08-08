@@ -149,6 +149,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#types-of-data"><i class="fa fa-check"></i><b>3.1.1</b> Types of Data</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#variables"><i class="fa fa-check"></i><b>3.1.2</b> Variables</a></li>
 <li class="chapter" data-level="3.1.3" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#mathematical-operations"><i class="fa fa-check"></i><b>3.1.3</b> Mathematical Operations</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#order-of-operations"><i class="fa fa-check"></i><b>3.1.4</b> Order of operations</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-types-variables-math.html"><a href="data-types-variables-math.html#comparisons"><i class="fa fa-check"></i><b>3.1.5</b> Comparisons</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="built-in-functions-and-methods.html"><a href="built-in-functions-and-methods.html"><i class="fa fa-check"></i><b>3.2</b> Built-In Functions and Methods</a>
 <ul>
@@ -201,26 +203,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="methods" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Methods</h3>
 <p>Every data type that we use in Python (that is, strings, integers, etc.) is associated with a set of functions unique to the data type. These functions are called <strong>methods</strong>. The syntax for using a method is as follows: <code>&lt;objectName&gt;.&lt;methodName&gt;()</code>. For example, the method <code>.upper()</code> belongs to strings and is used to convert a string into capital letters. We can use it with any string either directly on the string itself:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="built-in-functions-and-methods.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;Quod est superius est sicut quod inferius&quot;</span>.upper()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="built-in-functions-and-methods.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;Quod est superius est sicut quod inferius&quot;</span>.upper()</span></code></pre></div>
 <pre><code>## &#39;QUOD EST SUPERIUS EST SICUT QUOD INFERIUS&#39;</code></pre>
 <p>or by operating on a variable:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="built-in-functions-and-methods.html#cb13-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
-<span id="cb13-2"><a href="built-in-functions-and-methods.html#cb13-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="built-in-functions-and-methods.html#cb21-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
+<span id="cb21-2"><a href="built-in-functions-and-methods.html#cb21-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span></code></pre></div>
 <pre><code>## &#39;PEPPA&#39;</code></pre>
 <p>Using a method may or not modify the underlying object. For example, the <code>.upper()</code> method shows you the uppercase version of a string but does <em>not</em> modify the actual variable that you are operating on. Observe the following code block:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="built-in-functions-and-methods.html#cb15-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
-<span id="cb15-2"><a href="built-in-functions-and-methods.html#cb15-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="built-in-functions-and-methods.html#cb23-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
+<span id="cb23-2"><a href="built-in-functions-and-methods.html#cb23-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span></code></pre></div>
 <pre><code>## &#39;PEPPA&#39;</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="built-in-functions-and-methods.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="built-in-functions-and-methods.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
 <pre><code>## peppa</code></pre>
 <p>When we use the upper method on <code>pig</code>, we do not actually make a change to <code>pig</code> itself. To save the uppercase version of <code>pig</code>, we need to use variable assignment, for example as such:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="built-in-functions-and-methods.html#cb19-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
-<span id="cb19-2"><a href="built-in-functions-and-methods.html#cb19-2" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> pig.upper()</span>
-<span id="cb19-3"><a href="built-in-functions-and-methods.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="built-in-functions-and-methods.html#cb27-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
+<span id="cb27-2"><a href="built-in-functions-and-methods.html#cb27-2" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> pig.upper()</span>
+<span id="cb27-3"><a href="built-in-functions-and-methods.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
 <pre><code>## PEPPA</code></pre>
 <p>Some methods operate differently. For example, the list <code>.append()</code> method which we will learn about <em>does</em> modify the underlying variable, so in the following code block:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="built-in-functions-and-methods.html#cb21-1" aria-hidden="true" tabindex="-1"></a>myList <span class="op">=</span> []</span>
-<span id="cb21-2"><a href="built-in-functions-and-methods.html#cb21-2" aria-hidden="true" tabindex="-1"></a>myList.append(<span class="st">&#39;apple&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="built-in-functions-and-methods.html#cb29-1" aria-hidden="true" tabindex="-1"></a>myList <span class="op">=</span> []</span>
+<span id="cb29-2"><a href="built-in-functions-and-methods.html#cb29-2" aria-hidden="true" tabindex="-1"></a>myList.append(<span class="st">&#39;apple&#39;</span>)</span></code></pre></div>
 <p>the line <code>myList.append('apple')</code> does actually modify <code>myList</code>, so there’s no need to type something like <code>myList = myList.append('apple')</code> (this would in fact be an error). This is something you’ll have to keep track of on a case-by-case basis as you learn new methods.</p>
 </div>
 </div>
