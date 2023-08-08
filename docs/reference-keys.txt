@@ -14,6 +14,10 @@ built-in-functions-and-methods
 functions
 methods
 string-methods
+upper-and-.lower
+split
+join
+strip
 lists
 loops
 modules
