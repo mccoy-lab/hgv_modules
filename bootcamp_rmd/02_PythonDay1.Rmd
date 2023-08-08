@@ -149,7 +149,13 @@ pig.upper()
 
 Using a method may or not modify the underlying object. For example, the `.upper()` method shows you the uppercase version of a string but does *not* modify the actual variable that you are operating on. Observe the following code block:
 
-```{r, engine="python"}
+```{r, engine="python", eval = FALSE}
+pig = "peppa"
+pig.upper()
+print(pig)
+```
+
+```{r, engine="python", echo=FALSE}
 pig = "peppa"
 pig.upper()
 print(pig)
