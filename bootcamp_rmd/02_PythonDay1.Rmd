@@ -157,7 +157,6 @@ print(pig)
 
 ```{r, engine="python", echo=FALSE}
 pig = "peppa"
-pig.upper()
 print(pig)
 ```
 
