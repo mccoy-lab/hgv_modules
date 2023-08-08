@@ -88,7 +88,9 @@ number1 = 7
 print(number1 / 2)
 ```
 
-## Built-In Functions 
+## Built-In Functions and Methods 
+
+### Functions
 
 A **function** is a block of code that performs a task. Python comes with a substantial set of pre-written functions. 
 
@@ -98,7 +100,30 @@ A **function** is a block of code that performs a task. Python comes with a subs
 
 For example, the `print()` function displays ***FINISH ME***
 
-***OTHER Built-In FUNCTIONS***
+***OTHER Built-In FUNCTIONS***'
+
+### Methods
+
+Every data type that we use in Python (that is, strings, integers, etc.) is associated with a set of functions unique to the data type. These functions are called **methods**. The syntax for using a method is as follows: `<objectName>.<methodName>()`. For example, the method `.upper()` belongs to strings and is used to convert a string into capital letters. We can use it with any string either directly on the string itself: 
+
+```{r, engine="python"}
+"Quod est superius est sicut quod inferius".upper()
+```
+
+or by operating on a variable: 
+
+```{r, engine="python"}
+pig = "peppa"
+pig.upper()
+```
+
+#### String Methods 
+
+## Lists 
+
+## Loops 
+
+
 
 ## Modules 
 
@@ -126,13 +151,61 @@ Now, instead of writing out `matplotlib.pyplot`, we can just write `plt`. The pr
 plt.show()
 ```
 
-### Numpy 
+### Matplotlib 
 
-Numpy is a library designed for mathematical operations on matrices and arrays, and is particularly useful for working with tabular data. 
 
-```{r, engine='python'}
-import numpy
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
