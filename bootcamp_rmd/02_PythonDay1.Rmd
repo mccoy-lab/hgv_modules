@@ -118,10 +118,19 @@ pig.upper()
 ```
 
 #### String Methods 
+ 
+#### .upper() and .lower()
+
+#### .split()
+
+#### .join()
+
+#### .strip()
 
 ## Lists 
 
 ## Loops 
+
 
 
 
