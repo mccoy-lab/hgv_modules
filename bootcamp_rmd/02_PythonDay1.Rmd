@@ -130,7 +130,7 @@ plt.show()
 
 Numpy is a library designed for mathematical operations on matrices and arrays, and is particularly useful for working with tabular data. 
 
-```{r, engine='python}
+```{r, engine='python'}
 import numpy
 ```
 
