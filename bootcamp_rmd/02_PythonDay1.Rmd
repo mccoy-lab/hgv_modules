@@ -117,6 +117,31 @@ pig = "peppa"
 pig.upper()
 ```
 
+Using a method may or not modify the underlying object. For example, the `.upper()` method shows you the uppercase version of a string but does *not* modify the actual variable that you are operating on. Observe the following code block:
+
+```{r, engine="python"}
+pig = "peppa"
+pig.upper()
+print(pig)
+```
+
+When we use the upper method on `pig`, we do not actually make a change to `pig` itself. To save the uppercase version of `pig`, we need to use variable assignment, for example as such:
+
+```{r, engine="python"}
+pig = "peppa"
+pig = pig.upper()
+print(pig)
+```
+
+Some methods operate differently. For example, the list `.append()` method which we will learn about *does* modify the underlying variable, so in the following code block: 
+
+```{r, engine="python"}
+myList = []
+myList.append('apple')
+```
+
+the line `myList.append('apple')` does actually modify `myList`, so there's no need to type something like `myList = myList.append('apple')` (this would in fact be an error). This is something you'll have to keep track of on a case-by-case basis as you learn new methods. 
+
 ## String Methods
 
 #### .upper() and .lower()
