@@ -15,6 +15,7 @@ comparisons
 built-in-functions-and-methods
 functions
 methods
+type-conversion
 string-methods
 upper-and-.lower
 split
