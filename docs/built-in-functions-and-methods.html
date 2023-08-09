@@ -211,10 +211,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## &#39;PEPPA&#39;</code></pre>
 <p>Using a method may or not modify the underlying object. For example, the <code>.upper()</code> method shows you the uppercase version of a string but does <em>not</em> modify the actual variable that you are operating on. Observe the following code block:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="built-in-functions-and-methods.html#cb23-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
-<span id="cb23-2"><a href="built-in-functions-and-methods.html#cb23-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span>
-<span id="cb23-3"><a href="built-in-functions-and-methods.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
-<pre><code>## peppa</code></pre>
-<p>When we use the upper method on <code>pig</code>, we do not actually make a change to <code>pig</code> itself. To save the uppercase version of <code>pig</code>, we need to use variable assignment, for example as such:</p>
+<span id="cb23-2"><a href="built-in-functions-and-methods.html#cb23-2" aria-hidden="true" tabindex="-1"></a>pig.upper()</span></code></pre></div>
+<p>We’ve returned the uppercase version of the <code>pig</code> variable, but has this value been saved? No:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="built-in-functions-and-methods.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
+<p>To actually save the result of this method, we have to use variable assignment, for example like so:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="built-in-functions-and-methods.html#cb25-1" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> <span class="st">&quot;peppa&quot;</span></span>
 <span id="cb25-2"><a href="built-in-functions-and-methods.html#cb25-2" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> pig.upper()</span>
 <span id="cb25-3"><a href="built-in-functions-and-methods.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
