@@ -206,13 +206,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.6</span> For Loops</h2>
 <p>In Python, we will often want to perform an action more than once. For example, if we have a list, we might want to operate on every item within the list one by one.</p>
 <p>One way to do this is to make use of a for loop, which is structured like this:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="for-loops.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">&lt;</span>temporary_variable<span class="op">&gt;</span> <span class="kw">in</span> <span class="op">&lt;</span>thing to loop through<span class="op">&gt;</span>:</span>
-<span id="cb49-2"><a href="for-loops.html#cb49-2" aria-hidden="true" tabindex="-1"></a>    {do something}</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="for-loops.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">&lt;</span>temporary_variable<span class="op">&gt;</span> <span class="kw">in</span> <span class="op">&lt;</span>thing to loop through<span class="op">&gt;</span>:</span>
+<span id="cb59-2"><a href="for-loops.html#cb59-2" aria-hidden="true" tabindex="-1"></a>    {do something}</span></code></pre></div>
 <p>For example:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="for-loops.html#cb50-1" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> [<span class="st">&quot;Three Note Oddity&quot;</span>, <span class="st">&quot;Radio Londres&quot;</span>, <span class="st">&quot;Cherry Ripe&quot;</span>, <span class="st">&quot;Swedish Rhapsody&quot;</span>]</span>
-<span id="cb50-2"><a href="for-loops.html#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="for-loops.html#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> stations:</span>
-<span id="cb50-4"><a href="for-loops.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="for-loops.html#cb60-1" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> [<span class="st">&quot;Three Note Oddity&quot;</span>, <span class="st">&quot;Radio Londres&quot;</span>, <span class="st">&quot;Cherry Ripe&quot;</span>, <span class="st">&quot;Swedish Rhapsody&quot;</span>]</span>
+<span id="cb60-2"><a href="for-loops.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="for-loops.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> stations:</span>
+<span id="cb60-4"><a href="for-loops.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
 <pre><code>## Three Note Oddity
 ## Radio Londres
 ## Cherry Ripe
@@ -222,12 +222,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Now we go back and set the value of i to that of the second entry in <code>stations</code>, or “Radio Londres”. We execute all of the indented code, printing out “Radio Londres”.</p>
 <p>Now we go back and set the value of i to that of the third value in <code>stations</code>, or “Cherry Ripe”. And we keep on doing this until there is nothing left in my_list.</p>
 <p>In the above example, there was a single indented line in the bodyo of the loop, but the for loop can be arbitrarily long. Here is an example of a for loop structured in the same way, but with more going on in the body of the loop:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="for-loops.html#cb52-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">2</span>]</span>
-<span id="cb52-2"><a href="for-loops.html#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="for-loops.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> my_list:</span>
-<span id="cb52-4"><a href="for-loops.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">3</span></span>
-<span id="cb52-5"><a href="for-loops.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> i <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb52-6"><a href="for-loops.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="for-loops.html#cb62-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">2</span>]</span>
+<span id="cb62-2"><a href="for-loops.html#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="for-loops.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> my_list:</span>
+<span id="cb62-4"><a href="for-loops.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb62-5"><a href="for-loops.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> i <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb62-6"><a href="for-loops.html#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
 <pre><code>## 16
 ## 49
 ## 81
@@ -235,14 +235,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 169
 ## 25</code></pre>
 <p>We can also use a for loop to perform an action a set number of times, even when we don’t have a list to loop through. To do so, we can use the range() function. We’ll use this function a ton throughout the course. When we run the range() function with a single integer inside the paranthesis, it generates a sequence of numbers from 0 up to and not including the number provided. So to run a function 3 times, we would provide the for loop with range(3) (i.e. [0, 1, 2]).</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="for-loops.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb54-2"><a href="for-loops.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="for-loops.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb64-2"><a href="for-loops.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
 <pre><code>## 0
 ## 1
 ## 2</code></pre>
 <p>So far, the body of our for loops has always referenced the temporary variable <code>i</code>. We can also use a for loop to run a block of code repeatedly without actually manipulating the temporary variable within that block:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="for-loops.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
-<span id="cb56-2"><a href="for-loops.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;All work and no play&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="for-loops.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
+<span id="cb66-2"><a href="for-loops.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;All work and no play&quot;</span>)</span></code></pre></div>
 <pre><code>## All work and no play
 ## All work and no play
 ## All work and no play

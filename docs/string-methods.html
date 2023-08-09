@@ -215,13 +215,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="split" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> .split()</h3>
-<p>The <code>.split</code></p>
+<p>The <code>.split()</code> method takes a string and splits it into a list, dividing the list on by a regular delimiter. The delimiter is provided as an argument:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="string-methods.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Eye of newt, toe of frog, wool of bat&quot;</span>.split(<span class="st">&#39;,&#39;</span>))</span></code></pre></div>
+<pre><code>## [&#39;Eye of newt&#39;, &#39; toe of frog&#39;, &#39; wool of bat&#39;]</code></pre>
+<p>If no argument is provided, then the string is split on whitespace (that is, it is split whenever a space or tab is encountered).</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="string-methods.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;they sowed their isn’t       they reaped their same&quot;</span>.split())</span></code></pre></div>
+<pre><code>## [&#39;they&#39;, &#39;sowed&#39;, &#39;their&#39;, &#39;isn’t&#39;, &#39;they&#39;, &#39;reaped&#39;, &#39;their&#39;, &#39;same&#39;]</code></pre>
 </div>
 <div id="join" class="section level3" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> .join()</h3>
+<p>The <code>.join()</code> method is the inverse of <code>.split()</code> - takes a list and converts it into a string, with list elements separated by a delimiter. The general syntax is: <code>"&lt;delimiter&gt;".join(&lt;list to join&gt;)</code></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="string-methods.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;.&#39;</span>.join([<span class="st">&quot;39&quot;</span>,<span class="st">&quot;3299&quot;</span>,<span class="st">&quot;-76&quot;</span>,<span class="st">&quot;620277&quot;</span>])</span></code></pre></div>
+<pre><code>## &#39;39.3299.-76.620277&#39;</code></pre>
+<p>We can provide a space as a delimiter:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="string-methods.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;</span>.join([<span class="st">&quot;I&quot;</span>, <span class="st">&quot;found&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;caught&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;dogs&quot;</span>])</span></code></pre></div>
+<pre><code>## &#39;Ifoundafoxcaughtbydogs&#39;</code></pre>
+<p>If we do not provide a delimiter, then the strings are directly concatenated:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="string-methods.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;</span>.join([<span class="st">&quot;here&quot;</span>, <span class="st">&quot;in&quot;</span>, <span class="st">&quot;after&quot;</span>])</span></code></pre></div>
+<pre><code>## &#39;hereinafter&#39;</code></pre>
 </div>
 <div id="strip" class="section level3" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> .strip()</h3>
+<p><strong><em>ADD</em></strong></p>
 </div>
 </div>
 <hr>
