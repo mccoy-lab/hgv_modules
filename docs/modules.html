@@ -193,13 +193,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="modules" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Modules</h2>
 <p>Often, we need to make use of functions beyond those that are packaged with Python. To do this, we can import a <strong>module</strong>, or a collection of pre-written functions. A module is imported with the following syntax: <code>import &lt;module name&gt;</code>. For example, to import the popular plotting module Matplotlib, we write:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="modules.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="modules.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span></code></pre></div>
 <p>To use a function from this module, we need to reference both the package name and the function name, with the general syntax: <code>moduleName.functionName()</code>. To user Matplotlib’s <code>show()</code> function, we would write:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="modules.html#cb29-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="modules.html#cb30-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre></div>
 <p>What if you don’t want to write out <code>matplotlib.pyplot</code> in full each time that you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="modules.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="modules.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 <p>Now, instead of writing out <code>matplotlib.pyplot</code>, we can just write <code>plt</code>. The previous <code>matplotlib.pyplot.show()</code> command is shortened to:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="modules.html#cb31-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="modules.html#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <hr>
 <center> 
