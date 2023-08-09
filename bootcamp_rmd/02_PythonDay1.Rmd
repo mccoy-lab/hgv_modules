@@ -258,6 +258,14 @@ print(my_list[2])
 print(my_list[2][0])
 ```
 
+#### Indexing Strings
+
+We can also apply indexing to extract substrings from within a string. This is done identically to how we index a list:
+
+```{r, engine='python'}
+
+```
+
 ### Adding to lists - Append
 
 One last interesting thing we can do with lists is we can add entries to the end of a list. We do this using the `append()` method, which is used with the following syntax:
@@ -273,6 +281,33 @@ print(florilegium)
 ```
 
 ## For Loops 
+
+In Python, we will often want to perform an action more than once. For example, if we have a list, we might want to operate on every item within the list one by one. 
+
+One way to do this is to make use of a for loop, which is structured like this:
+
+```{r, engine='python', eval=FALSE}
+for <temporary_variable> in <thing to loop through>:
+    {do something}
+```
+
+For example:
+
+```{r, engine='python'}
+stations = ["Three Note Oddity", "Radio Londres", "Cherry Ripe", "Swedish Rhapsody"]
+
+for i in stations:
+  print(i)
+```
+
+
+## Reading in Data and Text Parsing
+
+
+
+
+***FILL***
+
 
 
 ## Modules 
