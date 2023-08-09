@@ -197,11 +197,41 @@ print(aria.lower())
 
 ### .split()
 
-The `.split` 
+The `.split()` method takes a string and splits it into a list, dividing the list on by a regular delimiter. The delimiter is provided as an argument:
+
+```{r, engine='python'}
+print("Eye of newt, toe of frog, wool of bat".split(','))
+```
+
+If no argument is provided, then the string is split on whitespace (that is, it is split whenever a space or tab is encountered). 
+
+```{r, engine='python'}
+print("they sowed their isn’t       they reaped their same".split())
+```
 
 ### .join()
 
+The `.join()` method is the inverse of `.split()` - takes a list and converts it into a string, with list elements separated by a delimiter. The general syntax is: `"<delimiter>".join(<list to join>)`
+
+```{r, engine='python'}
+'.'.join(["39","3299","-76","620277"])
+```
+
+We can provide a space as a delimiter:
+
+```{r, engine='python'}
+"".join(["I", "found", "a", "fox", "caught", "by", "dogs"])
+```
+
+If we do not provide a delimiter, then the strings are directly concatenated: 
+
+```{r, engine='python'}
+"".join(["here", "in", "after"])
+```
+
 ### .strip()
+
+***ADD***
 
 ## Lists 
 
