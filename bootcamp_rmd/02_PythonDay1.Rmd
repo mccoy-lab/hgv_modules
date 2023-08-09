@@ -184,7 +184,20 @@ myList.append('apple')
 
 ### .upper() and .lower()
 
+The `.upper()` and `.lower()` methods take a string and convert it to uppercase and lowercase, respectively. 
+
+```{r, engine='python'}
+print("out on the wily, windy moors".upper())
+```
+
+```{r, engine='python'}
+aria = "Piangerò La Sorte Mia"
+print(aria.lower())
+```
+
 ### .split()
+
+The `.split` 
 
 ### .join()
 
@@ -327,7 +340,7 @@ for i in range(3):
   print(i)
 ```
 
-So far, the body of our for loops has always referenced the temporary variable i, but we can also use a for loop to run a block of code repeatedly without actually using the temporary variable.
+So far, the body of our for loops has always referenced the temporary variable `i`. We can also use a for loop to run a block of code repeatedly without actually manipulating the temporary variable within that block:
 
 ```{r, engine='python'}
 for i in range(6):
