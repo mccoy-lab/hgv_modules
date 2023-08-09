@@ -168,7 +168,7 @@ pig = pig.upper()
 print(pig)
 ```
 
-Some methods *do* in fact modify underlying variables. For example, the list `.append()` method which we will learn about *does* change the list if operates on, so in the following code block: 
+Some methods *do* in fact modify underlying variables. For example, the list `.append()` method which we will learn about later *does* change the list if operates on, so in the following code block: 
 
 ```{r, engine="python"}
 myList = []
@@ -177,15 +177,18 @@ myList.append('apple')
 
 `myList` is changed by `myList.append('apple')`. There's no need to type something like `myList = myList.append('apple')` - this would in fact be an error. Which methods modify the objects they operate on is something you'll have to keep track of on a case-by-case basis as you learn new methods. 
 
+## Type Conversion
+
+
 ## String Methods
 
-#### .upper() and .lower()
+### .upper() and .lower()
 
-#### .split()
+### .split()
 
-#### .join()
+### .join()
 
-#### .strip()
+### .strip()
 
 ## Lists 
 
@@ -219,7 +222,13 @@ print(alchemists[1:3])
 
 * We can index in reverse. To index from the end of the list, we use negative numbers.
 
-```{r, engine="python"}
+```{r, engine="python", eval=FALSE}
+print(alchemists[-1])
+print(alchemists[-2])
+print(alchemists[-3])
+```
+
+```{r, engine="python", echo=FALSE}
 print(alchemists[-1])
 print(alchemists[-2])
 print(alchemists[-3])
