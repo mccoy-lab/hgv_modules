@@ -163,7 +163,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.1" data-path="string-methods.html"><a href="string-methods.html#upper-and-.lower"><i class="fa fa-check"></i><b>3.4.1</b> .upper() and .lower()</a></li>
 <li class="chapter" data-level="3.4.2" data-path="string-methods.html"><a href="string-methods.html#split"><i class="fa fa-check"></i><b>3.4.2</b> .split()</a></li>
 <li class="chapter" data-level="3.4.3" data-path="string-methods.html"><a href="string-methods.html#join"><i class="fa fa-check"></i><b>3.4.3</b> .join()</a></li>
-<li class="chapter" data-level="3.4.4" data-path="string-methods.html"><a href="string-methods.html#strip"><i class="fa fa-check"></i><b>3.4.4</b> .strip()</a></li>
+<li class="chapter" data-level="3.4.4" data-path="string-methods.html"><a href="string-methods.html#rstrip-.lstrip-.strip"><i class="fa fa-check"></i><b>3.4.4</b> .rstrip(), .lstrip(), .strip()</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>3.5</b> Lists</a>
 <ul>
@@ -234,9 +234,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="string-methods.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;</span>.join([<span class="st">&quot;here&quot;</span>, <span class="st">&quot;in&quot;</span>, <span class="st">&quot;after&quot;</span>])</span></code></pre></div>
 <pre><code>## &#39;hereinafter&#39;</code></pre>
 </div>
-<div id="strip" class="section level3" number="3.4.4">
-<h3><span class="header-section-number">3.4.4</span> .strip()</h3>
-<p><strong><em>ADD</em></strong></p>
+<div id="rstrip-.lstrip-.strip" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> .rstrip(), .lstrip(), .strip()</h3>
+<p>These three functions remove any instances of unwanted characters on either the right side, left side, or both sides of a string, respectively. You can provide the characters you want to remove as an argument:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="string-methods.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;ricercar........,,,,,,&quot;</span>.rstrip(<span class="st">&quot;,.&quot;</span>)</span></code></pre></div>
+<pre><code>## &#39;ricercar&#39;</code></pre>
+<p>Without an argument, we remove spaces:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="string-methods.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;          gradus ad Parnassum &quot;</span>.lstrip()</span></code></pre></div>
+<pre><code>## &#39;gradus ad Parnassum &#39;</code></pre>
+<p>Note that in the above example we strip the spaces to the left of the main text, but we <em>do not</em> remove the spaces from the middle or right end of the text.</p>
 </div>
 </div>
 <hr>

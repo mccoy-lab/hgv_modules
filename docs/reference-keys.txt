@@ -20,7 +20,7 @@ string-methods
 upper-and-.lower
 split
 join
-strip
+rstrip-.lstrip-.strip
 lists
 indexing
 indexing-strings

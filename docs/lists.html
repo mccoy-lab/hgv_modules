@@ -163,7 +163,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.1" data-path="string-methods.html"><a href="string-methods.html#upper-and-.lower"><i class="fa fa-check"></i><b>3.4.1</b> .upper() and .lower()</a></li>
 <li class="chapter" data-level="3.4.2" data-path="string-methods.html"><a href="string-methods.html#split"><i class="fa fa-check"></i><b>3.4.2</b> .split()</a></li>
 <li class="chapter" data-level="3.4.3" data-path="string-methods.html"><a href="string-methods.html#join"><i class="fa fa-check"></i><b>3.4.3</b> .join()</a></li>
-<li class="chapter" data-level="3.4.4" data-path="string-methods.html"><a href="string-methods.html#strip"><i class="fa fa-check"></i><b>3.4.4</b> .strip()</a></li>
+<li class="chapter" data-level="3.4.4" data-path="string-methods.html"><a href="string-methods.html#rstrip-.lstrip-.strip"><i class="fa fa-check"></i><b>3.4.4</b> .rstrip(), .lstrip(), .strip()</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>3.5</b> Lists</a>
 <ul>
@@ -215,40 +215,40 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="indexing" class="section level3" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Indexing</h3>
 <p>What if we want to extract a specific value from a list? We can use indexing. To index in Python, we use the following syntax: <code>variable_name[index],</code> with <code>index</code> being an integer referring to the position we wish to extract.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="lists.html#cb43-1" aria-hidden="true" tabindex="-1"></a>alchemists <span class="op">=</span> [<span class="st">&quot;Zosimos&quot;</span>, <span class="st">&quot;Oresme&quot;</span>, <span class="st">&quot;Flamel&quot;</span>, <span class="st">&quot;pseudo-Aristotle&quot;</span>]</span>
-<span id="cb43-2"><a href="lists.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="lists.html#cb47-1" aria-hidden="true" tabindex="-1"></a>alchemists <span class="op">=</span> [<span class="st">&quot;Zosimos&quot;</span>, <span class="st">&quot;Oresme&quot;</span>, <span class="st">&quot;Flamel&quot;</span>, <span class="st">&quot;pseudo-Aristotle&quot;</span>]</span>
+<span id="cb47-2"><a href="lists.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## Oresme</code></pre>
 <p>Notice that when we printed the item at position 1, we printed out the second entry in my_list. This is because in Python, <strong>indexes start at 0</strong>. So to print out the first entry, we would use <code>alchemists[0]</code>.</p>
 <p>A couple interesting things we can do with indexing:</p>
 <ul>
 <li>To print multiple consecutive number, we can provie two numbers separated by a colon <code>:</code>. Note that the first number is inclusive and the second number is exclusive. For example, in the sample below, we provide the index 1:3. This prints out the item at position 1 (‘Oresme’), the item at position 2 (‘Flamel’) and not the item at position 3 (‘pseudo-Aristotle’).</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="lists.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="dv">1</span>:<span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="lists.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="dv">1</span>:<span class="dv">3</span>])</span></code></pre></div>
 <pre><code>## [&#39;Oresme&#39;, &#39;Flamel&#39;]</code></pre>
 <ul>
 <li>We can index in reverse. To index from the end of the list, we use negative numbers.</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="lists.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb47-2"><a href="lists.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="op">-</span><span class="dv">2</span>])</span>
-<span id="cb47-3"><a href="lists.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="op">-</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="lists.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb51-2"><a href="lists.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="op">-</span><span class="dv">2</span>])</span>
+<span id="cb51-3"><a href="lists.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alchemists[<span class="op">-</span><span class="dv">3</span>])</span></code></pre></div>
 <pre><code>## pseudo-Aristotle</code></pre>
 <pre><code>## Flamel</code></pre>
 <pre><code>## Oresme</code></pre>
 <p>What if we have a list within a list? Consider the following list:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="lists.html#cb51-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, [<span class="dv">3</span>, <span class="dv">4</span>], <span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="lists.html#cb55-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, [<span class="dv">3</span>, <span class="dv">4</span>], <span class="dv">5</span>]</span></code></pre></div>
 <p>How would we point to the number <code>3</code> in this list?</p>
 <p>First, we can point to the interior list. The interior list is the third item in the list, so it is at position 2 (remember, indexing in Python starts at 0). So we can access the interior list with <code>my_list[2]</code>.</p>
 <p>Within the interior list, 3 is the first item, so it is at position 0. It can be accessed with the syntax <code>my_list[2][0]</code></p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="lists.html#cb52-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, [<span class="dv">3</span>, <span class="dv">4</span>], <span class="dv">5</span>]</span>
-<span id="cb52-2"><a href="lists.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_list[<span class="dv">2</span>])</span>
-<span id="cb52-3"><a href="lists.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_list[<span class="dv">2</span>][<span class="dv">0</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="lists.html#cb56-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, [<span class="dv">3</span>, <span class="dv">4</span>], <span class="dv">5</span>]</span>
+<span id="cb56-2"><a href="lists.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_list[<span class="dv">2</span>])</span>
+<span id="cb56-3"><a href="lists.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_list[<span class="dv">2</span>][<span class="dv">0</span>])</span></code></pre></div>
 <pre><code>## [3, 4]</code></pre>
 <pre><code>## 3</code></pre>
 <div id="indexing-strings" class="section level4" number="3.5.1.1">
 <h4><span class="header-section-number">3.5.1.1</span> Indexing Strings</h4>
 <p>We can also apply indexing to extract substrings from within a string. This is done identically to how we index a list:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="lists.html#cb55-1" aria-hidden="true" tabindex="-1"></a>creature <span class="op">=</span> <span class="st">&#39;stingray&#39;</span></span>
-<span id="cb55-2"><a href="lists.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(creature[<span class="dv">0</span>:<span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="lists.html#cb59-1" aria-hidden="true" tabindex="-1"></a>creature <span class="op">=</span> <span class="st">&#39;stingray&#39;</span></span>
+<span id="cb59-2"><a href="lists.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(creature[<span class="dv">0</span>:<span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## sting</code></pre>
 </div>
 </div>
@@ -257,9 +257,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>One last interesting thing we can do with lists is we can add entries to the end of a list. We do this using the <code>append()</code> method, which is used with the following syntax:</p>
 <p><code>list_name.append(item)</code></p>
 <p>For an example:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="lists.html#cb57-1" aria-hidden="true" tabindex="-1"></a>florilegium <span class="op">=</span> [<span class="st">&#39;marigold&#39;</span>, <span class="st">&#39;thistle&#39;</span>, <span class="st">&#39;wormwood&#39;</span>]</span>
-<span id="cb57-2"><a href="lists.html#cb57-2" aria-hidden="true" tabindex="-1"></a>florilegium.append(<span class="st">&#39;tansy&#39;</span>)</span>
-<span id="cb57-3"><a href="lists.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(florilegium)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="lists.html#cb61-1" aria-hidden="true" tabindex="-1"></a>florilegium <span class="op">=</span> [<span class="st">&#39;marigold&#39;</span>, <span class="st">&#39;thistle&#39;</span>, <span class="st">&#39;wormwood&#39;</span>]</span>
+<span id="cb61-2"><a href="lists.html#cb61-2" aria-hidden="true" tabindex="-1"></a>florilegium.append(<span class="st">&#39;tansy&#39;</span>)</span>
+<span id="cb61-3"><a href="lists.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(florilegium)</span></code></pre></div>
 <pre><code>## [&#39;marigold&#39;, &#39;thistle&#39;, &#39;wormwood&#39;, &#39;tansy&#39;]</code></pre>
 </div>
 </div>
