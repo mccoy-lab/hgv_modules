@@ -98,7 +98,7 @@ Python follows the usual mathematical order of operations. And like in math, we 
 print(2 * (2 + 2))
 ```
 
-### Comparisons 
+## Comparisons 
 
 In Python, comparisons will always return a Boolean, i.e. either `True` or `False.` We can use the following syntax to compare values:
 
@@ -363,11 +363,11 @@ print(florilegium)
 
 ## For Loops 
 
-In Python, we will often want to perform an action more than once. For example, if we have a list, we might want to operate on every item within the list one by one. 
+In Python, we will often want to perform an action more than once. For example, if we have a list, we might want to do the same operatation on every item within the list.
 
-One way to do this is to make use of a for loop, which is structured like this:
+One way to do this is to use a **for loop**, which is structured like this:
 
-```{r, engine='python', eval=FALSE}
+```
 for <temporary_variable> in <thing to loop through>:
     {do something}
 ```
@@ -375,21 +375,32 @@ for <temporary_variable> in <thing to loop through>:
 For example:
 
 ```{r, engine='python'}
-stations = ["Three Note Oddity", "Radio Londres", "Cherry Ripe", "Swedish Rhapsody"]
+stations = ["Oddity", "Londres", "Cherry", "Swedish"]
 
 for i in stations:
   print(i)
 ```
 
+### For loop walkthrough
+
 Here is how the loop works:
 
-In the line for `i in stations`: we are defining the temporary variable i (the name of this variable is arbitrary). We are also saying that we are looping through `stations`. So in this first iteration of the for loop, i takes on the value of the first item in `stations`, that is "Three Note Oddity". Now we perform all of the indented code, which here is just a single print() statement.
+```
+for i in stations:
+```
 
-Now we go back and set the value of i to that of the second entry in `stations`, or "Radio Londres". We execute all of the indented code, printing out "Radio Londres".
+In this line, we:
 
-Now we go back and set the value of i to that of the third value in `stations`, or "Cherry Ripe". And we keep on doing this until there is nothing left in my_list.
+* Define the temporary variable `i`. The name of this variable is arbitrary.
+* We say that we are looping through `stations`.
 
-In the above example, there was a single indented line in the bodyo of the loop, but the for loop can be arbitrarily long. Here is an example of a for loop structured in the same way, but with more going on in the body of the loop:
+In the first iteration of the for loop, `i` takes on the value of the first item in `stations` (`"Oddity"`). Now we perform all of the indented code, which here is just a `print()` statement.
+
+In the second iteration of the for loop, we set the value of `i` to the second entry in `stations` (`"Londres"`). We execute all of the indented code, printing out `"Londres"`.
+
+We continue on doing this until there is nothing left in `stations`.
+
+In this example, there was a single line in the body of the loop, but a for loop can be arbitrarily long. Here is a longer example:
 
 ```{r, engine='python'}
 my_list = [1, 4, 6, 9, 10, 2]
@@ -400,17 +411,21 @@ for i in my_list:
   print(i)
 ```
 
-We can also use a for loop to perform an action a set number of times, even when we don’t have a list to loop through. To do so, we can use the range() function. We'll use this function a ton throughout the course. When we run the range() function with a single integer inside the paranthesis, it generates a sequence of numbers from 0 up to and not including the number provided. So to run a function 3 times, we would provide the for loop with range(3) (i.e. [0, 1, 2]).
+### Repeating an action `n` times
+
+We can also use a for loop to perform an action a set number of times, even when we don’t have a list to loop through. To do so, we can use the `range()` function. We'll use this function a ton throughout the course.
+
+`range(<n>)`, where `n` is a single integer, generates a sequence of numbers from `0` to `n` (not including `n` itself). So to run a function 3 times, we would provide the for loop with `range(3)` (which generates the list `[0, 1, 2]`).
 
 ```{r, engine='python'}
 for i in range(3):
   print(i)
 ```
 
-So far, the body of our for loops has always referenced the temporary variable `i`. We can also use a for loop to run a block of code repeatedly without actually manipulating the temporary variable within that block:
+So far, the body of our for loop has always referenced the temporary variable `i`. We can also use a for loop to run a block of code repeatedly without actually manipulating `i`:
 
 ```{r, engine='python'}
-for i in range(6):
+for i in range(3):
   print("All work and no play")
 ```
 
@@ -425,19 +440,35 @@ for i in range(6):
 
 ## Modules 
 
-Often, we need to make use of functions beyond those that are packaged with Python. To do this, we can import a **module**, or a collection of pre-written functions. A module is imported with the following syntax: `import <module name>`. For example, to import the popular plotting module Matplotlib, we write:
+Often, we need to make use of functions beyond the basic ones in Python. To do this, we can import a **module**, or a collection of pre-written functions. A module is imported with the following syntax:
+
+```
+import <module name>
+```
+
+For example, to import the popular plotting module Matplotlib, we write:
 
 ```{r, engine='python', eval=FALSE}
 import matplotlib.pyplot
 ```
 
-To use a function from this module, we need to reference both the package name and the function name, with the general syntax: `moduleName.functionName()`. To user Matplotlib's `show()` function, we would write:
+### Module functions
+
+To use a function from Matplotlib, we need to reference both the package name and the function name, with the general syntax:
+
+```
+moduleName.functionName()
+```
+
+To use Matplotlib's `show()` function, we would write:
 
 ```{r, engine='python', eval=FALSE}
 matplotlib.pyplot.show()
 ```
 
-What if you don't want to write out `matplotlib.pyplot` in full each time that you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example: 
+### Abbreviating module names
+
+What if you don't want to write out `matplotlib.pyplot` every time you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example:
 
 ```{r, engine='python', eval=FALSE}
 import matplotlib.pyplot as plt
