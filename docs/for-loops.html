@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
 <link rel="prev" href="lists.html"/>
-<link rel="next" href="modules.html"/>
+<link rel="next" href="reading-in-data-and-text-parsing.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -171,9 +171,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.2" data-path="lists.html"><a href="lists.html#adding-to-lists---append"><i class="fa fa-check"></i><b>3.5.2</b> Adding to lists - Append</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>3.6</b> For Loops</a></li>
-<li class="chapter" data-level="3.7" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>3.7</b> Modules</a></li>
-<li class="chapter" data-level="3.8" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
-<li class="chapter" data-level="3.9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>3.9</b> Errors</a></li>
+<li class="chapter" data-level="3.7" data-path="reading-in-data-and-text-parsing.html"><a href="reading-in-data-and-text-parsing.html"><i class="fa fa-check"></i><b>3.7</b> Reading in Data and Text Parsing</a></li>
+<li class="chapter" data-level="3.8" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>3.8</b> Modules</a></li>
+<li class="chapter" data-level="3.9" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>3.9</b> Plotting</a></li>
+<li class="chapter" data-level="3.10" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>3.10</b> Errors</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
@@ -203,6 +204,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="for-loops" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> For Loops</h2>
+<p>In Python, we will often want to perform an action more than once. For example, if we have a list, we might want to operate on every item within the list one by one.</p>
+<p>One way to do this is to make use of a for loop, which is structured like this:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="for-loops.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">&lt;</span>temporary_variable<span class="op">&gt;</span> <span class="kw">in</span> <span class="op">&lt;</span>thing to loop through<span class="op">&gt;</span>:</span>
+<span id="cb43-2"><a href="for-loops.html#cb43-2" aria-hidden="true" tabindex="-1"></a>    {do something}</span></code></pre></div>
+<p>For example:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="for-loops.html#cb44-1" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> [<span class="st">&quot;Three Note Oddity&quot;</span>, <span class="st">&quot;Radio Londres&quot;</span>, <span class="st">&quot;Cherry Ripe&quot;</span>, <span class="st">&quot;Swedish Rhapsody&quot;</span>]</span>
+<span id="cb44-2"><a href="for-loops.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="for-loops.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> stations:</span>
+<span id="cb44-4"><a href="for-loops.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
+<pre><code>## Three Note Oddity
+## Radio Londres
+## Cherry Ripe
+## Swedish Rhapsody</code></pre>
 </div>
 <hr>
 <center> 
@@ -218,7 +232,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="lists.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reading-in-data-and-text-parsing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

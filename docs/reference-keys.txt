@@ -23,8 +23,10 @@ join
 strip
 lists
 indexing
+indexing-strings
 adding-to-lists---append
 for-loops
+reading-in-data-and-text-parsing
 modules
 plotting
 errors
