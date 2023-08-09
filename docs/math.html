@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.9 Reading in Data and Text Parsing | CMDB Bootcamp</title>
+  <title>3.3 Math | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.9 Reading in Data and Text Parsing | CMDB Bootcamp" />
+  <meta property="og:title" content="3.3 Math | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.9 Reading in Data and Text Parsing | CMDB Bootcamp" />
+  <meta name="twitter:title" content="3.3 Math | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="for-loops.html"/>
-<link rel="next" href="modules.html"/>
+<link rel="prev" href="variables.html"/>
+<link rel="next" href="built-in-functions-and-methods.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -202,9 +202,64 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reading-in-data-and-text-parsing" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> Reading in Data and Text Parsing</h2>
-<p><strong><em>FILL</em></strong></p>
+<div id="math" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Math</h2>
+<div id="mathematical-operations" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Mathematical operations</h3>
+<p>A lot of mathematical operations in Python are straightforward. Here are some of the basic operations we can perform:</p>
+<ul>
+<li><code>+</code> and <code>-</code>: addition and subtraction</li>
+<li><code>*</code> and <code>/</code>: multiplication and division</li>
+<li><code>**</code>: exponentials</li>
+</ul>
+<p>We can perform mathematical operations on values directly:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="math.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## 5</code></pre>
+<p>Or we can operate on variables:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="math.html#cb4-1" aria-hidden="true" tabindex="-1"></a>myValue <span class="op">=</span> <span class="dv">4</span> </span>
+<span id="cb4-2"><a href="math.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myValue<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 16</code></pre>
+<p>Python will automatically convert integers to floats when appropriate:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="math.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">+</span> <span class="fl">2.2</span>)</span></code></pre></div>
+<pre><code>## 5.2</code></pre>
+<p>We can save the output of an expression as a variable:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="math.html#cb8-1" aria-hidden="true" tabindex="-1"></a>my_product <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb8-2"><a href="math.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_product)</span></code></pre></div>
+<pre><code>## 20</code></pre>
+<p>And likewise we can perform mathematical operations on variables, if these variables store numeric data:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="math.html#cb10-1" aria-hidden="true" tabindex="-1"></a>number1 <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb10-2"><a href="math.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(number1 <span class="op">/</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 3.5</code></pre>
+</div>
+<div id="order-of-operations" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Order of operations</h3>
+<p>Python follows the usual mathematical order of operations. And like in math, we can use parentheses <code>()</code> to enforce a specific order.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="math.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## 8</code></pre>
+</div>
+<div id="comparisons" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Comparisons</h3>
+<p>In Python, comparisons will always return a Boolean, i.e. either <code>True</code> or <code>False.</code> We can use the following syntax to compare values:</p>
+<ul>
+<li><code>&lt;</code> and <code>&gt;</code>: greater than, less than</li>
+<li><code>&lt;=</code> and <code>&gt;=</code>: greater than or equal to, less than or equal to</li>
+</ul>
+<p>For example:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="math.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">5.3</span> <span class="op">&lt;</span> <span class="dv">17</span>)</span></code></pre></div>
+<pre><code>## True</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="math.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">4.</span> <span class="op">&gt;=</span> (<span class="dv">8</span><span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## True</code></pre>
+<ul>
+<li><code>==</code> checks if two values are equal. <code>!=</code> checks if two values are different.</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="math.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">==</span> (<span class="dv">10</span> <span class="op">-</span> <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## True</code></pre>
+<p>Note that a single equals sign <code>=</code> is used to assign values. However, a double equals sign <code>==</code> is used to compare values.</p>
+<ul>
+<li><code>var1 = 3</code> sets the variable <code>var1</code> to <code>3</code></li>
+<li><code>var1 == 3</code> checks whether the value of <code>var1</code> is <code>3</code></li>
+</ul>
+</div>
 </div>
 <hr>
 <center> 
@@ -219,8 +274,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="for-loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="built-in-functions-and-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
