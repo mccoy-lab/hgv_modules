@@ -152,15 +152,15 @@ Using a method may or not modify the underlying object. For example, the `.upper
 ```{r, engine="python", eval = FALSE}
 pig = "peppa"
 pig.upper()
+```
+
+We've returned the uppercase version of the `pig` variable, but has this value been saved? No: 
+
+```{r, engine="python", eval = FALSE}
 print(pig)
 ```
 
-```{r, engine="python", echo=FALSE}
-pig = "peppa"
-print(pig)
-```
-
-When we use the upper method on `pig`, we do not actually make a change to `pig` itself. To save the uppercase version of `pig`, we need to use variable assignment, for example as such:
+To actually save the result of this method, we have to use variable assignment, for example like so: 
 
 ```{r, engine="python"}
 pig = "peppa"
