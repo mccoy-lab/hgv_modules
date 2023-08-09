@@ -28,8 +28,12 @@ indexing
 indexing-strings
 adding-to-lists
 for-loops
+for-loop-walkthrough
+repeating-an-action-n-times
 reading-in-data-and-text-parsing
 modules
+module-functions
+abbreviating-module-names
 plotting
 errors
 git
