@@ -168,14 +168,14 @@ pig = pig.upper()
 print(pig)
 ```
 
-Some methods operate differently. For example, the list `.append()` method which we will learn about *does* modify the underlying variable, so in the following code block: 
+Some methods *do* in fact modify underlying variables. For example, the list `.append()` method which we will learn about *does* change the list if operates on, so in the following code block: 
 
 ```{r, engine="python"}
 myList = []
 myList.append('apple')
 ```
 
-the line `myList.append('apple')` does actually modify `myList`, so there's no need to type something like `myList = myList.append('apple')` (this would in fact be an error). This is something you'll have to keep track of on a case-by-case basis as you learn new methods. 
+`myList` is changed by `myList.append('apple')`. There's no need to type something like `myList = myList.append('apple')` - this would in fact be an error. Which methods modify the objects they operate on is something you'll have to keep track of on a case-by-case basis as you learn new methods. 
 
 ## String Methods
 
@@ -191,12 +191,71 @@ the line `myList.append('apple')` does actually modify `myList`, so there's no n
 
 Each variable has stored a single piece of information, e.g. a single integer or a discrete string. Lists allow us to store multiple items together?
 
-A list is a sequential group of variables, denoted in Python by square brackets [], with individual entries separated by commas ,. A few of the neat properties of lists are:
+A list is a sequential group of variables, denoted in Python by square brackets [], with individual entries separated by commas. A few of the neat properties of lists are:
 
-Lists have a preserved order. The list [1, 5, 3, 7] will always preserve those numbers in the same order.
-Lists can mix data types. ["apple", 13, 5.3, False] is a valid list which contains every data type we've seen so far.
-Lists can also contain other lists: ["a string", 12, [3, 2], 18]
-Lists can have identical values repeatedly. This is valid list design: ["tomato", "tomato", "tomato", 3, "tomato"]
+* Lists have a preserved order. The list `[1, 5, 3, 7]` will always store those numbers in the same order.
+* Lists can mix data types. `["mercury", 13, 5.3, False]` is a valid list which contains every data type we've seen so far.
+* Lists can also contain other lists: `["sulfur", 12, [3, 2], 18]`
+* Lists can have identical values repeatedly. This is valid list design: ["tomato", "tomato", "tomato", 3, "tomato"]
+
+### Indexing
+
+What if we want to extract a specific value from a list? We can use indexing. To index in Python, we use the following syntax: `variable_name[index],` with `index` being an integer referring to the position we wish to extract.
+
+```{r, engine="python"}
+alchemists = ["Zosimos", "Oresme", "Flamel", "pseudo-Aristotle"]
+print(alchemists[1])
+```
+
+Notice that when we printed the item at position 1, we printed out the second entry in my_list. This is because in Python, **indexes start at 0**. So to print out the first entry, we would use `alchemists[0]`.
+
+A couple interesting things we can do with indexing:
+
+* To print multiple consecutive number, we can provie two numbers separated by a colon `:`. Note that the first number is inclusive and the second number is exclusive. For example, in the sample below, we provide the index 1:3. This prints out the item at position 1 ('Oresme'), the item at position 2 ('Flamel') and not the item at position 3 ('pseudo-Aristotle').
+
+```{r, engine="python"}
+print(alchemists[1:3])
+```
+
+* We can index in reverse. To index from the end of the list, we use negative numbers.
+
+```{r, engine="python"}
+print(alchemists[-1])
+print(alchemists[-2])
+print(alchemists[-3])
+```
+
+What if we have a list within a list? Consider the following list:
+
+```{r, engine="python"}
+my_list = [1, 2, [3, 4], 5]
+```
+
+How would we point to the number `3` in this list?
+
+First, we can point to the interior list. The interior list is the third item in the list, so it is at position 2 (remember, indexing in Python starts at 0). So we can access the interior list with `my_list[2]`.
+
+Within the interior list, 3 is the first item, so it is at position 0. It can be accessed with the syntax `my_list[2][0]`
+
+```{r, engine="python"}
+my_list = [1, 2, [3, 4], 5]
+print(my_list[2])
+print(my_list[2][0])
+```
+
+### Adding to lists - Append
+
+One last interesting thing we can do with lists is we can add entries to the end of a list. We do this using the `append()` method, which is used with the following syntax:
+
+`list_name.append(item)`
+
+For an example:
+
+```{r, engine="python"}
+florilegium = ['marigold', 'thistle', 'wormwood']
+florilegium.append('tansy')
+print(florilegium)
+```
 
 ## For Loops 
 
