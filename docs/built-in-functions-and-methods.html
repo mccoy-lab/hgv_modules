@@ -158,7 +158,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.2" data-path="built-in-functions-and-methods.html"><a href="built-in-functions-and-methods.html#methods"><i class="fa fa-check"></i><b>3.2.2</b> Methods</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="string-methods.html"><a href="string-methods.html"><i class="fa fa-check"></i><b>3.3</b> String Methods</a></li>
-<li class="chapter" data-level="3.4" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>3.4</b> Lists</a></li>
+<li class="chapter" data-level="3.4" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>3.4</b> Lists</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="lists.html"><a href="lists.html#indexing"><i class="fa fa-check"></i><b>3.4.1</b> Indexing</a></li>
+<li class="chapter" data-level="3.4.2" data-path="lists.html"><a href="lists.html#adding-to-lists---append"><i class="fa fa-check"></i><b>3.4.2</b> Adding to lists - Append</a></li>
+</ul></li>
 <li class="chapter" data-level="3.5" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>3.5</b> For Loops</a></li>
 <li class="chapter" data-level="3.6" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>3.6</b> Modules</a></li>
 <li class="chapter" data-level="3.7" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>3.7</b> Plotting</a></li>
@@ -220,10 +224,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb26-2"><a href="built-in-functions-and-methods.html#cb26-2" aria-hidden="true" tabindex="-1"></a>pig <span class="op">=</span> pig.upper()</span>
 <span id="cb26-3"><a href="built-in-functions-and-methods.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pig)</span></code></pre></div>
 <pre><code>## PEPPA</code></pre>
-<p>Some methods operate differently. For example, the list <code>.append()</code> method which we will learn about <em>does</em> modify the underlying variable, so in the following code block:</p>
+<p>Some methods <em>do</em> in fact modify underlying variables. For example, the list <code>.append()</code> method which we will learn about <em>does</em> change the list if operates on, so in the following code block:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="built-in-functions-and-methods.html#cb28-1" aria-hidden="true" tabindex="-1"></a>myList <span class="op">=</span> []</span>
 <span id="cb28-2"><a href="built-in-functions-and-methods.html#cb28-2" aria-hidden="true" tabindex="-1"></a>myList.append(<span class="st">&#39;apple&#39;</span>)</span></code></pre></div>
-<p>the line <code>myList.append('apple')</code> does actually modify <code>myList</code>, so there’s no need to type something like <code>myList = myList.append('apple')</code> (this would in fact be an error). This is something you’ll have to keep track of on a case-by-case basis as you learn new methods.</p>
+<p><code>myList</code> is changed by <code>myList.append('apple')</code>. There’s no need to type something like <code>myList = myList.append('apple')</code> - this would in fact be an error. Which methods modify the objects they operate on is something you’ll have to keep track of on a case-by-case basis as you learn new methods.</p>
 </div>
 </div>
 <hr>

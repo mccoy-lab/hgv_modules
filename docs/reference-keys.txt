@@ -21,6 +21,8 @@ split
 join
 strip
 lists
+indexing
+adding-to-lists---append
 for-loops
 modules
 plotting
