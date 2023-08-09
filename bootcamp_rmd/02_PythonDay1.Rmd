@@ -229,9 +229,21 @@ If we do not provide a delimiter, then the strings are directly concatenated:
 "".join(["here", "in", "after"])
 ```
 
-### .strip()
+### .rstrip(), .lstrip(), .strip()
 
-***ADD***
+These three functions remove any instances of unwanted characters on either the right side, left side, or both sides of a string, respectively. You can provide the characters you want to remove as an argument:
+
+```{r, engine='python'}
+"ricercar........,,,,,,".rstrip(",.")
+```
+
+Without an argument, we remove spaces: 
+
+```{r, engine='python'}
+"          gradus ad Parnassum ".lstrip()
+```
+
+Note that in the above example we strip the spaces to the left of the main text, but we *do not* remove the spaces from the middle or right end of the text.
 
 ## Lists 
 
