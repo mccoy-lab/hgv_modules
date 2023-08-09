@@ -156,7 +156,7 @@ pig.upper()
 
 We've returned the uppercase version of the `pig` variable, but has this value been saved? No: 
 
-```{r, engine="python", eval = FALSE}
+```{r, engine="python"}
 print(pig)
 ```
 
@@ -189,7 +189,14 @@ the line `myList.append('apple')` does actually modify `myList`, so there's no n
 
 ## Lists 
 
-**TEST**
+Each variable has stored a single piece of information, e.g. a single integer or a discrete string. Lists allow us to store multiple items together?
+
+A list is a sequential group of variables, denoted in Python by square brackets [], with individual entries separated by commas ,. A few of the neat properties of lists are:
+
+Lists have a preserved order. The list [1, 5, 3, 7] will always preserve those numbers in the same order.
+Lists can mix data types. ["apple", 13, 5.3, False] is a valid list which contains every data type we've seen so far.
+Lists can also contain other lists: ["a string", 12, [3, 2], 18]
+Lists can have identical values repeatedly. This is valid list design: ["tomato", "tomato", "tomato", 3, "tomato"]
 
 ## For Loops 
 
