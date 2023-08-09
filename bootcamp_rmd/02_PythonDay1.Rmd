@@ -246,7 +246,13 @@ First, we can point to the interior list. The interior list is the third item in
 
 Within the interior list, 3 is the first item, so it is at position 0. It can be accessed with the syntax `my_list[2][0]`
 
-```{r, engine="python"}
+```{r, engine="python", eval=FALSE}
+my_list = [1, 2, [3, 4], 5]
+print(my_list[2])
+print(my_list[2][0])
+```
+
+```{r, engine="python", echo=FALSE}
 my_list = [1, 2, [3, 4], 5]
 print(my_list[2])
 print(my_list[2][0])
