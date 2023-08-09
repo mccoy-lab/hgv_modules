@@ -263,7 +263,8 @@ print(my_list[2][0])
 We can also apply indexing to extract substrings from within a string. This is done identically to how we index a list:
 
 ```{r, engine='python'}
-
+creature = 'stingray'
+print(creature[0:5])
 ```
 
 ### Adding to lists - Append
@@ -300,6 +301,38 @@ for i in stations:
   print(i)
 ```
 
+Here is how the loop works:
+
+In the line for `i in stations`: we are defining the temporary variable i (the name of this variable is arbitrary). We are also saying that we are looping through `stations`. So in this first iteration of the for loop, i takes on the value of the first item in `stations`, that is "Three Note Oddity". Now we perform all of the indented code, which here is just a single print() statement.
+
+Now we go back and set the value of i to that of the second entry in `stations`, or "Radio Londres". We execute all of the indented code, printing out "Radio Londres".
+
+Now we go back and set the value of i to that of the third value in `stations`, or "Cherry Ripe". And we keep on doing this until there is nothing left in my_list.
+
+In the above example, there was a single indented line in the bodyo of the loop, but the for loop can be arbitrarily long. Here is an example of a for loop structured in the same way, but with more going on in the body of the loop:
+
+```{r, engine='python'}
+my_list = [1, 4, 6, 9, 10, 2]
+
+for i in my_list:
+  i = i + 3
+  i = i ** 2
+  print(i)
+```
+
+We can also use a for loop to perform an action a set number of times, even when we don’t have a list to loop through. To do so, we can use the range() function. We'll use this function a ton throughout the course. When we run the range() function with a single integer inside the paranthesis, it generates a sequence of numbers from 0 up to and not including the number provided. So to run a function 3 times, we would provide the for loop with range(3) (i.e. [0, 1, 2]).
+
+```{r, engine='python'}
+for i in range(3):
+  print(i)
+```
+
+So far, the body of our for loops has always referenced the temporary variable i, but we can also use a for loop to run a block of code repeatedly without actually using the temporary variable.
+
+```{r, engine='python'}
+for i in range(6):
+  print("All work and no play")
+```
 
 ## Reading in Data and Text Parsing
 
