@@ -1,0 +1,32 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python Cheat Sheet  
+
+### Mathematics
+
+* `+` and `-`: addition and subtraction
+* `*` and `/`: multiplication and division
+* `**`: exponentials
+
+### Comparisons 
+
+* `<` and `>`: greater than, less than
+* `<=` and `>=`: greater than or equal to, less than or equal to
+
+### String Methods 
+
+* `.upper()` and `.lower()`: Convert string to upper 
+* `.split()`: Split a string on a delimiter into a list
+* `.join()`: Convert a list into a string using a delimiter
+* `.rstrip()`, `.lstrip()`, and `.strip()`: Remove unwanted characters from the right side, left side, or both sides of a string
+
+### List methods
+
+* `.append()`: Add an element to the end of a list
+
+### `Numpy`  
+
+* `.readtxt()`: Import a file 
+* `array.shape`: Return the number of rows and columns of a `numpy` array object 

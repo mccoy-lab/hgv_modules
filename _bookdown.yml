@@ -2,6 +2,7 @@ book_filename: "swcmdb"
 chapter_name: ""
 repo: https://github.com/andrew-bortvin/swcmdb/
 rmd_files: ["index.Rmd",
+            "bootcamp_rmd/pythonCheat.Rmd",
             "bootcamp_rmd/01_Unix.Rmd",
             "bootcamp_rmd/02_PythonDay1.Rmd",
             "bootcamp_rmd/04_PythonDay2.Rmd",
