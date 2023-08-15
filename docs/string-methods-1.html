@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.3 Working with Files and Directories | CMDB Bootcamp</title>
+  <title>4.7 String Methods | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.3 Working with Files and Directories | CMDB Bootcamp" />
+  <meta property="og:title" content="4.7 String Methods | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.3 Working with Files and Directories | CMDB Bootcamp" />
+  <meta name="twitter:title" content="4.7 String Methods | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="navigating-files-and-directories.html"/>
-<link rel="next" href="python-cheat-sheet.html"/>
+<link rel="prev" href="type-conversion.html"/>
+<link rel="next" href="lists.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -226,11 +226,48 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="working-with-files-and-directories" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Working with Files and Directories</h2>
-
+<div id="string-methods-1" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> String Methods</h2>
+<div id="upper-and-.lower" class="section level3" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> <code>.upper()</code> and <code>.lower()</code></h3>
+<p>The <code>.upper()</code> and <code>.lower()</code> methods take a string and convert it to uppercase and lowercase, respectively.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="string-methods-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;out on the wily, windy moors&quot;</span>.upper())</span></code></pre></div>
+<pre><code>## OUT ON THE WILY, WINDY MOORS</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="string-methods-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a>aria <span class="op">=</span> <span class="st">&quot;Piangerò La Sorte Mia&quot;</span></span>
+<span id="cb35-2"><a href="string-methods-1.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aria.lower())</span></code></pre></div>
+<pre><code>## piangerò la sorte mia</code></pre>
 </div>
-<!-- </div> -->
+<div id="split" class="section level3" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> .split()</h3>
+<p>The <code>.split()</code> method takes a string and splits it into a list, dividing the list on a <strong>delimiter</strong> (i.e., separator). The delimiter is provided as an argument:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="string-methods-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Newt eye, frog toe&quot;</span>.split(<span class="st">&#39;,&#39;</span>))</span></code></pre></div>
+<pre><code>## [&#39;Newt eye&#39;, &#39; frog toe&#39;]</code></pre>
+<p>If no argument is provided, then the string is split on whitespace (that is, it is split whenever a space or tab is encountered).</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="string-methods-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Eye of newt    and toe of frog&quot;</span>.split())</span></code></pre></div>
+<pre><code>## [&#39;Eye&#39;, &#39;of&#39;, &#39;newt&#39;, &#39;and&#39;, &#39;toe&#39;, &#39;of&#39;, &#39;frog&#39;]</code></pre>
+</div>
+<div id="join" class="section level3" number="4.7.3">
+<h3><span class="header-section-number">4.7.3</span> .join()</h3>
+<p>The <code>.join()</code> method is the inverse of <code>.split()</code>: converts a list into a string, with list elements separated by a delimiter. The general syntax is:</p>
+<pre><code>&quot;&lt;delimiter&gt;&quot;.join(&lt;list&gt;)</code></pre>
+<p>For example:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="string-methods-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot; &quot;</span>.join([<span class="st">&quot;I&quot;</span>, <span class="st">&quot;found&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;caught&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;dogs&quot;</span>])</span></code></pre></div>
+<pre><code>## &#39;I found a fox caught by dogs&#39;</code></pre>
+<p>If we do not provide a delimiter, then the strings are directly concatenated:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="string-methods-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;</span>.join([<span class="st">&quot;I&quot;</span>, <span class="st">&quot;found&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;caught&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;dogs&quot;</span>])</span></code></pre></div>
+<pre><code>## &#39;Ifoundafoxcaughtbydogs&#39;</code></pre>
+</div>
+<div id="rstrip-.lstrip-.strip" class="section level3" number="4.7.4">
+<h3><span class="header-section-number">4.7.4</span> .rstrip(), .lstrip(), .strip()</h3>
+<p>These three methods remove unwanted characters on the right, left, or both sides of a string. You can provide the characters you want to remove as an argument:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="string-methods-1.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;ricercar........,,,,,,&quot;</span>.rstrip(<span class="st">&quot;,.&quot;</span>)</span></code></pre></div>
+<pre><code>## &#39;ricercar&#39;</code></pre>
+<p>Without an argument, the methods remove spaces:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="string-methods-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;          ricercar &quot;</span>.lstrip()</span></code></pre></div>
+<pre><code>## &#39;ricercar &#39;</code></pre>
+<p>Note that in the above example we strip the spaces to the left of the main text, but we <strong>do not</strong> remove the spaces from the middle or right end of the text.</p>
+</div>
+</div>
 <hr>
 <center> 
   <div class="footer">
@@ -244,8 +281,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="navigating-files-and-directories.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="python-cheat-sheet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="type-conversion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lists.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

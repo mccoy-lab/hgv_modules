@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.3 Working with Files and Directories | CMDB Bootcamp</title>
+  <title>4.12 Numpy | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.3 Working with Files and Directories | CMDB Bootcamp" />
+  <meta property="og:title" content="4.12 Numpy | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.3 Working with Files and Directories | CMDB Bootcamp" />
+  <meta name="twitter:title" content="4.12 Numpy | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="navigating-files-and-directories.html"/>
-<link rel="next" href="python-cheat-sheet.html"/>
+<link rel="prev" href="modules.html"/>
+<link rel="next" href="math-in-numpy.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -226,9 +226,42 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="working-with-files-and-directories" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Working with Files and Directories</h2>
-
+<div id="numpy-1" class="section level2" number="4.12">
+<h2><span class="header-section-number">4.12</span> Numpy</h2>
+<p>Numpy is a Python library used for manipulating arrays and performing mathematical operations on matrices. For concision, we will import the <code>numpy</code> module with the name <code>np</code>, as such:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="numpy-1.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div id="reading-in-data" class="section level3" number="4.12.1">
+<h3><span class="header-section-number">4.12.1</span> Reading in data</h3>
+<p>The function <code>np.readtxt()</code> is used to read in text data. The most basic way to run <code>np.readtxt()</code> is:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="numpy-1.html#cb84-1" aria-hidden="true" tabindex="-1"></a>np.readtxt(<span class="op">&lt;</span>fname<span class="op">&gt;</span>)</span></code></pre></div>
+<p>Consider a hypothetical comma-delimited file <code>numbers.csv</code>. The most basic way of reading it in is to run <code>np.readtxt('numbers.csv')</code>. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use <code>np.readtxt()</code> in conjunction with variable assignment:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="numpy-1.html#cb85-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.readtxt(<span class="st">&#39;numbers.csv&#39;</span>)</span></code></pre></div>
+<p>This creates an array where each contains the full text of the line. For example, a component line could appear as: <strong>array([‘1,2,3’], dtype=‘&lt;U5’)</strong>, with all variables appearing together as one string. To tell Python that our data is delimited by a comma, we can use the <strong>optional argument</strong>, <code>delimiter</code>:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="numpy-1.html#cb86-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.readtxt(<span class="st">&#39;numbers.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span></code></pre></div>
+<p>Now, each number is encoded as its own element:</p>
+<p><code>array([1, 2, 3])</code></p>
+<p>Notice that unlike the file name, we need to specify the name of this optional argument (<code>delimiter=</code>). Because the file name argument is mandatory, <code>numpy</code> always expects the first argument to be the filename. However, since there are many possible optional arguments that once can use, it is impossible to infer which optional argument is being referred to by position alone. For optional arguments, we <strong>always need to specify their name</strong>.</p>
+<p><code>np.readtxt()</code> has many useful optional arguments - for example <code>skiplines</code>, which allows the user to skip the first <code>n</code> lines of a file. A full list of the optional arguments to <code>np.readtxt()</code> can be found <a href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">here</a></p>
+</div>
+<div id="indexing-numpy-arrays" class="section level3" number="4.12.2">
+<h3><span class="header-section-number">4.12.2</span> Indexing <code>numpy</code> arrays</h3>
+<p>Within a <code>numpy</code> array, we often want to look at a specific element or set of elements. To do this, we use indexing.</p>
+<p>First, we can see the total size of an array by looking at the array’s <code>shape</code> attribute. An <strong>attribute</strong> is a property inherent to a specific data type; it is typically viewed with the following syntax: <code>print(&lt;variableName&gt;.&lt;attributeName&gt;)</code>. We can therefore look at the shape of our array as such: <code>print(myNumbers.shape)</code>. This returns the number of rows and columns, respectively: <code>(45, 12)</code> - 45 rows and 12 columns.</p>
+<div id="accessing-single-values" class="section level4" number="4.12.2.1">
+<h4><span class="header-section-number">4.12.2.1</span> Accessing Single Values</h4>
+<p>To look within these rows and columns for specific values, we use indexing:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="numpy-1.html#cb87-1" aria-hidden="true" tabindex="-1"></a>dataName[<span class="op">&lt;</span>rowNumber<span class="op">&gt;</span>, <span class="op">&lt;</span>columnNumber<span class="op">&gt;</span>]</span></code></pre></div>
+<p>For example, to print the value in the fifth row and third column of <code>myNumbers</code>, we would write:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="numpy-1.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">4</span>, <span class="dv">2</span>])</span></code></pre></div>
+<p>Remember that in Python, we start counting at <code>0</code>.</p>
+</div>
+<div id="accessing-multiple-values" class="section level4" number="4.12.2.2">
+<h4><span class="header-section-number">4.12.2.2</span> Accessing Multiple Values</h4>
+<p>To print multiple consecutive items, we can provide two numbers separated by a colon <code>:</code>.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="numpy-1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">2</span>:<span class="dv">4</span>, <span class="dv">5</span>:<span class="dv">10</span>])</span></code></pre></div>
+<p>Note that the first number is <strong>inclusive</strong> and the second number is <strong>exclusive</strong>: We will print the elements in rows 3 and 4 and not row 5. We will print the the elements in columns 6 through 10, and not in column 11.</p>
+</div>
+</div>
 </div>
 <!-- </div> -->
 <hr>
@@ -244,8 +277,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="navigating-files-and-directories.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="python-cheat-sheet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modules.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="math-in-numpy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
