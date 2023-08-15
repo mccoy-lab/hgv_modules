@@ -34,6 +34,12 @@ reading-in-data-and-text-parsing
 modules
 module-functions
 abbreviating-module-names
+numpy
+reading-in-data
+indexing-numpy-arrays
+accessing-single-values
+accessing-multiple-values
+math-in-numpy
 plotting
 errors
 git

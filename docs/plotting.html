@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.12 Plotting | CMDB Bootcamp</title>
+  <title>4.1 Plotting | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.12 Plotting | CMDB Bootcamp" />
+  <meta property="og:title" content="4.1 Plotting | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.12 Plotting | CMDB Bootcamp" />
+  <meta name="twitter:title" content="4.1 Plotting | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="modules.html"/>
+<link rel="prev" href="math-in-numpy.html"/>
 <link rel="next" href="errors.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -181,13 +181,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11.1" data-path="modules.html"><a href="modules.html#module-functions"><i class="fa fa-check"></i><b>3.11.1</b> Module functions</a></li>
 <li class="chapter" data-level="3.11.2" data-path="modules.html"><a href="modules.html#abbreviating-module-names"><i class="fa fa-check"></i><b>3.11.2</b> Abbreviating module names</a></li>
 </ul></li>
-<li class="chapter" data-level="3.12" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>3.12</b> Plotting</a></li>
-<li class="chapter" data-level="3.13" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>3.13</b> Errors</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
+<li class="chapter" data-level="3.12" data-path="numpy.html"><a href="numpy.html"><i class="fa fa-check"></i><b>3.12</b> Numpy</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>4.1</b> Tracking Changes</a></li>
-<li class="chapter" data-level="4.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>4.2</b> Ignoring Things</a></li>
+<li class="chapter" data-level="3.12.1" data-path="numpy.html"><a href="numpy.html#reading-in-data"><i class="fa fa-check"></i><b>3.12.1</b> Reading in data</a></li>
+<li class="chapter" data-level="3.12.2" data-path="numpy.html"><a href="numpy.html#indexing-numpy-arrays"><i class="fa fa-check"></i><b>3.12.2</b> Indexing <code>numpy</code> arrays</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="math-in-numpy.html"><a href="math-in-numpy.html"><i class="fa fa-check"></i><b>4</b> Math in <code>numpy</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>4.1</b> Plotting</a></li>
+<li class="chapter" data-level="4.2" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>4.2</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>5</b> Git</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>5.1</b> Tracking Changes</a></li>
+<li class="chapter" data-level="5.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>5.2</b> Ignoring Things</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
@@ -210,10 +218,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="plotting" class="section level2" number="3.12">
-<h2><span class="header-section-number">3.12</span> Plotting</h2>
+<div id="plotting" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Plotting</h2>
 <p>In this course, we will use the library Matplotlib for plotting. For concision, we will import the <code>matplotlib.pyplot</code> module with the name <code>plt</code>, as such:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="plotting.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="plotting.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 
 </div>
 <hr>
@@ -229,7 +237,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="modules.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="math-in-numpy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

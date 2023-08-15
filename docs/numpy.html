@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.9 For Loops | CMDB Bootcamp</title>
+  <title>3.12 Numpy | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.9 For Loops | CMDB Bootcamp" />
+  <meta property="og:title" content="3.12 Numpy | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.9 For Loops | CMDB Bootcamp" />
+  <meta name="twitter:title" content="3.12 Numpy | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="lists.html"/>
-<link rel="next" href="reading-in-data-and-text-parsing.html"/>
+<link rel="prev" href="modules.html"/>
+<link rel="next" href="math-in-numpy.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -218,64 +218,44 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="for-loops" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> For Loops</h2>
-<p>In Python, we will often want to perform an action more than once. For example, if we have a list, we might want to do the same operatation on every item within the list.</p>
-<p>One way to do this is to use a <strong>for loop</strong>, which is structured like this:</p>
-<pre><code>for &lt;temporary_variable&gt; in &lt;thing to loop through&gt;:
-    {do something}</code></pre>
-<p>For example:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="for-loops.html#cb68-1" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> [<span class="st">&quot;Oddity&quot;</span>, <span class="st">&quot;Londres&quot;</span>, <span class="st">&quot;Cherry&quot;</span>, <span class="st">&quot;Swedish&quot;</span>]</span>
-<span id="cb68-2"><a href="for-loops.html#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-3"><a href="for-loops.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> stations:</span>
-<span id="cb68-4"><a href="for-loops.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
-<pre><code>## Oddity
-## Londres
-## Cherry
-## Swedish</code></pre>
-<div id="for-loop-walkthrough" class="section level3" number="3.9.1">
-<h3><span class="header-section-number">3.9.1</span> For loop walkthrough</h3>
-<p>Here is how the loop works:</p>
-<pre><code>for i in stations:</code></pre>
-<p>In this line, we:</p>
-<ul>
-<li>Define the temporary variable <code>i</code>. The name of this variable is arbitrary.</li>
-<li>We say that we are looping through <code>stations</code>.</li>
-</ul>
-<p>In the first iteration of the for loop, <code>i</code> takes on the value of the first item in <code>stations</code> (<code>"Oddity"</code>). Now we perform all of the indented code, which here is just a <code>print()</code> statement.</p>
-<p>In the second iteration of the for loop, we set the value of <code>i</code> to the second entry in <code>stations</code> (<code>"Londres"</code>). We execute all of the indented code, printing out <code>"Londres"</code>.</p>
-<p>We continue on doing this until there is nothing left in <code>stations</code>.</p>
-<p>In this example, there was a single line in the body of the loop, but a for loop can be arbitrarily long. Here is a longer example:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="for-loops.html#cb71-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">2</span>]</span>
-<span id="cb71-2"><a href="for-loops.html#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-3"><a href="for-loops.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> my_list:</span>
-<span id="cb71-4"><a href="for-loops.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">3</span></span>
-<span id="cb71-5"><a href="for-loops.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> i <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb71-6"><a href="for-loops.html#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
-<pre><code>## 16
-## 49
-## 81
-## 144
-## 169
-## 25</code></pre>
+<div id="numpy" class="section level2" number="3.12">
+<h2><span class="header-section-number">3.12</span> Numpy</h2>
+<p>Numpy is a Python library used for manipulating arrays and performing mathematical operations on matrices. For concision, we will import the <code>numpy</code> module with the name <code>np</code>, as such:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="numpy.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div id="reading-in-data" class="section level3" number="3.12.1">
+<h3><span class="header-section-number">3.12.1</span> Reading in data</h3>
+<p>The function <code>np.readtxt()</code> is used to read in text data. The most basic way to run <code>np.readtxt()</code> is:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="numpy.html#cb84-1" aria-hidden="true" tabindex="-1"></a>np.readtxt(<span class="op">&lt;</span>fname<span class="op">&gt;</span>)</span></code></pre></div>
+<p>Consider a hypothetical comma-delimited file <code>numbers.csv</code>. The most basic way of reading it in is to run <code>np.readtxt('numbers.csv')</code>. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use <code>np.readtxt()</code> in conjunction with variable assignment:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="numpy.html#cb85-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.readtxt(<span class="st">&#39;numbers.csv&#39;</span>)</span></code></pre></div>
+<p>This creates an array where each contains the full text of the line. For example, a component line could appear as: <strong>array([‘1,2,3’], dtype=‘&lt;U5’)</strong>, with all variables appearing together as one string. To tell Python that our data is delimited by a comma, we can use the <strong>optional argument</strong>, <code>delimiter</code>:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="numpy.html#cb86-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.readtxt(<span class="st">&#39;numbers.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span></code></pre></div>
+<p>Now, each number is encoded as its own element:</p>
+<p><code>array([1, 2, 3])</code></p>
+<p>Notice that unlike the file name, we need to specify the name of this optional argument (<code>delimiter=</code>). Because the file name argument is mandatory, <code>numpy</code> always expects the first argument to be the filename. However, since there are many possible optional arguments that once can use, it is impossible to infer which optional argument is being referred to by position alone. For optional arguments, we <strong>always need to specify their name</strong>.</p>
+<p><code>np.readtxt()</code> has many useful optional arguments - for example <code>skiplines</code>, which allows the user to skip the first <code>n</code> lines of a file. A full list of the optional arguments to <code>np.readtxt()</code> can be found <a href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">here</a></p>
 </div>
-<div id="repeating-an-action-n-times" class="section level3" number="3.9.2">
-<h3><span class="header-section-number">3.9.2</span> Repeating an action <code>n</code> times</h3>
-<p>We can also use a for loop to perform an action a set number of times, even when we don’t have a list to loop through. To do so, we can use the <code>range()</code> function. We’ll use this function a ton throughout the course.</p>
-<p><code>range(&lt;n&gt;)</code>, where <code>n</code> is a single integer, generates a sequence of numbers from <code>0</code> to <code>n</code> (not including <code>n</code> itself). So to run a function 3 times, we would provide the for loop with <code>range(3)</code> (which generates the list <code>[0, 1, 2]</code>).</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="for-loops.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb73-2"><a href="for-loops.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
-<pre><code>## 0
-## 1
-## 2</code></pre>
-<p>So far, the body of our for loop has always referenced the temporary variable <code>i</code>. We can also use a for loop to run a block of code repeatedly without actually manipulating <code>i</code>:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="for-loops.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb75-2"><a href="for-loops.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;All work and no play&quot;</span>)</span></code></pre></div>
-<pre><code>## All work and no play
-## All work and no play
-## All work and no play</code></pre>
+<div id="indexing-numpy-arrays" class="section level3" number="3.12.2">
+<h3><span class="header-section-number">3.12.2</span> Indexing <code>numpy</code> arrays</h3>
+<p>Within a <code>numpy</code> array, we often want to look at a specific element or set of elements. To do this, we use indexing.</p>
+<p>First, we can see the total size of an array by looking at the array’s <code>shape</code> attribute. An <strong>attribute</strong> is a property inherent to a specific data type; it is typically viewed with the following syntax: <code>print(&lt;variableName&gt;.&lt;attributeName&gt;)</code>. We can therefore look at the shape of our array as such: <code>print(myNumbers.shape)</code>. This returns the number of rows and columns, respectively: <code>(45, 12)</code> - 45 rows and 12 columns.</p>
+<div id="accessing-single-values" class="section level4" number="3.12.2.1">
+<h4><span class="header-section-number">3.12.2.1</span> Accessing Single Values</h4>
+<p>To look within these rows and columns for specific values, we use indexing:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="numpy.html#cb87-1" aria-hidden="true" tabindex="-1"></a>dataName[<span class="op">&lt;</span>rowNumber<span class="op">&gt;</span>, <span class="op">&lt;</span>columnNumber<span class="op">&gt;</span>]</span></code></pre></div>
+<p>For example, to print the value in the fifth row and third column of <code>myNumbers</code>, we would write:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="numpy.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">4</span>, <span class="dv">2</span>])</span></code></pre></div>
+<p>Remember that in Python, we start counting at <code>0</code>.</p>
+</div>
+<div id="accessing-multiple-values" class="section level4" number="3.12.2.2">
+<h4><span class="header-section-number">3.12.2.2</span> Accessing Multiple Values</h4>
+<p>To print multiple consecutive items, we can provide two numbers separated by a colon <code>:</code>.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="numpy.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">2</span>:<span class="dv">4</span>, <span class="dv">5</span>:<span class="dv">10</span>])</span></code></pre></div>
+<p>Note that the first number is <strong>inclusive</strong> and the second number is <strong>exclusive</strong>: We will print the elements in rows 3 and 4 and not row 5. We will print the the elements in columns 6 through 10, and not in column 11.</p>
 </div>
 </div>
+</div>
+<!-- </div> -->
 <hr>
 <center> 
   <div class="footer">
@@ -289,8 +269,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="lists.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reading-in-data-and-text-parsing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modules.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="math-in-numpy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
