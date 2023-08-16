@@ -226,7 +226,7 @@ Note that for the above functions, it is not always possible to do convert data 
 
 * `str()` converts all other data types into strings. 
 
-```{r, engine='python'}
+```{r, engine='python', eval=FALSE}
 print(str(3))
 print(str(2.57))
 print(str(True))
