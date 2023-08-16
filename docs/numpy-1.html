@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
 <link rel="prev" href="modules.html"/>
-<link rel="next" href="errors.html"/>
+<link rel="next" href="plotting-with-matplotlib.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -145,6 +145,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.0.5" data-path="python-cheat-sheet.html"><a href="python-cheat-sheet.html#working-with-files"><i class="fa fa-check"></i><b>2.0.5</b> Working with Files</a></li>
 <li class="chapter" data-level="2.0.6" data-path="python-cheat-sheet.html"><a href="python-cheat-sheet.html#list-methods"><i class="fa fa-check"></i><b>2.0.6</b> List methods</a></li>
 <li class="chapter" data-level="2.0.7" data-path="python-cheat-sheet.html"><a href="python-cheat-sheet.html#numpy"><i class="fa fa-check"></i><b>2.0.7</b> <code>Numpy</code></a></li>
+<li class="chapter" data-level="2.0.8" data-path="python-cheat-sheet.html"><a href="python-cheat-sheet.html#plotting"><i class="fa fa-check"></i><b>2.0.8</b> Plotting</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="the-unix-shell.html"><a href="the-unix-shell.html"><i class="fa fa-check"></i><b>3</b> The Unix Shell</a>
 <ul>
@@ -199,14 +200,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12.1" data-path="numpy-1.html"><a href="numpy-1.html#reading-in-data-1"><i class="fa fa-check"></i><b>4.12.1</b> Reading in data</a></li>
 <li class="chapter" data-level="4.12.2" data-path="numpy-1.html"><a href="numpy-1.html#indexing-numpy-arrays"><i class="fa fa-check"></i><b>4.12.2</b> Indexing <code>numpy</code> arrays</a></li>
 <li class="chapter" data-level="4.12.3" data-path="numpy-1.html"><a href="numpy-1.html#math-in-numpy"><i class="fa fa-check"></i><b>4.12.3</b> Math in <code>numpy</code></a></li>
-<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#plotting-with-matplotlib"><i class="fa fa-check"></i><b>4.12.4</b> Plotting with <code>matplotlib</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.13" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>4.13</b> Errors</a></li>
+<li class="chapter" data-level="4.13" data-path="plotting-with-matplotlib.html"><a href="plotting-with-matplotlib.html"><i class="fa fa-check"></i><b>4.13</b> Plotting with <code>matplotlib</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>5</b> Git</a>
+<li class="chapter" data-level="5" data-path="plotting-walkthrough.html"><a href="plotting-walkthrough.html"><i class="fa fa-check"></i><b>5</b> Plotting walkthrough</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>5.1</b> Tracking Changes</a></li>
-<li class="chapter" data-level="5.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>5.2</b> Ignoring Things</a></li>
+<li class="chapter" data-level="5.1" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>5.1</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>6</b> Git</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>6.1</b> Tracking Changes</a></li>
+<li class="chapter" data-level="6.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>6.2</b> Ignoring Things</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
@@ -267,17 +271,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="math-in-numpy" class="section level3" number="4.12.3">
 <h3><span class="header-section-number">4.12.3</span> Math in <code>numpy</code></h3>
-</div>
-<div id="plotting-with-matplotlib" class="section level3" number="4.12.4">
-<h3><span class="header-section-number">4.12.4</span> Plotting with <code>matplotlib</code></h3>
-<p>In this course, we will use the library Matplotlib for plotting. For concision, we will import the <code>matplotlib.pyplot</code> module with the name <code>plt</code>, as such:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="numpy-1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
-<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="numpy-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb102-2"><a href="numpy-1.html#cb102-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]</span>
-<span id="cb102-3"><a href="numpy-1.html#cb102-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
-<span id="cb102-4"><a href="numpy-1.html#cb102-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(x,y)</span>
-<span id="cb102-5"><a href="numpy-1.html#cb102-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-
+<p>Consider the numpy array:</p>
+<pre><code>[[1,2,3],
+[4,5,6]]</code></pre>
 </div>
 </div>
 <hr>
@@ -294,7 +290,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="modules.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotting-with-matplotlib.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

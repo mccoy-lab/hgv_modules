@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.11 Modules | CMDB Bootcamp</title>
+  <title>5 Plotting walkthrough | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.11 Modules | CMDB Bootcamp" />
+  <meta property="og:title" content="5 Plotting walkthrough | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.11 Modules | CMDB Bootcamp" />
+  <meta name="twitter:title" content="5 Plotting walkthrough | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="reading-in-data.html"/>
-<link rel="next" href="numpy-1.html"/>
+<link rel="prev" href="plotting-with-matplotlib.html"/>
+<link rel="next" href="errors.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -233,26 +233,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="modules" class="section level2" number="4.11">
-<h2><span class="header-section-number">4.11</span> Modules</h2>
-<p>Often, we need to make use of functions beyond the basic ones in Python. To do this, we can import a <strong>module</strong>, or a collection of pre-written functions. A module is imported with the following syntax:</p>
-<pre><code>import &lt;module name&gt;</code></pre>
-<p>For example, to import the popular plotting module Matplotlib, we write:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="modules.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span></code></pre></div>
-<div id="module-functions" class="section level3" number="4.11.1">
-<h3><span class="header-section-number">4.11.1</span> Module functions</h3>
-<p>To use a function from Matplotlib, we need to reference both the package name and the function name, with the general syntax:</p>
-<pre><code>moduleName.functionName()</code></pre>
-<p>To use Matplotlib’s <code>show()</code> function, we would write:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="modules.html#cb91-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre></div>
-</div>
-<div id="abbreviating-module-names" class="section level3" number="4.11.2">
-<h3><span class="header-section-number">4.11.2</span> Abbreviating module names</h3>
-<p>What if you don’t want to write out <code>matplotlib.pyplot</code> every time you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="modules.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
-<p>Now, instead of writing out <code>matplotlib.pyplot</code>, we can just write <code>plt</code>. The previous <code>matplotlib.pyplot.show()</code> command is shortened to:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="modules.html#cb93-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-</div>
+<div id="plotting-walkthrough" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Plotting walkthrough</h1>
+<p>We can initialize a figure with the following line:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="plotting-walkthrough.html#cb103-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span></code></pre></div>
+<p>This initializes a figure (<code>fig</code>) and a plot within the figure (<code>ax</code>).</p>
+<p>We can</p>
+<!--chapter:end:bootcamp_rmd/02_PythonDay1.Rmd-->
 </div>
 <hr>
 <center> 
@@ -267,8 +254,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="reading-in-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="numpy-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotting-with-matplotlib.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

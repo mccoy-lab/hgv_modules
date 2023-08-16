@@ -9,6 +9,7 @@ type-conversion
 working-with-files
 list-methods
 numpy
+plotting
 the-unix-shell
 introducing-the-shell
 navigating-files-and-directories
@@ -53,6 +54,7 @@ accessing-single-values
 accessing-multiple-values
 math-in-numpy
 plotting-with-matplotlib
+plotting-walkthrough
 errors
 git
 tracking-changes
