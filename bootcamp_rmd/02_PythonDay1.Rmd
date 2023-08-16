@@ -658,7 +658,7 @@ sequence = np.array(([1,2,3],[4,5,6]))
 [4,5,6]]
 ```
 
-### Averages 
+### Average and Standard Deviation
 
 To take the average of this array, we use the function `np.mean()`. `np.mean()` has one required argument, which is the name of the object you want to take the mean of. 
 
@@ -670,10 +670,16 @@ np.mean(sequence)
 
 Conveniently, we can also use this same function to calculate the averages across rows and columns, by invoking the optional `axis` argument. Setting `axis` equal to `0` will produce column means; setting `axis` to `1` will produce row means:
 
-```{r, engine='python`}
+```{r, engine='python'}
 np.mean(sequence,axis=0)
 np.mean(sequence,axis=1)
 ```
+
+To compute the standard deviation, we use the `np.std()`
+
+### Max, min
+
+We can get the maximum and minimum values of a `numpy` array using the `np.max()` and `np.min()` functions, respectively
 
 ## Plotting with `matplotlib` 
 
