@@ -664,7 +664,7 @@ To take the average of this array, we use the function `np.mean()`. `np.mean()` 
 
 Running this function on `sequence` will return `3.5`, which is indeed the average of all six elements: 
 
-```{r, engine='python`}
+```{r, engine='python'}
 np.mean(sequence)
 ```
 
