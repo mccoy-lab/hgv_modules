@@ -199,7 +199,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12.1" data-path="numpy-1.html"><a href="numpy-1.html#reading-in-data-1"><i class="fa fa-check"></i><b>4.12.1</b> Reading in data</a></li>
 <li class="chapter" data-level="4.12.2" data-path="numpy-1.html"><a href="numpy-1.html#indexing-numpy-arrays"><i class="fa fa-check"></i><b>4.12.2</b> Indexing <code>numpy</code> arrays</a></li>
 <li class="chapter" data-level="4.12.3" data-path="numpy-1.html"><a href="numpy-1.html#math-in-numpy"><i class="fa fa-check"></i><b>4.12.3</b> Math in <code>numpy</code></a></li>
-<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#plotting"><i class="fa fa-check"></i><b>4.12.4</b> Plotting</a></li>
+<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#plotting-with-matplotlib"><i class="fa fa-check"></i><b>4.12.4</b> Plotting with <code>matplotlib</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4.13" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>4.13</b> Errors</a></li>
 </ul></li>
@@ -268,10 +268,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="math-in-numpy" class="section level3" number="4.12.3">
 <h3><span class="header-section-number">4.12.3</span> Math in <code>numpy</code></h3>
 </div>
-<div id="plotting" class="section level3" number="4.12.4">
-<h3><span class="header-section-number">4.12.4</span> Plotting</h3>
+<div id="plotting-with-matplotlib" class="section level3" number="4.12.4">
+<h3><span class="header-section-number">4.12.4</span> Plotting with <code>matplotlib</code></h3>
 <p>In this course, we will use the library Matplotlib for plotting. For concision, we will import the <code>matplotlib.pyplot</code> module with the name <code>plt</code>, as such:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="numpy-1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="numpy-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb102-2"><a href="numpy-1.html#cb102-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]</span>
+<span id="cb102-3"><a href="numpy-1.html#cb102-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb102-4"><a href="numpy-1.html#cb102-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(x,y)</span>
+<span id="cb102-5"><a href="numpy-1.html#cb102-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 
 </div>
 </div>

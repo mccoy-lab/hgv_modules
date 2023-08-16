@@ -52,7 +52,7 @@ indexing-numpy-arrays
 accessing-single-values
 accessing-multiple-values
 math-in-numpy
-plotting
+plotting-with-matplotlib
 errors
 git
 tracking-changes
