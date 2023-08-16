@@ -53,6 +53,8 @@ indexing-numpy-arrays
 accessing-single-values
 accessing-multiple-values
 math-in-numpy
+average-and-standard-deviation
+max-min
 plotting-with-matplotlib
 plotting-walkthrough
 errors

@@ -200,6 +200,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12.1" data-path="numpy-1.html"><a href="numpy-1.html#reading-in-data-1"><i class="fa fa-check"></i><b>4.12.1</b> Reading in data</a></li>
 <li class="chapter" data-level="4.12.2" data-path="numpy-1.html"><a href="numpy-1.html#indexing-numpy-arrays"><i class="fa fa-check"></i><b>4.12.2</b> Indexing <code>numpy</code> arrays</a></li>
 <li class="chapter" data-level="4.12.3" data-path="numpy-1.html"><a href="numpy-1.html#math-in-numpy"><i class="fa fa-check"></i><b>4.12.3</b> Math in <code>numpy</code></a></li>
+<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#average-and-standard-deviation"><i class="fa fa-check"></i><b>4.12.4</b> Average and Standard Deviation</a></li>
+<li class="chapter" data-level="4.12.5" data-path="numpy-1.html"><a href="numpy-1.html#max-min"><i class="fa fa-check"></i><b>4.12.5</b> Max, min</a></li>
 </ul></li>
 <li class="chapter" data-level="4.13" data-path="plotting-with-matplotlib.html"><a href="plotting-with-matplotlib.html"><i class="fa fa-check"></i><b>4.13</b> Plotting with <code>matplotlib</code></a></li>
 </ul></li>
@@ -271,9 +273,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="math-in-numpy" class="section level3" number="4.12.3">
 <h3><span class="header-section-number">4.12.3</span> Math in <code>numpy</code></h3>
-<p>Consider the numpy array:</p>
+<p>Consider the numpy array, which is saved with the name <code>sequence</code>:</p>
 <pre><code>[[1,2,3],
 [4,5,6]]</code></pre>
+</div>
+<div id="average-and-standard-deviation" class="section level3" number="4.12.4">
+<h3><span class="header-section-number">4.12.4</span> Average and Standard Deviation</h3>
+<p>To take the average of this array, we use the function <code>np.mean()</code>. <code>np.mean()</code> has one required argument, which is the name of the object you want to take the mean of.</p>
+<p>Running this function on <code>sequence</code> will return <code>3.5</code>, which is indeed the average of all six elements:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="numpy-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a>np.mean(sequence)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="numpy-1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.5</span></span></code></pre></div>
+<p>Conveniently, we can also use this same function to calculate the averages across rows and columns, by invoking the optional <code>axis</code> argument. Setting <code>axis</code> equal to <code>0</code> will produce column means; setting <code>axis</code> to <code>1</code> will produce row means:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="numpy-1.html#cb104-1" aria-hidden="true" tabindex="-1"></a>np.mean(sequence, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb104-2"><a href="numpy-1.html#cb104-2" aria-hidden="true" tabindex="-1"></a>array([<span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>])</span>
+<span id="cb104-3"><a href="numpy-1.html#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-4"><a href="numpy-1.html#cb104-4" aria-hidden="true" tabindex="-1"></a>np.mean(sequence, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb104-5"><a href="numpy-1.html#cb104-5" aria-hidden="true" tabindex="-1"></a>array([<span class="fl">2.</span>, <span class="fl">5.</span>])</span></code></pre></div>
+<p>To compute the standard deviation, we use the <code>np.std()</code></p>
+</div>
+<div id="max-min" class="section level3" number="4.12.5">
+<h3><span class="header-section-number">4.12.5</span> Max, min</h3>
+<p>We can get the maximum and minimum values of a <code>numpy</code> array using the <code>np.max()</code> and <code>np.min()</code> functions, respectively</p>
 </div>
 </div>
 <hr>
