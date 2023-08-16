@@ -243,9 +243,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="parsing-a-file" class="section level3" number="4.10.1">
 <h3><span class="header-section-number">4.10.1</span> Parsing a file</h3>
 <p>If we try to <code>print()</code> f, we get the following output: <code>&lt;_io.TextIOWrapper name='insects.txt' mode='r' encoding='UTF-8'&gt;</code></p>
-<p>This is because we have opened the file and saved it as a variable, but we haven’t</p>
+<p>This is because we have opened the file and saved it as a variable, but we haven’t actually read through and manipulated the data which it contains. We have two main ways of doing this in base Python:</p>
 <div id="parsing-with-a-for-loop" class="section level4" number="4.10.1.1">
-<h4><span class="header-section-number">4.10.1.1</span> Parsing with a <code>for</code> loop</h4>
+<h4><span class="header-section-number">4.10.1.1</span> 1. Parsing with a <code>for</code> loop</h4>
 <p>One way to look through a file’s contents line by line is to use a <code>for</code> loop. We can loop through a file with the syntax:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="reading-in-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> f:</span>
 <span id="cb84-2"><a href="reading-in-data.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(line)</span></code></pre></div>
@@ -263,7 +263,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb86-2"><a href="reading-in-data.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(line.strip(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 </div>
 <div id="parsing-with-readlines" class="section level4" number="4.10.1.2">
-<h4><span class="header-section-number">4.10.1.2</span> Parsing with <code>readlines()</code></h4>
+<h4><span class="header-section-number">4.10.1.2</span> 2. Parsing with <code>readlines()</code></h4>
 <p><code>readlines()</code> is a method that allows us to read through the entire file all at once, returning file contents as a list:</p>
 <pre><code>## [&#39;Hercules beetle\n&#39;, &#39;Swallowtail\n&#39;, &#39;Ornate mantis\n&#39;, &#39;Weevil\n&#39;, &#39;Pine chaffer\n&#39;]</code></pre>
 <p>This is more concise than a for loop, but all lines are read in without the manipulations that we can perform line-by-line in our loop.</p>
