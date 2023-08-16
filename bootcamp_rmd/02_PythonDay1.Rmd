@@ -200,7 +200,12 @@ Sometimes, data can be converted from one type to another.
 
 * `float()` - converts integers and strings (when appropriate) to floats
 
-```{r, engine='python'}
+```{r, engine='python', eval=FALSE}
+print(float(3))
+print(float("2.57"))
+```
+
+```{r, engine='python', echo=FALSE}
 print(float(3))
 print(float("2.57"))
 ```
