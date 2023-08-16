@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
 <link rel="prev" href="modules.html"/>
-<link rel="next" href="math-in-numpy.html"/>
+<link rel="next" href="errors.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -193,17 +193,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.12.1" data-path="numpy-1.html"><a href="numpy-1.html#reading-in-data"><i class="fa fa-check"></i><b>4.12.1</b> Reading in data</a></li>
 <li class="chapter" data-level="4.12.2" data-path="numpy-1.html"><a href="numpy-1.html#indexing-numpy-arrays"><i class="fa fa-check"></i><b>4.12.2</b> Indexing <code>numpy</code> arrays</a></li>
+<li class="chapter" data-level="4.12.3" data-path="numpy-1.html"><a href="numpy-1.html#math-in-numpy"><i class="fa fa-check"></i><b>4.12.3</b> Math in <code>numpy</code></a></li>
+<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#plotting"><i class="fa fa-check"></i><b>4.12.4</b> Plotting</a></li>
 </ul></li>
+<li class="chapter" data-level="4.13" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>4.13</b> Errors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="math-in-numpy.html"><a href="math-in-numpy.html"><i class="fa fa-check"></i><b>5</b> Math in <code>numpy</code></a>
+<li class="chapter" data-level="5" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>5</b> Git</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>5.1</b> Plotting</a></li>
-<li class="chapter" data-level="5.2" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>5.2</b> Errors</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>6</b> Git</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>6.1</b> Tracking Changes</a></li>
-<li class="chapter" data-level="6.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>6.2</b> Ignoring Things</a></li>
+<li class="chapter" data-level="5.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>5.1</b> Tracking Changes</a></li>
+<li class="chapter" data-level="5.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>5.2</b> Ignoring Things</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
@@ -229,19 +227,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="numpy-1" class="section level2" number="4.12">
 <h2><span class="header-section-number">4.12</span> Numpy</h2>
 <p>Numpy is a Python library used for manipulating arrays and performing mathematical operations on matrices. For concision, we will import the <code>numpy</code> module with the name <code>np</code>, as such:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="numpy-1.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="numpy-1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div id="reading-in-data" class="section level3" number="4.12.1">
 <h3><span class="header-section-number">4.12.1</span> Reading in data</h3>
-<p>The function <code>np.readtxt()</code> is used to read in text data. The most basic way to run <code>np.readtxt()</code> is:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="numpy-1.html#cb84-1" aria-hidden="true" tabindex="-1"></a>np.readtxt(<span class="op">&lt;</span>fname<span class="op">&gt;</span>)</span></code></pre></div>
-<p>Consider a hypothetical comma-delimited file <code>numbers.csv</code>. The most basic way of reading it in is to run <code>np.readtxt('numbers.csv')</code>. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use <code>np.readtxt()</code> in conjunction with variable assignment:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="numpy-1.html#cb85-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.readtxt(<span class="st">&#39;numbers.csv&#39;</span>)</span></code></pre></div>
-<p>This creates an array where each contains the full text of the line. For example, a component line could appear as: <strong>array([‘1,2,3’], dtype=‘&lt;U5’)</strong>, with all variables appearing together as one string. To tell Python that our data is delimited by a comma, we can use the <strong>optional argument</strong>, <code>delimiter</code>:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="numpy-1.html#cb86-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.readtxt(<span class="st">&#39;numbers.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span></code></pre></div>
+<p>The function <code>np.loadtxt()</code> is used to read in text data. The most basic way to run <code>np.loadtxt()</code> is:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="numpy-1.html#cb98-1" aria-hidden="true" tabindex="-1"></a>np.loadtxt(<span class="op">&lt;</span>fname<span class="op">&gt;</span>)</span></code></pre></div>
+<p>Consider a hypothetical comma-delimited file <code>numbers.csv</code>. The most basic way of reading it in is to run <code>np.loadtxt('numbers.csv')</code>. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use <code>np.loadtxt()</code> in conjunction with variable assignment:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="numpy-1.html#cb99-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.loadtxt(<span class="st">&#39;numbers.csv&#39;</span>)</span></code></pre></div>
+<p>However, with a comma-delimited file as input this is likely to cause an error - Python has no way of knowing that elements in your file are separated by a space and will throw an error because something like “1,2,3” cannot be interpreted as a single numeric value. To tell Python that our data is comma-delimited, we can use the <strong>optional argument</strong>, <code>delimiter</code>:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="numpy-1.html#cb100-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.loadtxt(<span class="st">&#39;numbers.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span></code></pre></div>
 <p>Now, each number is encoded as its own element:</p>
 <p><code>array([1, 2, 3])</code></p>
 <p>Notice that unlike the file name, we need to specify the name of this optional argument (<code>delimiter=</code>). Because the file name argument is mandatory, <code>numpy</code> always expects the first argument to be the filename. However, since there are many possible optional arguments that once can use, it is impossible to infer which optional argument is being referred to by position alone. For optional arguments, we <strong>always need to specify their name</strong>.</p>
-<p><code>np.readtxt()</code> has many useful optional arguments - for example <code>skiplines</code>, which allows the user to skip the first <code>n</code> lines of a file. A full list of the optional arguments to <code>np.readtxt()</code> can be found <a href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">here</a></p>
+<p><code>np.loadtxt()</code> has many useful optional arguments - for example <code>skiplines</code>, which allows the user to skip the first <code>n</code> lines of a file. A full list of the optional arguments to <code>np.loadtxt()</code> can be found <a href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">here</a></p>
 </div>
 <div id="indexing-numpy-arrays" class="section level3" number="4.12.2">
 <h3><span class="header-section-number">4.12.2</span> Indexing <code>numpy</code> arrays</h3>
@@ -250,20 +248,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="accessing-single-values" class="section level4" number="4.12.2.1">
 <h4><span class="header-section-number">4.12.2.1</span> Accessing Single Values</h4>
 <p>To look within these rows and columns for specific values, we use indexing:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="numpy-1.html#cb87-1" aria-hidden="true" tabindex="-1"></a>dataName[<span class="op">&lt;</span>rowNumber<span class="op">&gt;</span>, <span class="op">&lt;</span>columnNumber<span class="op">&gt;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="numpy-1.html#cb101-1" aria-hidden="true" tabindex="-1"></a>dataName[<span class="op">&lt;</span>rowNumber<span class="op">&gt;</span>, <span class="op">&lt;</span>columnNumber<span class="op">&gt;</span>]</span></code></pre></div>
 <p>For example, to print the value in the fifth row and third column of <code>myNumbers</code>, we would write:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="numpy-1.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">4</span>, <span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="numpy-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">4</span>, <span class="dv">2</span>])</span></code></pre></div>
 <p>Remember that in Python, we start counting at <code>0</code>.</p>
 </div>
 <div id="accessing-multiple-values" class="section level4" number="4.12.2.2">
 <h4><span class="header-section-number">4.12.2.2</span> Accessing Multiple Values</h4>
 <p>To print multiple consecutive items, we can provide two numbers separated by a colon <code>:</code>.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="numpy-1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">2</span>:<span class="dv">4</span>, <span class="dv">5</span>:<span class="dv">10</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="numpy-1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">2</span>:<span class="dv">4</span>, <span class="dv">5</span>:<span class="dv">10</span>])</span></code></pre></div>
 <p>Note that the first number is <strong>inclusive</strong> and the second number is <strong>exclusive</strong>: We will print the elements in rows 3 and 4 and not row 5. We will print the the elements in columns 6 through 10, and not in column 11.</p>
 </div>
 </div>
+<div id="math-in-numpy" class="section level3" number="4.12.3">
+<h3><span class="header-section-number">4.12.3</span> Math in <code>numpy</code></h3>
 </div>
-<!-- </div> -->
+<div id="plotting" class="section level3" number="4.12.4">
+<h3><span class="header-section-number">4.12.4</span> Plotting</h3>
+<p>In this course, we will use the library Matplotlib for plotting. For concision, we will import the <code>matplotlib.pyplot</code> module with the name <code>plt</code>, as such:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="numpy-1.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+
+</div>
+</div>
 <hr>
 <center> 
   <div class="footer">
@@ -278,7 +284,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="modules.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="math-in-numpy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

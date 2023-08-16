@@ -193,17 +193,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.12.1" data-path="numpy-1.html"><a href="numpy-1.html#reading-in-data"><i class="fa fa-check"></i><b>4.12.1</b> Reading in data</a></li>
 <li class="chapter" data-level="4.12.2" data-path="numpy-1.html"><a href="numpy-1.html#indexing-numpy-arrays"><i class="fa fa-check"></i><b>4.12.2</b> Indexing <code>numpy</code> arrays</a></li>
+<li class="chapter" data-level="4.12.3" data-path="numpy-1.html"><a href="numpy-1.html#math-in-numpy"><i class="fa fa-check"></i><b>4.12.3</b> Math in <code>numpy</code></a></li>
+<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#plotting"><i class="fa fa-check"></i><b>4.12.4</b> Plotting</a></li>
 </ul></li>
+<li class="chapter" data-level="4.13" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>4.13</b> Errors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="math-in-numpy.html"><a href="math-in-numpy.html"><i class="fa fa-check"></i><b>5</b> Math in <code>numpy</code></a>
+<li class="chapter" data-level="5" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>5</b> Git</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>5.1</b> Plotting</a></li>
-<li class="chapter" data-level="5.2" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>5.2</b> Errors</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>6</b> Git</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>6.1</b> Tracking Changes</a></li>
-<li class="chapter" data-level="6.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>6.2</b> Ignoring Things</a></li>
+<li class="chapter" data-level="5.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>5.1</b> Tracking Changes</a></li>
+<li class="chapter" data-level="5.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>5.2</b> Ignoring Things</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
@@ -228,6 +226,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="type-conversion" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Type Conversion</h2>
+<p>Sometimes, data can be converted from one type to another.</p>
+<ul>
+<li><code>float()</code> - converts integers and strings (when appropriate) to floats</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="type-conversion.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">float</span>(<span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## 3.0</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="type-conversion.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">float</span>(<span class="st">&quot;2.57&quot;</span>))</span></code></pre></div>
+<pre><code>## 2.57</code></pre>
+<ul>
+<li><code>int()</code>converts floats and strings into integers. Note that this function always rounds down if necessary. An exception here: <code>int()</code> <strong>does not</strong> allow you to convert a string with a decimal point into an integer - <code>int("3.62")</code> will throw an error.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="type-conversion.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="st">&#39;3&#39;</span>))</span></code></pre></div>
+<pre><code>## 3</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="type-conversion.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="fl">2.57</span>))</span></code></pre></div>
+<pre><code>## 2</code></pre>
+<p>Note that for the above functions, it is not always possible to do convert data into a different type. In particular, strings with non-numeric characters cause problems - <code>int("Dachshund")</code> will not work.</p>
+<ul>
+<li><code>str()</code> converts all other data types into strings.</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="type-conversion.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## 3</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="type-conversion.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="fl">2.57</span>))</span></code></pre></div>
+<pre><code>## 2.57</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="type-conversion.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="va">True</span>))</span></code></pre></div>
+<pre><code>## True</code></pre>
+<p>A special case of type conversions comes with <code>booleans</code>. Numeric values are <strong>automatically converted</strong> into <code>booleans</code>. <code>0</code> is equivalent to <code>False</code>. <strong>All</strong> non-zero numeric values are equivalent to <code>True</code>. Likewise, empty strings (<code>''</code>) convert to <code>False</code>. All non-empty strings (inlcuding the string <code>'False'</code>) convert to <code>True</code>.</p>
 </div>
 <hr>
 <center> 
