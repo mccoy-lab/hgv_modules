@@ -206,8 +206,8 @@ print(float("2.57"))
 ```
 
 ```{r, engine='python', echo=FALSE}
-print(float(3))
-print(float("2.57"))
+3.0
+2.57
 ```
 
 * `int()`converts floats and strings into integers. Note that this function always rounds down if necessary. An exception here: `int()` **does not** allow you to convert a string with a decimal point into an integer - `int("3.62")` will throw an error.  
