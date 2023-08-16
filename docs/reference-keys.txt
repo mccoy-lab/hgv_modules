@@ -38,7 +38,7 @@ adding-to-lists
 for-loops
 for-loop-walkthrough
 repeating-an-action-n-times
-reading-in-data-and-text-parsing
+reading-in-data
 parsing-a-file
 parsing-with-a-for-loop
 readlines
@@ -47,7 +47,7 @@ modules
 module-functions
 abbreviating-module-names
 numpy-1
-reading-in-data
+reading-in-data-1
 indexing-numpy-arrays
 accessing-single-values
 accessing-multiple-values
