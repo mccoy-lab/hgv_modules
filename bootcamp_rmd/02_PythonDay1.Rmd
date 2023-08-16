@@ -697,9 +697,9 @@ We can initialize a figure with the following line:
 fig, ax = plt.subplots()
 ```
 
-This initializes a figure (`fig`) and a plot within the figure (`ax`). 
+This initializes a figure (named `fig`) and a plot within the figure (named `ax`). Having separate variables for the figure and the plot within the figure may seem strange, but it will make it considerably easier to arrange and manipulate multiple subplots within a larger figure. At present, we our figure 
 
-We can 
+
 
 
 
