@@ -580,7 +580,7 @@ plt.show()
 
 Numpy is a Python library used for manipulating arrays and performing mathematical operations on matrices. For concision, we will import the `numpy` module with the name `np`, as such:
 
-```{r, engine='python', eval=FALSE}
+```{r, engine='python'}
 import numpy as np
 ```
 
