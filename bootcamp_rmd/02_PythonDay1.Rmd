@@ -488,7 +488,7 @@ To open a file with the name `insects.txt`, for reading in file contents, we wou
 f = open('insects.txt', 'r')
 ```
 
-## Parsing a file
+### Parsing a file
 
 If we try to `print()` f, we get the following output: `<_io.TextIOWrapper name='insects.txt' mode='r' encoding='UTF-8'>`
 
@@ -511,7 +511,7 @@ for line in f:
 ```
 
 
-#### `readlines()`
+#### Parsing with `readlines()`
 
 `readlines()` is a method that allows us to read through the entire file all at once, returning file contents as a list:
 
