@@ -42,3 +42,7 @@ ottrpal::set_knitr_image_path()
 
 * `loadtxt()`: Import a file 
 * `array.shape`: Return the number of rows and columns of a `numpy` array object 
+
+### Plotting
+
+*  `plt.subplots()`: Initialize a figure with at least one subplot
