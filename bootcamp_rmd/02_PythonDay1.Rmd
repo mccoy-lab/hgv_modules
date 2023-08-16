@@ -196,6 +196,32 @@ print(myList)
 
 ## Type Conversion
 
+Sometimes, data can be converted from one type to another. 
+
+* `float()` - converts integers and strings (when appropriate) to floats
+
+```{r, engine='python'}
+print(float(3))
+print(float("2.57"))
+```
+
+* `int()`converts floats and strings into integers. Note that this function always rounds down if necessary. 
+
+```{r, engine='python'}
+print(int(3))
+print(int("2.57"))
+```
+
+* `str()` converts all other data types into strings. 
+
+```{r, engine='python'}
+print(str(3))
+print(str(2.57))
+print(str(True))
+```
+
+
+A special case of this is with `booleans`. Numeric values are **automatically converted** into `booleans`. `0` is equivalent to `False`. **All** non-zero numeric values are equivalent to `True`. Likewise, empty strings (`''`) convert to `False`. All non-empty strings (inlcuding the string `'False'`) convert to `True`.
 
 ## String Methods
 
@@ -490,23 +516,22 @@ import numpy as np
 
 ### Reading in data
 
-The function `np.readtxt()` is used to read in text data. The most basic way to run `np.readtxt()` is:
+The function `np.loadtxt()` is used to read in text data. The most basic way to run `np.loadtxt()` is:
 
 ```{r, engine='python', eval=FALSE}
-np.readtxt(<fname>)
+np.loadtxt(<fname>)
 ```
 
-Consider a hypothetical comma-delimited file `numbers.csv`. The most basic way of reading it in is to run `np.readtxt('numbers.csv')`. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use `np.readtxt()` in conjunction with variable assignment: 
+Consider a hypothetical comma-delimited file `numbers.csv`. The most basic way of reading it in is to run `np.loadtxt('numbers.csv')`. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use `np.loadtxt()` in conjunction with variable assignment: 
 
 ```{r, engine='python', eval = FALSE}
-myNumbers = np.readtxt('numbers.csv')
+myNumbers = np.loadtxt('numbers.csv')
 ```
 
-
-This creates an array where each contains the full text of the line. For example, a component line could appear as: **array(['1,2,3'], dtype='<U5')**, with all variables appearing together as one string. To tell Python that our data is delimited by a comma, we can use the **optional argument**, `delimiter`: 
+However, with a comma-delimited file as input this is likely to cause an error - Python has no way of knowing that elements in your file are separated by a space and will throw an error because something like "1,2,3" cannot be interpreted as a single numeric value. To tell Python that our data is comma-delimited, we can use the **optional argument**, `delimiter`: 
 
 ```{r, engine='python', eval=FALSE}
-myNumbers = np.readtxt('numbers.csv', delimiter=',')
+myNumbers = np.loadtxt('numbers.csv', delimiter=',')
 ```
 
 Now, each number is encoded as its own element:
@@ -515,7 +540,7 @@ Now, each number is encoded as its own element:
 
 Notice that unlike the file name, we need to specify the name of this optional argument (`delimiter=`). Because the file name argument is mandatory, `numpy` always expects the first argument to be the filename. However, since there are many possible optional arguments that once can use, it is impossible to infer which optional argument is being referred to by position alone. For optional arguments, we **always need to specify their name**.
 
-`np.readtxt()` has many useful optional arguments - for example `skiplines`, which allows the user to skip the first `n` lines of a file. A full list of the optional arguments to `np.readtxt()` can be found [here](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html) 
+`np.loadtxt()` has many useful optional arguments - for example `skiplines`, which allows the user to skip the first `n` lines of a file. A full list of the optional arguments to `np.loadtxt()` can be found [here](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html) 
 
 ### Indexing `numpy` arrays
 
@@ -549,9 +574,11 @@ print(myNumbers[2:4, 5:10])
 
 Note that the first number is **inclusive** and the second number is **exclusive**: We will print the elements in rows 3 and 4 and not row 5. We will print the the elements in columns 6 through 10, and not in column 11.
 
-# Math in `numpy`
+### Math in `numpy`
 
-## Plotting 
+
+
+### Plotting 
 
 In this course, we will use the library Matplotlib for plotting. For concision, we will import the `matplotlib.pyplot` module with the name `plt`, as such:
 
