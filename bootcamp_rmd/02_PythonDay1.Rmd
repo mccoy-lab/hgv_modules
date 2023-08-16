@@ -653,7 +653,7 @@ Consider the numpy array, which is saved with the name `sequence`:
 [4,5,6]]
 ```
 
-### Average and Standard Deviation
+### Average, Standard Deviation, Maximum, Minimum
 
 To take the average of this array, we use the function `np.mean()`. `np.mean()` has one required argument, which is the name of the object you want to take the mean of. 
 
@@ -677,11 +677,9 @@ np.mean(sequence, axis=1)
 array([2., 5.])
 ```
 
-To compute the standard deviation, we use the `np.std()`
+To compute the standard deviation, we use the `np.std()`. As with `np.mean()`, we can provide the `axis` argument to calculate the standard deviation along rows or columns. 
 
-### Max, min
-
-We can get the maximum and minimum values of a `numpy` array using the `np.max()` and `np.min()` functions, respectively
+We can get the maximum and minimum values of a `numpy` array using the `np.max()` and `np.min()` functions, respectively. These can also take the `axis` argument to operate along rows and columns. 
 
 ## Plotting with `matplotlib` 
 
@@ -691,7 +689,7 @@ In this course, we will use the library Matplotlib for plotting. For concision, 
 import matplotlib.pyplot as plt
 ```
 
-# Plotting walkthrough
+### Plotting walkthrough
 
 We can initialize a figure with the following line:
 

@@ -43,6 +43,9 @@ ottrpal::set_knitr_image_path()
 * `loadtxt()`: Import a file 
 * `array.shape`: Return the number of rows and columns of a `numpy` array object 
 * `np.mean()`: Return the mean of an array. Can use the `axis` argument for row and column means
+* `np.std()`: Return the standard deviation of an array. Can use the `axis` argument for row and column standard deviations
+* `np.max()`: Return the maximum value of an array. Can be used with `axis`
+* `np.min()`: Return the minimum value of an array. Can be used with `axis`
 
 ### Plotting
 
