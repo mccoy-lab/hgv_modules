@@ -42,6 +42,7 @@ ottrpal::set_knitr_image_path()
 
 * `loadtxt()`: Import a file 
 * `array.shape`: Return the number of rows and columns of a `numpy` array object 
+* `np.mean()`: Return the mean of an array. Can use the `axis` argument for row and column means
 
 ### Plotting
 

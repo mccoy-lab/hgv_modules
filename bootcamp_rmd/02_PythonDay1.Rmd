@@ -646,14 +646,34 @@ Note that the first number is **inclusive** and the second number is **exclusive
 
 ### Math in `numpy`
 
-Consider the numpy array: 
+Consider the numpy array, which is saved with the name `sequence`: 
+
+```{r, engine='python', echo=FALSE}
+sequence = np.array(([1,2,3],[4,5,6]))
+```
+
 
 ```
 [[1,2,3],
 [4,5,6]]
 ```
 
+### Averages 
 
+To take the average of this array, we use the function `np.mean()`. `np.mean()` has one required argument, which is the name of the object you want to take the mean of. 
+
+Running this function on `sequence` will return `3.5`, which is indeed the average of all six elements: 
+
+```{r, engine='python`}
+np.mean(sequence)
+```
+
+Conveniently, we can also use this same function to calculate the averages across rows and columns, by invoking the optional `axis` argument. Setting `axis` equal to `0` will produce column means; setting `axis` to `1` will produce row means:
+
+```{r, engine='python`}
+np.mean(sequence,axis=0)
+np.mean(sequence,axis=1)
+```
 
 ## Plotting with `matplotlib` 
 
