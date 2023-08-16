@@ -200,19 +200,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12.1" data-path="numpy-1.html"><a href="numpy-1.html#reading-in-data-1"><i class="fa fa-check"></i><b>4.12.1</b> Reading in data</a></li>
 <li class="chapter" data-level="4.12.2" data-path="numpy-1.html"><a href="numpy-1.html#indexing-numpy-arrays"><i class="fa fa-check"></i><b>4.12.2</b> Indexing <code>numpy</code> arrays</a></li>
 <li class="chapter" data-level="4.12.3" data-path="numpy-1.html"><a href="numpy-1.html#math-in-numpy"><i class="fa fa-check"></i><b>4.12.3</b> Math in <code>numpy</code></a></li>
-<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#average-and-standard-deviation"><i class="fa fa-check"></i><b>4.12.4</b> Average and Standard Deviation</a></li>
-<li class="chapter" data-level="4.12.5" data-path="numpy-1.html"><a href="numpy-1.html#max-min"><i class="fa fa-check"></i><b>4.12.5</b> Max, min</a></li>
+<li class="chapter" data-level="4.12.4" data-path="numpy-1.html"><a href="numpy-1.html#average-standard-deviation-maximum-minimum"><i class="fa fa-check"></i><b>4.12.4</b> Average, Standard Deviation, Maximum, Minimum</a></li>
 </ul></li>
-<li class="chapter" data-level="4.13" data-path="plotting-with-matplotlib.html"><a href="plotting-with-matplotlib.html"><i class="fa fa-check"></i><b>4.13</b> Plotting with <code>matplotlib</code></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="plotting-walkthrough.html"><a href="plotting-walkthrough.html"><i class="fa fa-check"></i><b>5</b> Plotting walkthrough</a>
+<li class="chapter" data-level="4.13" data-path="plotting-with-matplotlib.html"><a href="plotting-with-matplotlib.html"><i class="fa fa-check"></i><b>4.13</b> Plotting with <code>matplotlib</code></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>5.1</b> Errors</a></li>
+<li class="chapter" data-level="4.13.1" data-path="plotting-with-matplotlib.html"><a href="plotting-with-matplotlib.html#plotting-walkthrough"><i class="fa fa-check"></i><b>4.13.1</b> Plotting walkthrough</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>6</b> Git</a>
+<li class="chapter" data-level="4.14" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>4.14</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>5</b> Git</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>6.1</b> Tracking Changes</a></li>
-<li class="chapter" data-level="6.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>6.2</b> Ignoring Things</a></li>
+<li class="chapter" data-level="5.1" data-path="tracking-changes.html"><a href="tracking-changes.html"><i class="fa fa-check"></i><b>5.1</b> Tracking Changes</a></li>
+<li class="chapter" data-level="5.2" data-path="ignoring-things.html"><a href="ignoring-things.html"><i class="fa fa-check"></i><b>5.2</b> Ignoring Things</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
@@ -277,8 +276,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[[1,2,3],
 [4,5,6]]</code></pre>
 </div>
-<div id="average-and-standard-deviation" class="section level3" number="4.12.4">
-<h3><span class="header-section-number">4.12.4</span> Average and Standard Deviation</h3>
+<div id="average-standard-deviation-maximum-minimum" class="section level3" number="4.12.4">
+<h3><span class="header-section-number">4.12.4</span> Average, Standard Deviation, Maximum, Minimum</h3>
 <p>To take the average of this array, we use the function <code>np.mean()</code>. <code>np.mean()</code> has one required argument, which is the name of the object you want to take the mean of.</p>
 <p>Running this function on <code>sequence</code> will return <code>3.5</code>, which is indeed the average of all six elements:</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="numpy-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a>np.mean(sequence)</span></code></pre></div>
@@ -289,11 +288,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb104-3"><a href="numpy-1.html#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb104-4"><a href="numpy-1.html#cb104-4" aria-hidden="true" tabindex="-1"></a>np.mean(sequence, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb104-5"><a href="numpy-1.html#cb104-5" aria-hidden="true" tabindex="-1"></a>array([<span class="fl">2.</span>, <span class="fl">5.</span>])</span></code></pre></div>
-<p>To compute the standard deviation, we use the <code>np.std()</code></p>
-</div>
-<div id="max-min" class="section level3" number="4.12.5">
-<h3><span class="header-section-number">4.12.5</span> Max, min</h3>
-<p>We can get the maximum and minimum values of a <code>numpy</code> array using the <code>np.max()</code> and <code>np.min()</code> functions, respectively</p>
+<p>To compute the standard deviation, we use the <code>np.std()</code>. As with <code>np.mean()</code>, we can provide the <code>axis</code> argument to calculate the standard deviation along rows or columns.</p>
+<p>We can get the maximum and minimum values of a <code>numpy</code> array using the <code>np.max()</code> and <code>np.min()</code> functions, respectively. These can also take the <code>axis</code> argument to operate along rows and columns.</p>
 </div>
 </div>
 <hr>
