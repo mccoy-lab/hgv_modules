@@ -474,12 +474,66 @@ for i in range(3):
 
 ## Reading in Data and Text Parsing
 
+When working in Python, we often want to import data from an external file or, conversely, write our data to a file. To interact with external data objects, we use the `open()` function. This function takes two arguments: the `name` of the file we want to work with, and the `mode` that we want to interact with this file. 
+
+The common modes we use are: 
+
+* `r` - Read. This allows us to import data from an external file into python.
+* `w` - Write. This allows us to write our data to a file. If a file with this name already exists, operating in `w` mode **will overwrite existing file contents**.
+* `a` - Append. This allows us to write our data to a file. If a file with this name already exists, operating in `a` mode will **add to existing file contents**.
+
+To open a file with the name `insects.txt`, for reading in file contents, we would therefore use the syntax: 
+
+```{r, engine='python'}
+f = open('insects.txt', 'r')
+```
+
+## Parsing a file
+
+If we try to `print()` f, we get the following output: `<_io.TextIOWrapper name='insects.txt' mode='r' encoding='UTF-8'>`
+
+This is because we have opened the file and saved it as a variable, but we haven't 
+
+#### Parsing with a `for` loop
+
+One way to look through a file's contents line by line is to use a `for` loop. We can loop through a file with the syntax:
+
+```{r, engine='python'}
+for line in f:
+  print(line)
+```
+
+As it turns out, at the end of each line, there is a special end of line character, `\n`. To just read in the data without the return character, we can use `.strip()`:
+
+```{r, engine='python'}
+for line in f:
+  print(line.strip('\n'))
+```
 
 
+#### `readlines()`
 
-***FILL***
+`readlines()` is a method that allows us to read through the entire file all at once, returning file contents as a list:
 
+```{r, engine='python', echo=FALSE}
+f = open('insects.txt', 'r')
+```
 
+```{r, engine='python', echo=FALSE}
+print(f.readlines())
+```
+
+This is more concise than a for loop, but all lines are read in without the manipulations that we can perform line-by-line in our loop.
+
+#### Closing files
+
+We can close a file with the `.close()` method. To close `insects.txt` (previously saved as the variable `f`), we would run:
+
+```{r, engine='python', echo=FALSE}
+f.close()
+```
+
+Once the file is closed, we cannot read it or write to it without opening it again. 
 
 ## Modules 
 

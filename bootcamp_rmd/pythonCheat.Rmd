@@ -22,6 +22,18 @@ ottrpal::set_knitr_image_path()
 * `.join()`: Convert a list into a string using a delimiter
 * `.rstrip()`, `.lstrip()`, and `.strip()`: Remove unwanted characters from the right side, left side, or both sides of a string
 
+### Type Conversion
+
+* `float()`: Convert data to float
+* `int()`: Convert data to an integer
+* `str()`: Convert data to a string
+
+### Working with Files 
+
+* `open(file, mode)`: Most common modes are: (`r`), write (`w`), append (`a`)
+* `.readlines()`: Return a list where each element is a line from the input file
+* `.close()`: Close the file
+
 ### List methods
 
 * `.append()`: Add an element to the end of a list
