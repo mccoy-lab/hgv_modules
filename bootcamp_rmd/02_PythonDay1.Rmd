@@ -492,9 +492,9 @@ f = open('insects.txt', 'r')
 
 If we try to `print()` f, we get the following output: `<_io.TextIOWrapper name='insects.txt' mode='r' encoding='UTF-8'>`
 
-This is because we have opened the file and saved it as a variable, but we haven't 
+This is because we have opened the file and saved it as a variable, but we haven't actually read through and manipulated the data which it contains. We have two main ways of doing this in base Python: 
 
-#### Parsing with a `for` loop
+#### 1. Parsing with a `for` loop
 
 One way to look through a file's contents line by line is to use a `for` loop. We can loop through a file with the syntax:
 
@@ -510,8 +510,7 @@ for line in f:
   print(line.strip('\n'))
 ```
 
-
-#### Parsing with `readlines()`
+#### 2. Parsing with `readlines()`
 
 `readlines()` is a method that allows us to read through the entire file all at once, returning file contents as a list:
 
