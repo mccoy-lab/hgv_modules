@@ -237,20 +237,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>int()</code>converts floats and strings into integers. Note that this function always rounds down if necessary. An exception here: <code>int()</code> <strong>does not</strong> allow you to convert a string with a decimal point into an integer - <code>int("3.62")</code> will throw an error.</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="type-conversion.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="st">&#39;3&#39;</span>))</span></code></pre></div>
-<pre><code>## 3</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="type-conversion.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="fl">2.57</span>))</span></code></pre></div>
-<pre><code>## 2</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="type-conversion.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="st">&#39;3&#39;</span>))</span>
+<span id="cb35-2"><a href="type-conversion.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="fl">2.57</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="type-conversion.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
+<span id="cb36-2"><a href="type-conversion.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span></code></pre></div>
 <p>Note that for the above functions, it is not always possible to do convert data into a different type. In particular, strings with non-numeric characters cause problems - <code>int("Dachshund")</code> will not work.</p>
 <ul>
 <li><code>str()</code> converts all other data types into strings.</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="type-conversion.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="type-conversion.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## 3</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="type-conversion.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="fl">2.57</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="type-conversion.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="fl">2.57</span>))</span></code></pre></div>
 <pre><code>## 2.57</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="type-conversion.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="va">True</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="type-conversion.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="va">True</span>))</span></code></pre></div>
 <pre><code>## True</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="type-conversion.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;3&#39;</span></span>
+<span id="cb43-2"><a href="type-conversion.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;2.57&#39;</span></span>
+<span id="cb43-3"><a href="type-conversion.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;True&#39;</span></span></code></pre></div>
 <p>A special case of type conversions comes with <code>booleans</code>. Numeric values are <strong>automatically converted</strong> into <code>booleans</code>. <code>0</code> is equivalent to <code>False</code>. <strong>All</strong> non-zero numeric values are equivalent to <code>True</code>. Likewise, empty strings (<code>''</code>) convert to <code>False</code>. All non-empty strings (inlcuding the string <code>'False'</code>) convert to <code>True</code>.</p>
 </div>
 <hr>
