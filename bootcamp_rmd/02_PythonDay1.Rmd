@@ -648,7 +648,7 @@ Note that the first number is **inclusive** and the second number is **exclusive
 
 
 
-### Plotting 
+### Plotting with `matplotlib` 
 
 In this course, we will use the library Matplotlib for plotting. For concision, we will import the `matplotlib.pyplot` module with the name `plt`, as such:
 
@@ -656,7 +656,13 @@ In this course, we will use the library Matplotlib for plotting. For concision, 
 import matplotlib.pyplot as plt
 ```
 
-
+```{r, engine='python', eval=FALSE}
+fig, ax = plt.subplots()
+x = [1,2,3,4,5,6]
+y = [10, 2, 20, 15, 2, 3]
+ax.scatter(x,y)
+plt.show()
+```
 
 
 
