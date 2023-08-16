@@ -472,7 +472,7 @@ for i in range(3):
   print("All work and no play")
 ```
 
-## Reading in Data and Text Parsing
+## Reading in Data
 
 When working in Python, we often want to import data from an external file or, conversely, write our data to a file. To interact with external data objects, we use the `open()` function. This function takes two arguments: the `name` of the file we want to work with, and the `mode` that we want to interact with this file. 
 
