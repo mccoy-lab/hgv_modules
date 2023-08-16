@@ -227,15 +227,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="numpy-1" class="section level2" number="4.12">
 <h2><span class="header-section-number">4.12</span> Numpy</h2>
 <p>Numpy is a Python library used for manipulating arrays and performing mathematical operations on matrices. For concision, we will import the <code>numpy</code> module with the name <code>np</code>, as such:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="numpy-1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="numpy-1.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div id="reading-in-data" class="section level3" number="4.12.1">
 <h3><span class="header-section-number">4.12.1</span> Reading in data</h3>
 <p>The function <code>np.loadtxt()</code> is used to read in text data. The most basic way to run <code>np.loadtxt()</code> is:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="numpy-1.html#cb98-1" aria-hidden="true" tabindex="-1"></a>np.loadtxt(<span class="op">&lt;</span>fname<span class="op">&gt;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="numpy-1.html#cb97-1" aria-hidden="true" tabindex="-1"></a>np.loadtxt(<span class="op">&lt;</span>fname<span class="op">&gt;</span>)</span></code></pre></div>
 <p>Consider a hypothetical comma-delimited file <code>numbers.csv</code>. The most basic way of reading it in is to run <code>np.loadtxt('numbers.csv')</code>. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use <code>np.loadtxt()</code> in conjunction with variable assignment:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="numpy-1.html#cb99-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.loadtxt(<span class="st">&#39;numbers.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="numpy-1.html#cb98-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.loadtxt(<span class="st">&#39;numbers.csv&#39;</span>)</span></code></pre></div>
 <p>However, with a comma-delimited file as input this is likely to cause an error - Python has no way of knowing that elements in your file are separated by a space and will throw an error because something like “1,2,3” cannot be interpreted as a single numeric value. To tell Python that our data is comma-delimited, we can use the <strong>optional argument</strong>, <code>delimiter</code>:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="numpy-1.html#cb100-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.loadtxt(<span class="st">&#39;numbers.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="numpy-1.html#cb99-1" aria-hidden="true" tabindex="-1"></a>myNumbers <span class="op">=</span> np.loadtxt(<span class="st">&#39;numbers.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</span></code></pre></div>
 <p>Now, each number is encoded as its own element:</p>
 <p><code>array([1, 2, 3])</code></p>
 <p>Notice that unlike the file name, we need to specify the name of this optional argument (<code>delimiter=</code>). Because the file name argument is mandatory, <code>numpy</code> always expects the first argument to be the filename. However, since there are many possible optional arguments that once can use, it is impossible to infer which optional argument is being referred to by position alone. For optional arguments, we <strong>always need to specify their name</strong>.</p>
@@ -248,15 +248,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="accessing-single-values" class="section level4" number="4.12.2.1">
 <h4><span class="header-section-number">4.12.2.1</span> Accessing Single Values</h4>
 <p>To look within these rows and columns for specific values, we use indexing:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="numpy-1.html#cb101-1" aria-hidden="true" tabindex="-1"></a>dataName[<span class="op">&lt;</span>rowNumber<span class="op">&gt;</span>, <span class="op">&lt;</span>columnNumber<span class="op">&gt;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="numpy-1.html#cb100-1" aria-hidden="true" tabindex="-1"></a>dataName[<span class="op">&lt;</span>rowNumber<span class="op">&gt;</span>, <span class="op">&lt;</span>columnNumber<span class="op">&gt;</span>]</span></code></pre></div>
 <p>For example, to print the value in the fifth row and third column of <code>myNumbers</code>, we would write:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="numpy-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">4</span>, <span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="numpy-1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">4</span>, <span class="dv">2</span>])</span></code></pre></div>
 <p>Remember that in Python, we start counting at <code>0</code>.</p>
 </div>
 <div id="accessing-multiple-values" class="section level4" number="4.12.2.2">
 <h4><span class="header-section-number">4.12.2.2</span> Accessing Multiple Values</h4>
 <p>To print multiple consecutive items, we can provide two numbers separated by a colon <code>:</code>.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="numpy-1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">2</span>:<span class="dv">4</span>, <span class="dv">5</span>:<span class="dv">10</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="numpy-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myNumbers[<span class="dv">2</span>:<span class="dv">4</span>, <span class="dv">5</span>:<span class="dv">10</span>])</span></code></pre></div>
 <p>Note that the first number is <strong>inclusive</strong> and the second number is <strong>exclusive</strong>: We will print the elements in rows 3 and 4 and not row 5. We will print the the elements in columns 6 through 10, and not in column 11.</p>
 </div>
 </div>
@@ -266,7 +266,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting" class="section level3" number="4.12.4">
 <h3><span class="header-section-number">4.12.4</span> Plotting</h3>
 <p>In this course, we will use the library Matplotlib for plotting. For concision, we will import the <code>matplotlib.pyplot</code> module with the name <code>plt</code>, as such:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="numpy-1.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="numpy-1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 
 </div>
 </div>
