@@ -205,7 +205,7 @@ print(float(3))
 print(float("2.57"))
 ```
 
-```{r, engine='python', echo=FALSE}
+```{r, engine='python', eval=FALSE}
 3.0
 2.57
 ```
