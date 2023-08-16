@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 String Methods | CMDB Bootcamp</title>
+  <title>4.6 Type Conversion | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 String Methods | CMDB Bootcamp" />
+  <meta property="og:title" content="4.6 Type Conversion | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 String Methods | CMDB Bootcamp" />
+  <meta name="twitter:title" content="4.6 Type Conversion | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="type-conversion-1.html"/>
-<link rel="next" href="lists.html"/>
+<link rel="prev" href="built-in-functions-and-methods.html"/>
+<link rel="next" href="string-methods-1.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -227,47 +227,34 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="string-methods-1" class="section level2" number="4.7">
-<h2><span class="header-section-number">4.7</span> String Methods</h2>
-<div id="upper-and-.lower" class="section level3" number="4.7.1">
-<h3><span class="header-section-number">4.7.1</span> <code>.upper()</code> and <code>.lower()</code></h3>
-<p>The <code>.upper()</code> and <code>.lower()</code> methods take a string and convert it to uppercase and lowercase, respectively.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="string-methods-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;out on the wily, windy moors&quot;</span>.upper())</span></code></pre></div>
-<pre><code>## OUT ON THE WILY, WINDY MOORS</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="string-methods-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>aria <span class="op">=</span> <span class="st">&quot;Piangerò La Sorte Mia&quot;</span></span>
-<span id="cb41-2"><a href="string-methods-1.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aria.lower())</span></code></pre></div>
-<pre><code>## piangerò la sorte mia</code></pre>
-</div>
-<div id="split" class="section level3" number="4.7.2">
-<h3><span class="header-section-number">4.7.2</span> .split()</h3>
-<p>The <code>.split()</code> method takes a string and splits it into a list, dividing the list on a <strong>delimiter</strong> (i.e., separator). The delimiter is provided as an argument:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="string-methods-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Newt eye, frog toe&quot;</span>.split(<span class="st">&#39;,&#39;</span>))</span></code></pre></div>
-<pre><code>## [&#39;Newt eye&#39;, &#39; frog toe&#39;]</code></pre>
-<p>If no argument is provided, then the string is split on whitespace (that is, it is split whenever a space or tab is encountered).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="string-methods-1.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Eye of newt    and toe of frog&quot;</span>.split())</span></code></pre></div>
-<pre><code>## [&#39;Eye&#39;, &#39;of&#39;, &#39;newt&#39;, &#39;and&#39;, &#39;toe&#39;, &#39;of&#39;, &#39;frog&#39;]</code></pre>
-</div>
-<div id="join" class="section level3" number="4.7.3">
-<h3><span class="header-section-number">4.7.3</span> .join()</h3>
-<p>The <code>.join()</code> method is the inverse of <code>.split()</code>: converts a list into a string, with list elements separated by a delimiter. The general syntax is:</p>
-<pre><code>&quot;&lt;delimiter&gt;&quot;.join(&lt;list&gt;)</code></pre>
-<p>For example:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="string-methods-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot; &quot;</span>.join([<span class="st">&quot;I&quot;</span>, <span class="st">&quot;found&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;caught&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;dogs&quot;</span>])</span></code></pre></div>
-<pre><code>## &#39;I found a fox caught by dogs&#39;</code></pre>
-<p>If we do not provide a delimiter, then the strings are directly concatenated:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="string-methods-1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;</span>.join([<span class="st">&quot;I&quot;</span>, <span class="st">&quot;found&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;caught&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;dogs&quot;</span>])</span></code></pre></div>
-<pre><code>## &#39;Ifoundafoxcaughtbydogs&#39;</code></pre>
-</div>
-<div id="rstrip-.lstrip-.strip" class="section level3" number="4.7.4">
-<h3><span class="header-section-number">4.7.4</span> .rstrip(), .lstrip(), .strip()</h3>
-<p>These three methods remove unwanted characters on the right, left, or both sides of a string. You can provide the characters you want to remove as an argument:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="string-methods-1.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;ricercar........,,,,,,&quot;</span>.rstrip(<span class="st">&quot;,.&quot;</span>)</span></code></pre></div>
-<pre><code>## &#39;ricercar&#39;</code></pre>
-<p>Without an argument, the methods remove spaces:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="string-methods-1.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;          ricercar &quot;</span>.lstrip()</span></code></pre></div>
-<pre><code>## &#39;ricercar &#39;</code></pre>
-<p>Note that in the above example we strip the spaces to the left of the main text, but we <strong>do not</strong> remove the spaces from the middle or right end of the text.</p>
-</div>
+<div id="type-conversion-1" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Type Conversion</h2>
+<p>Sometimes, data can be converted from one type to another.</p>
+<ul>
+<li><code>float()</code> - converts integers and strings (when appropriate) to floats</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="type-conversion-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">float</span>(<span class="dv">3</span>))</span>
+<span id="cb33-2"><a href="type-conversion-1.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">float</span>(<span class="st">&quot;2.57&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="type-conversion-1.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.0</span></span>
+<span id="cb34-2"><a href="type-conversion-1.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2.57</span></span></code></pre></div>
+<ul>
+<li><code>int()</code>converts floats and strings into integers. Note that this function always rounds down if necessary. An exception here: <code>int()</code> <strong>does not</strong> allow you to convert a string with a decimal point into an integer - <code>int("3.62")</code> will throw an error.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="type-conversion-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="st">&#39;3&#39;</span>))</span>
+<span id="cb35-2"><a href="type-conversion-1.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="fl">2.57</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="type-conversion-1.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
+<span id="cb36-2"><a href="type-conversion-1.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span></code></pre></div>
+<p>Note that for the above functions, it is not always possible to do convert data into a different type. In particular, strings with non-numeric characters cause problems - <code>int("Dachshund")</code> will not work.</p>
+<ul>
+<li><code>str()</code> converts all other data types into strings.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="type-conversion-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="dv">3</span>))</span>
+<span id="cb37-2"><a href="type-conversion-1.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="fl">2.57</span>))</span>
+<span id="cb37-3"><a href="type-conversion-1.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="va">True</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="type-conversion-1.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;3&#39;</span></span>
+<span id="cb38-2"><a href="type-conversion-1.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;2.57&#39;</span></span>
+<span id="cb38-3"><a href="type-conversion-1.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;True&#39;</span></span></code></pre></div>
+<p>A special case of type conversions comes with <code>booleans</code>. Numeric values are <strong>automatically converted</strong> into <code>booleans</code>. <code>0</code> is equivalent to <code>False</code>. <strong>All</strong> non-zero numeric values are equivalent to <code>True</code>. Likewise, empty strings (<code>''</code>) convert to <code>False</code>. All non-empty strings (inlcuding the string <code>'False'</code>) convert to <code>True</code>.</p>
 </div>
 <hr>
 <center> 
@@ -282,8 +269,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="type-conversion-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lists.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="built-in-functions-and-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="string-methods-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

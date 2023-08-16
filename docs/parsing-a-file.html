@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 String Methods | CMDB Bootcamp</title>
+  <title>4.11 Parsing a file | CMDB Bootcamp</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 String Methods | CMDB Bootcamp" />
+  <meta property="og:title" content="4.11 Parsing a file | CMDB Bootcamp" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 String Methods | CMDB Bootcamp" />
+  <meta name="twitter:title" content="4.11 Parsing a file | CMDB Bootcamp" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/bootcampLogo.png" type="image/x-icon" />
-<link rel="prev" href="type-conversion-1.html"/>
-<link rel="next" href="lists.html"/>
+<link rel="prev" href="reading-in-data-and-text-parsing.html"/>
+<link rel="next" href="modules.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -227,46 +227,38 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="string-methods-1" class="section level2" number="4.7">
-<h2><span class="header-section-number">4.7</span> String Methods</h2>
-<div id="upper-and-.lower" class="section level3" number="4.7.1">
-<h3><span class="header-section-number">4.7.1</span> <code>.upper()</code> and <code>.lower()</code></h3>
-<p>The <code>.upper()</code> and <code>.lower()</code> methods take a string and convert it to uppercase and lowercase, respectively.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="string-methods-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;out on the wily, windy moors&quot;</span>.upper())</span></code></pre></div>
-<pre><code>## OUT ON THE WILY, WINDY MOORS</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="string-methods-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>aria <span class="op">=</span> <span class="st">&quot;Piangerò La Sorte Mia&quot;</span></span>
-<span id="cb41-2"><a href="string-methods-1.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aria.lower())</span></code></pre></div>
-<pre><code>## piangerò la sorte mia</code></pre>
+<div id="parsing-a-file" class="section level2" number="4.11">
+<h2><span class="header-section-number">4.11</span> Parsing a file</h2>
+<p>If we try to <code>print()</code> f, we get the following output: <code>&lt;_io.TextIOWrapper name='insects.txt' mode='r' encoding='UTF-8'&gt;</code></p>
+<p>This is because we have opened the file and saved it as a variable, but we haven’t</p>
+<div id="parsing-with-a-for-loop" class="section level4" number="4.11.0.1">
+<h4><span class="header-section-number">4.11.0.1</span> Parsing with a <code>for</code> loop</h4>
+<p>One way to look through a file’s contents line by line is to use a <code>for</code> loop. We can loop through a file with the syntax:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="parsing-a-file.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb84-2"><a href="parsing-a-file.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(line)</span></code></pre></div>
+<pre><code>## Hercules beetle
+## 
+## Swallowtail
+## 
+## Ornate mantis
+## 
+## Weevil
+## 
+## Pine chaffer</code></pre>
+<p>As it turns out, at the end of each line, there is a special end of line character, <code>\n</code>. To just read in the data without the return character, we can use <code>.strip()</code>:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="parsing-a-file.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb86-2"><a href="parsing-a-file.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(line.strip(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 </div>
-<div id="split" class="section level3" number="4.7.2">
-<h3><span class="header-section-number">4.7.2</span> .split()</h3>
-<p>The <code>.split()</code> method takes a string and splits it into a list, dividing the list on a <strong>delimiter</strong> (i.e., separator). The delimiter is provided as an argument:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="string-methods-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Newt eye, frog toe&quot;</span>.split(<span class="st">&#39;,&#39;</span>))</span></code></pre></div>
-<pre><code>## [&#39;Newt eye&#39;, &#39; frog toe&#39;]</code></pre>
-<p>If no argument is provided, then the string is split on whitespace (that is, it is split whenever a space or tab is encountered).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="string-methods-1.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Eye of newt    and toe of frog&quot;</span>.split())</span></code></pre></div>
-<pre><code>## [&#39;Eye&#39;, &#39;of&#39;, &#39;newt&#39;, &#39;and&#39;, &#39;toe&#39;, &#39;of&#39;, &#39;frog&#39;]</code></pre>
+<div id="readlines" class="section level4" number="4.11.0.2">
+<h4><span class="header-section-number">4.11.0.2</span> <code>readlines()</code></h4>
+<p><code>readlines()</code> is a method that allows us to read through the entire file all at once, returning file contents as a list:</p>
+<pre><code>## [&#39;Hercules beetle\n&#39;, &#39;Swallowtail\n&#39;, &#39;Ornate mantis\n&#39;, &#39;Weevil\n&#39;, &#39;Pine chaffer\n&#39;]</code></pre>
+<p>This is more concise than a for loop, but all lines are read in without the manipulations that we can perform line-by-line in our loop.</p>
 </div>
-<div id="join" class="section level3" number="4.7.3">
-<h3><span class="header-section-number">4.7.3</span> .join()</h3>
-<p>The <code>.join()</code> method is the inverse of <code>.split()</code>: converts a list into a string, with list elements separated by a delimiter. The general syntax is:</p>
-<pre><code>&quot;&lt;delimiter&gt;&quot;.join(&lt;list&gt;)</code></pre>
-<p>For example:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="string-methods-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot; &quot;</span>.join([<span class="st">&quot;I&quot;</span>, <span class="st">&quot;found&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;caught&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;dogs&quot;</span>])</span></code></pre></div>
-<pre><code>## &#39;I found a fox caught by dogs&#39;</code></pre>
-<p>If we do not provide a delimiter, then the strings are directly concatenated:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="string-methods-1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;</span>.join([<span class="st">&quot;I&quot;</span>, <span class="st">&quot;found&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;caught&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;dogs&quot;</span>])</span></code></pre></div>
-<pre><code>## &#39;Ifoundafoxcaughtbydogs&#39;</code></pre>
-</div>
-<div id="rstrip-.lstrip-.strip" class="section level3" number="4.7.4">
-<h3><span class="header-section-number">4.7.4</span> .rstrip(), .lstrip(), .strip()</h3>
-<p>These three methods remove unwanted characters on the right, left, or both sides of a string. You can provide the characters you want to remove as an argument:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="string-methods-1.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;ricercar........,,,,,,&quot;</span>.rstrip(<span class="st">&quot;,.&quot;</span>)</span></code></pre></div>
-<pre><code>## &#39;ricercar&#39;</code></pre>
-<p>Without an argument, the methods remove spaces:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="string-methods-1.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;          ricercar &quot;</span>.lstrip()</span></code></pre></div>
-<pre><code>## &#39;ricercar &#39;</code></pre>
-<p>Note that in the above example we strip the spaces to the left of the main text, but we <strong>do not</strong> remove the spaces from the middle or right end of the text.</p>
+<div id="closing-files" class="section level4" number="4.11.0.3">
+<h4><span class="header-section-number">4.11.0.3</span> Closing files</h4>
+<p>We can close a file with the <code>.close()</code> method. To close <code>insects.txt</code> (previously saved as the variable <code>f</code>), we would run:</p>
+<p>Once the file is closed, we cannot read it or write to it without opening it again.</p>
 </div>
 </div>
 <hr>
@@ -282,8 +274,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="type-conversion-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lists.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reading-in-data-and-text-parsing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

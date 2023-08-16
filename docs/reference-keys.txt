@@ -5,6 +5,8 @@ python-cheat-sheet
 mathematics
 comparisons
 string-methods
+type-conversion
+working-with-files
 list-methods
 numpy
 the-unix-shell
@@ -23,7 +25,7 @@ functions
 methods
 example
 modifying-objects
-type-conversion
+type-conversion-1
 string-methods-1
 upper-and-.lower
 split
@@ -37,6 +39,10 @@ for-loops
 for-loop-walkthrough
 repeating-an-action-n-times
 reading-in-data-and-text-parsing
+parsing-a-file
+parsing-with-a-for-loop
+readlines
+closing-files
 modules
 module-functions
 abbreviating-module-names
