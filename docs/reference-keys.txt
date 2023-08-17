@@ -55,11 +55,12 @@ accessing-multiple-values
 math-in-numpy
 average-standard-deviation-maximum-minimum
 plotting-with-matplotlib
-plotting-walkthrough
+line-and-scatter-plots---walkthrough
 points-and-lines
 multiple-sets-of-data
 labels-and-legends
 figure-aesthetics
+histograms
 errors
 git
 tracking-changes
