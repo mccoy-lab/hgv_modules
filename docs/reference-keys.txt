@@ -56,6 +56,7 @@ math-in-numpy
 average-standard-deviation-maximum-minimum
 plotting-with-matplotlib
 plotting-walkthrough
+points-and-lines
 errors
 git
 tracking-changes

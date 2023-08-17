@@ -244,8 +244,33 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="plotting-with-matplotlib.html#cb106-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span></code></pre></div>
 <p>This initializes a figure (named <code>fig</code>) and a plot within the figure (named <code>ax</code>). Having separate variables for the figure and the plot within the figure may seem strange, but it will make it considerably easier to arrange and manipulate multiple subplots within a larger figure. At present, our figure is just am empty canvas:</p>
 <p><img src="img/emptyPlot.png" title="Empty Plot" alt="An initialized plot without anything added to it." style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="plotting-with-matplotlib.html#cb107-1" aria-hidden="true" tabindex="-1"></a>hours <span class="ot">=</span> <span class="fu">range</span>(<span class="dv">7</span>)</span></code></pre></div>
+<div id="points-and-lines" class="section level4" number="4.13.1.1">
+<h4><span class="header-section-number">4.13.1.1</span> Points and Lines</h4>
+<p>Let’s add to our subplot by plotting some data. I’ve stored the temperature in Fahrenheit in Baltimore, MD and Wommels, Netherlands for the next seven hours:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="plotting-with-matplotlib.html#cb107-1" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> <span class="bu">range</span>(<span class="dv">7</span>)</span>
+<span id="cb107-2"><a href="plotting-with-matplotlib.html#cb107-2" aria-hidden="true" tabindex="-1"></a>tempBaltimore <span class="op">=</span> [<span class="dv">74</span>, <span class="dv">73</span>, <span class="dv">72</span>, <span class="dv">71</span>, <span class="dv">75</span>, <span class="dv">79</span>, <span class="dv">87</span>]</span>
+<span id="cb107-3"><a href="plotting-with-matplotlib.html#cb107-3" aria-hidden="true" tabindex="-1"></a>tempWommels <span class="op">=</span> [<span class="dv">59</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">69</span>, <span class="dv">72</span>, <span class="dv">67</span>]</span></code></pre></div>
+<p>To plot a set of points, we can use the <code>.scatter()</code> method This function takes two mandatory arguments: a list of x coordinates and a list of y coordinates. We can plot the temperature in Baltimore as such:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="plotting-with-matplotlib.html#cb108-1" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempBaltimore)</span></code></pre></div>
+<p>Our plot will look like this:</p>
+<p><img src="img/baltimore.png" title="Baltimore temperatures" alt="A scatter plot of Baltimore temperatures." style="display: block; margin: auto;" /></p>
+<p>Note that the <code>.scatter()</code> method has a variety of optional arguments that can be used to configure the appearance of your pointts - we will often modify the color (<code>c</code>), size (<code>s</code>), and shape (<code>m</code>) of our points. A full list of options can be found <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html">here</a>.</p>
+<p>To add a line, we use the <code>.plot()</code> method. Like <code>.scatter()</code>, this function takes as arguments lists of x and y positions, and allows for aesthetic customization with a variety of optional parameters. (for more information on those, look <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">here</a>) our plotting code now looks like this:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="plotting-with-matplotlib.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb109-2"><a href="plotting-with-matplotlib.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="plotting-with-matplotlib.html#cb109-3" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> <span class="bu">range</span>(<span class="dv">7</span>)</span>
+<span id="cb109-4"><a href="plotting-with-matplotlib.html#cb109-4" aria-hidden="true" tabindex="-1"></a>tempBaltimore <span class="op">=</span> [<span class="dv">74</span>, <span class="dv">73</span>, <span class="dv">72</span>, <span class="dv">71</span>, <span class="dv">75</span>, <span class="dv">79</span>, <span class="dv">87</span>]</span>
+<span id="cb109-5"><a href="plotting-with-matplotlib.html#cb109-5" aria-hidden="true" tabindex="-1"></a>tempWommels <span class="op">=</span> [<span class="dv">59</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">69</span>, <span class="dv">72</span>, <span class="dv">67</span>]</span>
+<span id="cb109-6"><a href="plotting-with-matplotlib.html#cb109-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-7"><a href="plotting-with-matplotlib.html#cb109-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-8"><a href="plotting-with-matplotlib.html#cb109-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb109-9"><a href="plotting-with-matplotlib.html#cb109-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-10"><a href="plotting-with-matplotlib.html#cb109-10" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempBaltimore)</span>
+<span id="cb109-11"><a href="plotting-with-matplotlib.html#cb109-11" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempBaltimore)</span></code></pre></div>
+<p>and generates this image:</p>
+<p><img src="img/baltimoreLine.png" title="Baltimore temperatures - points and line" alt="Scatter and line plots of Baltimore temperatures." style="display: block; margin: auto;" /></p>
 
+</div>
 </div>
 </div>
 <hr>
