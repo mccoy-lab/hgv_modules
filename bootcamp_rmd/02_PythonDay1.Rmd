@@ -717,7 +717,7 @@ To plot a set of points, we can use the `.scatter()` method This function takes 
 ax.scatter(hours, tempBaltimore)
 ```
 
-Our plot will look like this: 
+We can display our plot by running the function `plt.show()`. Our plot will look like this: 
 
 <img src="img/baltimore.png" title="Baltimore temperatures" alt="A scatter plot of Baltimore temperatures." style="display: block; margin: auto;" />
 
@@ -737,6 +737,7 @@ fig, ax = plt.subplots()
 
 ax.scatter(hours, tempBaltimore)
 ax.plot(hours, tempBaltimore)
+plt.show()
 ```
 
 and generates this image: 
@@ -755,6 +756,7 @@ ax.plot(hours, tempBaltimore)
 
 ax.scatter(hours, tempWommels)
 ax.plot(hours, tempWommels)
+plt.show()
 ```
 
 <img src="img/baltimoreWommels.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
@@ -781,6 +783,7 @@ ax.plot(hours, tempBaltimore)
 ax.scatter(hours, tempWommels, label='Wommels')
 ax.plot(hours, tempWommels)
 ax.legend()
+plt.show()
 ```
 
 <img src="img/labeledPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
@@ -806,6 +809,8 @@ If we wanted to set custom limits for our x and ylimits, we can use the `set_xli
 ax.set_ylim(50, 100)
 ```
 
+Altogether, our final image looks like this: 
+
 <img src="img/finalPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
 
 ### Histograms 
@@ -826,14 +831,18 @@ ax.hist(temperatureBaltimore)
 ax.set_xlabel('Temperature (F)')
 ax.set_ylabel('Frequency')
 ax.set_title('Current Temperature in Every Town Named Baltimore')
+plt.show()
 ```
 
 <img src="img/allBaltimores.png" title="Temperature in all Baltimores" alt="Histogram of temperature in every town named Baltimore" style="display: block; margin: auto;" />
 
+One important argument for the `.hist()` method is `bins`, which allows us to set how many groups our data is divided into. The more bins there are, the fewer x values will be contained within a single bin. For example, plotting the Baltimore data with a larger number of bins: 
 
+```{r, engine='pyhton', eval=FALSE}
+ax.hist(temperatureBaltimore, bins = 20)
+```
 
-
-
+<img src="img/allBaltimoresBins.png" title="Temperature in all Baltimores" alt="Histogram of temperature in every town named Baltimore" style="display: block; margin: auto;" />
 
 
 

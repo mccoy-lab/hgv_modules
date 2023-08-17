@@ -52,10 +52,12 @@ ottrpal::set_knitr_image_path()
 *  `plt.subplots()`: Initialize a figure with at least one subplot
 * `.scatter()`: Create a scatter plot
 * `.plot()`: Create a line plot
+* `.his()`: Create a histogram
 * `.legend()`: Add a legend to your figure
 * `.set_xlabel()` and `ax.set_ylabel()`: Set x and y labels for a subplot
 * `.set_title()`: Set a title for a subplot
 * `.set_xlim()` and `.set_ylim()`: Set x and y limits for a subplot
+* `plt.show()`: Display plot 
 
 
 
