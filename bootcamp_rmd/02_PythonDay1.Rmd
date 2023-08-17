@@ -713,7 +713,7 @@ tempWommels = [59, 60, 62, 65, 69, 72, 67]
 
 To plot a set of points, we can use the `.scatter()` method This function takes two mandatory arguments: a list of x coordinates and a list of y coordinates. We can plot the temperature in Baltimore as such: 
 
-```{r}
+```{r, engine='python'}
 ax.scatter(hours, tempBaltimore)
 ```
 
