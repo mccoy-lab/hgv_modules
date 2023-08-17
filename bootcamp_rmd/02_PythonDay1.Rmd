@@ -689,7 +689,7 @@ In this course, we will use the library Matplotlib for plotting. For concision, 
 import matplotlib.pyplot as plt
 ```
 
-### Plotting walkthrough
+### Line and Scatter Plots - Walkthrough
 
 We can initialize a figure with the following line:
 
@@ -808,20 +808,27 @@ ax.set_ylim(50, 100)
 
 <img src="img/finalPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
 
+### Histograms 
 
+Histograms are a convenient way of visually displaying the overall distribution of a one-dimensional dataset. 
 
+I've found 25 towns worldwide named Baltimore. Here are their current temperature in Fahrenheit saved to a list:
 
+```{r, engine='python'}
+temperatureBaltimore = [69, 83, 82, 90, 77, 89, 82, 67, 59, 86, 74, 77, 58, 67, 62, 91, 73, 81, 67, 87, 61, 67, 61, 108, 112]
+```
 
+To generate a histogram, we use the `.hist()` method. By default, this method takes just one argument - the data that you wish to plot. 
 
+```{r, engine='pyhton', eval=FALSE}
+fig, ax = plt.subplots()
+ax.hist(temperatureBaltimore)
+ax.set_xlabel('Temperature (F)')
+ax.set_ylabel('Frequency')
+ax.set_title('Current Temperature in Every Town Named Baltimore')
+```
 
-
-
-
-
-
-
-
-
+<img src="img/allBaltimores.png" title="Temperature in all Baltimores" alt="Histogram of temperature in every town named Baltimore" style="display: block; margin: auto;" />
 
 
 

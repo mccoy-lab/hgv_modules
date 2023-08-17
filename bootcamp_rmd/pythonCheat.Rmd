@@ -53,6 +53,10 @@ ottrpal::set_knitr_image_path()
 * `.scatter()`: Create a scatter plot
 * `.plot()`: Create a line plot
 * `.legend()`: Add a legend to your figure
+* `.set_xlabel()` and `ax.set_ylabel()`: Set x and y labels for a subplot
+* `.set_title()`: Set a title for a subplot
+* `.set_xlim()` and `.set_ylim()`: Set x and y limits for a subplot
+
 
 
 
