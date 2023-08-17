@@ -51,6 +51,8 @@ ottrpal::set_knitr_image_path()
 
 *  `plt.subplots()`: Initialize a figure with at least one subplot
 * `.scatter()`: Create a scatter plot
+* `.plot()`: Create a line plot
+* `.legend()`: Add a legend to your figure
 
 
 

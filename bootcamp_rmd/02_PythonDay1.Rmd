@@ -743,7 +743,49 @@ and generates this image:
 
 <img src="img/baltimoreLine.png" title="Baltimore temperatures - points and line" alt="Scatter and line plots of Baltimore temperatures." style="display: block; margin: auto;" />
 
+#### Multiple Sets of Data 
 
+To plot both Baltimore and Wommels, we simply add a second call to `.scatter()` and `.plot()`
+
+```{r, engine='python', eval=FALSE}
+fig, ax = plt.subplots()
+
+ax.scatter(hours, tempBaltimore)
+ax.plot(hours, tempBaltimore)
+
+ax.scatter(hours, tempWommels)
+ax.plot(hours, tempWommels)
+```
+
+<img src="img/baltimoreWommels.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
+
+A couple things are interesting about this plot: 
+
+* The y axis scale adjust automatically to fit in Wommels. 
+* The second time that we call the `.scatter()` and `.plot()` functions, they automatically plot in a new color. If we were to add a third set of points, they would again be in a new color. 
+
+#### Labels and Legends
+
+To an observe, our plot is a bit confusing because it is unclear which line represents Wommels and which line represents Baltimore. We could clarify this by adding a legend. There are two steps to doing this: 
+
+1. We need to use the optional `label` argument. This argument lets the interpreter how to label a line or set of points in the legend. For example, we can label a set of points as such: `ax.scatter(hours, tempBaltimore, label='Baltimore')`. In this example, we can label either the scatter plots or the line plots.
+2. Create a legend using the `.legend()` method
+
+
+```{r, engine='python', eval=FALSE}
+fig, ax = plt.subplots()
+
+ax.scatter(hours, tempBaltimore, label='Baltimore')
+ax.plot(hours, tempBaltimore)
+
+ax.scatter(hours, tempWommels, label='Wommels')
+ax.plot(hours, tempWommels)
+ax.legend()
+```
+
+<img src="img/labeledPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
+
+#### Figure Aesthetics
 
 
 
