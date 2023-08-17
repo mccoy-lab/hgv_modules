@@ -787,6 +787,27 @@ ax.legend()
 
 #### Figure Aesthetics
 
+Now that our data is plotted, let's add some axis labels using the `.set_xlabel()` and `.set_ylabel()` methods:
+
+```{r, engine='python', eval=FALSE}
+ax.set_xlabel("Time (Hours)")
+ax.set_ylabel("Temperature (F)")
+```
+
+We can set a title as such:
+
+```{r, engine='python', eval=FALSE}
+ax.set_title('Temperature in Baltimore and Wommels')
+```
+
+If we wanted to set custom limits for our x and ylimits, we can use the `set_xlim()` and `set_ylim()` methods: 
+
+```{r, engine='python', eval=FALSE}
+ax.set_ylim(50, 100)
+```
+
+<img src="img/finalPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
+
 
 
 
