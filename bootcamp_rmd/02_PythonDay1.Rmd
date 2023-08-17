@@ -701,7 +701,10 @@ This initializes a figure (named `fig`) and a plot within the figure (named `ax`
 
 <img src="img/emptyPlot.png" title="Empty Plot" alt="An initialized plot without anything added to it." style="display: block; margin: auto;" />
 
-test
+```{r}
+hours = range(7)
+
+```
 
 
 
