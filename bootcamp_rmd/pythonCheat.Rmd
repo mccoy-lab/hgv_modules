@@ -50,3 +50,9 @@ ottrpal::set_knitr_image_path()
 ### Plotting
 
 *  `plt.subplots()`: Initialize a figure with at least one subplot
+* `.scatter()`: Create a scatter plot
+
+
+
+
+

@@ -701,18 +701,47 @@ This initializes a figure (named `fig`) and a plot within the figure (named `ax`
 
 <img src="img/emptyPlot.png" title="Empty Plot" alt="An initialized plot without anything added to it." style="display: block; margin: auto;" />
 
-```{r}
-hours = range(7)
+#### Points and Lines
 
+Let's add to our subplot by plotting some data. I've stored the temperature in Fahrenheit in Baltimore, MD and Wommels, Netherlands for the next seven hours:
+
+```{r, engine='python'}
+hours = range(7)
+tempBaltimore = [74, 73, 72, 71, 75, 79, 87]
+tempWommels = [59, 60, 62, 65, 69, 72, 67]
 ```
 
+To plot a set of points, we can use the `.scatter()` method This function takes two mandatory arguments: a list of x coordinates and a list of y coordinates. We can plot the temperature in Baltimore as such: 
+
+```{r}
+ax.scatter(hours, tempBaltimore)
+```
+
+Our plot will look like this: 
+
+<img src="img/baltimore.png" title="Baltimore temperatures" alt="A scatter plot of Baltimore temperatures." style="display: block; margin: auto;" />
+
+Note that the `.scatter()` method has a variety of optional arguments that can be used to configure the appearance of your pointts - we will often modify the color (`c`), size (`s`), and shape (`m`) of our points. A full list of options can be found [here](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html).
+
+To add a line, we use the `.plot()` method. Like `.scatter()`, this function takes as arguments lists of x and y positions, and allows for aesthetic customization with a variety of optional parameters.  (for more information on those, look [here](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)) our plotting code now looks like this: 
+
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot as plt
+
+hours = range(7)
+tempBaltimore = [74, 73, 72, 71, 75, 79, 87]
+tempWommels = [59, 60, 62, 65, 69, 72, 67]
 
 
+fig, ax = plt.subplots()
 
+ax.scatter(hours, tempBaltimore)
+ax.plot(hours, tempBaltimore)
+```
 
+and generates this image: 
 
-
-
+<img src="img/baltimoreLine.png" title="Baltimore temperatures - points and line" alt="Scatter and line plots of Baltimore temperatures." style="display: block; margin: auto;" />
 
 
 
