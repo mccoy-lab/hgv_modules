@@ -306,6 +306,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="figure-aesthetics" class="section level4" number="4.13.1.4">
 <h4><span class="header-section-number">4.13.1.4</span> Figure Aesthetics</h4>
+<p>Now that our data is plotted, let’s add some axis labels using the <code>.set_xlabel()</code> and <code>.set_ylabel()</code> methods:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="plotting-with-matplotlib.html#cb112-1" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&quot;Time (Hours)&quot;</span>)</span>
+<span id="cb112-2"><a href="plotting-with-matplotlib.html#cb112-2" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&quot;Temperature (F)&quot;</span>)</span></code></pre></div>
+<p>We can set a title as such:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="plotting-with-matplotlib.html#cb113-1" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;Temperature in Baltimore and Wommels&#39;</span>)</span></code></pre></div>
+<p>If we wanted to set custom limits for our x and ylimits, we can use the <code>set_xlim()</code> and <code>set_ylim()</code> methods:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="plotting-with-matplotlib.html#cb114-1" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">50</span>, <span class="dv">100</span>)</span></code></pre></div>
+<p><img src="img/finalPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
