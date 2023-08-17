@@ -253,7 +253,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb107-3"><a href="plotting-with-matplotlib.html#cb107-3" aria-hidden="true" tabindex="-1"></a>tempWommels <span class="op">=</span> [<span class="dv">59</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">69</span>, <span class="dv">72</span>, <span class="dv">67</span>]</span></code></pre></div>
 <p>To plot a set of points, we can use the <code>.scatter()</code> method This function takes two mandatory arguments: a list of x coordinates and a list of y coordinates. We can plot the temperature in Baltimore as such:</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="plotting-with-matplotlib.html#cb108-1" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempBaltimore)</span></code></pre></div>
-<p>Our plot will look like this:</p>
+<p>We can display our plot by running the function <code>plt.show()</code>. Our plot will look like this:</p>
 <p><img src="img/baltimore.png" title="Baltimore temperatures" alt="A scatter plot of Baltimore temperatures." style="display: block; margin: auto;" /></p>
 <p>Note that the <code>.scatter()</code> method has a variety of optional arguments that can be used to configure the appearance of your pointts - we will often modify the color (<code>c</code>), size (<code>s</code>), and shape (<code>m</code>) of our points. A full list of options can be found <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html">here</a>.</p>
 <p>To add a line, we use the <code>.plot()</code> method. Like <code>.scatter()</code>, this function takes as arguments lists of x and y positions, and allows for aesthetic customization with a variety of optional parameters. (for more information on those, look <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">here</a>) our plotting code now looks like this:</p>
@@ -267,7 +267,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb109-8"><a href="plotting-with-matplotlib.html#cb109-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb109-9"><a href="plotting-with-matplotlib.html#cb109-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb109-10"><a href="plotting-with-matplotlib.html#cb109-10" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempBaltimore)</span>
-<span id="cb109-11"><a href="plotting-with-matplotlib.html#cb109-11" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempBaltimore)</span></code></pre></div>
+<span id="cb109-11"><a href="plotting-with-matplotlib.html#cb109-11" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempBaltimore)</span>
+<span id="cb109-12"><a href="plotting-with-matplotlib.html#cb109-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p>and generates this image:</p>
 <p><img src="img/baltimoreLine.png" title="Baltimore temperatures - points and line" alt="Scatter and line plots of Baltimore temperatures." style="display: block; margin: auto;" /></p>
 </div>
@@ -280,7 +281,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb110-4"><a href="plotting-with-matplotlib.html#cb110-4" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempBaltimore)</span>
 <span id="cb110-5"><a href="plotting-with-matplotlib.html#cb110-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb110-6"><a href="plotting-with-matplotlib.html#cb110-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempWommels)</span>
-<span id="cb110-7"><a href="plotting-with-matplotlib.html#cb110-7" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempWommels)</span></code></pre></div>
+<span id="cb110-7"><a href="plotting-with-matplotlib.html#cb110-7" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempWommels)</span>
+<span id="cb110-8"><a href="plotting-with-matplotlib.html#cb110-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="img/baltimoreWommels.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" /></p>
 <p>A couple things are interesting about this plot:</p>
 <ul>
@@ -302,7 +304,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb111-5"><a href="plotting-with-matplotlib.html#cb111-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb111-6"><a href="plotting-with-matplotlib.html#cb111-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempWommels, label<span class="op">=</span><span class="st">&#39;Wommels&#39;</span>)</span>
 <span id="cb111-7"><a href="plotting-with-matplotlib.html#cb111-7" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempWommels)</span>
-<span id="cb111-8"><a href="plotting-with-matplotlib.html#cb111-8" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code></pre></div>
+<span id="cb111-8"><a href="plotting-with-matplotlib.html#cb111-8" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb111-9"><a href="plotting-with-matplotlib.html#cb111-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="img/labeledPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" /></p>
 </div>
 <div id="figure-aesthetics" class="section level4" number="4.13.1.4">
@@ -314,6 +317,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="plotting-with-matplotlib.html#cb113-1" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;Temperature in Baltimore and Wommels&#39;</span>)</span></code></pre></div>
 <p>If we wanted to set custom limits for our x and ylimits, we can use the <code>set_xlim()</code> and <code>set_ylim()</code> methods:</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="plotting-with-matplotlib.html#cb114-1" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">50</span>, <span class="dv">100</span>)</span></code></pre></div>
+<p>Altogether, our final image looks like this:</p>
 <p><img src="img/finalPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -327,8 +331,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ax.hist(temperatureBaltimore)
 ax.set_xlabel(&#39;Temperature (F)&#39;)
 ax.set_ylabel(&#39;Frequency&#39;)
-ax.set_title(&#39;Current Temperature in Every Town Named Baltimore&#39;)</code></pre>
+ax.set_title(&#39;Current Temperature in Every Town Named Baltimore&#39;)
+plt.show()</code></pre>
 <p><img src="img/allBaltimores.png" title="Temperature in all Baltimores" alt="Histogram of temperature in every town named Baltimore" style="display: block; margin: auto;" /></p>
+<p>One important argument for the <code>.hist()</code> method is <code>bins</code>, which allows us to set how many groups our data is divided into. The more bins there are, the fewer x values will be contained within a single bin. For example, plotting the Baltimore data with a larger number of bins:</p>
+<pre class="pyhton"><code>ax.hist(temperatureBaltimore, bins = 20)</code></pre>
+<p><img src="img/allBaltimoresBins.png" title="Temperature in all Baltimores" alt="Histogram of temperature in every town named Baltimore" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
