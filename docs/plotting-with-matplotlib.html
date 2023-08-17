@@ -269,6 +269,43 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb109-11"><a href="plotting-with-matplotlib.html#cb109-11" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempBaltimore)</span></code></pre></div>
 <p>and generates this image:</p>
 <p><img src="img/baltimoreLine.png" title="Baltimore temperatures - points and line" alt="Scatter and line plots of Baltimore temperatures." style="display: block; margin: auto;" /></p>
+</div>
+<div id="multiple-sets-of-data" class="section level4" number="4.13.1.2">
+<h4><span class="header-section-number">4.13.1.2</span> Multiple Sets of Data</h4>
+<p>To plot both Baltimore and Wommels, we simply add a second call to <code>.scatter()</code> and <code>.plot()</code></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="plotting-with-matplotlib.html#cb110-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb110-2"><a href="plotting-with-matplotlib.html#cb110-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="plotting-with-matplotlib.html#cb110-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempBaltimore)</span>
+<span id="cb110-4"><a href="plotting-with-matplotlib.html#cb110-4" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempBaltimore)</span>
+<span id="cb110-5"><a href="plotting-with-matplotlib.html#cb110-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-6"><a href="plotting-with-matplotlib.html#cb110-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempWommels)</span>
+<span id="cb110-7"><a href="plotting-with-matplotlib.html#cb110-7" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempWommels)</span></code></pre></div>
+<p><img src="img/baltimoreWommels.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" /></p>
+<p>A couple things are interesting about this plot:</p>
+<ul>
+<li>The y axis scale adjust automatically to fit in Wommels.</li>
+<li>The second time that we call the <code>.scatter()</code> and <code>.plot()</code> functions, they automatically plot in a new color. If we were to add a third set of points, they would again be in a new color.</li>
+</ul>
+</div>
+<div id="labels-and-legends" class="section level4" number="4.13.1.3">
+<h4><span class="header-section-number">4.13.1.3</span> Labels and Legends</h4>
+<p>To an observe, our plot is a bit confusing because it is unclear which line represents Wommels and which line represents Baltimore. We could clarify this by adding a legend. There are two steps to doing this:</p>
+<ol style="list-style-type: decimal">
+<li>We need to use the optional <code>label</code> argument. This argument lets the interpreter how to label a line or set of points in the legend. For example, we can label a set of points as such: <code>ax.scatter(hours, tempBaltimore, label='Baltimore')</code>. In this example, we can label either the scatter plots or the line plots.</li>
+<li>Create a legend using the <code>.legend()</code> method</li>
+</ol>
+<div class="sourceCode" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="plotting-with-matplotlib.html#cb111-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb111-2"><a href="plotting-with-matplotlib.html#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-3"><a href="plotting-with-matplotlib.html#cb111-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempBaltimore, label<span class="op">=</span><span class="st">&#39;Baltimore&#39;</span>)</span>
+<span id="cb111-4"><a href="plotting-with-matplotlib.html#cb111-4" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempBaltimore)</span>
+<span id="cb111-5"><a href="plotting-with-matplotlib.html#cb111-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-6"><a href="plotting-with-matplotlib.html#cb111-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(hours, tempWommels, label<span class="op">=</span><span class="st">&#39;Wommels&#39;</span>)</span>
+<span id="cb111-7"><a href="plotting-with-matplotlib.html#cb111-7" aria-hidden="true" tabindex="-1"></a>ax.plot(hours, tempWommels)</span>
+<span id="cb111-8"><a href="plotting-with-matplotlib.html#cb111-8" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code></pre></div>
+<p><img src="img/labeledPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" /></p>
+</div>
+<div id="figure-aesthetics" class="section level4" number="4.13.1.4">
+<h4><span class="header-section-number">4.13.1.4</span> Figure Aesthetics</h4>
 
 </div>
 </div>

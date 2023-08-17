@@ -57,6 +57,9 @@ average-standard-deviation-maximum-minimum
 plotting-with-matplotlib
 plotting-walkthrough
 points-and-lines
+multiple-sets-of-data
+labels-and-legends
+figure-aesthetics
 errors
 git
 tracking-changes
