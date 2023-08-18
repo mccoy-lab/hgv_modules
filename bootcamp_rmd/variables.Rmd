@@ -1,0 +1,48 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Data Types
+
+**Integers** are whole numbers. For example:
+
+* `2`
+* `-3`
+* `0`
+
+**Floats** are numbers with a decimal point. For example: 
+
+* `1.2`
+* `-3.0`
+* `26/3` (evaluates to `8.666`)
+
+**Strings** are characters enclosed by single `'` or double `"` quotation marks. Any text enclosed by quotes will be treated as a string.
+
+* `"My Grandpa's deck has no pathetic cards"`
+* `'85.3'`
+
+Note the second example – `85.3` is a float; `'85.3'` is a string.
+
+**Booleans** have two possible values: `True` and `False`. These can also be expressed as `1` (true) or `0` (false).
+
+## Variables
+
+Variables are assigned using the `=` sign:
+
+```
+variable_name = value
+```
+
+For example:
+
+* `composer = "buxtehude"`
+* `year = 1637`
+
+The variable name can be almost anything. Here are some general rules to consider when naming a variable:
+
+* The name must start with a letter or underscore
+* The name can only consist of letters, numbers, or underscores
+* Variables are case sensitive (i.e. Python interprets `my_number`, `MY_NUMBER`, and `My_Number` as different variables)
+* Python has a set of "reserved words" that cannot be used as variable names. These are words that already have a set meaning in Python, such as `True`, `False`, `for`, and `if`. A full list can be found [**here**](https://www.programiz.com/python-programming/keywords-identifier).

@@ -1,0 +1,30 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Comparisons 
+
+In Python, comparisons will always return a Boolean, i.e. either `True` or `False.` We can use the following syntax to compare values:
+
+* `<` and `>`: greater than, less than
+* `<=` and `>=`: greater than or equal to, less than or equal to
+
+For example:
+
+```{r, engine="python"}
+print(5.3 < 17)
+print(4. >= (8/2))
+```
+
+* `==` checks if two values are equal. `!=` checks if two values are different.
+
+```{r, engine="python"}
+print(2 == (10 - 8))
+```
+
+Note that a single equals sign `=` is used to assign values. However, a double equals sign `==` is used to compare values.
+
+* `var1 = 3` sets the variable `var1` to `3`
+* `var1 == 3` checks whether the value of `var1` is `3`
