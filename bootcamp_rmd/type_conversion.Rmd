@@ -1,0 +1,51 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Type Conversion
+
+Sometimes, data can be converted from one type to another. 
+
+* `float()` - converts integers and strings (when appropriate) to floats
+
+```{r, engine='python', eval=FALSE}
+print(float(3))
+print(float("2.57"))
+```
+
+```{r, engine='python', eval=FALSE}
+3.0
+2.57
+```
+
+* `int()`converts floats and strings into integers. Note that this function always rounds down if necessary. An exception here: `int()` **does not** allow you to convert a string with a decimal point into an integer - `int("3.62")` will throw an error.  
+
+```{r, engine='python', eval=FALSE}
+print(int('3'))
+print(int(2.57))
+```
+
+```{r, engine='python', eval=FALSE}
+3
+2
+```
+
+Note that for the above functions, it is not always possible to do convert data into a different type. In particular, strings with non-numeric characters cause problems - `int("Dachshund")` will not work. 
+
+* `str()` converts all other data types into strings. 
+
+```{r, engine='python', eval=FALSE}
+print(str(3))
+print(str(2.57))
+print(str(True))
+```
+
+```{r, engine='python', eval=FALSE}
+'3'
+'2.57'
+'True'
+```
+
+A special case of type conversions comes with `booleans`. Numeric values are **automatically converted** into `booleans`. `0` is equivalent to `False`. **All** non-zero numeric values are equivalent to `True`. Likewise, empty strings (`''`) convert to `False`. All non-empty strings (inlcuding the string `'False'`) convert to `True`.

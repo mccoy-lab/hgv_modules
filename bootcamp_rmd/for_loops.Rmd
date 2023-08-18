@@ -1,0 +1,73 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## For Loops 
+
+In Python, we will often want to perform an action more than once. For example, if we have a list, we might want to do the same operatation on every item within the list.
+
+One way to do this is to use a **for loop**, which is structured like this:
+
+```
+for <temporary_variable> in <thing to loop through>:
+    {do something}
+```
+
+For example:
+
+```{r, engine='python'}
+stations = ["Oddity", "Londres", "Cherry", "Swedish"]
+
+for i in stations:
+  print(i)
+```
+
+### For loop walkthrough
+
+Here is how the loop works:
+
+```
+for i in stations:
+```
+
+In this line, we:
+
+* Define the temporary variable `i`. The name of this variable is arbitrary.
+* We say that we are looping through `stations`.
+
+In the first iteration of the for loop, `i` takes on the value of the first item in `stations` (`"Oddity"`). Now we perform all of the indented code, which here is just a `print()` statement.
+
+In the second iteration of the for loop, we set the value of `i` to the second entry in `stations` (`"Londres"`). We execute all of the indented code, printing out `"Londres"`.
+
+We continue on doing this until there is nothing left in `stations`.
+
+In this example, there was a single line in the body of the loop, but a for loop can be arbitrarily long. Here is a longer example:
+
+```{r, engine='python'}
+my_list = [1, 4, 6, 9, 10, 2]
+
+for i in my_list:
+  i = i + 3
+  i = i ** 2
+  print(i)
+```
+
+### Repeating an action `n` times
+
+We can also use a for loop to perform an action a set number of times, even when we don’t have a list to loop through. To do so, we can use the `range()` function. We'll use this function a ton throughout the course.
+
+`range(<n>)`, where `n` is a single integer, generates a sequence of numbers from `0` to `n` (not including `n` itself). So to run a function 3 times, we would provide the for loop with `range(3)` (which generates the list `[0, 1, 2]`).
+
+```{r, engine='python'}
+for i in range(3):
+  print(i)
+```
+
+So far, the body of our for loop has always referenced the temporary variable `i`. We can also use a for loop to run a block of code repeatedly without actually manipulating `i`:
+
+```{r, engine='python'}
+for i in range(3):
+  print("All work and no play")
+```

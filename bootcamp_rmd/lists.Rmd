@@ -1,0 +1,104 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Lists 
+
+Lists allow us to store multiple objects together.
+
+A list is a sequential group of variables, denoted in Python by square brackets `[]`, with individual entries separated by commas. A few of the neat properties of lists are:
+
+* **Ordered**: The list `[1, 5, 3, 7]` will always store those numbers in the same order.
+* **Mixed data types**: `["mercury", 13, 5.3, False]` is a valid list which contains every data type we've seen so far.
+* **Can contain other lists**: `[[2, 3], "sulfur", 12, 18]`
+* **Can contain repeat values**: `["tomato", "tomato", "tomato", "sulfur"]`
+
+### Indexing
+
+What if we want to extract a specific value from a list? We can use **indexing**. To index in Python, we use the following syntax:
+
+```
+variable_name[index]
+```
+
+where `index` is the number of the item we wish to extract.
+
+```{r, engine="python"}
+alchemists = ["Zosimos", "Oresme", "Flamel", "pseudo-Aristotle"]
+print(alchemists[1])
+```
+
+Notice that when we printed the item at position 1, we printed out the _second_ entry in `alchemists`. This is because in Python, **indexing begins at 0**. To print out the first entry, we would use `alchemists[0]`.
+
+A couple interesting things we can do with indexing:
+
+* To print multiple consecutive items, we can provide two numbers separated by a colon `:`.
+
+```{r, engine="python"}
+print(alchemists[0:2])
+```
+
+Note that the first number is **inclusive** and the second number is **exclusive**: we include the item at position 0 (`'Zosimos'`), but not the item at position 2 (`'Flamel'`).
+
+* We can index in reverse. To index from the end of a list, we use negative numbers.
+
+```{r, engine="python", eval=FALSE}
+print(alchemists[-1])
+```
+```{r, engine="python", echo=FALSE}
+print(alchemists[-1])
+```
+
+***
+<details> <summary> Nested lists </summary>
+
+How would we extract the number `3` from the list below?
+
+```{r, engine="python"}
+my_list = [1, 2, [3, 4], 5]
+```
+
+First, we extract the `[3, 4]` list. This is the third item of the outer list, so it is at position 2 (remember, indexing in Python starts at 0). So we can access the interior list with `my_list[2]`:
+
+```{r, engine="python"}
+print(my_list[2])
+```
+
+Within the interior list, `3` is the first item, so it is at position 0. It can be accessed with the syntax `my_list[2][0]`:
+
+```{r, engine="python", eval=FALSE}
+print(my_list[2][0])
+```
+```{r, engine="python", echo=FALSE}
+print(my_list[2][0])
+```
+
+</details>
+***
+
+#### Indexing Strings
+
+We can also apply indexing to extract substrings from within a string. This is done identically to how we index a list:
+
+```{r, engine='python'}
+creature = 'stingray'
+print(creature[0:5])
+```
+
+### Adding to lists
+
+Finally, we can add entries to the end of a list. We do this with the `append()` method, which is used with the following syntax:
+
+```
+list_name.append(item)
+```
+
+For example:
+
+```{r, engine="python"}
+florilegium = ['marigold', 'thistle', 'wormwood']
+florilegium.append('tansy')
+print(florilegium)
+```

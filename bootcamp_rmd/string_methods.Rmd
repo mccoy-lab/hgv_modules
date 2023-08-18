@@ -1,0 +1,70 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## String Methods
+
+### `.upper()` and `.lower()`
+
+The `.upper()` and `.lower()` methods take a string and convert it to uppercase and lowercase, respectively.
+
+```{r, engine='python'}
+print("out on the wily, windy moors".upper())
+```
+
+```{r, engine='python'}
+aria = "Piangerò La Sorte Mia"
+print(aria.lower())
+```
+
+### .split()
+
+The `.split()` method takes a string and splits it into a list, dividing the list on a **delimiter** (i.e., separator). The delimiter is provided as an argument:
+
+```{r, engine='python'}
+print("Newt eye, frog toe".split(','))
+```
+
+If no argument is provided, then the string is split on whitespace (that is, it is split whenever a space or tab is encountered).
+
+```{r, engine='python'}
+print("Eye of newt    and toe of frog".split())
+```
+
+### .join()
+
+The `.join()` method is the inverse of `.split()`: converts a list into a string, with list elements separated by a delimiter. The general syntax is:
+
+```
+"<delimiter>".join(<list>)
+```
+
+For example:
+
+```{r, engine='python'}
+" ".join(["I", "found", "a", "fox", "caught", "by", "dogs"])
+```
+
+If we do not provide a delimiter, then the strings are directly concatenated: 
+
+```{r, engine='python'}
+"".join(["I", "found", "a", "fox", "caught", "by", "dogs"])
+```
+
+### .rstrip(), .lstrip(), .strip()
+
+These three methods remove unwanted characters on the right, left, or both sides of a string. You can provide the characters you want to remove as an argument:
+
+```{r, engine='python'}
+"ricercar........,,,,,,".rstrip(",.")
+```
+
+Without an argument, the methods remove spaces: 
+
+```{r, engine='python'}
+"          ricercar ".lstrip()
+```
+
+Note that in the above example we strip the spaces to the left of the main text, but we **do not** remove the spaces from the middle or right end of the text.

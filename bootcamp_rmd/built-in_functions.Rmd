@@ -1,0 +1,76 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Built-In Functions and Methods 
+
+### Functions
+
+A **function** is a block of code that performs a task. Python comes with a substantial set of pre-written functions. 
+
+***Text on how a function is formulated - name, parentheses, optionally arguments*** 
+
+***Is it worth talking about named arguments or positional arguments. Be introspective about this***
+
+For example, the `print()` function displays ***FINISH ME***
+
+***OTHER Built-In FUNCTIONS***'
+
+### Methods
+
+Every data type that we use in Python (strings, integers, etc.) is associated with a set of functions unique to the data type. These functions are called **methods**.
+
+The syntax for using a method is:
+
+```
+<objectName>.<methodName>()
+```
+
+#### Example
+
+The string method `.upper()` is used to convert a string into uppercase letters. We can use it either directly on the string itself:
+
+```{r, engine="python"}
+"peppa".upper()
+```
+
+or by operating on a variable:
+
+```{r, engine="python"}
+pig = "peppa"
+pig.upper()
+```
+
+#### Modifying objects
+
+Using a method may or not modify the object you run it on. For example, the `.upper()` method shows you the uppercase version of a string but **does not** modify the actual object that you are operating on. Observe the following code block:
+
+```{r, engine="python", eval = FALSE}
+pig = "peppa"
+pig.upper()
+print(pig)
+```
+
+```
+## peppa
+```
+
+`pig` has not been updated. To actually save the result of `.upper()`, we have to assign it to a variable: 
+
+```{r, engine="python"}
+pig_caps = pig.upper()
+print(pig_caps)
+```
+
+Some methods **do** modify underlying variables. For example, the list `.append()` method (which we will learn about later) *does* change the list if operates on: 
+
+```{r, engine="python"}
+myList = []
+print(myList)
+myList.append('apple')
+print(myList)
+```
+
+`myList` is altered by `myList.append('apple')`. There's no need to type something like `myList = myList.append('apple')` - this would in fact be an error. Whether methods modify the objects they operate on is something you'll have to keep track of on a case-by-case basis as you learn new methods. 

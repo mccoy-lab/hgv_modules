@@ -1,0 +1,110 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Numpy 
+
+Numpy is a Python library used for manipulating arrays and performing mathematical operations on matrices. For concision, we will import the `numpy` module with the name `np`, as such:
+
+```{r, engine='python', eval=FALSE}
+import numpy as np
+```
+
+### Reading in data
+
+The function `np.loadtxt()` is used to read in text data. The most basic way to run `np.loadtxt()` is:
+
+```{r, engine='python', eval=FALSE}
+np.loadtxt(<fname>)
+```
+
+Consider a hypothetical comma-delimited file `numbers.csv`. The most basic way of reading it in is to run `np.loadtxt('numbers.csv')`. However, when we read in data, we typically want to store it in memory for further manipulation, so we usually use `np.loadtxt()` in conjunction with variable assignment: 
+
+```{r, engine='python', eval = FALSE}
+myNumbers = np.loadtxt('numbers.csv')
+```
+
+However, with a comma-delimited file as input this is likely to cause an error - Python has no way of knowing that elements in your file are separated by a space and will throw an error because something like "1,2,3" cannot be interpreted as a single numeric value. To tell Python that our data is comma-delimited, we can use the **optional argument**, `delimiter`: 
+
+```{r, engine='python', eval=FALSE}
+myNumbers = np.loadtxt('numbers.csv', delimiter=',')
+```
+
+Now, each number is encoded as its own element:
+
+`array([1, 2, 3])`
+
+Notice that unlike the file name, we need to specify the name of this optional argument (`delimiter=`). Because the file name argument is mandatory, `numpy` always expects the first argument to be the filename. However, since there are many possible optional arguments that once can use, it is impossible to infer which optional argument is being referred to by position alone. For optional arguments, we **always need to specify their name**.
+
+`np.loadtxt()` has many useful optional arguments - for example `skiplines`, which allows the user to skip the first `n` lines of a file. A full list of the optional arguments to `np.loadtxt()` can be found [here](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html) 
+
+### Indexing `numpy` arrays
+
+Within a `numpy` array, we often want to look at a specific element or set of elements. To do this, we use indexing. 
+
+First, we can see the total size of an array by looking at the array's `shape` attribute. An **attribute** is a property inherent to a specific data type; it is typically viewed with the following syntax: `print(<variableName>.<attributeName>)`. We can therefore look at the shape of our array as such: `print(myNumbers.shape)`. This returns the number of rows and columns, respectively: `(45, 12)` - 45 rows and 12 columns.
+
+#### Accessing Single Values
+
+To look within these rows and columns for specific values, we use indexing: 
+
+```{r, engine='python', eval=FALSE}
+dataName[<rowNumber>, <columnNumber>]
+```
+
+For example, to print the value in the fifth row and third column of `myNumbers`, we would write: 
+
+```{r, engine='python', eval=FALSE}
+print(myNumbers[4, 2])
+```
+
+Remember that in Python, we start counting at `0`.
+
+#### Accessing Multiple Values 
+
+To print multiple consecutive items, we can provide two numbers separated by a colon `:`.
+
+```{r, engine='python', eval=FALSE}
+print(myNumbers[2:4, 5:10])
+```
+
+Note that the first number is **inclusive** and the second number is **exclusive**: We will print the elements in rows 3 and 4 and not row 5. We will print the the elements in columns 6 through 10, and not in column 11.
+
+### Math in `numpy`
+
+Consider the numpy array, which is saved with the name `sequence`: 
+
+```
+[[1,2,3],
+[4,5,6]]
+```
+
+### Average, Standard Deviation, Maximum, Minimum
+
+To take the average of this array, we use the function `np.mean()`. `np.mean()` has one required argument, which is the name of the object you want to take the mean of. 
+
+Running this function on `sequence` will return `3.5`, which is indeed the average of all six elements: 
+
+```{r, engine='python', eval=FALSE}
+np.mean(sequence)
+```
+
+```{r, engine='python', eval=FALSE}
+3.5
+```
+
+Conveniently, we can also use this same function to calculate the averages across rows and columns, by invoking the optional `axis` argument. Setting `axis` equal to `0` will produce column means; setting `axis` to `1` will produce row means:
+
+```{r, engine='python', eval=FALSE}
+np.mean(sequence, axis=0)
+array([2.5, 3.5, 4.5])
+
+np.mean(sequence, axis=1)
+array([2., 5.])
+```
+
+To compute the standard deviation, we use the `np.std()`. As with `np.mean()`, we can provide the `axis` argument to calculate the standard deviation along rows or columns. 
+
+We can get the maximum and minimum values of a `numpy` array using the `np.max()` and `np.min()` functions, respectively. These can also take the `axis` argument to operate along rows and columns. 

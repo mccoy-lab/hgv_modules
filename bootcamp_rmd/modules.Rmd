@@ -1,0 +1,47 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Modules 
+
+Often, we need to make use of functions beyond the basic ones in Python. To do this, we can import a **module**, or a collection of pre-written functions. A module is imported with the following syntax:
+
+```
+import <module name>
+```
+
+For example, to import the popular plotting module Matplotlib, we write:
+
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot
+```
+
+### Module functions
+
+To use a function from Matplotlib, we need to reference both the package name and the function name, with the general syntax:
+
+```
+moduleName.functionName()
+```
+
+To use Matplotlib's `show()` function, we would write:
+
+```{r, engine='python', eval=FALSE}
+matplotlib.pyplot.show()
+```
+
+### Abbreviating module names
+
+What if you don't want to write out `matplotlib.pyplot` every time you run a Matplotlib function? To simplify this, we can give our modules a shorthand name. For example:
+
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot as plt
+```
+
+Now, instead of writing out `matplotlib.pyplot`, we can just write `plt`. The previous `matplotlib.pyplot.show()` command is shortened to:
+
+```{r, engine='python', eval=FALSE}
+plt.show()
+```

@@ -1,0 +1,170 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+# Python 
+
+## Plotting with `matplotlib` 
+
+In this course, we will use the library Matplotlib for plotting. For concision, we will import the `matplotlib.pyplot` module with the name `plt`, as such:
+
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot as plt
+```
+
+### Line and Scatter Plots - Walkthrough
+
+We can initialize a figure with the following line:
+
+```{r, engine='python', eval=FALSE}
+fig, ax = plt.subplots()
+```
+
+This initializes a figure (named `fig`) and a plot within the figure (named `ax`). Having separate variables for the figure and the plot within the figure may seem strange, but it will make it considerably easier to arrange and manipulate multiple subplots within a larger figure. At present, our figure is just am empty canvas: 
+
+<img src="img/emptyPlot.png" title="Empty Plot" alt="An initialized plot without anything added to it." style="display: block; margin: auto;" />
+
+#### Points and Lines
+
+Let's add to our subplot by plotting some data. I've stored the temperature in Fahrenheit in Baltimore, MD and Wommels, Netherlands for the next seven hours:
+
+```{r, engine='python'}
+hours = range(7)
+tempBaltimore = [74, 73, 72, 71, 75, 79, 87]
+tempWommels = [59, 60, 62, 65, 69, 72, 67]
+```
+
+To plot a set of points, we can use the `.scatter()` method This function takes two mandatory arguments: a list of x coordinates and a list of y coordinates. We can plot the temperature in Baltimore as such: 
+
+```{r, engine='python', eval=FALSE}
+ax.scatter(hours, tempBaltimore)
+```
+
+We can display our plot by running the function `plt.show()`. Our plot will look like this: 
+
+<img src="img/baltimore.png" title="Baltimore temperatures" alt="A scatter plot of Baltimore temperatures." style="display: block; margin: auto;" />
+
+Note that the `.scatter()` method has a variety of optional arguments that can be used to configure the appearance of your pointts - we will often modify the color (`c`), size (`s`), and shape (`m`) of our points. A full list of options can be found [here](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html).
+
+To add a line, we use the `.plot()` method. Like `.scatter()`, this function takes as arguments lists of x and y positions, and allows for aesthetic customization with a variety of optional parameters.  (for more information on those, look [here](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)) our plotting code now looks like this: 
+
+```{r, engine='python', eval=FALSE}
+import matplotlib.pyplot as plt
+
+hours = range(7)
+tempBaltimore = [74, 73, 72, 71, 75, 79, 87]
+tempWommels = [59, 60, 62, 65, 69, 72, 67]
+
+
+fig, ax = plt.subplots()
+
+ax.scatter(hours, tempBaltimore)
+ax.plot(hours, tempBaltimore)
+plt.show()
+```
+
+and generates this image: 
+
+<img src="img/baltimoreLine.png" title="Baltimore temperatures - points and line" alt="Scatter and line plots of Baltimore temperatures." style="display: block; margin: auto;" />
+
+#### Multiple Sets of Data 
+
+To plot both Baltimore and Wommels, we simply add a second call to `.scatter()` and `.plot()`
+
+```{r, engine='python', eval=FALSE}
+fig, ax = plt.subplots()
+
+ax.scatter(hours, tempBaltimore)
+ax.plot(hours, tempBaltimore)
+
+ax.scatter(hours, tempWommels)
+ax.plot(hours, tempWommels)
+plt.show()
+```
+
+<img src="img/baltimoreWommels.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
+
+A couple things are interesting about this plot: 
+
+* The y axis scale adjust automatically to fit in Wommels. 
+* The second time that we call the `.scatter()` and `.plot()` functions, they automatically plot in a new color. If we were to add a third set of points, they would again be in a new color. 
+
+#### Labels and Legends
+
+To an observe, our plot is a bit confusing because it is unclear which line represents Wommels and which line represents Baltimore. We could clarify this by adding a legend. There are two steps to doing this: 
+
+1. We need to use the optional `label` argument. This argument lets the interpreter how to label a line or set of points in the legend. For example, we can label a set of points as such: `ax.scatter(hours, tempBaltimore, label='Baltimore')`. In this example, we can label either the scatter plots or the line plots.
+2. Create a legend using the `.legend()` method
+
+
+```{r, engine='python', eval=FALSE}
+fig, ax = plt.subplots()
+
+ax.scatter(hours, tempBaltimore, label='Baltimore')
+ax.plot(hours, tempBaltimore)
+
+ax.scatter(hours, tempWommels, label='Wommels')
+ax.plot(hours, tempWommels)
+ax.legend()
+plt.show()
+```
+
+<img src="img/labeledPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
+
+#### Figure Aesthetics
+
+Now that our data is plotted, let's add some axis labels using the `.set_xlabel()` and `.set_ylabel()` methods:
+
+```{r, engine='python', eval=FALSE}
+ax.set_xlabel("Time (Hours)")
+ax.set_ylabel("Temperature (F)")
+```
+
+We can set a title as such:
+
+```{r, engine='python', eval=FALSE}
+ax.set_title('Temperature in Baltimore and Wommels')
+```
+
+If we wanted to set custom limits for our x and ylimits, we can use the `set_xlim()` and `set_ylim()` methods: 
+
+```{r, engine='python', eval=FALSE}
+ax.set_ylim(50, 100)
+```
+
+Altogether, our final image looks like this: 
+
+<img src="img/finalPlot.png" title="Temperature in Baltimore and Wommels" alt="Scatter and line plots of Baltimore and Wommels temperatures." style="display: block; margin: auto;" />
+
+### Histograms 
+
+Histograms are a convenient way of visually displaying the overall distribution of a one-dimensional dataset. 
+
+I've found 25 towns worldwide named Baltimore. Here are their current temperature in Fahrenheit saved to a list:
+
+```{r, engine='python'}
+temperatureBaltimore = [69, 83, 82, 90, 77, 89, 82, 67, 59, 86, 74, 77, 58, 67, 62, 91, 73, 81, 67, 87, 61, 67, 61, 108, 112]
+```
+
+To generate a histogram, we use the `.hist()` method. By default, this method takes just one argument - the data that you wish to plot. 
+
+```{r, engine='pyhton', eval=FALSE}
+fig, ax = plt.subplots()
+ax.hist(temperatureBaltimore)
+ax.set_xlabel('Temperature (F)')
+ax.set_ylabel('Frequency')
+ax.set_title('Current Temperature in Every Town Named Baltimore')
+plt.show()
+```
+
+<img src="img/allBaltimores.png" title="Temperature in all Baltimores" alt="Histogram of temperature in every town named Baltimore" style="display: block; margin: auto;" />
+
+One important argument for the `.hist()` method is `bins`, which allows us to set how many groups our data is divided into. The more bins there are, the fewer x values will be contained within a single bin. For example, plotting the Baltimore data with a larger number of bins: 
+
+```{r, engine='pyhton', eval=FALSE}
+ax.hist(temperatureBaltimore, bins = 20)
+```
+
+<img src="img/allBaltimoresBins.png" title="Temperature in all Baltimores" alt="Histogram of temperature in every town named Baltimore" style="display: block; margin: auto;" />
+
+
