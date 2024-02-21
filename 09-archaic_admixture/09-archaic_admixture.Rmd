@@ -112,7 +112,7 @@ library(admixr)
 
 The `admixr` package provides real example data from 10 human individuals, which can be acquired by running its `download_data()` function:
 
-```{r}
+```{r, eval = FALSE}
 # download data into current directory
 prefix <- download_data(dirname = ".")
 ```
@@ -138,12 +138,19 @@ Together, the three `.geno`, `.ind`, and `.snp` files constitute **EIGENSTRAT fo
 
 We can provide the location of the downloaded files to the `eigenstrat()` function, which then constructs an EIGENSTRAT object to be used for downstream analysis.
 
-```{r}
+```{r, eval = FALSE}
 # read in eigenstrat files
-snps <- eigenstrat(prefix)
+snps <- eigenstrat("./snps/snps")
 snps
 ```
-
+```
+## EIGENSTRAT object
+## =================
+## components:
+##   ind file: ./snps/snps.ind
+##   snp file: ./snps/snps.snp
+##   geno file: ./snps/snps.geno
+```
 
 ## The `d()` function
 
