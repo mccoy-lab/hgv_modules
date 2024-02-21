@@ -39,7 +39,7 @@ prefix <- download_data(dirname = ".")
 
 ```{r}
 # read in eigenstrat files
-snps <- eigenstrat(prefix)
+snps <- eigenstrat("./snps/snps")
 snps
 ```
 
