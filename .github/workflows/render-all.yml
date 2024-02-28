@@ -18,16 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          node-version: 20.x
+        uses: actions/checkout@v4
 
         # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
-            node-version: 20.x
     outputs:
       toggle_bookdown: "${{ env.RENDER_BOOKDOWN }}"
       toggle_coursera: "${{ env.RENDER_COURSERA }}"
@@ -45,7 +42,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
