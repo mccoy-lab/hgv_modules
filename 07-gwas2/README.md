@@ -22,10 +22,3 @@ Install these software packages:
 	* `tidyverse`
 	* `vcfR`
 	* `qqman`
-
-### Software to install to Posit Cloud:
-
-* [PLINK](https://www.cog-genomics.org/plink/) stable binary
-* R packages
-	* `vcfR`
- 	* `qqman`
