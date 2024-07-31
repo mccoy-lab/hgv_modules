@@ -26,7 +26,7 @@ In order to run the `admixr` functions within R, I had to:
 export PATH="/Users/syan/Documents/mccoy-lab/code/AdmixTools/bin:$PATH"
 ```
 
-* Add `$PATH` to my `.Renviron` file, in accordance with [this Github issue](https://blick-roman.com/?_=%2Fbodkan%2Fadmixr%2Fissues%2F89%23TKIyQE7bxQ7cKfkQ9Ck6FWcn):
+* Add `$PATH` to my `.Renviron` file, in accordance with an old Github issue that is now deleted:
 ```
 echo "PATH=$PATH" >> .Renviron
 ```
