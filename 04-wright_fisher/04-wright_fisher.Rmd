@@ -25,7 +25,7 @@ In all populations, **genetic drift** acts to change allele frequencies over tim
 
 <center>
 
-![**Fig. 1 ([source](https://sites.google.com/a/winnebagoschools.org/mrsweber-science/articles-for-teaching/genetic-drift)).** An allele's frequency "drifts" between generations due to random chance.](09-wright_fisher/images/drift.png)
+![**Fig. 1.** An allele's frequency "drifts" between generations due to random chance.](09-wright_fisher/images/drift.png)
 
 </center>
 

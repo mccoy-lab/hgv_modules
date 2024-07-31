@@ -100,7 +100,7 @@ In this lab, we'll quantify evidence for introgression in human populations usin
 
 In addition to `tidyverse`, we'll use the `admixr` package, which allows us to easily run the software package [ADMIXTOOLS](https://github.com/DReichLab/AdmixTools) from within R to calculate $D$ and related statistics.
 
-The exercises for class were adapted from the `admixr` tutorial, available [here](https://bodkan.net/admixr/articles/tutorial.html).
+The exercises for class were adapted from the `admixr` tutorial, available [here](https://bodkan.net/admixr/articles/01-tutorial.html).
 
 ```{r, results = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
