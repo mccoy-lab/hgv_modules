@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.10 Building a phylogenetic tree | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.10 Building a phylogenetic tree | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Description of Course" />
   
@@ -30,8 +29,7 @@
   
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="computing-pairwise-distance.html"/>
-<link rel="next" href="assess-bootstrap-support.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<link rel="next" href="conclusion-10.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +47,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link rel="shortcut icon" href="assets/favicon.ico?" />
 
 
@@ -90,11 +89,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -103,14 +102,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -118,6 +117,10 @@ code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
@@ -385,13 +388,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.8" data-path="neighbor-joining-trees.html"><a href="neighbor-joining-trees.html"><i class="fa fa-check"></i><b>12.8</b> Neighbor joining trees</a></li>
 <li class="chapter" data-level="12.9" data-path="computing-pairwise-distance.html"><a href="computing-pairwise-distance.html"><i class="fa fa-check"></i><b>12.9</b> Computing pairwise distance</a></li>
 <li class="chapter" data-level="12.10" data-path="building-a-phylogenetic-tree.html"><a href="building-a-phylogenetic-tree.html"><i class="fa fa-check"></i><b>12.10</b> Building a phylogenetic tree</a></li>
-<li class="chapter" data-level="12.11" data-path="assess-bootstrap-support.html"><a href="assess-bootstrap-support.html"><i class="fa fa-check"></i><b>12.11</b> Assess bootstrap support</a></li>
-<li class="chapter" data-level="12.12" data-path="conclusion-10.html"><a href="conclusion-10.html"><i class="fa fa-check"></i><b>12.12</b> Conclusion</a></li>
-<li class="chapter" data-level="12.13" data-path="homework-10.html"><a href="homework-10.html"><i class="fa fa-check"></i><b>12.13</b> Homework</a></li>
+<li class="chapter" data-level="12.11" data-path="conclusion-10.html"><a href="conclusion-10.html"><i class="fa fa-check"></i><b>12.11</b> Conclusion</a></li>
+<li class="chapter" data-level="12.12" data-path="homework-10.html"><a href="homework-10.html"><i class="fa fa-check"></i><b>12.12</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
-<p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
+<p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> & the <a href="https://github.com/jhudsl/OTTR_Template">OTTR template</a>) </p>
 <p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
 </ul>
 
@@ -410,26 +412,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="building-a-phylogenetic-tree" class="section level2" number="12.10">
-<h2><span class="header-section-number">12.10</span> Building a phylogenetic tree</h2>
+<div id="building-a-phylogenetic-tree" class="section level2 hasAnchor" number="12.10">
+<h2><span class="header-section-number">12.10</span> Building a phylogenetic tree<a href="building-a-phylogenetic-tree.html#building-a-phylogenetic-tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Using the distance matrix, we can now:</p>
 <ul>
 <li>Build a neighbor joining tree using the <code>nj()</code> function</li>
 <li>Use <code>HQ166910</code> as the <a href="https://en.wikipedia.org/wiki/Outgroup_(cladistics)"><strong>outgroup</strong></a> to root the tree (with the <code>root()</code> function)</li>
 <li>Use the <code>ladderize()</code> function to re-orient the tree into a tidier format for plotting</li>
 </ul>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="building-a-phylogenetic-tree.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># build a neighbor joining tree</span></span>
-<span id="cb278-2"><a href="building-a-phylogenetic-tree.html#cb278-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">nj</span>(D)</span>
-<span id="cb278-3"><a href="building-a-phylogenetic-tree.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="co"># manually &quot;root&quot; the tree by setting HQ166910 as an outgroup</span></span>
-<span id="cb278-4"><a href="building-a-phylogenetic-tree.html#cb278-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">root</span>(tree, <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;HQ166910&quot;</span>))</span>
-<span id="cb278-5"><a href="building-a-phylogenetic-tree.html#cb278-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rotate tree at nodes to make it look tidier (i.e., &quot;ladderized&quot;)</span></span>
-<span id="cb278-6"><a href="building-a-phylogenetic-tree.html#cb278-6" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">ladderize</span>(tree)</span>
-<span id="cb278-7"><a href="building-a-phylogenetic-tree.html#cb278-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb278-8"><a href="building-a-phylogenetic-tree.html#cb278-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the tree</span></span>
-<span id="cb278-9"><a href="building-a-phylogenetic-tree.html#cb278-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
-<span id="cb278-10"><a href="building-a-phylogenetic-tree.html#cb278-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
-<span id="cb278-11"><a href="building-a-phylogenetic-tree.html#cb278-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb278-12"><a href="building-a-phylogenetic-tree.html#cb278-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">1.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="building-a-phylogenetic-tree.html#cb280-1" tabindex="-1"></a><span class="co"># build a neighbor joining tree</span></span>
+<span id="cb280-2"><a href="building-a-phylogenetic-tree.html#cb280-2" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">nj</span>(D)</span>
+<span id="cb280-3"><a href="building-a-phylogenetic-tree.html#cb280-3" tabindex="-1"></a><span class="co"># manually &quot;root&quot; the tree by setting HQ166910 as an outgroup</span></span>
+<span id="cb280-4"><a href="building-a-phylogenetic-tree.html#cb280-4" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">root</span>(tree, <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;HQ166910&quot;</span>))</span>
+<span id="cb280-5"><a href="building-a-phylogenetic-tree.html#cb280-5" tabindex="-1"></a><span class="co"># rotate tree at nodes to make it look tidier (i.e., &quot;ladderized&quot;)</span></span>
+<span id="cb280-6"><a href="building-a-phylogenetic-tree.html#cb280-6" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">ladderize</span>(tree)</span>
+<span id="cb280-7"><a href="building-a-phylogenetic-tree.html#cb280-7" tabindex="-1"></a></span>
+<span id="cb280-8"><a href="building-a-phylogenetic-tree.html#cb280-8" tabindex="-1"></a><span class="co"># plot the tree</span></span>
+<span id="cb280-9"><a href="building-a-phylogenetic-tree.html#cb280-9" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
+<span id="cb280-10"><a href="building-a-phylogenetic-tree.html#cb280-10" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb280-11"><a href="building-a-phylogenetic-tree.html#cb280-11" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb280-12"><a href="building-a-phylogenetic-tree.html#cb280-12" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">1.2</span>)</span></code></pre></div>
 <p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>On the tree, we can see that the 2019-nCov sample (<code>MT093631.2 Severe acute respiratory syndrome coronavirus 2</code>) groups most closely with <code>Bat coronavirus RaTG13</code>.</p>
 <hr />
@@ -440,6 +442,34 @@ Do you think this similarity is sufficient to confirm a bat origin of SARS-CoV-2
 <p>Although the distance between SARS-CoV-2 and RaTG13 in the phylogeny looks small, it’s a large distance in phylogenetic space. Without sampling more deeply within intermediate strains between RaTG13 and SARS-CoV-2, we don’t know whether it passed through other mammalian species before being transmitted to humans.</p>
 </details>
 <hr />
+<p>yper
+## Assess bootstrap support</p>
+<p>A useful tool for evaluating confidence in a phylogenetic tree (or any other metric) is <strong><a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrapping</a></strong>. This statistical method is based on resampling data with replacement from the original dataset.</p>
+<p>In our case, we resample aligned sites (i.e., bases) from the original alignment, then build a new tree with the resampled data. By repeating this procedure many times, we can evaluate confidence in various parts of the original tree by asking how often the trees from resampled data contain these features.</p>
+<p>Run the code below to implement bootstrapping in the <code>boot.phylo()</code> function. The output is a vector of bootstrap support values, which we can overlay onto the tree.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="building-a-phylogenetic-tree.html#cb281-1" tabindex="-1"></a><span class="co"># set random seed</span></span>
+<span id="cb281-2"><a href="building-a-phylogenetic-tree.html#cb281-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb281-3"><a href="building-a-phylogenetic-tree.html#cb281-3" tabindex="-1"></a><span class="co"># bootstrap and build new trees to evaluate uncertainty</span></span>
+<span id="cb281-4"><a href="building-a-phylogenetic-tree.html#cb281-4" tabindex="-1"></a>myBoots <span class="ot">&lt;-</span> <span class="fu">boot.phylo</span>(tree, dna, </span>
+<span id="cb281-5"><a href="building-a-phylogenetic-tree.html#cb281-5" tabindex="-1"></a>                      <span class="cf">function</span>(x) <span class="fu">ladderize</span>(<span class="fu">root</span>(<span class="fu">nj</span>(<span class="fu">dist.dna</span>(x,</span>
+<span id="cb281-6"><a href="building-a-phylogenetic-tree.html#cb281-6" tabindex="-1"></a>                                                             <span class="at">model =</span> <span class="st">&quot;TN93&quot;</span>)),</span>
+<span id="cb281-7"><a href="building-a-phylogenetic-tree.html#cb281-7" tabindex="-1"></a>                                                 <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;HQ166910&quot;</span>))), </span>
+<span id="cb281-8"><a href="building-a-phylogenetic-tree.html#cb281-8" tabindex="-1"></a>                      <span class="at">rooted =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Running bootstraps:       100 / 100
+## Calculating bootstrap values... done.</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="building-a-phylogenetic-tree.html#cb283-1" tabindex="-1"></a><span class="co"># replace &quot;NA&quot; with zero in bootstrap results; do not label terminal nodes</span></span>
+<span id="cb283-2"><a href="building-a-phylogenetic-tree.html#cb283-2" tabindex="-1"></a>myBoots[<span class="fu">is.na</span>(myBoots)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb283-3"><a href="building-a-phylogenetic-tree.html#cb283-3" tabindex="-1"></a>myBoots <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">25</span>), myBoots)</span>
+<span id="cb283-4"><a href="building-a-phylogenetic-tree.html#cb283-4" tabindex="-1"></a></span>
+<span id="cb283-5"><a href="building-a-phylogenetic-tree.html#cb283-5" tabindex="-1"></a><span class="co"># re-plot tree with bootstrap values</span></span>
+<span id="cb283-6"><a href="building-a-phylogenetic-tree.html#cb283-6" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb283-7"><a href="building-a-phylogenetic-tree.html#cb283-7" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb283-8"><a href="building-a-phylogenetic-tree.html#cb283-8" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">label =</span> names) <span class="sc">+</span></span>
+<span id="cb283-9"><a href="building-a-phylogenetic-tree.html#cb283-9" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> myBoots), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb283-10"><a href="building-a-phylogenetic-tree.html#cb283-10" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 25 rows containing missing values or values outside the scale range
+## (`geom_label()`).</code></pre>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/hgv_lab_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 </div>
 <hr>
 <center> 
@@ -455,7 +485,7 @@ Do you think this similarity is sufficient to confirm a bat origin of SARS-CoV-2
         </div>
       </div>
 <a href="computing-pairwise-distance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="assess-bootstrap-support.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conclusion-10.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -515,7 +545,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -242,7 +242,6 @@ dna-sequences
 neighbor-joining-trees
 computing-pairwise-distance
 building-a-phylogenetic-tree
-assess-bootstrap-support
 conclusion-10
 homework-10
 learning-objectives-20
