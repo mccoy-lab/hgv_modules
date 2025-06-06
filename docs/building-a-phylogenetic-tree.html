@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.10 Building a phylogenetic tree | Human Genome Variation Lab</title>
   <meta name="description" content="Description of Course" />
-  <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.10 Building a phylogenetic tree | Human Genome Variation Lab" />
   <meta property="og:type" content="book" />
@@ -455,7 +455,8 @@ Do you think this similarity is sufficient to confirm a bat origin of SARS-CoV-2
 <span id="cb281-6"><a href="building-a-phylogenetic-tree.html#cb281-6" tabindex="-1"></a>                                                             <span class="at">model =</span> <span class="st">&quot;TN93&quot;</span>)),</span>
 <span id="cb281-7"><a href="building-a-phylogenetic-tree.html#cb281-7" tabindex="-1"></a>                                                 <span class="fu">which</span>(ids <span class="sc">==</span> <span class="st">&quot;HQ166910&quot;</span>))), </span>
 <span id="cb281-8"><a href="building-a-phylogenetic-tree.html#cb281-8" tabindex="-1"></a>                      <span class="at">rooted =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## Running bootstraps:       100 / 100
+<pre><code>## 
+Running bootstraps:       100 / 100
 ## Calculating bootstrap values... done.</code></pre>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="building-a-phylogenetic-tree.html#cb283-1" tabindex="-1"></a><span class="co"># replace &quot;NA&quot; with zero in bootstrap results; do not label terminal nodes</span></span>
 <span id="cb283-2"><a href="building-a-phylogenetic-tree.html#cb283-2" tabindex="-1"></a>myBoots[<span class="fu">is.na</span>(myBoots)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
