@@ -1,0 +1,8 @@
+:root {
+    --link-color: #0b5b9d;
+    --accent-color: #012d72;   /* book title, first letter of chapter, toc text */
+    --highlight-color: #68ace5;   /* toc highlight, callout box borders */
+    --caption-color: #595959;
+    --background-color: white;
+    --callout-background-color: #e8ebee;
+  }
