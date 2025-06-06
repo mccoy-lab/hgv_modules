@@ -1,0 +1,121 @@
+name: Periodic URL Check 2
+
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *'
+
+jobs:
+  set-up:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+        # Use the yaml-env-action action.
+      - name: Load environment from YAML
+        uses: doughepi/yaml-env-action@v1.0.0
+        with:
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+    outputs:
+      toggle_url_check_periodically: "${{ env.URL_CHECK_PERIODICALLY }}"
+
+  url-check:
+    name: Check URLs
+    needs: set-up
+    if: ${{needs.set-up.outputs.toggle_url_check_periodically == 'true'}}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # Delete the branch if this has been run before
+    - name: Delete branch locally and remotely
+      run: git push origin --delete preview-spell-error || echo "No branch to delete"
+
+    # Make the branch fresh
+    - name: Make the branch fresh
+      run: |
+        git config --global --add safe.directory $GITHUB_WORKSPACE
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+        echo branch doesnt exist
+        git checkout -b preview-spell-error || echo branch exists
+        git push --set-upstream origin preview-spell-error || echo echo branch exists remotely
+      shell: bash
+
+    - name: Run the check
+      uses: ottrproject/ottr-reports@main
+      id: check_results
+      continue-on-error: true
+      with:
+        check_spelling: false
+        spelling_error_min: 1
+        check_urls: true
+        url_error_min: 1
+        check_quiz_form: false
+        quiz_error_min: 1
+        sort_dictionary: false
+
+    - name: Declare file path and time
+      id: check-report
+      run: |
+        error_num=$(cat check_reports/url_checks.tsv | wc -l)
+        error_num="$((error_num-1))"
+        echo "error_num=$error_num" >> $GITHUB_OUTPUT
+        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/preview-spell-error/check_reports/url_checks.tsv" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Stop if failure
+      if: steps.check_results.outcome == 'failure'
+      run: exit 1
+
+    - name: Print out error variables
+      run: |
+        echo ${{ steps.check-report.outputs.error_url }}
+        echo ${{ steps.check-report.outputs.error_num }}
+
+      # Commit file
+    - name: Commit tocless bookdown files
+      if: ${{ steps.check-report.outputs.error_num >= 1 }}
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git add --force check_reports/url_checks.tsv
+        git commit -m 'Add spell check file' || echo "No changes to commit"
+        git push --set-upstream origin preview-spell-error || echo echo branch exists remotely
+
+    - name: Find issues
+      id: find-issue
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        echo "$GITHUB_REPOSITORY"
+        curl -o find_issue.R https://raw.githubusercontent.com/ottrproject/ottr-reports/main/scripts/find_issue.R
+        issue_exists=$(Rscript --vanilla find_issue.R --repo $GITHUB_REPOSITORY --git_pat $GH_PAT)
+        echo URL issue exists: $issue_exists
+        echo "issue_existence=$issue_exists" >> $GITHUB_OUTPUT
+
+    - name: If too many URL errors, then make an issue
+      if: ${{ steps.check-report.outputs.error_num >= 1 && steps.find-issue.outputs.issue_existence == 0}}
+      uses: JasonEtco/create-an-issue@v2
+      with:
+        filename: .github/ISSUE_TEMPLATE/url-error.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        FILE_URL: ${{ steps.check-report.outputs.error_url }}
+        ERROR_NUM: ${{ steps.check-report.outputs.error_num }}
+
+    - name: If no URL errors than delete the branch we made
+      if: ${{ steps.check-report.outputs.error_num < 1 }}
+      run: |
+        git config --system --add safe.directory "$GITHUB_WORKSPACE"
+        git push origin --delete preview-spell-error || echo "No branch to delete"
