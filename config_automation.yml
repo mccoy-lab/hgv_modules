@@ -1,23 +1,39 @@
 
+### Render preview of content with changes (Rmd's and md's are checked)
+render-preview: true
+
 ##### Checks run at pull request #####
 # Check quiz formatting
-check-quizzes: no
+check-quizzes: false
+quiz_error_min: 0
 # Check that urls in the content are not broken
-url-checker: yes
-# Render preview of content with changes (Rmd's and md's are checked)
-render-preview: yes
+url-checker: true
+url_error_min: 0
 # Spell check Rmds and quizzes
-spell-check: no
+spell-check: true
+spell_error_min: 0
+
+#### Other options
 # Style any R code
-style-code: yes
+style-code: true
+# Would you like your markdown files to be checked for formatting
+markdown-linter: true
+# Would you like a readability report on your markdowns?
+readability-report: true
 # Test build the docker image if any docker-relevant files have been changed
-docker-test: no
+docker-test: false
+# Should URLs be tested periodically?
+url-check-periodically: true
 
 ##### Renderings run upon merge to main branch #####
 # Rendering each platform's content
-render-bookdown: yes
-render-leanpub: no
-render-coursera: no
+render-website: rmd
+render-leanpub: true
+render-coursera: true
+
+## Automate the creation of Book.txt file? yes/no
+## This is only relevant if render-leanpub is yes, otherwise it will be ignored
+make-book-txt: true
 
 # What docker image should be used for rendering?
 # The default is jhudsl/base_ottr:main
